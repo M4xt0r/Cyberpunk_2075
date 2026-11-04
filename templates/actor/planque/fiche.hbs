@@ -69,12 +69,11 @@
   </section>
 
   <section class="cp-col cp-gap6">
-    <h2 class="cp-lbl cp-doux cp-titre-h2">Occupants</h2>
-    {{#if bonus.length}}<span class="cp-petit">Bonus quand on y est : <span class="cp-jaune">{{#each bonus}}{{this}}{{#unless @last}} · {{/unless}}{{/each}}</span></span>{{/if}}
-    <div class="cp-ligne cp-gap6 cp-en-comps">
-      {{#each occupants}}<span class="cp-en-comp {{#unless present}}cp-en-comp-implicite{{/unless}}"><img class="cp-bien-mini" src="{{img}}" alt="">{{nom}}{{#if present}} · sur place{{/if}}</span>
-      {{else}}<span class="cp-petit cp-doux">Personne. Glisse un personnage ici, ou choisis la planque en page 3 de sa fiche.</span>{{/each}}
-    </div>
+    <h2 class="cp-lbl cp-doux cp-titre-h2">Bonus sur place</h2>
+    {{#if bonus.length}}<span class="cp-petit cp-jaune">{{#each bonus}}{{this}}{{#unless @last}} · {{/unless}}{{/each}}</span>
+    <span class="cp-petit cp-doux">S'appliquent au personnage qui coche « Sur place » en page 3 de sa fiche.</span>
+    {{else}}<span class="cp-petit cp-doux">Aucun bonus de module.</span>{{/if}}
+    <span class="cp-petit cp-doux">{{#if proprietaires.length}}Donnée à : {{#each proprietaires}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{else}}Donnée à aucun joueur{{/if}} · se gère dans les permissions de l'acteur.</span>
   </section>
 
   {{#if edition}}

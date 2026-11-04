@@ -106,44 +106,37 @@
 
       {{!-- ====== Planque ====== --}}
       <section class="cp-col cp-gap8">
-        <div class="cp-ligne cp-entre"><h2 class="cp-lbl cp-doux cp-titre-h2">Planque</h2><span class="cp-petit cp-doux">partagée par le groupe</span></div>
-        {{#if planque}}
-        <div class="cp-carte cp-coupe cp-bien-carte" data-bien="{{planque.uuid}}" data-bien-depot>
+        <div class="cp-ligne cp-entre"><h2 class="cp-lbl cp-doux cp-titre-h2">Planque</h2><span class="cp-petit cp-doux">donnée par le MJ</span></div>
+        {{#each planques}}
+        <div class="cp-carte cp-coupe cp-bien-carte" data-bien="{{uuid}}" data-bien-depot>
           <div class="cp-ligne cp-gap8">
-            <img class="cp-bien-vignette" src="{{planque.img}}" alt="">
+            <img class="cp-bien-vignette" src="{{img}}" alt="">
             <div class="cp-col cp-pousse">
-              <span class="cp-ligne cp-gap6"><button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirActeur" aria-label="Fiche de {{planque.nom}}">i</button><span class="cp-bien-nom">{{planque.nom}}</span></span>
-              <span class="cp-petit cp-doux">{{planque.typeLabel}} · {{planque.qualiteLabel}} · {{planque.parking}} place{{#if (gt planque.parking 1)}}s{{/if}} de parking{{#if planque.hebergement}} · loge {{planque.hebergement}}{{/if}}</span>
+              <span class="cp-ligne cp-gap6"><button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirActeur" aria-label="Fiche de {{nom}}">i</button><span class="cp-bien-nom">{{nom}}</span>{{#if partagee}}<span class="cp-badge-type">Partagée</span>{{/if}}</span>
+              <span class="cp-petit cp-doux">{{typeLabel}} · {{qualiteLabel}} · {{parking}} place{{#if (gt parking 1)}}s{{/if}} de parking{{#if hebergement}} · loge {{hebergement}}{{/if}}</span>
             </div>
-            <label class="cp-ligne cp-petit cp-bien-present" title="Les bonus des modules (Charcudoc, NetRunner…) s'appliquent quand tu y es"><input type="checkbox" name="system.aLaPlanque" {{checked system.aLaPlanque}} {{#unless peutModifier}}disabled{{/unless}}> Sur place</label>
+            <label class="cp-ligne cp-petit cp-bien-present" title="Les bonus des modules (Charcudoc, NetRunner…) s'appliquent quand tu y es"><input type="checkbox" data-action="basculerSurPlace" {{checked surPlace}} {{#unless ../peutModifier}}disabled{{/unless}}> Sur place</label>
           </div>
           <div class="cp-bien-champs">
-            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Type</span>{{#if planque.modifiable}}<select class="cp-inp" data-bien-champ="system.type">{{selectOptions choixTypesPlanque selected=planque.type}}</select>{{else}}<span>{{planque.typeLabel}}</span>{{/if}}</label>
-            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Niveau</span>{{#if planque.modifiable}}<select class="cp-inp" data-bien-champ="system.niveau" data-type="nombre">{{selectOptions choixNiveauxPlanque selected=planque.niveau}}</select>{{else}}<span class="cp-num">{{planque.niveau}}</span>{{/if}}</label>
-            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Qualité</span>{{#if planque.modifiable}}<select class="cp-inp" data-bien-champ="system.qualite">{{selectOptions choixQualitesPlanque selected=planque.qualite}}</select>{{else}}<span>{{planque.qualiteLabel}}</span>{{/if}}</label>
-            <span class="cp-bien-champ"><span class="cp-lbl cp-doux">Parking</span><span class="cp-num">{{planque.parking}}</span></span>
+            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Type</span>{{#if modifiable}}<select class="cp-inp" data-bien-champ="system.type">{{selectOptions ../choixTypesPlanque selected=type}}</select>{{else}}<span>{{typeLabel}}</span>{{/if}}</label>
+            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Niveau</span>{{#if modifiable}}<select class="cp-inp" data-bien-champ="system.niveau" data-type="nombre">{{selectOptions ../choixNiveauxPlanque selected=niveau}}</select>{{else}}<span class="cp-num">{{niveau}}</span>{{/if}}</label>
+            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Qualité</span>{{#if modifiable}}<select class="cp-inp" data-bien-champ="system.qualite">{{selectOptions ../choixQualitesPlanque selected=qualite}}</select>{{else}}<span>{{qualiteLabel}}</span>{{/if}}</label>
+            <span class="cp-bien-champ"><span class="cp-lbl cp-doux">Parking</span><span class="cp-num">{{parking}}</span></span>
           </div>
           <div class="cp-col cp-gap4">
-            <span class="cp-ligne cp-entre"><span class="cp-lbl cp-doux">Modules</span><span class="cp-num cp-petit {{#if planque.modules.pleins}}cp-rouge-txt{{/if}}">{{planque.modules.utilises}}/{{planque.modules.max}}</span></span>
-            {{#each planque.lignes}}
+            <span class="cp-ligne cp-entre"><span class="cp-lbl cp-doux">Modules</span><span class="cp-num cp-petit {{#if modules.pleins}}cp-rouge-txt{{/if}}">{{modules.utilises}}/{{modules.max}}</span></span>
+            {{#each lignes}}
             <div class="cp-ligne cp-gap6 cp-bien-ligne" data-item-id="{{id}}">
               <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItemBien" aria-label="Infos {{nom}}">i</button>
               <span class="cp-pousse cp-petit">{{nom}}{{#if niveau}} <span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}{{#if horsSlot}} <span class="cp-doux">· d'office</span>{{/if}}{{#if infos}} <span class="cp-doux">· {{infos}}</span>{{/if}}</span>
-              {{#if ../planque.modifiable}}{{#if ../edition}}<button type="button" class="cp-x" data-action="supprimerItemBien" aria-label="Retirer {{nom}}">×</button>{{/if}}{{/if}}
+              {{#if ../modifiable}}{{#if ../../edition}}<button type="button" class="cp-x" data-action="supprimerItemBien" aria-label="Retirer {{nom}}">×</button>{{/if}}{{/if}}
             </div>
-            {{else}}<span class="cp-petit cp-doux">Aucun module{{#if planque.modifiable}} · glisse un module sur cette carte{{/if}}</span>{{/each}}
+            {{else}}<span class="cp-petit cp-doux">Aucun module{{#if modifiable}} · glisse un module sur cette carte{{/if}}</span>{{/each}}
           </div>
-          {{#if edition}}<select class="cp-inp" name="system.planque" aria-label="Changer de planque">{{selectOptions choixPlanques selected=system.planque}}</select>{{/if}}
         </div>
         {{else}}
-        {{#if planqueManquante}}<p class="cp-petit cp-rouge-txt">La planque liée n'existe plus.</p>{{/if}}
-        {{#if peutModifier}}
-        <div class="cp-ligne cp-gap6">
-          <select class="cp-inp cp-pousse" name="system.planque" aria-label="Planque">{{selectOptions choixPlanques selected=system.planque}}</select>
-          {{#if peutCreerActeur}}<button type="button" class="cp-c-depot" data-action="creerPlanque">+ Créer la planque</button>{{/if}}
-        </div>
-        {{else}}<p class="cp-petit cp-doux">Pas de planque.</p>{{/if}}
-        {{/if}}
+        <p class="cp-petit cp-doux">{{#if sansJoueur}}Ce personnage n'appartient à aucun joueur : les planques apparaissent selon les permissions des joueurs.{{else}}Pas de planque. Le MJ en donne une en accordant la propriété de l'acteur Planque au joueur.{{/if}}</p>
+        {{/each}}
       </section>
     </div>
   </div>

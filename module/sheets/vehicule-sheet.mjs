@@ -221,7 +221,7 @@ export class FichePlanque extends FicheBien {
     const s = p.system;
     const def = s.definition;
     const nv = def.niveaux[s.niveau] ?? def.niveaux[1];
-    const occupants = game.actors.filter(a => (a.type === "personnage") && (a.system.planque === p.uuid));
+    const proprietaires = game.users.filter(u => !u.isGM && p.testUserPermission(u, "OWNER"));
     const cibles = ciblesModificateurs();
     Object.assign(c, {
       typeLabel: def.label,
@@ -236,7 +236,7 @@ export class FichePlanque extends FicheBien {
       parkingCalcul: nv.parking,
       modules: p.items.filter(i => i.type === "modulePlanque").sort((a, b) => a.name.localeCompare(b.name)).map(i => ligneModule(i, p)),
       bonus: s.bonusOccupants.map(m => `${signe(m.valeur)} ${(cibles[m.cible] ?? m.cible).replace(/^(Comp|Carac)\. · /, "")} (${m.source})`),
-      occupants: occupants.map(a => ({ nom: a.name, img: a.img, present: a.system.aLaPlanque }))
+      proprietaires: proprietaires.map(u => u.name)
     });
     return c;
   }
@@ -254,10 +254,8 @@ export class FichePlanque extends FicheBien {
     return super._onDropItem(event, item);
   }
 
-  /** Un personnage déposé sur la planque y est rattaché. @override */
-  async _onDropActor(event, acteur) {
-    if ( acteur.type !== "personnage" ) return null;
-    if ( !acteur.isOwner ) return ui.notifications.warn(`Tu ne peux pas modifier ${acteur.name}.`);
-    return acteur.update({ "system.planque": this.actor.uuid });
+  /** Pas de personnage dans une planque. @override */
+  async _onDropActor() {
+    return null;
   }
 }

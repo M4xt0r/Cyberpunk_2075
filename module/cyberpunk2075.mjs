@@ -186,13 +186,15 @@ Hooks.on("preCreateActor", (acteur, donnees) => {
 function personnagesLies(acteur) {
   if ( !acteur || !["vehicule", "planque"].includes(acteur.type) ) return [];
   const uuid = acteur.uuid;
-  return game.actors.filter(a => (a.type === "personnage") && ((a.system.planque === uuid) || a.system.vehicules.includes(uuid)));
+  // Planque : tous les personnages, car elle apparaît selon ses permissions
+  if ( acteur.type === "planque" ) return game.actors.filter(a => a.type === "personnage");
+  return game.actors.filter(a => (a.type === "personnage") && a.system.vehicules.includes(uuid));
 }
 
 /** Recalcule les personnages liés (bonus de planque) et rafraîchit leur fiche. */
 function rafraichirLies(acteur) {
   for ( const p of personnagesLies(acteur) ) {
-    p.reset();
+    if ( (acteur.type === "planque") && (p.system.surPlace === acteur.uuid) ) p.reset();
     if ( p.sheet?.rendered ) p.sheet.render(false);
   }
   // Un véhicule dépend de son pilote (compétences des armes de bord)
@@ -210,5 +212,5 @@ for ( const crochet of ["createItem", "updateItem", "deleteItem"] ) {
 
 /** Au chargement : les bonus de planque ont besoin que tous les acteurs soient là. */
 Hooks.once("ready", () => {
-  for ( const p of game.actors.filter(a => (a.type === "personnage") && a.system.aLaPlanque && a.system.planque) ) p.reset();
+  for ( const p of game.actors.filter(a => (a.type === "personnage") && a.system.surPlace) ) p.reset();
 });

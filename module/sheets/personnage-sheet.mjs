@@ -49,7 +49,7 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       retirerVehicule: FichePersonnage.#retirerVehicule,
       ouvrirActeur: FichePersonnage.#ouvrirActeur,
       piloterVehicule: FichePersonnage.#piloterVehicule,
-      creerPlanque: FichePersonnage.#creerPlanque,
+      basculerSurPlace: FichePersonnage.#basculerSurPlace,
       ouvrirItemBien: FichePersonnage.#ouvrirItemBien,
       supprimerItemBien: FichePersonnage.#supprimerItemBien
     }
@@ -193,27 +193,30 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
         ameliorations: v.items.filter(i => i.type === "ameliorationVehicule").map(i => ligneAmelioration(i, v))
       };
     });
-    const p = s.planque ? trouver(s.planque) : null;
-    let planque = null;
-    if ( p ) {
+    // Planques : celles dont le MJ a donné la propriété au(x) joueur(s) de ce personnage
+    const joueurs = game.users.filter(u => !u.isGM && this.actor.testUserPermission(u, "OWNER"));
+    const planques = game.actors
+      .filter(a => (a.type === "planque") && joueurs.some(u => a.testUserPermission(u, "OWNER")))
+      .map(p => {
       const ps = p.system;
-      planque = {
+      return {
         uuid: p.uuid, nom: p.name, img: p.img, modifiable: p.isOwner,
+        surPlace: s.surPlace === p.uuid,
+        partagee: game.users.filter(u => !u.isGM && p.testUserPermission(u, "OWNER")).length > 1,
         type: ps.type, niveau: ps.niveau, qualite: ps.qualite,
         typeLabel: TYPES_PLANQUE[ps.type]?.label, qualiteLabel: QUALITES_PLANQUE[ps.qualite]?.label,
         modules: ps.modules, parking: ps.parking, hebergement: ps.hebergement, revenu: ps.revenu,
         bonus: ps.bonusOccupants.length,
         lignes: p.items.filter(i => i.type === "modulePlanque").map(i => ligneModule(i, p))
       };
-    }
+    });
     const visibles = type => game.actors.filter(a => (a.type === type) && a.testUserPermission(game.user, "OBSERVER"));
     return {
       vehicules,
       choixVehicules: Object.fromEntries(visibles("vehicule").filter(v => !s.vehicules.includes(v.uuid)).map(v => [v.uuid, v.name])),
       peutCreerActeur: Actor.canUserCreate?.(game.user) ?? game.user.isGM,
-      planque,
-      planqueManquante: !!s.planque && !p,
-      choixPlanques: { "": "— aucune —", ...Object.fromEntries(visibles("planque").map(a => [a.uuid, a.name])) },
+      planques,
+      sansJoueur: !joueurs.length,
       choixVitessesBien: Object.fromEntries(VITESSES.map(l => [l, l])),
       choixTypesPlanque: Object.fromEntries(Object.entries(TYPES_PLANQUE).map(([k, d]) => [k, d.label])),
       choixQualitesPlanque: Object.fromEntries(Object.entries(QUALITES_PLANQUE).map(([k, q]) => [k, q.label])),
@@ -515,14 +518,14 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
   /*  Glisser-déposer                             */
   /* -------------------------------------------- */
 
-  /** Un véhicule ou une planque glissé sur la fiche y est lié. @override */
+  /** Un véhicule glissé sur la fiche y est lié (une planque se donne par ses permissions). @override */
   async _onDropActor(event, acteur) {
     if ( !this.isEditable ) return null;
     if ( acteur.type === "vehicule" ) {
       if ( this.actor.system.vehicules.includes(acteur.uuid) ) return null;
       return this.actor.update({ "system.vehicules": [...this.actor.system.vehicules, acteur.uuid] });
     }
-    if ( acteur.type === "planque" ) return this.actor.update({ "system.planque": acteur.uuid });
+    if ( acteur.type === "planque" ) return ui.notifications.info("Une planque apparaît ici quand le MJ en donne la propriété au joueur (clic droit sur la planque › Configurer les permissions).");
     return null;
   }
 
@@ -735,10 +738,11 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
     return v.piloter({ rapide: event.shiftKey });
   }
 
-  static async #creerPlanque() {
+  /** « Sur place » : les bonus des modules de cette planque s'appliquent au personnage. */
+  static async #basculerSurPlace(event, cible) {
     if ( !this.isEditable ) return;
-    const p = await Actor.implementation.create({ name: "Planque du groupe", type: "planque", ownership: { default: 3 } });
-    if ( p ) await this.actor.update({ "system.planque": p.uuid });
+    const uuid = cible.closest("[data-bien]")?.dataset.bien ?? "";
+    return this.actor.update({ "system.surPlace": (this.actor.system.surPlace === uuid) ? "" : uuid });
   }
 
   static async #ouvrirItemBien(event, cible) {
