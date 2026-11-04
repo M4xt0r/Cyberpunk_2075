@@ -602,3 +602,62 @@
 
 /* Fenêtre d'attaque */
 .cp2075 .cp-avert { padding: 7px 10px; border-left: 3px solid var(--cp-rouge); background: #24171A; font-size: 12px; color: #FF9A9C; }
+
+/* ==========================================================================
+   Étape 3 — implants, Humanité, repos long
+   ========================================================================== */
+
+.cp2075 .cp-wrap { flex-wrap: wrap; }
+.cp2075 .cp-tres-doux { color: var(--cp-tres-doux); }
+.cp2075 .cp-pousse-gauche { margin-left: auto; }
+.cp2075 .cp-actions-vie { margin-top: 2px; }
+.cp2075 .cp-btn-mini { min-height: 24px; font-size: 10px; padding: 0 8px; letter-spacing: .08em; }
+.cp2075 .cp-ib-rond { width: 20px; height: 20px; border-radius: 50%; background: transparent; font-family: var(--cp-f-titre); font-size: 11px; }
+
+/* Zone des implants : deux colonnes d'emplacements autour de la silhouette */
+.cp2075 .cp-implants-zone { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 190px minmax(0, 1fr); gap: 0 34px; align-items: start; }
+.cp2075 .cp-implants-col { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1; min-width: 0; }
+.cp2075 .cp-sil { position: relative; display: flex; justify-content: center; padding-top: 18px; }
+.cp2075 .cp-sil-image { width: 100%; max-width: 190px; height: auto; border: 0; filter: invert(1) brightness(.22); }
+.cp2075 .cp-cables { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: visible; }
+.cp2075 .cp-cables path { fill: none; stroke: var(--cp-jaune); stroke-width: 2; }
+.cp2075 .cp-cables circle { fill: var(--cp-sol); stroke: var(--cp-jaune); stroke-width: 2; }
+
+.cp2075 .cp-slot { background: var(--cp-carte); padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; box-sizing: border-box; }
+.cp2075 .cp-slot-vide { background: transparent; border: 1px dashed var(--cp-bordure); }
+.cp2075 .cp-slot-depasse { outline: 1px solid var(--cp-rouge); }
+.cp2075 .cp-slot-tete { display: flex; justify-content: space-between; align-items: center; min-height: 16px; gap: 6px; }
+.cp2075 .cp-implant { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; min-height: 26px; font-size: 13px; }
+.cp2075 .cp-implant-nom { flex: 1 1 90px; min-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cp2075 .cp-implant-sous { display: flex; align-items: center; gap: 6px; min-height: 22px; font-size: 12px; padding-left: 26px; }
+.cp2075 .cp-slot-libre { font-size: 12px; color: var(--cp-tres-doux); min-height: 18px; }
+.cp2075 .cp-inp-cout { width: 46px; min-height: 24px; padding: 2px 4px; text-align: center; flex: none; }
+.cp2075 .cp-encart-humanite { border: 1px solid var(--cp-bordure); padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; background: var(--cp-sol); }
+
+.cp2075 .cp-grille-bas-combat { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; margin-top: 6px; }
+
+/* Cartes : tableaux d'améliorations compatibles et d'animations */
+.cp2075 .cp-c-liste { display: flex; flex-direction: column; gap: 6px; }
+.cp2075 .cp-c-ligne-amel { display: grid; grid-template-columns: minmax(0, 1.3fr) 64px 46px minmax(0, 1.2fr) minmax(0, 1.4fr) 22px; gap: 6px; align-items: center; }
+.cp2075 .cp-c-entetes span { font-family: var(--cp-f-titre); font-weight: 600; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--cp-tres-doux); }
+.cp2075 .cp-c-tres-court { width: 46px; }
+.cp2075 .cp-c-ligne-anim { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr) 22px; gap: 8px; align-items: center; }
+.cp2075 .cp-c-ligne-son { display: grid; grid-template-columns: 130px minmax(0, 1fr) 22px; gap: 8px; align-items: center; }
+.cp2075 .cp-c-puces-serrees { padding-top: 8px; }
+.cp2075 .cp-c-sans-marge { padding: 0; }
+.cp2075 .cp-c-puce-libre { border-style: dashed; justify-content: center; }
+
+/* Fenêtre des améliorations */
+.cp2075 .cp-amel-liste { display: flex; flex-direction: column; gap: 6px; max-height: 360px; overflow-y: auto; }
+.cp2075 .cp-amel-ligne { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--cp-bordure); background: var(--cp-sol); cursor: pointer; }
+.cp2075 .cp-amel-ligne:has(input:checked) { border-color: var(--cp-jaune); }
+.cp2075 .cp-amel-posee { opacity: .6; cursor: default; }
+.cp2075 .cp-amel-nom { font-weight: 600; font-size: 14px; }
+
+/* Alertes du chat */
+.cp-msg.cp-msg-alerte { outline: 2px solid var(--cp-rouge); outline-offset: -2px; }
+.cp-msg .cp-msg-etiquette-rouge { background: var(--cp-rouge); color: var(--cp-sol); }
+.cp-msg .cp-msg-etiquette-orange { background: var(--cp-orange); color: var(--cp-sol); }
+.cp-msg .cp-msg-texte { color: var(--cp-texte); font-size: 12px; }
+.cp-msg .cp-orange { color: var(--cp-orange); }
+.cp-msg .cp-rouge-txt { color: var(--cp-rouge-txt); }

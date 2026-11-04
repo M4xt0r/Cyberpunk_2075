@@ -112,6 +112,10 @@ export async function jouerAnimation(a) {
   const source = canvas.tokens.get(a.source);
   if ( !source ) return;
   const cibles = (a.cibles ?? []).map(id => canvas.tokens.get(id)).filter(t => t);
+  if ( a.style === "aucune" ) {
+    if ( a.son ) foundry.audio.AudioHelper.play({ src: a.son, volume: 0.8, autoplay: true, loop: false }, false);
+    return;
+  }
   const touches = new Set(a.touches ?? []);
   const destinations = cibles.length ? cibles.map(t => ({ centre: t.center, token: t })) : (a.point ? [{ centre: a.point, token: null }] : []);
   const tailleImpact = t => Math.max(t?.w ?? canvas.dimensions.size, t?.h ?? canvas.dimensions.size) * 1.4;

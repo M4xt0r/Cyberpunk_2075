@@ -1,0 +1,16 @@
+<div class="cp-dlg">
+  <div class="cp-etiquette"><span class="cp-etiquette-titre">{{implant}}</span><span class="cp-num">places {{places}}</span></div>
+  {{#if plein}}<div class="cp-avert">Plus de place d'amélioration : tu peux en poser une quand même, le MJ tranche.</div>{{/if}}
+  <div class="cp-amel-liste">
+    {{#each lignes}}
+    <label class="cp-amel-ligne {{#if posee}}cp-amel-posee{{/if}}">
+      <input type="radio" name="choix" value="{{i}}" {{#if posee}}disabled{{/if}} {{#if @first}}{{#unless posee}}checked{{/unless}}{{/if}}>
+      <span class="cp-col cp-pousse">
+        <span class="cp-amel-nom">{{nom}}</span>
+        <span class="cp-petit cp-doux">{{#if effet}}{{effet}} · {{/if}}{{prix}} €$ · +{{cout}}💀</span>
+      </span>
+      {{#if posee}}<span class="cp-lbl cp-vert">Posée</span>{{/if}}
+    </label>
+    {{/each}}
+  </div>
+</div>

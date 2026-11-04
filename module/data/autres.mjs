@@ -21,18 +21,17 @@ export class PlanqueData extends ActeurProvisoire {}
 /*  Items pas encore construits (étapes 3 à 7)  */
 /* ============================================ */
 
-export class ImplantData extends ItemBase {
+export class HackData extends ItemBase {}
+
+/** Talent provisoire (étape 4) : l'effet spécial Edgerunner est déjà reconnu. */
+export class TalentData extends ItemBase {
   static defineSchema() {
     return {
       ...super.defineSchema(),
-      coutInstallation: entier(0, { min: 0 })
+      special: new f.StringField({ required: true, blank: true, initial: "" })
     };
   }
 }
-export class AmeliorationImplantData extends ItemBase {}
-export class CapsuleData extends ItemBase {}
-export class HackData extends ItemBase {}
-export class TalentData extends ItemBase {}
 
 export class ClasseData extends ItemBase {
   static defineSchema() {

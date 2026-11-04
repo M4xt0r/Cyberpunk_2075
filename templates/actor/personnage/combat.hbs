@@ -1,71 +1,77 @@
 <section class="tab cp-page cp-page-combat {{tab.cssClass}}" data-group="primary" data-tab="combat">
-  <div class="cp-combat-grille">
 
-    {{!-- ====== Implants (étape 3) ====== --}}
-    <section class="cp-col cp-gap12">
-      <div class="cp-ligne cp-entre"><h2 class="cp-lbl cp-doux cp-titre-h2">Implants</h2><span class="cp-petit cp-doux">ⓘ ouvre la carte · ↳ amélioration ou capsule</span></div>
-      <div class="cp-carte cp-coupe cp-implants-attente">
-        <img class="cp-silhouette" src="systems/cyberpunk2075/assets/silhouette.png" alt="">
-        <div class="cp-col cp-gap6">
-          <span class="cp-lbl cp-jaune">Étape 3</span>
-          <p class="cp-petit cp-doux">La silhouette et ses 11 emplacements, les améliorations, les capsules et le bouton Activer arrivent avec les implants et l'Humanité.</p>
-        </div>
+  {{!-- ====== Implants ====== --}}
+  <div class="cp-ligne cp-entre">
+    <h2 class="cp-lbl cp-doux cp-titre-h2">Implants{{#if edgerunner}} <span class="cp-jaune">· Edgerunner (+1 place)</span>{{/if}}</h2>
+    <span class="cp-petit cp-doux">ⓘ ouvre la carte · ↳ amélioration ou capsule{{#if edition}} · glisse un implant n'importe où, une amélioration sur sa ligne{{/if}}</span>
+  </div>
+  <div class="cp-implants-zone">
+    <svg class="cp-cables" aria-hidden="true"></svg>
+    <div class="cp-implants-col">
+      {{#each implantsGauche}}{{> "systems/cyberpunk2075/templates/actor/personnage/partials/emplacement.hbs" cote="gauche"}}{{/each}}
+    </div>
+    <div class="cp-sil"><img class="cp-sil-image" src="systems/cyberpunk2075/assets/silhouette.png" alt="Silhouette"></div>
+    <div class="cp-implants-col">
+      <div class="cp-encart-humanite">
+        <div class="cp-ligne"><span class="cp-ic cp-ic-humanite cp-ic-18"></span><span class="cp-lbl cp-doux">Minimum d'Humanité</span><span class="cp-num cp-gros cp-jaune cp-pousse cp-droite-txt">{{humanite.min}}</span></div>
+        <span class="cp-petit cp-doux">Somme des 💀 d'installation des implants et améliorations posés.</span>
       </div>
+      {{#each implantsDroite}}{{> "systems/cyberpunk2075/templates/actor/personnage/partials/emplacement.hbs" cote="droite"}}{{/each}}
+    </div>
+  </div>
+
+  <div class="cp-grille-bas-combat">
+    {{!-- ====== Armes ====== --}}
+    <section class="cp-col cp-gap8">
+      <h2 class="cp-lbl cp-doux cp-titre-h2">Armes</h2>
+      {{#each armes}}
+      <div class="cp-carte cp-coupe cp-arme" data-item-id="{{id}}">
+        <div class="cp-ligne">
+          <button type="button" class="cp-ib" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
+          <span class="cp-arme-nom">{{nom}}</span>
+          {{#if ../edition}}
+            {{#if aNiveaux}}<select class="cp-inp cp-sel-niveau" data-item-champ="system.niveau" aria-label="Niveau possédé">{{selectOptions ../choixNiveaux selected=niveauPossede}}</select>{{/if}}
+          {{else}}
+            {{#if niveau}}<span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}
+          {{/if}}
+          <span class="cp-petit cp-doux cp-pousse cp-droite-txt">{{type}}{{#if grenade}} · × {{quantite}}{{/if}}</span>
+          {{#if ../edition}}<button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>{{/if}}
+        </div>
+        <span class="cp-num cp-petit cp-doux cp-arme-infos">{{{infos}}}{{#if typeDegats}} · {{typeDegats}}{{/if}}</span>
+        {{#unless ../edition}}
+        <div class="cp-ligne cp-gap8">
+          <button type="button" class="cp-btn cp-btn-principal cp-btn-petit" data-action="attaquer" {{#if epuise}}disabled{{/if}} title="Maj + clic : sans fenêtre">{{labelAttaque}}</button>
+          {{#if boutonDegats}}<button type="button" class="cp-btn cp-btn-secondaire cp-btn-petit" data-action="degats">Dégâts</button>{{/if}}
+          {{#if grenade}}
+          <span class="cp-pousse"></span>
+          <span class="cp-qte">
+            <button type="button" class="cp-qb" data-action="ajusterItem" data-champ="system.quantite" data-delta="-1" aria-label="Retirer une {{nom}}">−</button>
+            <span class="cp-num">{{quantite}}</span>
+            <button type="button" class="cp-qb" data-action="ajusterItem" data-champ="system.quantite" data-delta="1" aria-label="Ajouter une {{nom}}">+</button>
+          </span>
+          {{/if}}
+        </div>
+        {{/unless}}
+      </div>
+      {{else}}
+      <p class="cp-petit cp-doux">Aucune arme. {{#if peutModifier}}Glisse une arme depuis le compendium ou la barre latérale.{{/if}}</p>
+      {{/each}}
+      {{#if edition}}<div class="cp-zone-depot">+ Glisser une arme depuis le compendium</div>{{/if}}
     </section>
 
-    <div class="cp-col cp-gap16">
-      {{!-- ====== Armes ====== --}}
-      <section class="cp-col cp-gap8">
-        <h2 class="cp-lbl cp-doux cp-titre-h2">Armes</h2>
-        {{#each armes}}
-        <div class="cp-carte cp-coupe cp-arme" data-item-id="{{id}}">
-          <div class="cp-ligne">
-            <button type="button" class="cp-ib" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
-            <span class="cp-arme-nom">{{nom}}</span>
-            {{#if ../edition}}
-              {{#if aNiveaux}}<select class="cp-inp cp-sel-niveau" data-item-champ="system.niveau" aria-label="Niveau possédé">{{selectOptions ../choixNiveaux selected=niveauPossede}}</select>{{/if}}
-            {{else}}
-              {{#if niveau}}<span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}
-            {{/if}}
-            <span class="cp-petit cp-doux cp-pousse cp-droite-txt">{{type}}{{#if grenade}} · × {{quantite}}{{/if}}</span>
-            {{#if ../edition}}<button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>{{/if}}
-          </div>
-          <span class="cp-num cp-petit cp-doux cp-arme-infos">{{{infos}}}{{#if typeDegats}} · {{typeDegats}}{{/if}}</span>
-          {{#unless ../edition}}
-          <div class="cp-ligne cp-gap8">
-            <button type="button" class="cp-btn cp-btn-principal cp-btn-petit" data-action="attaquer" {{#if epuise}}disabled{{/if}} title="Maj + clic : sans fenêtre">{{labelAttaque}}</button>
-            {{#if boutonDegats}}<button type="button" class="cp-btn cp-btn-secondaire cp-btn-petit" data-action="degats">Dégâts</button>{{/if}}
-            {{#if grenade}}
-            <span class="cp-pousse"></span>
-            <span class="cp-qte">
-              <button type="button" class="cp-qb" data-action="ajusterItem" data-champ="system.quantite" data-delta="-1" aria-label="Retirer une {{nom}}">−</button>
-              <span class="cp-num">{{quantite}}</span>
-              <button type="button" class="cp-qb" data-action="ajusterItem" data-champ="system.quantite" data-delta="1" aria-label="Ajouter une {{nom}}">+</button>
-            </span>
-            {{/if}}
-          </div>
-          {{/unless}}
-        </div>
-        {{else}}
-        <p class="cp-petit cp-doux">Aucune arme. {{#if peutModifier}}Glisse une arme depuis le compendium ou la barre latérale.{{/if}}</p>
-        {{/each}}
-        {{#if edition}}<div class="cp-zone-depot">+ Glisser une arme depuis le compendium</div>{{/if}}
-      </section>
+    {{!-- ====== Talents (étape 4) ====== --}}
+    <section class="cp-col cp-gap8">
+      <h2 class="cp-lbl cp-doux cp-titre-h2">Talents</h2>
+      <p class="cp-petit cp-doux">Les talents de classe et de sous-classe arrivent à l'étape 4.</p>
+    </section>
 
-      {{!-- ====== Talents (étape 4) ====== --}}
-      <section class="cp-col cp-gap8">
-        <h2 class="cp-lbl cp-doux cp-titre-h2">Talents</h2>
-        <p class="cp-petit cp-doux">Les talents de classe et de sous-classe arrivent à l'étape 4.</p>
-      </section>
-
-      {{!-- ====== Hacks (étape 5) ====== --}}
-      <section class="cp-col cp-gap8">
-        <div class="cp-ligne cp-entre">
-          <h2 class="cp-lbl cp-doux cp-titre-h2">Hacks</h2>
-          <span class="cp-ligne cp-gap6"><span class="cp-ic cp-ic-ram cp-bleu cp-ic-18"></span><span class="cp-num cp-petit">{{ram.value}}/{{ram.max}}</span></span>
-        </div>
-        <p class="cp-petit cp-doux">Les hacks arrivent à l'étape 5.</p>
-      </section>
-    </div>
+    {{!-- ====== Hacks (étape 5) ====== --}}
+    <section class="cp-col cp-gap8">
+      <div class="cp-ligne cp-entre">
+        <h2 class="cp-lbl cp-doux cp-titre-h2">Hacks</h2>
+        <span class="cp-ligne cp-gap6"><span class="cp-ic cp-ic-ram cp-bleu cp-ic-18"></span><span class="cp-num cp-petit">{{ram.value}}/{{ram.max}}</span></span>
+      </div>
+      <p class="cp-petit cp-doux">Les hacks arrivent à l'étape 5.</p>
+    </section>
   </div>
 </section>

@@ -1,4 +1,5 @@
-import { CHEMIN, CARACS, COMPETENCES, ETATS, NATURES, STRESS, COUVERTS, NIVEAUX, TYPES_ARME, TYPES_DEGATS, CATEGORIES_OBJET, QUALITES, ciblesModificateurs } from "../config.mjs";
+import { CHEMIN, CARACS, COMPETENCES, ETATS, NATURES, STRESS, COUVERTS, NIVEAUX, TYPES_ARME, TYPES_DEGATS, CATEGORIES_OBJET, QUALITES, EMPLACEMENTS, CAPSULES, ciblesModificateurs } from "../config.mjs";
+import { CapsuleData } from "../data/implant.mjs";
 import { signe } from "../dice/jets.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
@@ -34,7 +35,12 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       utiliser: FichePersonnage.#utiliser,
       ajusterItem: FichePersonnage.#ajusterItem,
       basculerPorte: FichePersonnage.#basculerPorte,
-      arreterEffet: FichePersonnage.#arreterEffet
+      arreterEffet: FichePersonnage.#arreterEffet,
+      activer: FichePersonnage.#activer,
+      ajouterAmelioration: FichePersonnage.#ajouterAmelioration,
+      poserCapsule: FichePersonnage.#poserCapsule,
+      reposLong: FichePersonnage.#reposLong,
+      jetDeMort: FichePersonnage.#jetDeMort
     }
   };
 
@@ -120,6 +126,9 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       etat: ETATS[s.etat] ?? ETATS.stable,
       etats: Object.fromEntries(Object.entries(ETATS).map(([k, v]) => [k, v.label])),
       enAlerte: s.etat !== "stable",
+      rebours: s.etat === "rebours",
+      cyberpsychose: s.etat === "cyberpsychose",
+      aZeroPV: (s.vie.value <= 0),
       stressCases: [1, 2, 3, 4].map(n => ({ n, plein: n <= s.stress })),
       stressEffets: Object.entries(STRESS).filter(([n]) => Number(n) <= s.stress).map(([, t]) => t),
       mortSucces: [1, 2, 3].map(n => ({ n, plein: n <= s.mort.succes })),
@@ -219,7 +228,64 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       };
     });
 
-    return { armes, objets, choixNiveaux, aArmes: armes.length > 0, aObjets: objets.length > 0 };
+    return { armes, objets, choixNiveaux, aArmes: armes.length > 0, aObjets: objets.length > 0, ...this.#preparerImplants(niveauBadge) };
+  }
+
+  /** Implants rangés par emplacement, côté gauche et côté droit de la silhouette. */
+  #preparerImplants(niveauBadge) {
+    const acteur = this.actor;
+    const edge = acteur.system.edgerunner;
+    const implants = acteur.items.filter(i => i.type === "implant").sort((a, b) => (a.sort - b.sort) || a.name.localeCompare(b.name));
+    const cotes = { gauche: [], droite: [] };
+    for ( const [cle, def] of Object.entries(EMPLACEMENTS) ) {
+      const liste = implants.filter(i => i.system.emplacement === cle);
+      let max = def.max;
+      if ( (max !== null) && edge && (cle !== "portNeural") ) max += 1;
+      let amelPosees = 0;
+      let amelMax = 0;
+      const lignes = liste.map(item => {
+        const s = item.system;
+        const posees = s.ameliorationsPosees;
+        amelPosees += posees.length;
+        amelMax += s.slotsAmelioration;
+        const capsule = s.capsulePosee;
+        const restantes = s.utilisationsRestantes;
+        return {
+          id: item.id,
+          nom: item.name,
+          niveau: niveauBadge(s),
+          aNiveaux: s.aNiveaux,
+          niveauPossede: s.niveauEffectif,
+          cout: s.coutInstallation,
+          actif: s.estActif,
+          enCours: s.actif.enCours,
+          tours: s.actif.tours,
+          titreActiver: s.estActif ? `${s.effet.activation === "reaction" ? "Réaction" : s.effet.activation === "bonus" ? "Action bonus" : "Action"}${s.effet.coutHumanite ? ` · +${s.effet.coutHumanite}💀` : ""}${restantes === null ? "" : ` · ${restantes}/${s.utilisationsMax}`}` : "",
+          bloque: restantes === 0,
+          arme: s.armeIntegree,
+          ameliorations: posees.map(a => ({ id: a.id, nom: a.name, cout: a.system.coutInstallation })),
+          acceptCapsule: s.acceptCapsule,
+          capsule: capsule ? { id: capsule.id, nom: capsule.name, cout: capsule.system.coutInstallation } : null,
+          amel: s.slotsAmelioration ? `${posees.length}/${s.slotsAmelioration}` : null,
+          amelPleine: posees.length >= s.slotsAmelioration,
+          aCompatibles: s.ameliorations.length > 0
+        };
+      });
+      const nb = liste.length;
+      const libres = (max === null) ? null : Math.max(0, max - nb);
+      cotes[def.cote].push({
+        cle,
+        label: def.label,
+        compteur: ((max === null) ? `${nb}` : `${nb}/${max}`) + (amelMax ? ` · amél. ${amelPosees}/${amelMax}` : ""),
+        depasse: (max !== null) && (nb > max),
+        vide: nb === 0,
+        implants: lignes,
+        texteLibres: (max === null) ? (nb ? "" : "Aucun · sans limite") : (libres ? `${nb ? "+ " : ""}${libres} emplacement${libres > 1 ? "s" : ""} libre${libres > 1 ? "s" : ""}` : ""),
+        x: def.x,
+        y: def.y
+      });
+    }
+    return { implantsGauche: cotes.gauche, implantsDroite: cotes.droite, edgerunner: edge };
   }
 
   /** Données d'affichage d'une jauge value / max avec max forçable. */
@@ -249,6 +315,14 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
     this.element.classList.toggle("cp-mode-edition", this.enEdition);
     this.element.classList.toggle("cp-lecture-seule", !this.isEditable);
 
+    // Câbles entre les emplacements d'implants et la silhouette : redessinés à chaque changement de taille
+    this._observateur?.disconnect();
+    const zone = this.element.querySelector(".cp-implants-zone");
+    if ( zone ) {
+      this._observateur = new ResizeObserver(() => this.#dessinerCables(zone));
+      this._observateur.observe(zone);
+    }
+
     // Champs d'items (niveau possédé, quantité) : mis à jour sur l'item, pas sur la fiche
     for ( const champ of this.element.querySelectorAll("[data-item-champ]") ) {
       champ.addEventListener("change", event => {
@@ -270,6 +344,43 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
     }
   }
 
+  /** @override */
+  _onClose(options) {
+    this._observateur?.disconnect();
+    return super._onClose(options);
+  }
+
+  /**
+   * Câbles orthogonaux : bord de la carte d'emplacement → couloir → point du corps.
+   * Chaque câble a son propre couloir pour ne pas se superposer.
+   */
+  #dessinerCables(zone) {
+    const svg = zone.querySelector(".cp-cables");
+    const sil = zone.querySelector(".cp-sil-image");
+    if ( !svg || !sil || !zone.offsetWidth ) return;
+    const base = zone.getBoundingClientRect();
+    const rs = sil.getBoundingClientRect();
+    svg.setAttribute("viewBox", `0 0 ${base.width} ${base.height}`);
+    svg.setAttribute("width", base.width);
+    svg.setAttribute("height", base.height);
+    const traces = [];
+    for ( const cote of ["gauche", "droite"] ) {
+      const cartes = [...zone.querySelectorAll(`.cp-slot[data-cote="${cote}"]`)];
+      cartes.forEach((carte, i) => {
+        const r = carte.getBoundingClientRect();
+        const x1 = (cote === "gauche") ? r.right - base.left : r.left - base.left;
+        const y1 = r.top - base.top + 14;
+        const x3 = rs.left - base.left + (rs.width * Number(carte.dataset.x) / 100);
+        const y3 = rs.top - base.top + (rs.height * Number(carte.dataset.y) / 100);
+        const ecart = (cote === "gauche") ? (rs.left - base.left - x1) : (x1 - (rs.right - base.left));
+        const pas = Math.max(6, Math.min(10, ecart / (cartes.length + 1)));
+        const x2 = (cote === "gauche") ? x1 + pas * (i + 1) : x1 - pas * (i + 1);
+        traces.push(`<path d="M${x1} ${y1}H${x2}V${y3}H${x3}" /><circle cx="${x3}" cy="${y3}" r="4" />`);
+      });
+    }
+    svg.innerHTML = traces.join("");
+  }
+
   /* -------------------------------------------- */
   /*  Glisser-déposer                             */
   /* -------------------------------------------- */
@@ -277,6 +388,35 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
   /** Une seule classe et une seule sous-classe : la nouvelle remplace l'ancienne. @override */
   async _onDropItem(event, item) {
     if ( !this.actor.isOwner ) return null;
+
+    // Amélioration ou capsule : sur la ligne d'un implant
+    if ( ["ameliorationImplant", "capsule"].includes(item.type) ) {
+      const ligne = event.target.closest?.("[data-implant]");
+      const implant = this.actor.items.get(ligne?.dataset.itemId);
+      if ( !implant ) {
+        ui.notifications.warn(`Glisse ${item.name} sur la ligne de l'implant qui doit la recevoir (page Combat & chrome).`);
+        return null;
+      }
+      if ( (item.type === "capsule") && !implant.system.acceptCapsule ) return ui.notifications.warn(`${implant.name} n'accepte pas de capsule.`);
+      if ( (item.type === "capsule") && implant.system.capsulePosee ) return ui.notifications.warn(`${implant.name} porte déjà une capsule.`);
+      if ( (item.type === "ameliorationImplant") && (implant.system.ameliorationsPosees.length >= implant.system.slotsAmelioration) ) {
+        ui.notifications.warn(`${implant.name} : plus de place d'amélioration.`);
+      }
+      const donnees = item.toObject();
+      delete donnees._id;
+      foundry.utils.setProperty(donnees, "system.implant", implant.id);
+      if ( item.parent === this.actor ) return item.update({ "system.implant": implant.id });
+      return this.actor.createEmbeddedDocuments("Item", [donnees]);
+    }
+
+    // Implant : avertissement si l'emplacement est plein
+    if ( (item.type === "implant") && (item.parent !== this.actor) ) {
+      const def = EMPLACEMENTS[item.system.emplacement];
+      let max = def?.max ?? null;
+      if ( (max !== null) && this.actor.system.edgerunner && (item.system.emplacement !== "portNeural") ) max += 1;
+      const nb = this.actor.items.filter(i => (i.type === "implant") && (i.system.emplacement === item.system.emplacement)).length;
+      if ( (max !== null) && (nb >= max) ) ui.notifications.warn(`Emplacement ${def.label} plein (${max} max) : l'implant est posé quand même.`);
+    }
     if ( ["classe", "sousClasse"].includes(item.type) && (item.parent !== this.actor) ) {
       const anciens = this.actor.items.filter(i => i.type === item.type).map(i => i.id);
       if ( anciens.length ) await this.actor.deleteEmbeddedDocuments("Item", anciens);
@@ -410,6 +550,82 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
     if ( !this.isEditable ) return;
     const item = this.#itemDe(cible);
     return item?.update({ "system.porte": !item.system.porte });
+  }
+
+  static async #activer(event, cible) {
+    return this.#itemDe(cible)?.activer();
+  }
+
+  static async #reposLong() {
+    if ( !this.isEditable ) return;
+    return this.actor.reposLong();
+  }
+
+  static async #jetDeMort() {
+    if ( !this.isEditable ) return;
+    return this.actor.jetDeMort();
+  }
+
+  /** Choisir une amélioration parmi celles que l'implant accepte. */
+  static async #ajouterAmelioration(event, cible) {
+    if ( !this.isEditable ) return;
+    const implant = this.#itemDe(cible);
+    if ( !implant ) return;
+    const s = implant.system;
+    const posees = new Set(s.ameliorationsPosees.map(a => a.name));
+    const lignes = s.ameliorations.map((a, i) => ({ ...a, i, posee: posees.has(a.nom) }));
+    if ( !lignes.length ) return ui.notifications.info(`${implant.name} n'a pas d'amélioration compatible. Tu peux en glisser une depuis le compendium sur sa ligne.`);
+    const contenu = await foundry.applications.handlebars.renderTemplate(`${CHEMIN}/templates/dialogs/ameliorations.hbs`, {
+      implant: implant.name, lignes, places: `${posees.size}/${s.slotsAmelioration}`, plein: posees.size >= s.slotsAmelioration
+    });
+    const index = await foundry.applications.api.DialogV2.wait({
+      window: { title: `Améliorations · ${implant.name}` },
+      classes: ["cp2075", "cp-dialogue"],
+      position: { width: 460 },
+      content: contenu,
+      buttons: [
+        { action: "annuler", label: "Annuler" },
+        { action: "ajouter", label: "Ajouter", default: true, callback: (e, b) => b.form.elements.choix?.value ?? null }
+      ],
+      rejectClose: false
+    });
+    const ligne = lignes[Number(index)];
+    if ( !ligne || (index === null) || (index === "annuler") ) return;
+    if ( posees.size >= s.slotsAmelioration ) ui.notifications.warn(`${implant.name} : plus de place d'amélioration (${s.slotsAmelioration}).`);
+    return this.actor.createEmbeddedDocuments("Item", [{
+      name: ligne.nom,
+      type: "ameliorationImplant",
+      img: implant.img,
+      system: {
+        prix: ligne.prix,
+        coutInstallation: ligne.cout,
+        implant: implant.id,
+        effet: { description: ligne.effet, modificateurs: (ligne.cible && ligne.valeur) ? [{ cible: ligne.cible, valeur: ligne.valeur }] : [] }
+      }
+    }]);
+  }
+
+  /** Poser une capsule sur un implant de bras. */
+  static async #poserCapsule(event, cible) {
+    if ( !this.isEditable ) return;
+    const implant = this.#itemDe(cible);
+    if ( !implant ) return;
+    if ( implant.system.capsulePosee ) return ui.notifications.warn(`${implant.name} porte déjà une capsule.`);
+    const choix = Object.entries(CAPSULES).map(([cle, c]) => `<label class="cp-ligne"><input type="radio" name="choix" value="${cle}"> ${c.label} · +1d4 ${TYPES_DEGATS[c.typeDegats].toLowerCase()} · 1 000 €$ · +10💀</label>`).join("");
+    const cle = await foundry.applications.api.DialogV2.wait({
+      window: { title: `Capsule · ${implant.name}` },
+      classes: ["cp2075", "cp-dialogue"],
+      content: `<div class="cp-dlg">${choix}</div>`,
+      buttons: [
+        { action: "annuler", label: "Annuler" },
+        { action: "poser", label: "Poser", default: true, callback: (e, b) => b.form.elements.choix?.value || null }
+      ],
+      rejectClose: false
+    });
+    if ( !CAPSULES[cle] ) return;
+    const modele = CapsuleData.modele(cle);
+    foundry.utils.setProperty(modele, "system.implant", implant.id);
+    return this.actor.createEmbeddedDocuments("Item", [modele]);
   }
 
   static async #arreterEffet(event, cible) {

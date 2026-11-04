@@ -108,7 +108,7 @@ export async function attaquer(item, { rapide = false, supplementaire = false } 
   const acteur = item.actor;
   if ( !acteur ) return ui.notifications.warn("L'arme doit être portée par un personnage pour attaquer.");
   const sys = item.system;
-  if ( sys.quantite <= 0 ) return ui.notifications.warn(`${item.name} : plus aucune en stock.`);
+  if ( sys.stock <= 0 ) return ui.notifications.warn(`${item.name} : plus aucune en stock.`);
 
   // Dégâts automatiques (grenades, défense « aucune ») : pas de jet de touche
   if ( sys.attaque.defense === "aucune" ) return lancerDegats(item, { avecAnimation: true });
@@ -139,7 +139,7 @@ export async function attaquer(item, { rapide = false, supplementaire = false } 
   const de = jet.dice[0];
   const naturel = de.total;
   const vingt = naturel === 20;
-  const sniper = sys.type === "sniper";
+  const sniper = sys.typeArme === "sniper";
   const typeDefense = sys.attaque.defense;
 
   const resultats = cibles.map(t => {
@@ -178,8 +178,8 @@ export async function attaquer(item, { rapide = false, supplementaire = false } 
     defense: DEFENSES[typeDefense],
     cibles: resultats,
     sansCible: !cibles.length,
-    regle: (sys.type === "mitraillette") && !supplementaire ? REGLES_ARME.mitraillette : null,
-    attaqueSup: (sys.type === "mitraillette") && !supplementaire,
+    regle: (sys.typeArme === "mitraillette") && !supplementaire ? REGLES_ARME.mitraillette : null,
+    attaqueSup: (sys.typeArme === "mitraillette") && !supplementaire,
     sniper: sniper && critiqueGlobal,
     boutonDegats: toucheQuelquUn || !cibles.length
   };
@@ -220,7 +220,8 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   const sys = item.system;
   const n = sys.n;
   const caracCle = sys.carac;
-  const bonusCarac = acteur.system.caracs?.[caracCle]?.bonus ?? 0;
+  const bonusCarac = caracCle ? (acteur.system.caracs?.[caracCle]?.bonus ?? 0) : 0;
+  const supplements = sys.degatsSupplementaires;
   const modDegats = acteur.system.modificateurs?.degats ?? 0;
 
   // Sans résultats d'attaque : cibles visées, toutes touchées
@@ -241,6 +242,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   if ( n.bonusFixe ) termes.push(`${n.bonusFixe}`);
   if ( bonusCarac ) termes.push(`${bonusCarac}`);
   if ( modDegats ) termes.push(`${modDegats}`);
+  for ( const sup of supplements ) termes.push(sup.de);
   if ( avecCritique ) termes.push(sys.deCritique);
   const jet = await new Roll(termes.join(" + ")).evaluate();
 
@@ -250,6 +252,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   if ( n.bonusFixe ) detail.push(signe(n.bonusFixe));
   if ( bonusCarac ) detail.push(`${signe(bonusCarac)} ${CARACS[caracCle].abrev}`);
   if ( modDegats ) detail.push(`${signe(modDegats)} implants et objets`);
+  supplements.forEach((sup, i) => detail.push(`+ ${sup.label} ${sup.de} (${des[1 + i]?.results.map(r => r.result).join(", ") ?? "—"})`));
   if ( avecCritique ) detail.push(`+ crit ${sys.deCritique} (${des.at(-1)?.results.map(r => r.result).join(", ")})`);
 
   const lignes = touchees.map(c => {
@@ -258,7 +261,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   });
 
   // Grenades : consommées au lancer
-  if ( sys.type === "grenade" ) await item.update({ "system.quantite": Math.max(0, sys.quantite - 1) });
+  if ( (item.type === "arme") && (sys.typeArme === "grenade") ) await item.update({ "system.quantite": Math.max(0, sys.quantite - 1) });
 
   let animation = null;
   if ( avecAnimation ) {
@@ -305,7 +308,7 @@ async function acteurDepuis(uuid) {
  * @param {number} montant
  * @param {string[]} uuids  Tokens ou acteurs ; vide = tokens sélectionnés.
  */
-export async function appliquer(nature, montant, uuids = []) {
+export async function appliquer(nature, montant, uuids = [], { attaquant = null, arme = null } = {}) {
   let acteurs = [];
   if ( uuids.length ) acteurs = (await Promise.all(uuids.map(acteurDepuis))).filter(a => a);
   else acteurs = canvas.tokens.controlled.map(t => t.actor).filter(a => a);
@@ -323,6 +326,31 @@ export async function appliquer(nature, montant, uuids = []) {
       const r = await a.subirDegats(montant);
       const reduit = r.reduit ? ` · ${r.reduit} absorbés` : "";
       ui.notifications.info(`${a.name} : −${r.avant - r.apres} PV (${r.avant} → ${r.apres})${reduit}`);
+      if ( (r.avant > 0) && (r.apres === 0) && attaquant ) await humaniteParKill(attaquant, a, arme);
     }
   }
+}
+
+/**
+ * Un ennemi tombe à 0 PV : l'attaquant gagne les 💀 « par kill » de ses effets actifs
+ * et de l'implant avec lequel il a frappé.
+ * @param {string} uuidAttaquant
+ * @param {Actor} victime
+ * @param {string} [uuidArme]
+ */
+async function humaniteParKill(uuidAttaquant, victime, uuidArme) {
+  const attaquant = await fromUuid(uuidAttaquant);
+  if ( !attaquant || (attaquant.type !== "personnage") || !attaquant.isOwner ) return;
+  let total = 0;
+  const sources = [];
+  for ( const item of attaquant.items ) {
+    const e = item.system.effet;
+    const frappe = uuidArme && (item.uuid === uuidArme) && (item.type === "implant");
+    if ( !e?.humaniteKill || !(item.system.actif?.enCours || frappe) ) continue;
+    total += e.humaniteKill;
+    sources.push(item.name);
+  }
+  if ( !total ) return;
+  const r = await attaquant.modifierHumanite(total);
+  ui.notifications.info(`${attaquant.name} : +${total}💀 pour ${victime.name} (${sources.join(", ")}) · Humanité ${r.avant} → ${r.apres}`);
 }

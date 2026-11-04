@@ -60,7 +60,8 @@ export default class PersonnageData extends foundry.abstract.TypeDataModel {
       etat: new f.StringField({ required: true, initial: "stable", choices: ["stable", "rebours", "surLeFil", "cyberpsychose"] }),
       rebours: new f.SchemaField({
         de: new f.StringField({ required: true, initial: "1d4" }),
-        tours: entier(0, { min: 0 })
+        tours: entier(0, { min: 0 }),
+        malus: entier(0, { min: 0 })
       }),
 
       eddies: entier(0),
@@ -155,6 +156,7 @@ export default class PersonnageData extends foundry.abstract.TypeDataModel {
     this.humanite.calcule = 100 + this.humanite.gains;
     this.humanite.max = this.humanite.forcer ?? this.humanite.calcule;
     this.humanite.min = this._minimumHumanite();
+    this.edgerunner = (this.parent?.items ?? []).some(i => i.system?.special === "edgerunner");
 
     const couvert = COUVERTS[this.couvert] ?? COUVERTS[0];
     this.adaptabilite.calcule = safr.total + ref.total + couvert.adaptabilite + mod("adaptabilite");
@@ -180,11 +182,11 @@ export default class PersonnageData extends foundry.abstract.TypeDataModel {
     return null;
   }
 
-  /** Minimum d'Humanité = somme des 💀 d'installation des implants posés (étape 3). */
+  /** Minimum d'Humanité = somme des 💀 d'installation des implants, améliorations et capsules posés. */
   _minimumHumanite() {
     let somme = 0;
     for ( const item of this.parent?.items ?? [] ) {
-      if ( item.type !== "implant" ) continue;
+      if ( !["implant", "ameliorationImplant", "capsule"].includes(item.type) ) continue;
       somme += Number(item.system?.coutInstallation) || 0;
     }
     return somme;

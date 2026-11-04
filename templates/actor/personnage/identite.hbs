@@ -144,13 +144,20 @@
         {{#if edition}}
         <select class="cp-inp" name="system.etat">{{selectOptions etats selected=system.etat}}</select>
         {{else}}
-        <span class="cp-badge cp-badge-{{etat.couleur}}">{{etat.label}}</span>
+        <span class="cp-badge cp-badge-{{etat.couleur}}">{{etat.label}}{{#if rebours}} · {{system.rebours.tours}} t.{{/if}}</span>
         {{/if}}
       </div>
+      {{#if cyberpsychose}}<span class="cp-alerte-texte">Cyberpsychose : un 20 naturel rend le contrôle pendant 1 tour.</span>{{/if}}
       <label class="cp-ligne cp-entre">
         <span class="cp-lbl cp-doux">Dé de compte à rebours</span>
         <input class="cp-inp-souligne cp-num cp-orange cp-court" type="text" name="system.rebours.de" value="{{system.rebours.de}}" {{#unless peutModifier}}disabled{{/unless}}>
       </label>
+      {{#if peutModifier}}
+      <div class="cp-ligne cp-gap8 cp-actions-vie">
+        {{#if aZeroPV}}<button type="button" class="cp-btn cp-btn-principal cp-btn-petit" data-action="jetDeMort">Jet de mort</button>{{/if}}
+        <button type="button" class="cp-btn cp-btn-secondaire cp-btn-petit cp-pousse-gauche" data-action="reposLong" title="RAM, utilisations, −1 stress, baisse de la jauge d'Humanité">Repos long</button>
+      </div>
+      {{/if}}
     </div>
   </div>
 

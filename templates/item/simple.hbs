@@ -23,8 +23,8 @@
   <label class="cp-champ"><span class="cp-legende">Classe parente</span><input class="cp-inp" type="text" name="system.classeParente" value="{{system.classeParente}}" {{#unless peutModifier}}disabled{{/unless}}></label>
   {{/if}}
 
-  {{#if estImplant}}
-  <label class="cp-champ"><span class="cp-legende">Coût à l'installation (💀)</span><input class="cp-inp cp-num cp-court" type="number" name="system.coutInstallation" value="{{system.coutInstallation}}" {{#unless peutModifier}}disabled{{/unless}}></label>
+  {{#if estTalent}}
+  <label class="cp-champ"><span class="cp-legende">Effet spécial géré par le code</span><select class="cp-inp" name="system.special" {{#unless peutModifier}}disabled{{/unless}}>{{selectOptions choixSpeciaux selected=system.special}}</select></label>
   {{/if}}
 
   <label class="cp-champ">

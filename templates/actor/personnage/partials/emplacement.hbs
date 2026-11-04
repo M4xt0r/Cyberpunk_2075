@@ -1,0 +1,51 @@
+<div class="cp-slot {{#if vide}}cp-slot-vide{{else}}cp-coupe{{/if}} {{#if depasse}}cp-slot-depasse{{/if}}" data-cote="{{cote}}" data-x="{{x}}" data-y="{{y}}" data-emplacement="{{cle}}">
+  <div class="cp-slot-tete">
+    <span class="cp-lbl {{#if vide}}cp-doux{{else}}cp-jaune{{/if}}">{{label}}</span>
+    <span class="cp-num cp-petit {{#if depasse}}cp-rouge-txt{{else}}cp-doux{{/if}}">{{compteur}}{{#if depasse}} · dépassé{{/if}}</span>
+  </div>
+  {{#each implants}}
+  <div class="cp-implant" data-item-id="{{id}}" data-implant>
+    <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
+    <span class="cp-implant-nom" title="{{nom}}">{{nom}}</span>
+    {{#if @root.edition}}
+      {{#if aNiveaux}}<select class="cp-inp cp-sel-niveau" data-item-champ="system.niveau" aria-label="Niveau possédé">{{selectOptions @root.choixNiveaux selected=niveauPossede}}</select>{{/if}}
+      <input class="cp-inp cp-num cp-inp-cout" type="number" min="0" value="{{cout}}" data-item-champ="system.coutInstallation" aria-label="Coût d'installation" title="Coût d'installation 💀">
+      {{#if aCompatibles}}<button type="button" class="cp-qb" data-action="ajouterAmelioration" title="Ajouter une amélioration">+</button>{{/if}}
+      <button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>
+    {{else}}
+      {{#if niveau}}<span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}
+      <span class="cp-num cp-petit cp-doux">{{cout}}💀</span>
+      {{#if enCours}}<button type="button" class="cp-badge-actif" data-action="arreterEffet" title="Arrêter l'effet">{{tours}} t.</button>{{/if}}
+      {{#if actif}}<button type="button" class="cp-btn cp-btn-principal cp-btn-mini" data-action="activer" title="{{titreActiver}}" {{#if bloque}}disabled{{/if}}>Activer</button>{{/if}}
+      {{#if arme}}<button type="button" class="cp-btn {{#if actif}}cp-btn-secondaire{{else}}cp-btn-principal{{/if}} cp-btn-mini" data-action="attaquer" title="Maj + clic : sans fenêtre">Attaquer</button>{{/if}}
+    {{/if}}
+  </div>
+  {{#each ameliorations}}
+  <div class="cp-implant-sous" data-item-id="{{id}}">
+    <span class="cp-doux">↳</span>
+    <span class="cp-implant-nom">{{nom}}</span>
+    <span class="cp-num cp-petit cp-doux">+{{cout}}💀</span>
+    <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
+    {{#if @root.edition}}<button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>{{/if}}
+  </div>
+  {{/each}}
+  {{#if acceptCapsule}}
+  {{#if capsule}}
+  <div class="cp-implant-sous" data-item-id="{{capsule.id}}">
+    <span class="cp-doux">↳</span>
+    <span class="cp-implant-nom">{{capsule.nom}}</span>
+    <span class="cp-num cp-petit cp-doux">+{{capsule.cout}}💀</span>
+    <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItem" aria-label="Infos {{capsule.nom}}">i</button>
+    {{#if @root.edition}}<button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{capsule.nom}}">×</button>{{/if}}
+  </div>
+  {{else}}
+  <div class="cp-implant-sous cp-tres-doux" data-item-id="{{id}}">
+    <span>↳</span><span class="cp-implant-nom">Capsule : aucune</span>
+    {{#if @root.edition}}<button type="button" class="cp-c-bt2" data-action="poserCapsule">+ Capsule</button>{{/if}}
+  </div>
+  {{/if}}
+  {{/if}}
+  {{#if amel}}{{#unless amelPleine}}{{#if @root.edition}}<div class="cp-implant-sous cp-tres-doux"><span>↳</span><span class="cp-implant-nom">Amélioration : place libre ({{amel}})</span></div>{{/if}}{{/unless}}{{/if}}
+  {{/each}}
+  {{#if texteLibres}}<div class="cp-slot-libre">{{texteLibres}}</div>{{/if}}
+</div>

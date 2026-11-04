@@ -1,4 +1,4 @@
-import { CHEMIN, CARACS } from "../config.mjs";
+import { CHEMIN, CARACS, EFFETS_SPECIAUX } from "../config.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2, ItemSheetV2 } = foundry.applications.sheets;
@@ -35,7 +35,8 @@ export class FicheItemSimple extends HandlebarsApplicationMixin(ItemSheetV2) {
       typeLabel: game.i18n.localize(CONFIG.Item.typeLabels?.[item.type] ?? item.type),
       estClasse: item.type === "classe",
       estSousClasse: item.type === "sousClasse",
-      estImplant: item.type === "implant",
+      estTalent: item.type === "talent",
+      choixSpeciaux: EFFETS_SPECIAUX,
       bonusCaracs: Object.entries(CARACS).map(([cle, def]) => ({
         cle, label: def.labelLong ?? def.label, valeur: item.system.bonus?.[cle] ?? 0
       }))

@@ -14,6 +14,7 @@ export const booleen = (initial = false) => new f.BooleanField({ initial });
 export function blocEffet() {
   return new f.SchemaField({
     type: choix("passif", ["passif", "actif"]),
+    description: texte(""),
     modificateurs: new f.ArrayField(new f.SchemaField({
       cible: texte(""),
       valeur: entier(0)

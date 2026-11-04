@@ -47,13 +47,21 @@ async function surAction(message, bouton) {
     const montant = Math.floor(Number(bouton.dataset.montant ?? d.total ?? 0) * facteur);
     let cible = bouton.dataset.cible ?? "";
     if ( cible === "soi" ) cible = d.acteur;
-    return appliquer(nature, montant, cible ? [cible] : []);
+    return appliquer(nature, montant, cible ? [cible] : [], { attaquant: (d.type === "degats") ? d.acteur : null, arme: d.item });
   }
 }
 
 /** Nouveau message : chaque client joue l'animation sur sa scène affichée. */
-export function surCreationMessage(message) {
-  const anim = drapeaux(message).animation;
-  if ( !anim || !canvas?.ready || (canvas.scene?.id !== anim.scene) ) return;
-  jouerAnimation(anim).catch(err => console.warn("Cyberpunk 2075 | Animation impossible :", err));
+export async function surCreationMessage(message) {
+  const d = drapeaux(message);
+  const liste = [d.animation, ...(d.animations ?? [])].filter(a => a);
+  if ( !liste.length || !canvas?.ready ) return;
+  for ( const anim of liste ) {
+    if ( canvas.scene?.id !== anim.scene ) continue;
+    try {
+      await jouerAnimation(anim);
+    } catch(err) {
+      console.warn("Cyberpunk 2075 | Animation impossible :", err);
+    }
+  }
 }

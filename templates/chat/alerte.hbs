@@ -1,0 +1,17 @@
+<div class="cp-msg {{#if rouge}}cp-msg-alerte{{/if}}">
+  <div class="cp-msg-qui"><span>Système</span><span>{{heure}}</span></div>
+  <div class="cp-msg-etiquette {{#if rouge}}cp-msg-etiquette-rouge{{/if}}{{#if orange}}cp-msg-etiquette-orange{{/if}}">
+    {{#if rouge}}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 10a7 7 0 0 1 14 0v4l-2 2v3H7v-3l-2-2z"></path><path d="M9 12h.01M15 12h.01M10 19v-2M14 19v-2"></path></svg>{{/if}}
+    <span class="cp-msg-titre">{{titre}}</span>
+  </div>
+  {{#if total}}
+  <div class="cp-msg-puce">
+    <span class="cp-msg-total {{#if rouge}}cp-rouge-txt{{else}}cp-orange{{/if}}">{{total}}</span>
+    <div class="cp-msg-des">{{#if detail}}<span class="cp-num cp-msg-detail">{{detail}}</span>{{/if}}<span>{{texte}}</span></div>
+  </div>
+  {{else}}
+  <div class="cp-msg-note cp-msg-texte">{{texte}}</div>
+  {{/if}}
+  {{#if note}}<div class="cp-msg-note">{{note}}</div>{{/if}}
+  <div class="cp-msg-broches"></div>
+</div>

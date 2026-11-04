@@ -185,3 +185,54 @@ export function ciblesModificateurs() {
   for ( const [cle, c] of Object.entries(COMPETENCES) ) cibles[`comp.${cle}`] = `Comp. · ${c.label}`;
   return cibles;
 }
+
+/* -------------------------------------------- */
+/*  Implants                                    */
+/* -------------------------------------------- */
+
+/**
+ * Les 11 emplacements d'implants (Notion), leur limite, leur côté sur la silhouette
+ * et le point du corps où arrive le câble (en % de l'image).
+ */
+export const EMPLACEMENTS = {
+  oculaire: { label: "Oculaire", max: 1, cote: "gauche", x: 47.7, y: 6, code: "OCU" },
+  facial: { label: "Facial", max: 2, cote: "gauche", x: 50, y: 10.6, code: "FAC" },
+  portNeural: { label: "Port neural", max: 3, cote: "gauche", x: 52, y: 13.7, code: "NEU" },
+  nerveux: { label: "Nerveux", max: 3, cote: "gauche", x: 50, y: 22.5, code: "NRV" },
+  bras: { label: "Bras", max: 1, cote: "gauche", x: 18, y: 37.4, code: "BRA" },
+  cyberAccessoire: { label: "Cyber-accessoire", max: null, cote: "gauche", x: 7, y: 53.6, code: "ACC" },
+  sanguin: { label: "Sanguin", max: 2, cote: "droite", x: 56, y: 26.8, code: "SAN" },
+  immunitaire: { label: "Immunitaire", max: 2, cote: "droite", x: 50, y: 41, code: "IMM" },
+  cutane: { label: "Cutané", max: 1, cote: "droite", x: 87, y: 48.6, code: "CUT" },
+  squelette: { label: "Squelette", max: 2, cote: "droite", x: 64.5, y: 65, code: "SQL" },
+  jambe: { label: "Jambe", max: 1, cote: "droite", x: 63, y: 85, code: "JMB" }
+};
+
+/** Capsules des implants de bras : 1 000 €$, +10💀, +1d4 de leur type. */
+export const CAPSULES = {
+  neurotox: { label: "Capsule Neurotox", typeDegats: "poison" },
+  electrostatique: { label: "Capsule Électrostatique", typeDegats: "electrique" },
+  surchauffante: { label: "Capsule Surchauffante", typeDegats: "feu" }
+};
+export const CAPSULE_PRIX = 1000;
+export const CAPSULE_COUT = 10;
+export const CAPSULE_DE = "1d4";
+
+/** Moments et styles des animations d'implants actifs. */
+export const MOMENTS_ANIMATION = {
+  activation: "À l'activation",
+  attaque: "À chaque attaque",
+  toucher: "Au toucher",
+  duree: "Pendant la durée"
+};
+export const STYLES_ANIM_IMPLANT = { soi: "Sur soi", projectile: "Projectile", impact: "Impact sur la cible", zone: "Zone" };
+export const MOMENTS_SON = { activation: "Son à l'activation", toucher: "Son au toucher" };
+
+/** Effets que le code gère lui-même (case « Effet spécial géré par le code »). */
+export const EFFETS_SPECIAUX = {
+  "": "Aucun",
+  edgerunner: "Edgerunner (+1 place partout sauf Port neural)"
+};
+
+/** Dé du repos long pour la jauge d'Humanité. */
+export const REPOS_HUMANITE = "1d6 + @safr + @captec";

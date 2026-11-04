@@ -1,8 +1,10 @@
 import {
   CHEMIN, CARACS, COMPETENCES, NIVEAUX, TYPES_ARME, REGLES_ARME, TYPES_DEGATS, DEFENSES, STYLES_ANIMATION,
-  ACTIVATIONS, PERIODES, CATEGORIES_OBJET, QUALITES, TYPES_JET, ciblesModificateurs
+  ACTIVATIONS, PERIODES, CATEGORIES_OBJET, QUALITES, TYPES_JET, ciblesModificateurs,
+  EMPLACEMENTS, MOMENTS_ANIMATION, STYLES_ANIM_IMPLANT, EFFETS_SPECIAUX, CAPSULES
 } from "../config.mjs";
 import { signe } from "../dice/jets.mjs";
+import { jouerAnimation } from "../animations.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -36,7 +38,11 @@ class CarteItem extends HandlebarsApplicationMixin(ItemSheetV2) {
       choisirFichier: CarteItem.#choisirFichier,
       viderFichier: CarteItem.#viderFichier,
       ajouterModif: CarteItem.#ajouterModif,
-      supprimerModif: CarteItem.#supprimerModif
+      supprimerModif: CarteItem.#supprimerModif,
+      ajouterLigne: CarteItem.#ajouterLigne,
+      supprimerLigne: CarteItem.#supprimerLigne,
+      choisirFichierLigne: CarteItem.#choisirFichierLigne,
+      testerAnimations: CarteItem.#testerAnimations
     }
   };
 
@@ -100,6 +106,28 @@ class CarteItem extends HandlebarsApplicationMixin(ItemSheetV2) {
     for ( const el of this.element.querySelectorAll("[data-modif]") ) {
       el.addEventListener("change", () => this.#enregistrerModifs(el.closest("[data-modifs]")));
     }
+    // Tableaux génériques (améliorations compatibles, animations) : idem
+    for ( const el of this.element.querySelectorAll("[data-liste] [data-cle]") ) {
+      el.addEventListener("change", event => {
+        event.stopPropagation();
+        this.#enregistrerListe(el.closest("[data-liste]"));
+      });
+    }
+  }
+
+  /** Relit toutes les lignes d'un tableau et enregistre le tableau entier. */
+  async #enregistrerListe(liste) {
+    if ( !liste || !this.isEditable ) return;
+    const chemin = liste.dataset.liste;
+    const actuel = foundry.utils.deepClone(foundry.utils.getProperty(this.item.toObject(), chemin) ?? []);
+    [...liste.querySelectorAll("[data-ligne]")].forEach((ligne, i) => {
+      actuel[i] ??= {};
+      for ( const champ of ligne.querySelectorAll("[data-cle]") ) {
+        const v = champ.value;
+        actuel[i][champ.dataset.cle] = (champ.dataset.type === "nombre") ? (Number.parseInt(String(v).replace("−", "-")) || 0) : v;
+      }
+    });
+    return this.item.update({ [chemin]: actuel });
   }
 
   async #enregistrerModifs(liste) {
@@ -161,6 +189,58 @@ class CarteItem extends HandlebarsApplicationMixin(ItemSheetV2) {
     return this.item.update({ [chemin]: liste });
   }
 
+  static async #ajouterLigne(event, cible) {
+    if ( !this.isEditable ) return;
+    const chemin = cible.dataset.chemin;
+    const liste = foundry.utils.deepClone(foundry.utils.getProperty(this.item.toObject(), chemin) ?? []);
+    liste.push(JSON.parse(cible.dataset.modele ?? "{}"));
+    return this.item.update({ [chemin]: liste });
+  }
+
+  static async #supprimerLigne(event, cible) {
+    if ( !this.isEditable ) return;
+    const chemin = cible.dataset.chemin;
+    const liste = foundry.utils.deepClone(foundry.utils.getProperty(this.item.toObject(), chemin) ?? []);
+    liste.splice(Number(cible.dataset.index), 1);
+    return this.item.update({ [chemin]: liste });
+  }
+
+  static async #choisirFichierLigne(event, cible) {
+    if ( !this.isEditable ) return;
+    const { chemin, index, cle } = cible.dataset;
+    const liste = foundry.utils.deepClone(foundry.utils.getProperty(this.item.toObject(), chemin) ?? []);
+    const Picker = CONFIG.ux?.FilePicker ?? foundry.applications.apps.FilePicker.implementation;
+    return new Picker({
+      type: cible.dataset.type ?? "imagevideo",
+      current: liste[index]?.[cle] || `${CHEMIN}/assets/animations/`,
+      callback: f => {
+        liste[index][cle] = f;
+        this.item.update({ [chemin]: liste });
+      }
+    }).browse();
+  }
+
+  /** Joue les animations de l'implant sur le token sélectionné, vers les cibles visées. */
+  static async #testerAnimations() {
+    const source = canvas?.tokens?.controlled[0];
+    if ( !source ) return ui.notifications.warn("Sélectionne un token sur la scène pour tester les animations.");
+    const s = this.item.system;
+    const cibles = Array.from(game.user.targets);
+    const base = { scene: canvas.scene.id, source: source.id, cibles: cibles.map(t => t.id), touches: cibles.map(t => t.id), point: null, rayon: s.attaque?.zone ?? 0 };
+    const ordre = ["activation", "duree", "attaque", "toucher"];
+    const lignes = [...s.animations].filter(a => a.fichier).sort((a, b) => ordre.indexOf(a.moment) - ordre.indexOf(b.moment));
+    if ( !lignes.length ) return ui.notifications.info("Aucune animation à tester.");
+    for ( const a of lignes ) {
+      const conf = { ...base, son: a.moment === "toucher" ? s.sons.toucher : (a.moment === "activation" ? s.sons.activation : "") };
+      if ( a.style === "soi" ) Object.assign(conf, { style: "soi", impact: a.fichier });
+      else if ( a.style === "impact" ) Object.assign(conf, { style: "impact", impact: a.fichier, point: cibles.length ? null : source.center });
+      else if ( a.style === "zone" ) Object.assign(conf, { style: "zone", zone: a.fichier, cibles: cibles.length ? base.cibles : [source.id] });
+      else Object.assign(conf, { style: "projectile", projectile: a.fichier });
+      if ( (conf.style !== "soi") && !cibles.length && (conf.style !== "zone") ) conf.point = { x: source.center.x + (canvas.dimensions.size * 4), y: source.center.y };
+      await jouerAnimation(conf);
+    }
+  }
+
   static async #supprimerModif(event, cible) {
     if ( !this.isEditable ) return;
     const chemin = cible.dataset.chemin;
@@ -192,7 +272,7 @@ export class CarteArme extends CarteItem {
       reference: `CP2075 · ARM-${type.code} · Rév.${c.nv}`,
       typeLabel: type.label,
       competenceLabel: comp?.label ?? "—",
-      caracLabel: CARACS[s.carac]?.label ?? "—",
+      caracLabel: CARACS[s.carac]?.label ?? null,
       touche: c.possedeParActeur ? `1d20 ${signe(s.scoreTouche).replace(/^([+−])/, "$1 ")}` : `1d20 + ${comp?.label ?? "?"}`,
       degats: s.formuleLisible(c.nv),
       typeDegats: TYPES_DEGATS[n.typeDegats] ?? n.typeDegats,
@@ -210,7 +290,7 @@ export class CarteArme extends CarteItem {
       // Édition
       choixTypes: Object.fromEntries(Object.entries(TYPES_ARME).map(([k, v]) => [k, v.label])),
       choixCompetences: Object.fromEntries(Object.entries(COMPETENCES).map(([k, v]) => [k, v.label])),
-      choixCaracs: Object.fromEntries(Object.entries(CARACS).map(([k, v]) => [k, v.labelLong ?? v.label])),
+      choixCaracs: { "": "Aucune", ...Object.fromEntries(Object.entries(CARACS).map(([k, v]) => [k, v.labelLong ?? v.label])) },
       choixDegats: TYPES_DEGATS,
       choixDefenses: DEFENSES,
       choixStyles: { "": `Par défaut (${STYLES_ANIMATION[type.anim.style]})`, ...STYLES_ANIMATION },
@@ -277,6 +357,140 @@ export class CarteObjet extends CarteItem {
       cheminModifs: `system.niveaux.n${c.nv}.effet.modificateurs`,
       modifs: e.modificateurs.map((m, i) => ({ ...m, i })),
       prefixe: `system.niveaux.n${c.nv}`
+    });
+    return c;
+  }
+}
+
+/* ============================================ */
+/*  Implant                                     */
+/* ============================================ */
+
+export class CarteImplant extends CarteItem {
+
+  static PARTS = {
+    carte: { template: `${CHEMIN}/templates/item/carte-implant.hbs` }
+  };
+
+  /** @override */
+  async _prepareContext(options) {
+    const c = await super._prepareContext(options);
+    const item = this.item;
+    const s = item.system;
+    const n = c.donneesNv;
+    const e = n.effet;
+    const empl = EMPLACEMENTS[s.emplacement];
+    const cibles = ciblesModificateurs();
+    const modifs = e.modificateurs.map(m => `${signe(m.valeur)} ${(cibles[m.cible] ?? m.cible).replace(/^(Comp|Carac)\. · /, "")}`);
+    const actif = e.type === "actif";
+
+    const puces = [
+      { label: "Effet", valeur: e.description || (actif ? "Actif" : "Passif") },
+      { label: actif ? "Pendant l'effet" : "Modificateur", valeur: modifs.join(" · ") || "—", num: !!modifs.length, couleur: modifs.length ? "jaune" : null },
+      { label: "Améliorations", valeur: n.slotsAmelioration ? `${n.slotsAmelioration} place${n.slotsAmelioration > 1 ? "s" : ""}` : "Aucune", num: true },
+      { label: c.possedeParActeur ? "Posé chez toi" : "Installation", valeur: s.coutTexte, num: true }
+    ];
+    const pucesActif = actif ? [
+      { label: "Activation", valeur: ACTIVATIONS[e.activation] },
+      { label: "Utilisations", valeur: e.utilisations.periode === "illimite" ? "Illimité" : `${e.utilisations.periode === "bm" ? "BM" : e.utilisations.max} ${PERIODES[e.utilisations.periode].replace(/^BM fois /, "").toLowerCase()}` },
+      { label: "Coût / activation", valeur: `${e.coutHumanite > 0 ? "+" : ""}${e.coutHumanite}💀`, num: true },
+      { label: e.humaniteKill ? "💀 par kill" : "Durée", valeur: e.humaniteKill ? `+${e.humaniteKill}💀` : (e.duree ? `${e.duree} tour${e.duree > 1 ? "s" : ""}` : "Instantané"), num: !!e.humaniteKill }
+    ] : null;
+    const pucesArme = s.armeIntegree ? [
+      { label: "Touche", valeur: c.possedeParActeur ? `1d20 ${signe(s.scoreTouche).replace(/^([+−])/, "$1 ")}` : `1d20 + ${s.competenceLabel}`, num: true },
+      { label: `Dégâts · ${TYPES_DEGATS[n.typeDegats] ?? n.typeDegats}`, valeur: s.formuleLisible(c.nv), num: true, couleur: "jaune" },
+      { label: "Critique", valeur: `+${NIVEAUX[c.nv].critique}`, num: true },
+      { label: "Défense visée", valeur: DEFENSES[s.attaque.defense] }
+    ] : null;
+
+    const posees = s.ameliorationsPosees.map(a => ({ id: a.id, nom: a.name, cout: a.system.coutInstallation, effet: a.system.effet.description }));
+    const libres = Math.max(0, n.slotsAmelioration - posees.length);
+    const nomsPoses = new Set(posees.map(p => p.nom));
+    const capsule = s.capsulePosee;
+
+    Object.assign(c, {
+      reference: `CP2075 · IMP-${empl?.code ?? "ACC"} · ${actif && s.armeIntegree ? "Actif + arme intégrée" : `Rév.${c.nv}`}`,
+      emplacementLabel: empl ? `${empl.label}${empl.max ? ` · ${empl.max} max` : " · sans limite"}` : "—",
+      typeEffet: actif ? "actif" : "passif",
+      actif,
+      puces,
+      pucesActif,
+      pucesArme,
+      posees,
+      placesLibres: Array.from({ length: libres }),
+      nbPosees: posees.length,
+      compatibles: s.ameliorations.map(a => ({ nom: a.nom, posee: nomsPoses.has(a.nom) })),
+      capsule: s.acceptCapsule ? (capsule ? capsule.name : "aucune") : null,
+      // Édition
+      choixEmplacements: Object.fromEntries(Object.entries(EMPLACEMENTS).map(([k, v]) => [k, `${v.label}${v.max ? ` (${v.max} max)` : ""}`])),
+      choixSpeciaux: EFFETS_SPECIAUX,
+      choixActivations: ACTIVATIONS,
+      choixPeriodes: PERIODES,
+      choixJets: TYPES_JET,
+      choixDegats: TYPES_DEGATS,
+      choixDegatsJet: { "": "—", ...TYPES_DEGATS },
+      choixDefenses: DEFENSES,
+      choixTypes: Object.fromEntries(Object.entries(TYPES_ARME).filter(([k]) => k !== "grenade").map(([k, v]) => [k, v.label])),
+      choixCompetences: Object.fromEntries(Object.entries(COMPETENCES).map(([k, v]) => [k, v.label])),
+      choixCaracs: { "": "Aucune", ...Object.fromEntries(Object.entries(CARACS).map(([k, v]) => [k, v.labelLong ?? v.label])) },
+      choixCibles: { "": "—", ...cibles },
+      choixMoments: MOMENTS_ANIMATION,
+      choixStyles: STYLES_ANIM_IMPLANT,
+      cheminModifs: `system.niveaux.n${c.nv}.effet.modificateurs`,
+      modifs: e.modificateurs.map((m, i) => ({ ...m, i })),
+      lignesAmel: s.ameliorations.map((a, i) => ({ ...a, i })),
+      lignesAnim: s.animations.map((a, i) => ({ ...a, i, nom: nomFichier(a.fichier) })),
+      sons: [
+        { label: "Son à l'activation", champ: "system.sons.activation", valeur: s.sons.activation, nom: nomFichier(s.sons.activation) },
+        { label: "Son au toucher", champ: "system.sons.toucher", valeur: s.sons.toucher, nom: nomFichier(s.sons.toucher) }
+      ],
+      prefixe: `system.niveaux.n${c.nv}`,
+      apercuDegats: s.armeIntegree ? s.formuleLisible(c.nv) : "",
+      modeleAmel: JSON.stringify({ nom: "Nouvelle amélioration", prix: 500, cout: 3, effet: "", cible: "", valeur: 0 }),
+      modeleAnim: JSON.stringify({ moment: "activation", style: "soi", fichier: "" })
+    });
+    return c;
+  }
+}
+
+/* ============================================ */
+/*  Amélioration d'implant et capsule           */
+/* ============================================ */
+
+export class CarteSousImplant extends CarteItem {
+
+  static PARTS = {
+    carte: { template: `${CHEMIN}/templates/item/carte-sous-implant.hbs` }
+  };
+
+  /** @override */
+  async _prepareContext(options) {
+    const c = await super._prepareContext(options);
+    const item = this.item;
+    const s = item.system;
+    const capsule = item.type === "capsule";
+    const cibles = ciblesModificateurs();
+    const modifs = capsule ? [] : s.effet.modificateurs.map(m => `${signe(m.valeur)} ${(cibles[m.cible] ?? m.cible).replace(/^(Comp|Carac)\. · /, "")}`);
+    const hote = s.hote;
+    Object.assign(c, {
+      capsule,
+      reference: `CP2075 · ${capsule ? "CAP" : "AML"} · Rév.1`,
+      typeLabel: capsule ? "Capsule · implant de bras" : "Amélioration d'implant",
+      hote: hote?.name ?? null,
+      prix: prix(s.prix),
+      puces: capsule ? [
+        { label: `Dégâts · ${TYPES_DEGATS[s.typeDegats]}`, valeur: `+${s.de}`, num: true, couleur: "jaune" },
+        { label: "Coût", valeur: `+${s.coutInstallation}💀`, num: true },
+        { label: "Prix", valeur: prix(s.prix), num: true }
+      ] : [
+        { label: "Effet", valeur: s.effet.description || "—" },
+        { label: "Modificateur", valeur: modifs.join(" · ") || "—", num: !!modifs.length, couleur: modifs.length ? "jaune" : null },
+        { label: "Coût", valeur: `+${s.coutInstallation}💀`, num: true }
+      ],
+      choixDegats: Object.fromEntries(Object.values(CAPSULES).map(v => [v.typeDegats, TYPES_DEGATS[v.typeDegats]])),
+      choixCibles: cibles,
+      cheminModifs: "system.effet.modificateurs",
+      modifs: capsule ? [] : s.effet.modificateurs.map((m, i) => ({ ...m, i }))
     });
     return c;
   }

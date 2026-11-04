@@ -6,12 +6,14 @@ import * as CONFIG_CP from "./config.mjs";
 import PersonnageData from "./data/personnage.mjs";
 import * as Autres from "./data/autres.mjs";
 import ArmeData from "./data/arme.mjs";
+import ImplantData, { AmeliorationImplantData, CapsuleData } from "./data/implant.mjs";
+import { tourDeCombat } from "./documents/humanite.mjs";
 import ObjetData from "./data/objet.mjs";
 import ActeurCP from "./documents/actor.mjs";
 import ItemCP from "./documents/item.mjs";
 import FichePersonnage from "./sheets/personnage-sheet.mjs";
 import { FicheItemSimple, FicheActeurSimple } from "./sheets/simples.mjs";
-import { CarteArme, CarteObjet } from "./sheets/carte-item.mjs";
+import { CarteArme, CarteObjet, CarteImplant, CarteSousImplant } from "./sheets/carte-item.mjs";
 import { signe } from "./dice/jets.mjs";
 import { surRenduMessage, surCreationMessage } from "./dice/chat.mjs";
 import { jouerAnimation } from "./animations.mjs";
@@ -35,9 +37,9 @@ Hooks.once("init", () => {
   });
   Object.assign(CONFIG.Item.dataModels, {
     arme: ArmeData,
-    implant: Autres.ImplantData,
-    ameliorationImplant: Autres.AmeliorationImplantData,
-    capsule: Autres.CapsuleData,
+    implant: ImplantData,
+    ameliorationImplant: AmeliorationImplantData,
+    capsule: CapsuleData,
     objet: ObjetData,
     hack: Autres.HackData,
     talent: Autres.TalentData,
@@ -71,8 +73,14 @@ Hooks.once("init", () => {
   DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteObjet, {
     types: ["objet"], makeDefault: true, label: "Carte d'objet Cyberpunk 2075"
   });
+  DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteImplant, {
+    types: ["implant"], makeDefault: true, label: "Carte d'implant Cyberpunk 2075"
+  });
+  DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteSousImplant, {
+    types: ["ameliorationImplant", "capsule"], makeDefault: true, label: "Carte d'amélioration Cyberpunk 2075"
+  });
   DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, FicheItemSimple, {
-    types: ["implant", "ameliorationImplant", "capsule", "hack", "talent", "classe", "sousClasse", "ameliorationVehicule", "modulePlanque"],
+    types: ["hack", "talent", "classe", "sousClasse", "ameliorationVehicule", "modulePlanque"],
     makeDefault: true, label: "Carte provisoire Cyberpunk 2075"
   });
 
@@ -86,10 +94,13 @@ Hooks.once("init", () => {
     `${CHEMIN}/templates/actor/personnage/combat.hbs`,
     `${CHEMIN}/templates/actor/personnage/inventaire.hbs`,
     `${CHEMIN}/templates/actor/personnage/bio.hbs`,
+    `${CHEMIN}/templates/actor/personnage/partials/emplacement.hbs`,
     `${CHEMIN}/templates/chat/jet.hbs`,
     `${CHEMIN}/templates/chat/attaque.hbs`,
     `${CHEMIN}/templates/chat/degats.hbs`,
     `${CHEMIN}/templates/chat/utilisation.hbs`,
+    `${CHEMIN}/templates/chat/alerte.hbs`,
+    `${CHEMIN}/templates/dialogs/ameliorations.hbs`,
     `${CHEMIN}/templates/dialogs/jet.hbs`,
     `${CHEMIN}/templates/dialogs/attaque.hbs`,
     `${CHEMIN}/templates/item/partials/haut.hbs`,
@@ -115,6 +126,7 @@ Hooks.on("updateCombat", async (combat, changements) => {
   if ( game.users.activeGM?.id !== game.user.id ) return;
   const acteur = combat.combatant?.actor;
   if ( !acteur ) return;
+  if ( acteur.type === "personnage" ) await tourDeCombat(acteur);
   const majs = [];
   for ( const item of acteur.items ) {
     const a = item.system.actif;

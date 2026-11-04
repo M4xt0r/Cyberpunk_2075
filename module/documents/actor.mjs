@@ -1,5 +1,6 @@
 import { CARACS, COMPETENCES } from "../config.mjs";
 import { demanderOptionsJet, lancerJetD20, signe } from "../dice/jets.mjs";
+import { preparerMiseAJour, posterAlertes, reposLong, jetDeMort } from "./humanite.mjs";
 
 /**
  * Acteur Cyberpunk 2075 : données de jet, jets en un clic, dégâts et soins reçus.
@@ -18,6 +19,34 @@ export default class ActeurCP extends Actor {
     donnees.initiative = s.initiative.valeur;
     donnees.niveau = s.niveau;
     return donnees;
+  }
+
+  /* -------------------------------------------- */
+  /*  Automatismes : stress et Humanité           */
+  /* -------------------------------------------- */
+
+  /** @override */
+  async _preUpdate(changements, options, utilisateur) {
+    if ( (await super._preUpdate(changements, options, utilisateur)) === false ) return false;
+    if ( (this.type !== "personnage") || options.cpSansAutomatisme ) return;
+    const alertes = await preparerMiseAJour(this, changements);
+    if ( alertes.length ) options.cpAlertes = [...(options.cpAlertes ?? []), ...alertes];
+  }
+
+  /** @override */
+  _onUpdate(changements, options, idUtilisateur) {
+    super._onUpdate(changements, options, idUtilisateur);
+    if ( (idUtilisateur === game.user.id) && options.cpAlertes?.length ) posterAlertes(this, options.cpAlertes);
+  }
+
+  /** Repos long (RAM, utilisations, stress, Humanité). */
+  async reposLong() {
+    return reposLong(this);
+  }
+
+  /** Jet de mort à 0 PV. */
+  async jetDeMort() {
+    return jetDeMort(this);
   }
 
   /** Valeur de défense (null si inconnue : le MJ juge). */
@@ -141,10 +170,5 @@ export default class ActeurCP extends Actor {
     const apres = Math.max(h.min ?? 0, h.value + montant);
     await this.update({ "system.humanite.value": apres });
     return { avant: h.value, apres, max: h.max };
-  }
-
-  /** Texte court d'un modificateur, pour les infobulles. */
-  static texteModif(m) {
-    return `${signe(m.valeur)} ${m.cible}`;
   }
 }

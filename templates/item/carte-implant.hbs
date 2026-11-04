@@ -1,0 +1,211 @@
+<div class="cp-barrette {{#if edition}}cp-barrette-mj{{/if}}">
+  {{> "systems/cyberpunk2075/templates/item/partials/haut.hbs"}}
+
+  {{!-- ====== Étiquette ====== --}}
+  <div class="cp-c-zone">
+    {{#if edition}}
+    <div class="cp-c-etiquette cp-c-formulaire">
+      <img class="cp-c-image cp-c-image-edition" src="{{item.img}}" alt="" data-action="editImage" data-edit="img" title="Changer l'image">
+      <div class="cp-c-grille2">
+        <label class="cp-c-f cp-span2">Nom<input class="cp-c-inp cp-c-inp-nom" type="text" name="name" value="{{item.name}}"></label>
+        <label class="cp-c-f">Emplacement<select class="cp-c-sel" name="system.emplacement">{{selectOptions choixEmplacements selected=system.emplacement}}</select></label>
+        <div class="cp-c-f">Coût d'installation 💀 (fourchette)
+          <div class="cp-ligne cp-gap6">
+            <input class="cp-c-inp cp-c-court" type="number" name="system.coutMin" value="{{system.coutMin}}" min="0" aria-label="Coût minimum">
+            <span>à</span>
+            <input class="cp-c-inp cp-c-court" type="number" name="system.coutMax" value="{{system.coutMax}}" min="0" aria-label="Coût maximum">
+          </div>
+        </div>
+        {{#if possedeParActeur}}<label class="cp-c-f">Coût posé chez ce personnage 💀<input class="cp-c-inp" type="number" name="system.coutInstallation" value="{{system.coutInstallation}}" min="0"></label>{{/if}}
+        <label class="cp-c-f cp-span2">Phrase d'ambiance<input class="cp-c-inp cp-c-inp-texte" type="text" name="system.ambiance" value="{{system.ambiance}}"></label>
+        <div class="cp-span2 cp-ligne cp-gap12 cp-petit cp-wrap">
+          <label class="cp-ligne"><input type="checkbox" name="system.armeIntegree" {{checked system.armeIntegree}}> Arme intégrée</label>
+          <label class="cp-ligne"><input type="checkbox" name="system.capsuleAutorisee" {{checked system.acceptCapsule}}> Capsule (1 max)</label>
+          <label class="cp-ligne"><input type="checkbox" name="system.guerre" {{checked system.guerre}}> Implant de guerre</label>
+          <label class="cp-ligne">Effet spécial <select class="cp-c-sel cp-c-sel-court" name="system.special">{{selectOptions choixSpeciaux selected=system.special}}</select></label>
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="cp-c-etiquette">
+      <img class="cp-c-image" src="{{item.img}}" alt="">
+      <div class="cp-c-texte">
+        <span class="cp-lbl cp-c-surtitre">Implant · {{emplacementLabel}}</span>
+        <span class="cp-c-nom">{{item.name}}</span>
+        {{#if system.ambiance}}<span class="cp-c-ambiance">{{system.ambiance}}</span>{{/if}}
+        <div class="cp-c-tags">
+          <span class="cp-lbl cp-c-tag">{{#if actif}}Actif{{else}}Passif{{/if}}</span>
+          <span class="cp-lbl cp-c-tag">{{system.coutTexte}}</span>
+          {{#if system.armeIntegree}}<span class="cp-lbl cp-c-tag">Arme intégrée</span>{{/if}}
+          {{#if system.guerre}}<span class="cp-lbl cp-c-tag">Implant de guerre</span>{{/if}}
+        </div>
+      </div>
+      <div class="cp-c-code"><div class="cp-c-barres" aria-hidden="true"></div><span class="cp-num">{{codeBarre}}</span></div>
+    </div>
+    {{/if}}
+  </div>
+
+  {{> "systems/cyberpunk2075/templates/item/partials/plaques.hbs"}}
+
+  {{#if edition}}
+  {{!-- ====== Niveau : prix, slots, type d'effet ====== --}}
+  <div class="cp-c-puces cp-c-puces-3">
+    <div class="cp-c-pins"><div class="cp-c-puce"><label class="cp-c-f">Prix {{#unless system.sansNiveaux}}niv. {{nv}}{{/unless}} (€$)<input class="cp-c-inp" type="number" name="{{prefixe}}.prix" value="{{donneesNv.prix}}" min="0"></label></div></div>
+    <div class="cp-c-pins"><div class="cp-c-puce"><label class="cp-c-f">Slots d'amélioration<input class="cp-c-inp" type="number" name="{{prefixe}}.slotsAmelioration" value="{{donneesNv.slotsAmelioration}}" min="0"></label></div></div>
+    <div class="cp-c-pins"><div class="cp-c-puce"><div class="cp-c-f">Type d'effet
+      <div class="cp-seg cp-seg-court">
+        <label><input type="radio" name="{{prefixe}}.effet.type" value="passif" {{#if (eq donneesNv.effet.type "passif")}}checked{{/if}}><span>Passif</span></label>
+        <label><input type="radio" name="{{prefixe}}.effet.type" value="actif" {{#if (eq donneesNv.effet.type "actif")}}checked{{/if}}><span>Actif</span></label>
+      </div></div></div></div>
+  </div>
+  <div class="cp-c-bus"><span class="cp-pastille-cable"></span><span class="cp-c-trace"></span><span class="cp-pastille-cable"></span></div>
+
+  {{!-- ====== Bloc effet ====== --}}
+  <div class="cp-c-section">
+    <span class="cp-lbl cp-jaune">Bloc effet · {{typeEffet}}{{#unless system.sansNiveaux}} · niv. {{nv}}{{/unless}}</span>
+    <label class="cp-c-f">Description<input class="cp-c-inp cp-c-inp-texte" type="text" name="{{prefixe}}.effet.description" value="{{donneesNv.effet.description}}" placeholder="ex. Scan objet"></label>
+    <div class="cp-c-f">Modificateurs {{#if actif}}(pendant la durée){{else}}(toujours appliqués){{/if}}
+      <div class="cp-c-modifs" data-modifs="{{cheminModifs}}">
+        {{#each modifs}}
+        <div class="cp-c-modif" data-ligne>
+          <select class="cp-c-sel" data-modif="cible" aria-label="Cible">{{selectOptions ../choixCibles selected=cible}}</select>
+          <input class="cp-c-inp cp-c-court" type="text" data-modif="valeur" value="{{valeur}}" aria-label="Valeur">
+          <button type="button" class="cp-x" data-action="supprimerModif" data-chemin="{{../cheminModifs}}" data-index="{{i}}" aria-label="Retirer">×</button>
+        </div>
+        {{/each}}
+        <button type="button" class="cp-c-depot" data-action="ajouterModif" data-chemin="{{cheminModifs}}">+ Ajouter un modificateur</button>
+      </div>
+    </div>
+    {{#if actif}}
+    <div class="cp-c-grille3">
+      <label class="cp-c-f">Activation<select class="cp-c-sel" name="{{prefixe}}.effet.activation">{{selectOptions choixActivations selected=donneesNv.effet.activation}}</select></label>
+      <label class="cp-c-f">Utilisations<select class="cp-c-sel" name="{{prefixe}}.effet.utilisations.periode">{{selectOptions choixPeriodes selected=donneesNv.effet.utilisations.periode}}</select></label>
+      <label class="cp-c-f">Nombre<input class="cp-c-inp" type="number" name="{{prefixe}}.effet.utilisations.max" value="{{donneesNv.effet.utilisations.max}}" min="0"></label>
+      <label class="cp-c-f">Coût 💀 / activation<input class="cp-c-inp" type="number" name="{{prefixe}}.effet.coutHumanite" value="{{donneesNv.effet.coutHumanite}}"></label>
+      <label class="cp-c-f">💀 par kill<input class="cp-c-inp" type="number" name="{{prefixe}}.effet.humaniteKill" value="{{donneesNv.effet.humaniteKill}}"></label>
+      <label class="cp-c-f">Durée (tours)<input class="cp-c-inp" type="number" name="{{prefixe}}.effet.duree" value="{{donneesNv.effet.duree}}" min="0"></label>
+      <label class="cp-c-f">Jet associé<input class="cp-c-inp" type="text" name="{{prefixe}}.effet.jet.formule" value="{{donneesNv.effet.jet.formule}}" placeholder="ex. 1d8"></label>
+      <label class="cp-c-f">Type de jet<select class="cp-c-sel" name="{{prefixe}}.effet.jet.type">{{selectOptions choixJets selected=donneesNv.effet.jet.type}}</select></label>
+      <label class="cp-c-f">Cibles max<input class="cp-c-inp" type="number" name="{{prefixe}}.effet.ciblesMax" value="{{donneesNv.effet.ciblesMax}}" min="0"></label>
+    </div>
+    {{/if}}
+  </div>
+
+  {{!-- ====== Arme intégrée ====== --}}
+  {{#if system.armeIntegree}}
+  <div class="cp-c-section">
+    <div class="cp-ligne cp-entre">
+      <span class="cp-lbl cp-jaune">Bloc attaque · arme intégrée</span>
+      <label class="cp-ligne cp-petit"><input type="checkbox" name="system.attaque.faitDegats" {{checked system.attaque.faitDegats}}> Bouton dans la barre d'actions</label>
+    </div>
+    <div class="cp-c-grille3">
+      <label class="cp-c-f">Type d'arme<select class="cp-c-sel" name="system.typeArmeIntegree">{{selectOptions choixTypes selected=system.typeArmeIntegree}}</select></label>
+      <label class="cp-c-f">Compétence au toucher<select class="cp-c-sel" name="system.competence">{{selectOptions choixCompetences selected=system.competence}}</select></label>
+      <label class="cp-c-f">Défense visée<select class="cp-c-sel" name="system.attaque.defense">{{selectOptions choixDefenses selected=system.attaque.defense}}</select></label>
+      <label class="cp-c-f">Dé de dégâts {{#unless system.sansNiveaux}}niv. {{nv}}{{/unless}}<input class="cp-c-inp" type="text" name="{{prefixe}}.de" value="{{donneesNv.de}}"></label>
+      <label class="cp-c-f">Bonus fixe<input class="cp-c-inp" type="number" name="{{prefixe}}.bonusFixe" value="{{donneesNv.bonusFixe}}"></label>
+      <label class="cp-c-f">Type de dégâts<select class="cp-c-sel" name="{{prefixe}}.typeDegats">{{selectOptions choixDegats selected=donneesNv.typeDegats}}</select></label>
+      <label class="cp-c-f">Caractéristique aux dégâts<select class="cp-c-sel" name="system.carac">{{selectOptions choixCaracs selected=system.carac}}</select></label>
+      <label class="cp-c-f">Bonus au toucher<input class="cp-c-inp" type="number" name="system.attaque.bonusTouche" value="{{system.attaque.bonusTouche}}"></label>
+      <label class="cp-c-f">Portée (m)<input class="cp-c-inp" type="number" name="system.portee" value="{{system.portee}}" placeholder="—" step="any"></label>
+    </div>
+    <span class="cp-petit cp-doux">Aperçu : <b class="cp-num cp-jaune">{{apercuDegats}}</b></span>
+  </div>
+  {{/if}}
+
+  {{!-- ====== Améliorations compatibles ====== --}}
+  <div class="cp-c-section">
+    <div class="cp-ligne cp-entre"><span class="cp-lbl cp-jaune">Améliorations compatibles</span><span class="cp-petit cp-doux">Communes aux 3 niveaux</span></div>
+    <div class="cp-c-liste" data-liste="system.ameliorations">
+      {{#if lignesAmel.length}}<div class="cp-c-ligne-amel cp-c-entetes"><span>Nom</span><span>Prix</span><span>💀</span><span>Effet</span><span>Modificateur</span><span></span></div>{{/if}}
+      {{#each lignesAmel}}
+      <div class="cp-c-ligne-amel" data-ligne>
+        <input class="cp-c-inp cp-c-inp-texte" type="text" data-cle="nom" value="{{nom}}" aria-label="Nom">
+        <input class="cp-c-inp" type="number" data-cle="prix" data-type="nombre" value="{{prix}}" aria-label="Prix">
+        <input class="cp-c-inp" type="number" data-cle="cout" data-type="nombre" value="{{cout}}" aria-label="Coût en Humanité">
+        <input class="cp-c-inp cp-c-inp-texte" type="text" data-cle="effet" value="{{effet}}" aria-label="Effet">
+        <span class="cp-ligne cp-gap6">
+          <select class="cp-c-sel" data-cle="cible" aria-label="Cible du modificateur">{{selectOptions ../choixCibles selected=cible}}</select>
+          <input class="cp-c-inp cp-c-court cp-c-tres-court" type="number" data-cle="valeur" data-type="nombre" value="{{valeur}}" aria-label="Valeur">
+        </span>
+        <button type="button" class="cp-x" data-action="supprimerLigne" data-chemin="system.ameliorations" data-index="{{i}}" aria-label="Retirer">×</button>
+      </div>
+      {{/each}}
+      <button type="button" class="cp-c-depot" data-action="ajouterLigne" data-chemin="system.ameliorations" data-modele="{{modeleAmel}}">+ Ajouter une amélioration · ou en glisser une depuis le compendium sur la fiche</button>
+    </div>
+  </div>
+
+  {{!-- ====== Animations et sons ====== --}}
+  <div class="cp-c-section">
+    <div class="cp-ligne cp-entre"><span class="cp-lbl cp-jaune">Animations &amp; sons</span><span class="cp-petit cp-doux">S'enchaînent dans l'ordre</span></div>
+    <div class="cp-c-liste" data-liste="system.animations">
+      {{#each lignesAnim}}
+      <div class="cp-c-ligne-anim" data-ligne>
+        <select class="cp-c-sel" data-cle="moment" aria-label="Moment">{{selectOptions ../choixMoments selected=moment}}</select>
+        <select class="cp-c-sel" data-cle="style" aria-label="Style">{{selectOptions ../choixStyles selected=style}}</select>
+        <button type="button" class="cp-c-depot" data-action="choisirFichierLigne" data-chemin="system.animations" data-index="{{i}}" data-cle="fichier">{{#if nom}}<span class="cp-num cp-clair">{{nom}}</span>{{else}}Choisir un fichier{{/if}}</button>
+        <button type="button" class="cp-x" data-action="supprimerLigne" data-chemin="system.animations" data-index="{{i}}" aria-label="Retirer">×</button>
+      </div>
+      {{/each}}
+      <button type="button" class="cp-c-depot" data-action="ajouterLigne" data-chemin="system.animations" data-modele="{{modeleAnim}}">+ Ajouter une animation</button>
+    </div>
+    {{#each sons}}
+    <div class="cp-c-ligne-son">
+      <span class="cp-petit cp-doux">{{label}}</span>
+      <button type="button" class="cp-c-depot" data-action="choisirFichier" data-champ="{{champ}}" data-type="audio">{{#if nom}}<span class="cp-num cp-clair">{{nom}}</span>{{else}}<span class="cp-doux">aucun</span>{{/if}} · changer</button>
+      {{#if valeur}}<button type="button" class="cp-x" data-action="viderFichier" data-champ="{{champ}}" aria-label="Retirer le son">×</button>{{/if}}
+    </div>
+    {{/each}}
+    <div class="cp-ligne cp-entre">
+      <span class="cp-petit cp-doux">« Sur soi » joue sur le token du porteur. Teste sur un token sélectionné, vers les cibles visées.</span>
+      <button type="button" class="cp-c-bt2" data-action="testerAnimations">▶ Tester</button>
+    </div>
+    <label class="cp-c-f">Règles<textarea class="cp-c-inp cp-c-inp-texte" name="system.description" rows="3">{{system.description}}</textarea></label>
+  </div>
+
+  {{else}}
+  {{!-- ====== Lecture ====== --}}
+  <div class="cp-c-puces cp-c-puces-4">
+    {{#each puces}}
+    <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">{{label}}</span><span class="cp-c-val {{#if num}}cp-num cp-c-val-grand{{/if}} {{#if couleur}}cp-t-{{couleur}}{{/if}}">{{valeur}}</span></div></div>
+    {{/each}}
+  </div>
+  {{#if pucesActif}}
+  <div class="cp-c-puces cp-c-puces-4 cp-c-puces-serrees">
+    {{#each pucesActif}}
+    <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">{{label}}</span><span class="cp-c-val {{#if num}}cp-num cp-c-val-grand{{/if}}">{{valeur}}</span></div></div>
+    {{/each}}
+  </div>
+  {{/if}}
+  {{#if pucesArme}}
+  <div class="cp-c-puces cp-c-puces-4 cp-c-puces-serrees">
+    {{#each pucesArme}}
+    <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">{{label}}</span><span class="cp-c-val {{#if num}}cp-num cp-c-val-grand{{/if}} {{#if couleur}}cp-t-{{couleur}}{{/if}}">{{valeur}}</span></div></div>
+    {{/each}}
+  </div>
+  {{/if}}
+  <div class="cp-c-cables cp-c-puces-4"><div class="cp-c-vt"></div><div class="cp-c-vt"></div><div class="cp-c-vt"></div><div class="cp-c-vt"></div></div>
+  <div class="cp-c-bus"><span class="cp-pastille-cable"></span><span class="cp-c-trace"></span><span class="cp-pastille-cable"></span></div>
+
+  <div class="cp-c-section">
+    {{#if donneesNv.slotsAmelioration}}
+    <div class="cp-ligne cp-entre"><span class="cp-lbl cp-doux">Améliorations{{#if possedeParActeur}} · {{nbPosees}}/{{donneesNv.slotsAmelioration}}{{/if}}</span></div>
+    {{#if possedeParActeur}}
+    <div class="cp-c-puces cp-c-puces-2 cp-c-sans-marge">
+      {{#each posees}}
+      <div class="cp-c-pins"><div class="cp-c-puce cp-c-puce-accent"><span class="cp-ligne cp-entre"><span class="cp-c-val">{{nom}}</span><span class="cp-lbl cp-vert">Posée</span></span><span class="cp-petit cp-doux">{{effet}} · +{{cout}}💀</span></div></div>
+      {{/each}}
+      {{#each placesLibres}}
+      <div class="cp-c-pins"><div class="cp-c-puce cp-c-puce-libre"><span class="cp-petit cp-tres-doux">Place libre</span></div></div>
+      {{/each}}
+    </div>
+    {{/if}}
+    {{/if}}
+    {{#if compatibles.length}}<p class="cp-c-p cp-petit cp-doux">Compatibles : {{#each compatibles}}{{nom}}{{#if posee}} (posée){{/if}}{{#unless @last}} · {{/unless}}{{/each}}</p>{{/if}}
+    {{#if capsule}}<p class="cp-c-p cp-petit cp-doux">Capsule : {{capsule}}</p>{{/if}}
+    {{#if regles}}<span class="cp-lbl cp-doux">Règles</span><div class="cp-c-p">{{{regles}}}</div>{{/if}}
+  </div>
+  {{/if}}
+
+  {{> "systems/cyberpunk2075/templates/item/partials/bas.hbs" bloc=(concat "Bloc effet · " typeEffet) note="Compte dans le minimum d'humanité"}}
+</div>

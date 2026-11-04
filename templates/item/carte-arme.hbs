@@ -29,7 +29,7 @@
         {{#if system.ambiance}}<span class="cp-c-ambiance">{{system.ambiance}}</span>{{/if}}
         <div class="cp-c-tags">
           <span class="cp-lbl cp-c-tag">{{competenceLabel}}</span>
-          <span class="cp-lbl cp-c-tag">+ {{caracLabel}}</span>
+          {{#if caracLabel}}<span class="cp-lbl cp-c-tag">+ {{caracLabel}}</span>{{/if}}
           {{#if system.intelligente}}<span class="cp-lbl cp-c-tag">Intelligente</span>{{/if}}
           {{#if system.portee}}<span class="cp-lbl cp-c-tag">{{system.portee}} m</span>{{/if}}
           {{#if estGrenade}}<span class="cp-lbl cp-c-tag">× {{system.quantite}}</span>{{/if}}

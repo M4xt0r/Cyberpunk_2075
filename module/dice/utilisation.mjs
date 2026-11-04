@@ -79,3 +79,86 @@ export async function utiliserObjet(item) {
     flags: { cyberpunk2075: { type: "utilisation", acteur: acteur.uuid, item: item.uuid, total: jet?.total ?? 0, nature } }
   });
 }
+
+/* -------------------------------------------- */
+/*  Activation d'un implant                     */
+/* -------------------------------------------- */
+
+/** Animations d'activation d'un implant (sur soi, impact sur les cibles, zone, projectile). */
+function animationsActivation(item, source) {
+  if ( !source ) return [];
+  const cibles = Array.from(game.user.targets);
+  const lignes = item.system.animations.filter(a => ["activation", "duree"].includes(a.moment) && a.fichier);
+  const base = { scene: canvas.scene.id, source: source.id, cibles: cibles.map(t => t.id), touches: cibles.map(t => t.id), point: null, rayon: item.system.attaque?.zone ?? 0, son: "" };
+  const liste = lignes.map(a => {
+    if ( a.style === "soi" ) return { ...base, style: "soi", impact: a.fichier };
+    if ( a.style === "impact" ) return { ...base, style: "impact", impact: a.fichier };
+    if ( a.style === "zone" ) return { ...base, cibles: cibles.length ? base.cibles : [source.id], style: "zone", zone: a.fichier };
+    return { ...base, style: "projectile", projectile: a.fichier };
+  });
+  const son = item.system.sons.activation;
+  if ( son ) {
+    if ( liste.length ) liste[0].son = son;
+    else liste.push({ ...base, style: "aucune", son });
+  }
+  return liste;
+}
+
+/**
+ * Active un implant : utilisations, coût en Humanité, effet pendant sa durée, jet associé, animations.
+ * @param {Item} item
+ */
+export async function activerImplant(item) {
+  const acteur = item.actor;
+  if ( !acteur ) return ui.notifications.warn("L'implant doit être installé sur un personnage.");
+  const sys = item.system;
+  const effet = sys.effet;
+  if ( effet?.type !== "actif" ) return ui.notifications.warn(`${item.name} n'a pas d'effet actif.`);
+  if ( sys.utilisationsRestantes === 0 ) return ui.notifications.warn(`${item.name} : plus d'utilisation.`);
+
+  let jet = null;
+  if ( effet.jet.formule ) jet = await lancerFormule(effet.jet.formule, acteur);
+
+  const maj = {};
+  if ( sys.utilisationsMax !== null ) maj["system.usages.utilises"] = sys.usages.utilises + 1;
+  if ( effet.duree > 0 ) {
+    maj["system.actif.enCours"] = true;
+    maj["system.actif.tours"] = effet.duree;
+  }
+  if ( Object.keys(maj).length ) await item.update(maj);
+
+  let humanite = null;
+  if ( effet.coutHumanite ) humanite = await acteur.modifierHumanite(effet.coutHumanite);
+
+  const source = tokenDe(acteur);
+  const nature = effet.jet.type;
+  const cibles = Array.from(game.user.targets).map(t => ({ token: t.document.uuid, nom: t.name }));
+  const cout = effet.coutHumanite;
+  const restantes = sys.utilisationsMax === null ? null : Math.max(0, sys.utilisationsMax - (maj["system.usages.utilises"] ?? sys.usages.utilises));
+  const contexte = {
+    acteur: acteur.name,
+    heure: new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }),
+    type: `Activation · ${ACTIVATIONS[effet.activation].toLowerCase()}`,
+    titre: item.name,
+    description: [effet.description, effet.duree ? `${effet.duree} tour${effet.duree > 1 ? "s" : ""}` : null].filter(Boolean).join(" · ") || null,
+    jet: jet ? {
+      total: jet.total,
+      formule: effet.jet.formule,
+      detail: jet.result,
+      soin: nature === "soin",
+      typeLabel: nature === "soin" ? "Soin" : `Dégâts · ${TYPES_DEGATS[effet.jet.typeDegats] ?? (effet.jet.typeDegats || "—")}`
+    } : null,
+    humanite: humanite ? { ...humanite, baisse: cout < 0, cout: cout > 0 ? `+${cout}💀` : `−${Math.abs(cout)}💀`, pct: Math.min(100, Math.round((humanite.apres / Math.max(1, humanite.max)) * 100)) } : null,
+    kill: effet.humaniteKill ? `+${effet.humaniteKill}💀 par ennemi tué pendant l'effet` : null,
+    restant: (restantes === null) ? "" : `${restantes}/${sys.utilisationsMax} ${PERIODES[effet.utilisations.periode].toLowerCase()}`,
+    cibles,
+    nomSoi: acteur.name
+  };
+  const contenu = await renderTemplate(`${CHEMIN}/templates/chat/utilisation.hbs`, contexte);
+  return ChatMessage.create({
+    speaker: ChatMessage.getSpeaker({ actor: acteur, token: source?.document }),
+    content: contenu,
+    rolls: jet ? [jet] : [],
+    flags: { cyberpunk2075: { type: "utilisation", acteur: acteur.uuid, item: item.uuid, total: jet?.total ?? 0, nature, animations: animationsActivation(item, source) } }
+  });
+}
