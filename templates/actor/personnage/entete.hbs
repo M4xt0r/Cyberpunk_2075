@@ -1,0 +1,57 @@
+<div class="cp-entete-bloc">
+  <header class="cp-entete">
+    <div class="cp-entete-nom">
+      {{#if edition}}
+      <label class="cp-col">
+        <span class="cp-lbl cp-doux">Nom</span>
+        <input class="cp-inp cp-inp-nom" type="text" name="name" value="{{acteur.name}}">
+      </label>
+      {{else}}
+      <span class="cp-nom">{{acteur.name}}</span>
+      <span class="cp-sous">{{#if classe}}{{classe.name}}{{else}}Sans classe{{/if}}{{#if sousClasse}} · {{sousClasse.name}}{{/if}} · <span class="cp-jaune">Niv. {{system.niveau}}</span></span>
+      {{/if}}
+    </div>
+
+    {{#unless edition}}
+    <div class="cp-mini-jauges">
+      <div class="cp-mini">
+        <div class="cp-mini-haut"><span class="cp-lbl cp-doux">Vie</span><span class="cp-num"><input class="cp-mini-inp cp-num" type="number" data-miroir="system.vie.value" value="{{vie.value}}" aria-label="Vie actuelle" {{#unless peutModifier}}disabled{{/unless}}>/{{vie.max}}</span></div>
+        <div class="cp-barre"><div class="cp-barre-rempli cp-fond-rouge" style="width:{{vie.pct}}%"></div></div>
+      </div>
+      <div class="cp-mini">
+        <div class="cp-mini-haut"><span class="cp-lbl cp-doux">RAM</span><span class="cp-num"><input class="cp-mini-inp cp-num" type="number" data-miroir="system.ram.value" value="{{ram.value}}" aria-label="RAM actuelle" {{#unless peutModifier}}disabled{{/unless}}>/{{ram.max}}</span></div>
+        <div class="cp-barre"><div class="cp-barre-rempli cp-fond-bleu" style="width:{{ram.pct}}%"></div></div>
+      </div>
+      <div class="cp-mini">
+        <div class="cp-mini-haut"><span class="cp-lbl cp-doux">Hum.</span><span class="cp-num"><input class="cp-mini-inp cp-num" type="number" data-miroir="system.humanite.value" value="{{humanite.value}}" aria-label="Humanité actuelle" {{#unless peutModifier}}disabled{{/unless}}>/{{humanite.max}}</span></div>
+        <div class="cp-barre"><div class="cp-barre-rempli cp-fond-blanc" style="width:{{humanite.pctActuelle}}%"></div></div>
+      </div>
+    </div>
+    {{/unless}}
+
+    {{#if peutModifier}}
+      {{#if edition}}
+      <button type="button" class="cp-btn cp-btn-principal cp-btn-terminer" data-action="basculerMode" title="Quitter le mode édition">
+        <i class="fa-solid fa-lock-open"></i> Terminer
+      </button>
+      {{else}}
+      <button type="button" class="cp-cadenas" data-action="basculerMode" title="Passer en mode édition" aria-label="Passer en mode édition">
+        <i class="fa-solid fa-lock"></i>
+      </button>
+      {{/if}}
+    {{/if}}
+  </header>
+
+  <nav class="cp-onglets tabs" data-group="primary">
+    {{#each tabs}}
+    <a class="cp-onglet {{cssClass}}" data-action="tab" data-group="{{group}}" data-tab="{{id}}">{{label}}</a>
+    {{/each}}
+  </nav>
+
+  {{#if edition}}
+  <div class="cp-bandeau-edition">
+    <span class="cp-lbl">Mode édition</span>
+    <span>Tout est modifiable · ✎ remplace une valeur calculée · visible par le MJ et le joueur lié</span>
+  </div>
+  {{/if}}
+</div>

@@ -1,0 +1,14 @@
+<section class="tab cp-page cp-page-bio {{tab.cssClass}}" data-group="primary" data-tab="bio">
+  <label class="cp-carte cp-coupe cp-bloc-texte">
+    <span class="cp-lbl cp-doux">Histoire</span>
+    <textarea class="cp-zone-texte" name="system.bio.histoire" rows="9" {{#unless peutModifier}}disabled{{/unless}}>{{system.bio.histoire}}</textarea>
+  </label>
+  <label class="cp-carte cp-coupe cp-bloc-texte">
+    <span class="cp-lbl cp-doux">Apparence</span>
+    <textarea class="cp-zone-texte" name="system.bio.apparence" rows="5" {{#unless peutModifier}}disabled{{/unless}}>{{system.bio.apparence}}</textarea>
+  </label>
+  <label class="cp-carte cp-coupe cp-bloc-texte">
+    <span class="cp-lbl cp-doux">Notes</span>
+    <textarea class="cp-zone-texte" name="system.bio.notes" rows="9" {{#unless peutModifier}}disabled{{/unless}}>{{system.bio.notes}}</textarea>
+  </label>
+</section>

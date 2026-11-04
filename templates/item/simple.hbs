@@ -1,0 +1,35 @@
+<div class="cp-simple">
+  <div class="cp-ligne cp-gap12">
+    <img class="cp-simple-img" src="{{item.img}}" alt="" {{#if peutModifier}}data-action="editImage" data-edit="img" title="Changer l'image"{{/if}}>
+    <div class="cp-col cp-pousse">
+      <span class="cp-lbl cp-jaune">{{typeLabel}}</span>
+      <input class="cp-inp cp-inp-nom" type="text" name="name" value="{{item.name}}" {{#unless peutModifier}}disabled{{/unless}}>
+    </div>
+  </div>
+
+  {{#if estClasse}}
+  <fieldset class="cp-champ">
+    <legend>Bonus de départ</legend>
+    <div class="cp-grille-5">
+      {{#each bonusCaracs}}
+      <label class="cp-col cp-petit cp-doux">{{label}}<input class="cp-inp cp-num" type="number" name="system.bonus.{{cle}}" value="{{valeur}}" {{#unless ../peutModifier}}disabled{{/unless}}></label>
+      {{/each}}
+    </div>
+    <label class="cp-ligne cp-petit cp-doux">Eddies de départ <input class="cp-inp cp-num cp-court" type="number" name="system.eddies" value="{{system.eddies}}" {{#unless peutModifier}}disabled{{/unless}}> €$</label>
+  </fieldset>
+  {{/if}}
+
+  {{#if estSousClasse}}
+  <label class="cp-champ"><span class="cp-legende">Classe parente</span><input class="cp-inp" type="text" name="system.classeParente" value="{{system.classeParente}}" {{#unless peutModifier}}disabled{{/unless}}></label>
+  {{/if}}
+
+  {{#if estImplant}}
+  <label class="cp-champ"><span class="cp-legende">Coût à l'installation (💀)</span><input class="cp-inp cp-num cp-court" type="number" name="system.coutInstallation" value="{{system.coutInstallation}}" {{#unless peutModifier}}disabled{{/unless}}></label>
+  {{/if}}
+
+  <label class="cp-champ">
+    <span class="cp-legende">Description</span>
+    <textarea class="cp-zone-texte" name="system.description" rows="8" {{#unless peutModifier}}disabled{{/unless}}>{{system.description}}</textarea>
+  </label>
+  <span class="cp-petit cp-doux">Carte provisoire : la carte « barrette de RAM » arrive à l'étape 2.</span>
+</div>

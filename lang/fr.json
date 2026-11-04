@@ -1,0 +1,26 @@
+{
+  "TYPES": {
+    "Actor": {
+      "personnage": "Personnage",
+      "ennemi": "Ennemi",
+      "vehicule": "Véhicule",
+      "planque": "Planque"
+    },
+    "Item": {
+      "arme": "Arme",
+      "implant": "Implant",
+      "ameliorationImplant": "Amélioration d'implant",
+      "capsule": "Capsule",
+      "objet": "Objet",
+      "hack": "Hack",
+      "talent": "Talent",
+      "classe": "Classe",
+      "sousClasse": "Sous-classe",
+      "ameliorationVehicule": "Amélioration de véhicule",
+      "modulePlanque": "Module de planque"
+    }
+  },
+  "CP2075": {
+    "Systeme": "Cyberpunk 2075"
+  }
+}

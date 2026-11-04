@@ -1,0 +1,294 @@
+<section class="tab cp-page cp-page-identite {{tab.cssClass}}" data-group="primary" data-tab="identite">
+
+  {{!-- ====== Rangée haute : portrait, identité, vie ====== --}}
+  <div class="cp-rangee-haute">
+
+    <div class="cp-broches cp-portrait-cadre">
+      {{#if edition}}
+      <button type="button" class="cp-portrait cp-portrait-edition" data-action="changerPortrait" title="Changer l'image">
+        <img src="{{acteur.img}}" alt="Portrait de {{acteur.name}}">
+        <span class="cp-btn cp-btn-principal cp-btn-petit">Changer l'image</span>
+      </button>
+      {{else}}
+      <div class="cp-portrait"><img src="{{acteur.img}}" alt="Portrait de {{acteur.name}}"></div>
+      {{/if}}
+    </div>
+
+    <div class="cp-carte cp-coupe cp-infos">
+      <div class="cp-col">
+        <span class="cp-lbl cp-doux">Classe</span>
+        {{#if classe}}
+          {{#if edition}}
+          <span class="cp-etiquette-item" data-item-id="{{classe.id}}"><a data-action="ouvrirItem">{{classe.name}}</a><button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer la classe">×</button></span>
+          {{else}}
+          <a class="cp-valeur-texte" data-item-id="{{classe.id}}" data-action="ouvrirItem">{{classe.name}}</a>
+          {{/if}}
+        {{else}}<span class="cp-valeur-texte cp-doux">—</span>{{/if}}
+      </div>
+      <div class="cp-col">
+        <span class="cp-lbl cp-doux">Sous-classe</span>
+        {{#if sousClasse}}
+          {{#if edition}}
+          <span class="cp-etiquette-item" data-item-id="{{sousClasse.id}}"><a data-action="ouvrirItem">{{sousClasse.name}}</a><button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer la sous-classe">×</button></span>
+          {{else}}
+          <a class="cp-valeur-texte" data-item-id="{{sousClasse.id}}" data-action="ouvrirItem">{{sousClasse.name}}</a>
+          {{/if}}
+        {{else}}<span class="cp-valeur-texte cp-doux">—</span>{{/if}}
+      </div>
+      <div class="cp-col">
+        <span class="cp-lbl cp-doux">Niveau</span>
+        {{#if edition}}
+        <div class="cp-compteur">
+          <button type="button" data-action="ajuster" data-champ="system.niveau" data-delta="-1" data-min="1" aria-label="Baisser le niveau">−</button>
+          <span>{{system.niveau}}</span>
+          <button type="button" data-action="ajuster" data-champ="system.niveau" data-delta="1" data-max="10" aria-label="Monter le niveau">+</button>
+        </div>
+        {{else}}<span class="cp-num cp-gros cp-jaune">{{system.niveau}}</span>{{/if}}
+      </div>
+      <div class="cp-col">
+        <span class="cp-lbl cp-doux">Bonus de maîtrise</span>
+        {{#if edition}}
+          {{#if bmForce}}
+          <input class="cp-inp cp-force cp-num cp-court" type="number" name="system.maitrise.forcer" value="{{system.maitrise.forcer}}">
+          <span class="cp-aide-force">calculé : +{{system.maitrise.calcule}} · <button type="button" class="cp-lien" data-action="reinitialiser" data-champ="system.maitrise.forcer">réinitialiser</button></span>
+          {{else}}
+          <span class="cp-ligne"><span class="cp-num cp-gros cp-jaune">{{bm}}</span><button type="button" class="cp-lien" data-action="forcer" data-champ="system.maitrise.forcer" data-valeur="{{system.maitrise.calcule}}">✎ forcer</button></span>
+          {{/if}}
+        {{else}}
+        <span class="cp-num cp-gros {{#if system.maitrise.perdue}}cp-barre-txt cp-doux{{else}}cp-jaune{{/if}}" {{#if system.maitrise.perdue}}title="Perdu (stress 2)"{{/if}}>{{bm}}{{#if bmForce}}<span class="cp-marque-force" title="Valeur forcée">✎</span>{{/if}}</span>
+        {{/if}}
+      </div>
+      <div class="cp-col">
+        <span class="cp-lbl cp-doux">Nature</span>
+        {{#if edition}}
+        <select class="cp-inp" name="system.nature">{{selectOptions natures selected=system.nature}}</select>
+        {{else}}<span class="cp-valeur-texte">{{nature}}</span>{{/if}}
+      </div>
+      <div class="cp-ligne cp-ecart">
+        <div class="cp-col">
+          <span class="cp-lbl cp-doux">Déplac.</span>
+          {{#if edition}}
+            {{#if deplacement.force}}
+            <input class="cp-inp cp-force cp-num cp-court" type="number" name="system.deplacement.forcer" value="{{system.deplacement.forcer}}">
+            <button type="button" class="cp-lien cp-petit" data-action="reinitialiser" data-champ="system.deplacement.forcer">calc. {{deplacement.calcule}} m · réinit.</button>
+            {{else}}
+            <span class="cp-ligne"><span class="cp-num cp-moyen">{{deplacement.valeur}} m</span><button type="button" class="cp-lien" data-action="forcer" data-champ="system.deplacement.forcer" data-valeur="{{deplacement.calcule}}">✎</button></span>
+            {{/if}}
+          {{else}}<span class="cp-num cp-moyen">{{deplacement.valeur}} m{{#if deplacement.force}}<span class="cp-marque-force">✎</span>{{/if}}</span>{{/if}}
+        </div>
+        <div class="cp-col">
+          <span class="cp-lbl cp-doux">Initiative</span>
+          {{#if edition}}
+            {{#if initiative.force}}
+            <input class="cp-inp cp-force cp-num cp-court" type="number" name="system.initiative.forcer" value="{{system.initiative.forcer}}">
+            <button type="button" class="cp-lien cp-petit" data-action="reinitialiser" data-champ="system.initiative.forcer">calc. {{initiative.calcule}} · réinit.</button>
+            {{else}}
+            <span class="cp-ligne"><span class="cp-num cp-moyen">{{initiative.valeur}}</span><button type="button" class="cp-lien" data-action="forcer" data-champ="system.initiative.forcer" data-valeur="{{system.initiative.calcule}}">✎</button></span>
+            {{/if}}
+          {{else}}
+          <button type="button" class="cp-num cp-moyen cp-jetable" data-action="jetInitiative" title="Lancer l'initiative">{{initiative.valeur}}</button>
+          {{/if}}
+        </div>
+      </div>
+      {{#if edition}}<span class="cp-zone-depot">Glisse une classe ou une sous-classe depuis le compendium pour la poser ou la remplacer</span>{{/if}}
+    </div>
+
+    {{!-- Bloc Vie : stress, jets de mort, état, compte à rebours --}}
+    <div class="cp-carte cp-coupe cp-bloc-vie">
+      <div class="cp-ligne">
+        <span class="cp-ic cp-ic-vie cp-rouge cp-ic-30"></span>
+        <span class="cp-lbl cp-doux">Vie</span>
+        <span class="cp-pousse cp-ligne-base">
+          <input class="cp-inp-grand cp-num" type="number" name="system.vie.value" value="{{vie.value}}" min="0" aria-label="Vie actuelle" {{#unless peutModifier}}disabled{{/unless}}>
+          {{#if edition}}
+            {{#if vie.force}}
+            <input class="cp-inp cp-force cp-num cp-court" type="number" name="system.vie.forcer" value="{{system.vie.forcer}}" aria-label="Vie max forcée">
+            {{else}}
+            <span class="cp-num cp-doux">/ {{vie.max}}</span>
+            {{/if}}
+          {{else}}
+          <span class="cp-num cp-doux">/ {{vie.max}}{{#if vie.force}}<span class="cp-marque-force">✎</span>{{/if}}</span>
+          {{/if}}
+        </span>
+      </div>
+      {{#if edition}}
+        {{#if vie.force}}
+        <span class="cp-aide-force cp-droite">Max forcé ✎ · calculé : {{vie.calcule}} · <button type="button" class="cp-lien" data-action="reinitialiser" data-champ="system.vie.forcer">réinitialiser</button></span>
+        {{else}}
+        <button type="button" class="cp-lien cp-droite" data-action="forcer" data-champ="system.vie.forcer" data-valeur="{{vie.calcule}}">✎ forcer le max</button>
+        {{/if}}
+      {{else}}
+      <div class="cp-barre cp-barre-8"><div class="cp-barre-rempli cp-fond-rouge" style="width:{{vie.pct}}%"></div></div>
+      {{/if}}
+
+      <div class="cp-ligne cp-entre">
+        <span class="cp-lbl cp-doux">Stress</span>
+        <span class="cp-ligne cp-gap6">
+          {{#each stressCases}}
+          <button type="button" class="cp-case-stress {{#if plein}}cp-plein{{/if}}" data-action="fixerStress" data-n="{{n}}" aria-label="Stress {{n}}" {{#unless ../peutModifier}}disabled{{/unless}}></button>
+          {{/each}}
+        </span>
+      </div>
+      {{#each stressEffets}}<span class="cp-alerte-texte">{{this}}</span>{{/each}}
+
+      <div class="cp-ligne cp-entre">
+        <span class="cp-lbl cp-doux">Jets de mort</span>
+        <span class="cp-ligne cp-gap6 cp-petit cp-doux">
+          ✓ {{#each mortSucces}}<button type="button" class="cp-pastille cp-pastille-vert {{#if plein}}cp-plein{{/if}}" data-action="fixerMort" data-type="succes" data-n="{{n}}" aria-label="Réussite {{n}}" {{#unless ../peutModifier}}disabled{{/unless}}></button>{{/each}}
+          ✕ {{#each mortEchecs}}<button type="button" class="cp-pastille cp-pastille-rouge {{#if plein}}cp-plein{{/if}}" data-action="fixerMort" data-type="echecs" data-n="{{n}}" aria-label="Échec {{n}}" {{#unless ../peutModifier}}disabled{{/unless}}></button>{{/each}}
+        </span>
+      </div>
+
+      <div class="cp-ligne cp-entre">
+        <span class="cp-lbl cp-doux">État</span>
+        {{#if edition}}
+        <select class="cp-inp" name="system.etat">{{selectOptions etats selected=system.etat}}</select>
+        {{else}}
+        <span class="cp-badge cp-badge-{{etat.couleur}}">{{etat.label}}</span>
+        {{/if}}
+      </div>
+      <label class="cp-ligne cp-entre">
+        <span class="cp-lbl cp-doux">Dé de compte à rebours</span>
+        <input class="cp-inp-souligne cp-num cp-orange cp-court" type="text" name="system.rebours.de" value="{{system.rebours.de}}" {{#unless peutModifier}}disabled{{/unless}}>
+      </label>
+    </div>
+  </div>
+
+  {{!-- ====== Stats dérivées ====== --}}
+  <div class="cp-rangee-derivees">
+    <div class="cp-carte cp-coupe cp-derivee">
+      <div class="cp-ligne"><span class="cp-ic cp-ic-ram cp-bleu"></span><span class="cp-lbl cp-doux">RAM</span></div>
+      <span class="cp-ligne-base">
+        <input class="cp-inp-moyen cp-num" type="number" name="system.ram.value" value="{{ram.value}}" min="0" aria-label="RAM actuelle" {{#unless peutModifier}}disabled{{/unless}}>
+        {{#if edition}}
+          {{#if ram.force}}
+          <input class="cp-inp cp-force cp-num cp-court" type="number" name="system.ram.forcer" value="{{system.ram.forcer}}" aria-label="RAM max forcée">
+          {{else}}
+          <span class="cp-num cp-doux">/ {{ram.max}}</span>
+          {{/if}}
+        {{else}}
+        <span class="cp-num cp-doux">/ {{ram.max}}{{#if ram.force}}<span class="cp-marque-force">✎</span>{{/if}}</span>
+        {{/if}}
+      </span>
+      {{#if edition}}
+        {{#if ram.force}}
+        <button type="button" class="cp-lien cp-petit" data-action="reinitialiser" data-champ="system.ram.forcer">calculé : {{ram.calcule}} · réinitialiser</button>
+        {{else}}
+        <button type="button" class="cp-lien" data-action="forcer" data-champ="system.ram.forcer" data-valeur="{{ram.calcule}}">✎ forcer le max</button>
+        {{/if}}
+      {{else}}
+      <div class="cp-barre"><div class="cp-barre-rempli cp-fond-bleu" style="width:{{ram.pct}}%"></div></div>
+      {{/if}}
+    </div>
+
+    <div class="cp-carte cp-coupe cp-derivee cp-span2">
+      <div class="cp-ligne">
+        <span class="cp-ic cp-ic-humanite"></span><span class="cp-lbl cp-doux">Humanité</span>
+        {{#unless edition}}
+        <span class="cp-pousse cp-ligne-base">
+          <input class="cp-inp-moyen cp-num" type="number" name="system.humanite.value" value="{{humanite.value}}" min="0" aria-label="Humanité actuelle" {{#unless peutModifier}}disabled{{/unless}}>
+          <span class="cp-num cp-doux">/ {{humanite.max}}{{#if humanite.force}}<span class="cp-marque-force">✎</span>{{/if}}</span>
+        </span>
+        {{/unless}}
+      </div>
+      {{#if edition}}
+      <div class="cp-grille-3">
+        <div class="cp-col cp-petit cp-doux">Minimum<span class="cp-num cp-moyen cp-jaune" title="Toujours calculé : somme des 💀 d'installation des implants">{{humanite.min}} 🔒</span></div>
+        <label class="cp-col cp-petit cp-doux">Actuelle<input class="cp-inp cp-num cp-court" type="number" name="system.humanite.value" value="{{humanite.value}}" min="0"></label>
+        <div class="cp-col cp-petit cp-doux">Max
+          {{#if humanite.force}}
+          <input class="cp-inp cp-force cp-num cp-court" type="number" name="system.humanite.forcer" value="{{system.humanite.forcer}}">
+          <button type="button" class="cp-lien cp-petit" data-action="reinitialiser" data-champ="system.humanite.forcer">calc. {{humanite.calcule}} · réinit.</button>
+          {{else}}
+          <span class="cp-ligne"><span class="cp-num cp-moyen">{{humanite.max}}</span><button type="button" class="cp-lien" data-action="forcer" data-champ="system.humanite.forcer" data-valeur="{{humanite.calcule}}">✎</button></span>
+          {{/if}}
+        </div>
+      </div>
+      <span class="cp-petit cp-doux">Le minimum se recalcule seul à chaque pose d'implant.</span>
+      {{else}}
+      <div class="cp-jauge-humanite" title="Minimum {{humanite.min}} · actuelle {{humanite.value}} · max {{humanite.max}}">
+        <div class="cp-jauge-min" style="width:{{humanite.pctMin}}%"></div>
+        <div class="cp-jauge-actuelle" style="left:{{humanite.pctMin}}%;width:{{humanite.pctEcart}}%"></div>
+        <div class="cp-jauge-repere" style="left:{{humanite.pctMin}}%"></div>
+      </div>
+      <div class="cp-ligne cp-entre cp-petit cp-doux">
+        <span>min <b class="cp-num cp-jaune">{{humanite.min}}</b> (implants)</span>
+        <span>actuelle <b class="cp-num cp-clair">{{humanite.value}}</b></span>
+        <span>max <b class="cp-num cp-clair">{{humanite.max}}</b></span>
+      </div>
+      {{/if}}
+    </div>
+
+    {{#each derivees}}
+    <div class="cp-carte cp-coupe cp-derivee" {{#if aide}}title="{{aide}}"{{/if}}>
+      <div class="cp-ligne"><span class="cp-ic cp-ic-{{icone}}"></span><span class="cp-lbl cp-doux">{{label}}</span></div>
+      {{#if ../edition}}
+        {{#if force}}
+        <input class="cp-inp cp-force cp-num cp-court" type="number" name="{{champ}}" value="{{valeur}}">
+        <button type="button" class="cp-lien cp-petit" data-action="reinitialiser" data-champ="{{champ}}">calculé : {{calcule}} · réinitialiser</button>
+        {{else}}
+        <span class="cp-num cp-gros">{{valeur}}</span>
+        <button type="button" class="cp-lien" data-action="forcer" data-champ="{{champ}}" data-valeur="{{calcule}}">✎ forcer</button>
+        {{/if}}
+      {{else}}
+      <span class="cp-num cp-gros">{{valeur}}{{#if force}}<span class="cp-marque-force" title="Valeur forcée">✎</span>{{/if}}</span>
+      {{/if}}
+    </div>
+    {{/each}}
+  </div>
+
+  {{!-- ====== Caractéristiques et compétences ====== --}}
+  <div class="cp-ligne cp-entre cp-titre-section">
+    <h2 class="cp-lbl cp-doux">Caractéristiques &amp; compétences</h2>
+    {{#if edition}}
+    <span class="cp-petit cp-doux">Points : <b class="cp-num {{#if pointsDepasses}}cp-rouge{{else}}cp-jaune{{/if}}">{{points.depenses}}/{{points.max}}</b> (hors classe) · Maîtrises : <b class="cp-num {{#if maitrisesDepassees}}cp-rouge{{else}}cp-jaune{{/if}}">{{maitrises.utilisees}}/{{maitrises.max}}</b> · ◆ clic pour maîtriser</span>
+    {{else}}
+    <span class="cp-petit cp-doux">Clic : jet · Maj + clic : jet rapide · ◆ maîtrisée</span>
+    {{/if}}
+  </div>
+
+  <div class="cp-grille-caracs">
+    {{#each caracs}}
+    <div class="cp-col-carac">
+      <div class="cp-broches">
+        {{#if ../edition}}
+        <div class="cp-puce">
+          <span class="cp-ic cp-ic-{{icone}} cp-jaune cp-ic-30"></span>
+          <span class="cp-lbl">{{label}}</span>
+          <div class="cp-compteur">
+            <button type="button" data-action="ajuster" data-champ="{{champ}}" data-delta="-1" data-min="0" aria-label="Baisser {{label}}">−</button>
+            <span>{{valeur}}</span>
+            <button type="button" data-action="ajuster" data-champ="{{champ}}" data-delta="1" data-max="10" aria-label="Monter {{label}}">+</button>
+          </div>
+          <span class="cp-petit cp-doux">{{#if bonusClasse}}dont {{cpSigne bonusClasse}} classe{{else}}&#160;{{/if}}</span>
+        </div>
+        {{else}}
+        <button type="button" class="cp-puce cp-jetable" data-action="jetCarac" data-carac="{{cle}}" title="Jet de {{label}}">
+          <span class="cp-ic cp-ic-{{icone}} cp-jaune cp-ic-34"></span>
+          <span class="cp-lbl">{{label}}</span>
+          <span class="cp-ligne-base"><span class="cp-num cp-gros">{{total}}</span><span class="cp-num {{#if negatif}}cp-rouge-txt{{else}}cp-jaune{{/if}}">{{bonus}}</span></span>
+        </button>
+        {{/if}}
+      </div>
+      <div class="cp-cable-vertical"><div class="cp-trace"></div><span class="cp-pastille-cable"></span></div>
+      <div class="cp-carte cp-coupe cp-competences">
+        {{#each competences}}
+        <div class="cp-comp {{#if maitrise}}cp-maitrisee{{/if}}">
+          {{#if ../../edition}}
+          <button type="button" class="cp-losange {{#if maitrise}}cp-plein{{/if}}" data-action="basculerMaitrise" data-competence="{{cle}}" aria-pressed="{{#if maitrise}}true{{else}}false{{/if}}" aria-label="Maîtrise {{label}}"></button>
+          <span class="cp-pousse">{{label}}</span>
+          <span class="cp-num">{{score}}</span>
+          {{else}}
+          <button type="button" class="cp-comp-jet" data-action="jetCompetence" data-competence="{{cle}}" title="{{#if avecObjets}}Inclut : {{detailObjets}}{{else}}Jet de {{label}}{{/if}}">
+            <span class="cp-pousse">{{#if maitrise}}◆{{else}}◇{{/if}} {{label}}</span>
+            <span class="cp-num">{{score}}{{#if avecObjets}} <span class="cp-bleu-txt">⚙</span>{{/if}}</span>
+          </button>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <span class="cp-petit cp-doux"><span class="cp-bleu-txt">⚙</span> bonus d'implant ou d'objet inclus (détail au survol) · souligné en pointillé : modifiable en jeu</span>
+</section>

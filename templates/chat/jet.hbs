@@ -1,0 +1,21 @@
+<div class="cp-msg {{#if naturel20}}cp-msg-critique{{/if}}">
+  <div class="cp-msg-qui"><span>{{acteur}}</span><span>{{heure}}</span></div>
+  <div class="cp-msg-etiquette">
+    <span class="cp-msg-type">{{type}}</span>
+    <span class="cp-msg-titre">{{titre}}</span>
+    {{#if modeLabel}}<span class="cp-msg-type">{{modeLabel}}</span>{{/if}}
+  </div>
+  <div class="cp-msg-puce">
+    <span class="cp-msg-total">{{total}}</span>
+    <div class="cp-msg-des">
+      <span class="cp-num cp-msg-detail">{{#if plusieursDes}}2d20 ({{#each des}}{{#if ecarte}}<s>{{valeur}}</s>{{else}}{{valeur}}{{/if}}{{#unless @last}}, {{/unless}}{{/each}}){{else}}1d20 ({{#each des}}{{valeur}}{{/each}}){{/if}}{{#each parts}} {{valeur}} <span class="cp-msg-source">{{label}}</span>{{/each}}</span>
+      {{#if dd}}<span>DD {{dd}}</span>{{/if}}
+      {{#if ddCache}}<span class="cp-mj-seul">DD caché : à toi de juger</span>{{/if}}
+      {{#if naturel20}}<span class="cp-msg-nat">20 naturel</span>{{/if}}
+      {{#if naturel1}}<span class="cp-msg-nat1">1 naturel</span>{{/if}}
+    </div>
+    {{#if reussi}}<span class="cp-ok">Réussi</span>{{/if}}
+    {{#if rate}}<span class="cp-ko">Raté</span>{{/if}}
+  </div>
+  <div class="cp-msg-broches"></div>
+</div>

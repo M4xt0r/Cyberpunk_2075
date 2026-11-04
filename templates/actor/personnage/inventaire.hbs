@@ -1,0 +1,13 @@
+<section class="tab cp-page cp-page-inventaire {{tab.cssClass}}" data-group="primary" data-tab="inventaire">
+  <div class="cp-carte cp-coupe cp-eddies">
+    <span class="cp-lbl cp-doux">Eddies</span>
+    <span class="cp-ligne-base">
+      <input class="cp-inp-grand cp-num" type="number" name="system.eddies" value="{{system.eddies}}" step="1" aria-label="Eddies" {{#unless peutModifier}}disabled{{/unless}}>
+      <span class="cp-num cp-jaune">€$</span>
+    </span>
+  </div>
+  <div class="cp-carte cp-coupe cp-en-construction">
+    <span class="cp-lbl cp-jaune">Inventaire &amp; biens</span>
+    <p>Objets, véhicules et planque arrivent aux étapes 2 et 7 du plan.</p>
+  </div>
+</section>

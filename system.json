@@ -1,0 +1,53 @@
+{
+  "id": "cyberpunk2075",
+  "title": "Cyberpunk 2075",
+  "description": "Système de jeu Cyberpunk 2075 en d20 : fiches, jets, implants, Humanité et hacks, dans la charte « Nuit de Dogtown ».",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.350"
+  },
+  "authors": [
+    { "name": "M4xt0r" }
+  ],
+  "esmodules": [
+    "module/cyberpunk2075.mjs"
+  ],
+  "styles": [
+    "styles/cyberpunk2075.css"
+  ],
+  "languages": [
+    { "lang": "fr", "name": "Français", "path": "lang/fr.json" }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "personnage": { "htmlFields": ["bio.histoire", "bio.apparence", "bio.notes"] },
+      "ennemi": { "htmlFields": ["description"] },
+      "vehicule": { "htmlFields": ["description"] },
+      "planque": { "htmlFields": ["description"] }
+    },
+    "Item": {
+      "arme": { "htmlFields": ["description"] },
+      "implant": { "htmlFields": ["description"] },
+      "ameliorationImplant": { "htmlFields": ["description"] },
+      "capsule": { "htmlFields": ["description"] },
+      "objet": { "htmlFields": ["description"] },
+      "hack": { "htmlFields": ["description"] },
+      "talent": { "htmlFields": ["description"] },
+      "classe": { "htmlFields": ["description"] },
+      "sousClasse": { "htmlFields": ["description"] },
+      "ameliorationVehicule": { "htmlFields": ["description"] },
+      "modulePlanque": { "htmlFields": ["description"] }
+    }
+  },
+  "grid": {
+    "type": 1,
+    "distance": 1.5,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "vie",
+  "secondaryTokenAttribute": "ram",
+  "url": "https://github.com/M4xt0r/Cyberpunk_2075",
+  "manifest": "https://github.com/M4xt0r/Cyberpunk_2075/releases/latest/download/system.json",
+  "download": "https://github.com/M4xt0r/Cyberpunk_2075/releases/download/v0.1.0/cyberpunk2075.zip"
+}

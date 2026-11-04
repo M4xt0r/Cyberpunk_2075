@@ -1,0 +1,35 @@
+name: Publier une version
+
+# Se déclenche quand une étiquette vX.Y.Z est poussée.
+# Produit system.json et cyberpunk2075.zip, que Foundry télécharge via le lien de manifeste.
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Mettre la version et le lien de téléchargement dans system.json
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/cyberpunk2075.zip"
+          jq --arg v "$VERSION" --arg d "$URL" '.version = $v | .download = $d' system.json > system.tmp
+          mv system.tmp system.json
+
+      - name: Créer l'archive
+        run: zip -r cyberpunk2075.zip system.json module templates styles lang assets README.md
+
+      - name: Publier
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Cyberpunk 2075 ${{ github.ref_name }}
+          files: |
+            system.json
+            cyberpunk2075.zip

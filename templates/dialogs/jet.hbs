@@ -1,0 +1,43 @@
+<div class="cp-dlg">
+  <div class="cp-etiquette">
+    <span class="cp-etiquette-titre">{{titre}}</span>
+    <span class="cp-num">{{formule}}</span>
+  </div>
+
+  <fieldset class="cp-champ">
+    <legend>Difficulté (DD)</legend>
+    <div class="cp-seg">
+      <label><input type="radio" name="dd" value="" checked><span>Aucun</span></label>
+      {{#each dds}}
+      <label title="{{label}}"><input type="radio" name="dd" value="{{valeur}}"><span>{{valeur}}</span></label>
+      {{/each}}
+      <label title="DD caché : le MJ juge seul la réussite"><input type="radio" name="dd" value="cache"><span>?</span></label>
+    </div>
+    <label class="cp-ligne">DD libre <input class="cp-inp cp-num" type="number" name="ddLibre" placeholder="—" step="1"></label>
+    <span class="cp-aide">« ? » : DD caché, le MJ voit seul le résultat.</span>
+  </fieldset>
+
+  <fieldset class="cp-champ">
+    <legend>Mode</legend>
+    <div class="cp-seg">
+      <label><input type="radio" name="mode" value="avantage"><span>Avantage</span></label>
+      <label><input type="radio" name="mode" value="normal" checked><span>Normal</span></label>
+      <label><input type="radio" name="mode" value="desavantage"><span>Désavantage</span></label>
+    </div>
+  </fieldset>
+
+  <label class="cp-champ">
+    <span class="cp-legende">Bonus ou malus du MJ</span>
+    <input class="cp-inp cp-num" type="text" name="bonus" value="+0">
+  </label>
+
+  <label class="cp-champ">
+    <span class="cp-legende">Visibilité du résultat</span>
+    <select class="cp-inp" name="visibilite">
+      <option value="public" selected>Tout le monde</option>
+      <option value="mj">MJ seulement</option>
+      <option value="moi">Moi seul</option>
+    </select>
+  </label>
+  <span class="cp-aide">Astuce : Maj + clic lance directement un jet normal, sans fenêtre.</span>
+</div>
