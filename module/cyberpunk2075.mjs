@@ -10,6 +10,8 @@ import ImplantData, { AmeliorationImplantData, CapsuleData } from "./data/implan
 import { tourDeCombat } from "./documents/humanite.mjs";
 import ObjetData from "./data/objet.mjs";
 import HackData from "./data/hack.mjs";
+import EnnemiData from "./data/ennemi.mjs";
+import FicheEnnemi from "./sheets/ennemi-sheet.mjs";
 import ActeurCP from "./documents/actor.mjs";
 import ItemCP from "./documents/item.mjs";
 import FichePersonnage from "./sheets/personnage-sheet.mjs";
@@ -33,7 +35,7 @@ Hooks.once("init", () => {
   CONFIG.Item.documentClass = ItemCP;
   Object.assign(CONFIG.Actor.dataModels, {
     personnage: PersonnageData,
-    ennemi: Autres.EnnemiData,
+    ennemi: EnnemiData,
     vehicule: Autres.VehiculeData,
     planque: Autres.PlanqueData
   });
@@ -53,7 +55,8 @@ Hooks.once("init", () => {
 
   // Barres de token : Vie, RAM, Humanité
   CONFIG.Actor.trackableAttributes = {
-    personnage: { bar: ["vie", "ram", "humanite"], value: [] }
+    personnage: { bar: ["vie", "ram", "humanite"], value: [] },
+    ennemi: { bar: ["vie", "ram"], value: ["humanite.value"] }
   };
 
   // Initiative : 1d20 + bonus (Processeur tactique…)
@@ -67,7 +70,10 @@ Hooks.once("init", () => {
     types: ["personnage"], makeDefault: true, label: "Fiche Personnage Cyberpunk 2075"
   });
   DocumentSheetConfig.registerSheet(Actor, ID_SYSTEME, FicheActeurSimple, {
-    types: ["ennemi", "vehicule", "planque"], makeDefault: true, label: "Fiche provisoire Cyberpunk 2075"
+    types: ["vehicule", "planque"], makeDefault: true, label: "Fiche provisoire Cyberpunk 2075"
+  });
+  DocumentSheetConfig.registerSheet(Actor, ID_SYSTEME, FicheEnnemi, {
+    types: ["ennemi"], makeDefault: true, label: "Fiche Ennemi Cyberpunk 2075"
   });
   DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteArme, {
     types: ["arme"], makeDefault: true, label: "Carte d'arme Cyberpunk 2075"
@@ -113,6 +119,7 @@ Hooks.once("init", () => {
     `${CHEMIN}/templates/chat/attaque.hbs`,
     `${CHEMIN}/templates/chat/degats.hbs`,
     `${CHEMIN}/templates/chat/hack.hbs`,
+    `${CHEMIN}/templates/actor/ennemi/fiche.hbs`,
     `${CHEMIN}/templates/dialogs/hack.hbs`,
     `${CHEMIN}/templates/chat/utilisation.hbs`,
     `${CHEMIN}/templates/chat/alerte.hbs`,

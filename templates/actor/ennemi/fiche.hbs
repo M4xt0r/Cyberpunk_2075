@@ -1,0 +1,172 @@
+<section class="cp-ennemi {{#if vie.mort}}cp-ennemi-mort{{/if}}">
+
+  {{!-- ====== En-tête ====== --}}
+  <header class="cp-en-tete">
+    <img class="cp-en-portrait {{#if edition}}cp-modifiable{{/if}}" src="{{acteur.img}}" alt="" {{#if edition}}data-action="changerPortrait" title="Changer l'image"{{/if}}>
+    <div class="cp-col cp-pousse cp-gap4">
+      {{#if edition}}
+      <input class="cp-inp cp-inp-nom" type="text" name="name" value="{{acteur.name}}" aria-label="Nom">
+      <div class="cp-en-grille">
+        <label class="cp-c-f">Faction<input class="cp-inp" type="text" name="system.faction" value="{{system.faction}}" placeholder="6th Street, NCPD…"></label>
+        <label class="cp-c-f">Rang<input class="cp-inp" type="text" name="system.rang" value="{{system.rang}}" placeholder="Recrue, Vétéran…"></label>
+        <label class="cp-c-f">Couleur du rang<select class="cp-inp" name="system.rangNiveau">{{selectOptions choixRangs selected=system.rangNiveau}}</select></label>
+        <label class="cp-c-f">Nature<select class="cp-inp" name="system.nature">{{selectOptions choixNatures selected=system.nature}}</select></label>
+        <label class="cp-c-f">Yeux cyber<select class="cp-inp" name="system.yeuxCyber">{{selectOptions choixYeux selected=system.yeuxCyber}}</select></label>
+        <label class="cp-c-f cp-ligne cp-petit cp-en-case"><input type="checkbox" name="system.volant" {{checked system.volant}}> Volant</label>
+      </div>
+      {{else}}
+      {{#if system.faction}}<span class="cp-lbl cp-doux">{{system.faction}}</span>{{/if}}
+      <span class="cp-nom cp-en-nom">{{acteur.name}}</span>
+      <div class="cp-ligne cp-gap6 cp-en-tags">
+        <span class="cp-badge-niv cp-c-{{rang.couleur}} cp-en-rang">{{rang.nom}}</span>
+        <span class="cp-badge-type">{{nature}}</span>
+        {{#if system.yeuxCyberEffectif}}<span class="cp-badge-type">Yeux cyber</span>{{/if}}
+        {{#if system.volant}}<span class="cp-badge-type">Volant</span>{{/if}}
+      </div>
+      {{/if}}
+    </div>
+    <div class="cp-col cp-gap6 cp-en-droite">
+      {{#if mj}}{{#if peutModifier}}
+        {{#if edition}}
+        <button type="button" class="cp-btn cp-btn-principal cp-btn-mini" data-action="basculerMode"><i class="fa-solid fa-lock-open"></i> Terminer</button>
+        {{else}}
+        <button type="button" class="cp-cadenas" data-action="basculerMode" title="Passer en mode édition" aria-label="Passer en mode édition"><i class="fa-solid fa-lock"></i></button>
+        {{/if}}
+      {{/if}}{{/if}}
+      <div class="cp-en-build" role="group" aria-label="Build">
+        <button type="button" class="{{#if buildA}}cp-actif{{/if}}" data-action="choisirBuild" data-build="A" title="{{nbA}} item(s) du build A">A</button>
+        <button type="button" class="{{#unless buildA}}cp-actif{{/unless}}" data-action="choisirBuild" data-build="B" title="{{nbB}} item(s) du build B">B</button>
+      </div>
+    </div>
+  </header>
+
+  {{!-- ====== Caractéristiques ====== --}}
+  <div class="cp-en-caracs">
+    {{#each caracs}}
+    {{#if ../edition}}
+    <label class="cp-en-carac">
+      <span class="cp-ic cp-ic-{{icone}} cp-jaune cp-ic-18"></span>
+      <span class="cp-lbl">{{abrev}}</span>
+      <input class="cp-inp cp-num cp-en-bonus" type="number" name="system.caracs.{{cle}}.bonus" value="{{saisi}}" min="-5" max="5" aria-label="Bonus {{label}}">
+    </label>
+    {{else}}
+    <button type="button" class="cp-en-carac cp-jetable" data-action="jetCarac" data-carac="{{cle}}" title="Jet de {{label}}">
+      <span class="cp-ic cp-ic-{{icone}} cp-jaune cp-ic-18"></span>
+      <span class="cp-lbl">{{abrev}}</span>
+      <span class="cp-num cp-en-bonus {{#if negatif}}cp-rouge-txt{{else}}cp-jaune{{/if}}">{{bonus}}</span>
+    </button>
+    {{/if}}
+    {{/each}}
+  </div>
+
+  {{!-- ====== Vie et stats ====== --}}
+  {{#unless edition}}
+  <div class="cp-en-vie">
+    <span class="cp-ic cp-ic-vie cp-rouge cp-ic-18"></span>
+    <span class="cp-lbl">Vie</span>
+    <button type="button" class="cp-ib" data-action="ajusterVie" data-delta="-1" aria-label="−1 PV (Maj : −5)">−</button>
+    <span class="cp-num cp-en-vie-val"><input class="cp-mini-inp cp-num" type="number" name="system.vie.value" value="{{vie.value}}" aria-label="Vie actuelle" {{#unless peutModifier}}disabled{{/unless}}>/{{vie.max}}</span>
+    <button type="button" class="cp-ib" data-action="ajusterVie" data-delta="1" aria-label="+1 PV (Maj : +5)">+</button>
+    <div class="cp-barre cp-pousse"><div class="cp-barre-rempli cp-fond-rouge" style="width:{{vie.pct}}%"></div></div>
+    {{#if vie.mort}}<button type="button" class="cp-btn cp-btn-mini" data-action="relever" title="PV et RAM au maximum, statut « mort » retiré">Relever</button>{{/if}}
+  </div>
+  {{/unless}}
+  <div class="cp-en-stats">
+    {{#each stats}}
+    <div class="cp-en-stat">
+      <span class="cp-ligne cp-gap4"><span class="cp-ic cp-ic-{{icone}} cp-ic-14 {{#if (eq cle "glace")}}cp-t-glace{{else if (eq cle "ram")}}cp-bleu{{else if (eq cle "vie")}}cp-rouge{{else}}cp-jaune{{/if}}"></span><span class="cp-lbl cp-doux">{{label}}</span></span>
+      {{#if ../edition}}
+      <span class="cp-ligne cp-gap4"><input class="cp-inp cp-num cp-en-forcer" type="number" name="{{champ}}" value="{{forcer}}" placeholder="{{calcule}}" aria-label="Forcer {{label}}"><span class="cp-petit cp-doux">✎ base</span></span>
+      {{else}}
+      <span class="cp-num cp-en-stat-val">{{#if (eq cle "ram")}}<input class="cp-mini-inp cp-num" type="number" name="system.ram.value" value="{{../ram.value}}" aria-label="RAM actuelle" {{#unless ../peutModifier}}disabled{{/unless}}>/{{/if}}{{valeur}}</span>
+      {{#if plus}}<span class="cp-petit cp-doux">base {{base}} · {{cpSigne plus}} build</span>{{else if force}}<span class="cp-petit cp-doux">forcée</span>{{/if}}
+      {{/if}}
+    </div>
+    {{/each}}
+  </div>
+  <div class="cp-ligne cp-gap8 cp-en-ligne">
+    {{#if edition}}
+    <label class="cp-c-f">Réduction des dégâts<input class="cp-inp cp-num" type="number" name="system.reduction" value="{{system.reduction}}" min="0"></label>
+    <label class="cp-c-f">Initiative (bonus)<input class="cp-inp cp-num" type="number" name="system.initiative.bonus" value="{{system.initiative.bonus}}"></label>
+    <label class="cp-c-f">BM (formules @bm)<input class="cp-inp cp-num" type="number" name="system.bm" value="{{system.bm}}" min="0"></label>
+    <label class="cp-c-f">Humanité<input class="cp-inp cp-num" type="number" name="system.humanite.value" value="{{system.humanite.value}}" min="0"></label>
+    {{else}}
+    <button type="button" class="cp-en-mini cp-jetable" data-action="jetInitiative" title="Jet d'initiative"><span class="cp-lbl cp-doux">Init.</span><span class="cp-num">{{initiative}}</span></button>
+    <span class="cp-en-mini"><span class="cp-lbl cp-doux">Attention</span><span class="cp-num">{{attention}}</span></span>
+    <span class="cp-en-mini"><span class="cp-lbl cp-doux">Dépl.</span><span class="cp-num">{{system.deplacement.valeur}} m</span></span>
+    <span class="cp-en-mini {{#if system.reductionTotale}}cp-en-mini-fort{{/if}}"><span class="cp-lbl cp-doux">Réduction</span><span class="cp-num">{{#if system.reductionTotale}}−{{system.reductionTotale}}{{else}}—{{/if}}</span></span>
+    <span class="cp-en-mini"><span class="cp-lbl cp-doux">Hum.</span><span class="cp-num"><input class="cp-mini-inp cp-num" type="number" name="system.humanite.value" value="{{system.humanite.value}}" aria-label="Humanité" {{#unless peutModifier}}disabled{{/unless}}>💀</span></span>
+    <label class="cp-en-mini"><span class="cp-lbl cp-doux">Couvert</span><select class="cp-en-sel" name="system.couvert" {{#unless peutModifier}}disabled{{/unless}}>{{selectOptions couverts selected=system.couvert}}</select></label>
+    {{/if}}
+  </div>
+
+  {{!-- ====== Compétences clés ====== --}}
+  <section class="cp-col cp-gap6">
+    <h2 class="cp-lbl cp-doux cp-titre-h2">Compétences clés</h2>
+    {{#if edition}}
+    {{#each competencesCles}}{{#unless implicite}}
+    <div class="cp-ligne cp-gap6" data-cle-ligne>
+      <select class="cp-inp cp-pousse" data-cle-champ="competence" aria-label="Compétence">{{selectOptions ../toutesCompetences selected=competence}}</select>
+      <input class="cp-inp cp-num cp-en-forcer" type="text" data-cle-champ="valeur" value="{{cpSigne valeur}}" aria-label="Score">
+      <button type="button" class="cp-x" data-action="supprimerCle" data-index="{{i}}" aria-label="Retirer">×</button>
+    </div>
+    {{/unless}}{{/each}}
+    <button type="button" class="cp-c-depot" data-action="ajouterCle">+ Compétence clé (score sans implants, ex. Arme lourde +4)</button>
+    <span class="cp-petit cp-doux">Les autres compétences valent le bonus de leur caractéristique.</span>
+    {{else}}
+    <div class="cp-ligne cp-gap6 cp-en-comps">
+      {{#each competencesCles}}
+      <button type="button" class="cp-en-comp {{#if implicite}}cp-en-comp-implicite{{/if}}" data-action="jetCompetence" data-competence="{{competence}}">{{label}} <span class="cp-num {{#if avecObjets}}cp-jaune{{/if}}">{{score}}</span></button>
+      {{/each}}
+      <span class="cp-ligne cp-gap4 cp-en-autre">
+        <select class="cp-en-sel" data-autre-competence aria-label="Autre compétence">{{selectOptions toutesCompetences}}</select>
+        <button type="button" class="cp-ib" data-action="jetAutre" aria-label="Lancer">🎲</button>
+      </span>
+    </div>
+    {{/if}}
+  </section>
+
+  {{!-- ====== Armes, implants, hacks ====== --}}
+  <section class="cp-col cp-gap6">
+    <div class="cp-ligne cp-entre">
+      <h2 class="cp-lbl cp-doux cp-titre-h2">{{#if edition}}Items · build de chacun{{else}}Équipement · build {{system.build}}{{/if}}</h2>
+      {{#unless edition}}{{#if system.hacks.utilises}}<span class="cp-ligne cp-gap4"><span class="cp-ic cp-ic-ram cp-bleu cp-ic-14"></span><span class="cp-num cp-petit">{{ram.value}}/{{ram.max}}</span></span>{{/if}}{{/unless}}
+    </div>
+    {{#each items}}
+    <div class="cp-en-item" data-item-id="{{id}}">
+      <div class="cp-ligne cp-gap6">
+        <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
+        <span class="cp-en-item-nom">{{nom}}</span>
+        {{#if niveau}}<span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}
+        <span class="cp-badge-type">{{type}}{{#if sousType}} · {{sousType}}{{/if}}</span>
+        {{#if ../edition}}
+        <select class="cp-inp cp-en-build-item" data-build-item="{{id}}" aria-label="Build de {{nom}}">{{selectOptions ../choixBuilds selected=build}}</select>
+        <button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>
+        {{else}}{{#if build}}<span class="cp-num cp-petit cp-doux">{{build}}</span>{{/if}}{{/if}}
+      </div>
+      {{#if infos}}<span class="cp-petit cp-doux cp-en-infos">{{{infos}}}</span>{{/if}}
+      {{#unless ../edition}}{{#if boutons.length}}
+      <div class="cp-ligne cp-gap6">
+        {{#each boutons}}<button type="button" class="cp-btn cp-btn-mini {{#if principal}}cp-btn-principal{{/if}}" data-action="{{action}}" {{#if desactive}}disabled{{/if}}>{{label}}</button>{{/each}}
+      </div>
+      {{/if}}{{/unless}}
+    </div>
+    {{else}}
+    <p class="cp-petit cp-doux">Rien dans ce build.{{#if peutModifier}} Glisse des armes, implants ou hacks sur la fiche.{{/if}}</p>
+    {{/each}}
+    {{#if edition}}<div class="cp-zone-depot">+ Glisser une arme, un implant ou un hack · puis choisir son build</div>{{/if}}
+  </section>
+
+  {{!-- ====== Notes ====== --}}
+  {{#if edition}}
+  <section class="cp-col cp-gap6">
+    <h2 class="cp-lbl cp-doux cp-titre-h2">Notes du MJ</h2>
+    <textarea class="cp-zone-texte" name="system.notes" rows="5">{{system.notes}}</textarea>
+  </section>
+  {{else if system.notes}}
+  <section class="cp-col cp-gap6">
+    <h2 class="cp-lbl cp-doux cp-titre-h2">Notes du MJ</h2>
+    <div class="cp-petit">{{{notes}}}</div>
+  </section>
+  {{/if}}
+</section>

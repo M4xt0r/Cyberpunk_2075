@@ -12,7 +12,7 @@ export default class ActeurCP extends Actor {
   getRollData() {
     // Copie : ne jamais ajouter de clés au vrai objet system
     const donnees = { ...super.getRollData() };
-    if ( this.type !== "personnage" ) return donnees;
+    if ( !["personnage", "ennemi"].includes(this.type) ) return donnees;
     const s = this.system;
     for ( const cle of Object.keys(CARACS) ) donnees[cle] = s.caracs[cle].bonus;
     for ( const cle of Object.keys(COMPETENCES) ) donnees[cle] = s.competences[cle].score;
@@ -20,6 +20,20 @@ export default class ActeurCP extends Actor {
     donnees.initiative = s.initiative.valeur;
     donnees.niveau = s.niveau;
     return donnees;
+  }
+
+  /** Token par défaut : barre de vie, ennemi hostile et non lié. @override */
+  async _preCreate(donnees, options, utilisateur) {
+    if ( (await super._preCreate(donnees, options, utilisateur)) === false ) return false;
+    if ( this.type !== "ennemi" ) return;
+    const T = CONST.TOKEN_DISPOSITIONS;
+    this.updateSource({ prototypeToken: {
+      actorLink: false,
+      disposition: T.HOSTILE,
+      bar1: { attribute: "vie" },
+      displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      ...(donnees.prototypeToken ?? {})
+    } });
   }
 
   /* -------------------------------------------- */
@@ -77,6 +91,11 @@ export default class ActeurCP extends Actor {
     const comp = this.system.competences?.[cle];
     const def = COMPETENCES[cle];
     if ( !comp || !def ) return null;
+    if ( this.type === "ennemi" ) {
+      const parts = [{ label: comp.cle ? def.label : CARACS[def.carac].abrev, valeur: comp.base }];
+      if ( comp.bonusObjets ) parts.push({ label: "Implants et objets", valeur: comp.bonusObjets });
+      return this.#jet({ type: "Compétence", titre: def.label, parts, rapide });
+    }
     const carac = this.system.caracs[def.carac];
     const parts = [{ label: CARACS[def.carac].abrev, valeur: carac.bonus }];
     if ( comp.maitrise ) parts.push({ label: this.system.maitrise.perdue ? "Maîtrise (perdue, stress)" : "Maîtrise", valeur: this.system.maitrise.effectif });
@@ -122,11 +141,15 @@ export default class ActeurCP extends Actor {
    */
   async subirDegats(montant) {
     const s = this.system;
-    const reduction = -(s.modificateurs?.degatsRecus ?? 0);
-    const reel = Math.max(0, montant - Math.max(0, reduction));
+    const reduction = (this.type === "ennemi") ? s.reductionTotale : Math.max(0, -(s.modificateurs?.degatsRecus ?? 0));
+    const reel = Math.max(0, montant - reduction);
     const avant = s.vie?.value ?? 0;
     const apres = Math.max(0, avant - reel);
     await this.update({ "system.vie.value": apres });
+    // Un ennemi meurt à 0 PV
+    if ( (this.type === "ennemi") && (avant > 0) && (apres === 0) ) {
+      await this.toggleStatusEffect("dead", { active: true, overlay: true }).catch(() => null);
+    }
 
     // Gilet pare-balles : une charge de moins par attaque subie
     if ( montant > 0 ) {

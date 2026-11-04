@@ -12,7 +12,6 @@ class ActeurProvisoire extends foundry.abstract.TypeDataModel {
     return { description: new f.HTMLField({ required: true, initial: "" }) };
   }
 }
-export class EnnemiData extends ActeurProvisoire {}
 export class VehiculeData extends ActeurProvisoire {}
 export class PlanqueData extends ActeurProvisoire {}
 

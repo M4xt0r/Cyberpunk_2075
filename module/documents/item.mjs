@@ -66,17 +66,28 @@ export default class ItemCP extends Item {
     if ( options.cpEcartCout && (idUtilisateur === game.user.id) && (this.actor?.type === "personnage") ) this.actor.modifierHumanite(options.cpEcartCout);
   }
 
-  /** Retirer un implant retire aussi ses améliorations et sa capsule. @override */
+  /** Retirer un implant retire aussi ses améliorations et sa capsule ; la jauge d'Humanité baisse de leurs coûts. @override */
   _onDelete(options, idUtilisateur) {
     super._onDelete(options, idUtilisateur);
     if ( (this.type === "classe") && (idUtilisateur === game.user.id) && (this.actor?.type === "personnage") && game.actors.has(this.actor.id) ) {
       appliquerClasse(this.actor, this, -1);
     }
-    if ( (this.type !== "implant") || (idUtilisateur !== game.user.id) || !this.actor ) return;
+    if ( !this.compteDansMinimum || (idUtilisateur !== game.user.id) || !this.actor ) return;
     const acteur = this.actor;
-    if ( !acteur.items.size || (!acteur.isToken && !game.actors.has(acteur.id)) ) return;
-    const ids = acteur.items.filter(i => ["ameliorationImplant", "capsule"].includes(i.type) && (i.system.implant === this.id)).map(i => i.id);
-    if ( ids.length ) acteur.deleteEmbeddedDocuments("Item", ids).catch(() => null);
+    if ( !acteur.isToken && !game.actors.has(acteur.id) ) return;
+    // Implant : ses améliorations et sa capsule partent avec lui, la jauge baisse de tout en une fois
+    const rattaches = (this.type === "implant")
+      ? acteur.items.filter(i => ["ameliorationImplant", "capsule"].includes(i.type) && (i.system.implant === this.id))
+      : [];
+    const baisse = options.cpSansHumanite ? 0
+      : [this, ...rattaches].reduce((n, i) => n + (Number(i.system.coutInstallation) || 0), 0);
+    (async () => {
+      if ( rattaches.length ) await acteur.deleteEmbeddedDocuments("Item", rattaches.map(i => i.id), { cpSansHumanite: true });
+      if ( baisse && (acteur.type === "personnage") ) {
+        acteur.reset();  // minimum d'Humanité recalculé sans les items retirés
+        await acteur.modifierHumanite(-baisse);
+      }
+    })().catch(err => console.error("Cyberpunk 2075 |", err));
   }
 
   /** L'item peut-il attaquer (arme, implant à arme intégrée) ? */
