@@ -4,19 +4,19 @@
  */
 import * as CONFIG_CP from "./config.mjs";
 import PersonnageData from "./data/personnage.mjs";
-import * as Autres from "./data/autres.mjs";
 import ArmeData from "./data/arme.mjs";
 import ImplantData, { AmeliorationImplantData, CapsuleData } from "./data/implant.mjs";
 import { tourDeCombat } from "./documents/humanite.mjs";
 import ObjetData from "./data/objet.mjs";
 import HackData from "./data/hack.mjs";
 import EnnemiData from "./data/ennemi.mjs";
+import { VehiculeData, PlanqueData, AmeliorationVehiculeData, ModulePlanqueData } from "./data/vehicule.mjs";
+import { FicheVehicule, FichePlanque } from "./sheets/vehicule-sheet.mjs";
 import FicheEnnemi from "./sheets/ennemi-sheet.mjs";
 import ActeurCP from "./documents/actor.mjs";
 import ItemCP from "./documents/item.mjs";
 import FichePersonnage from "./sheets/personnage-sheet.mjs";
-import { FicheItemSimple, FicheActeurSimple } from "./sheets/simples.mjs";
-import { CarteArme, CarteObjet, CarteImplant, CarteSousImplant, CarteTalent, CarteClasse, CarteSousClasse, CarteHack } from "./sheets/carte-item.mjs";
+import { CarteArme, CarteObjet, CarteImplant, CarteSousImplant, CarteTalent, CarteClasse, CarteSousClasse, CarteHack, CarteModule } from "./sheets/carte-item.mjs";
 import { TalentData, ClasseData, SousClasseData } from "./data/progression.mjs";
 import { signe } from "./dice/jets.mjs";
 import { surRenduMessage, surCreationMessage } from "./dice/chat.mjs";
@@ -36,8 +36,8 @@ Hooks.once("init", () => {
   Object.assign(CONFIG.Actor.dataModels, {
     personnage: PersonnageData,
     ennemi: EnnemiData,
-    vehicule: Autres.VehiculeData,
-    planque: Autres.PlanqueData
+    vehicule: VehiculeData,
+    planque: PlanqueData
   });
   Object.assign(CONFIG.Item.dataModels, {
     arme: ArmeData,
@@ -49,14 +49,15 @@ Hooks.once("init", () => {
     talent: TalentData,
     classe: ClasseData,
     sousClasse: SousClasseData,
-    ameliorationVehicule: Autres.AmeliorationVehiculeData,
-    modulePlanque: Autres.ModulePlanqueData
+    ameliorationVehicule: AmeliorationVehiculeData,
+    modulePlanque: ModulePlanqueData
   });
 
   // Barres de token : Vie, RAM, Humanité
   CONFIG.Actor.trackableAttributes = {
     personnage: { bar: ["vie", "ram", "humanite"], value: [] },
-    ennemi: { bar: ["vie", "ram"], value: ["humanite.value"] }
+    ennemi: { bar: ["vie", "ram"], value: ["humanite.value"] },
+    vehicule: { bar: ["vie"], value: [] }
   };
 
   // Initiative : 1d20 + bonus (Processeur tactique…)
@@ -69,8 +70,11 @@ Hooks.once("init", () => {
   DocumentSheetConfig.registerSheet(Actor, ID_SYSTEME, FichePersonnage, {
     types: ["personnage"], makeDefault: true, label: "Fiche Personnage Cyberpunk 2075"
   });
-  DocumentSheetConfig.registerSheet(Actor, ID_SYSTEME, FicheActeurSimple, {
-    types: ["vehicule", "planque"], makeDefault: true, label: "Fiche provisoire Cyberpunk 2075"
+  DocumentSheetConfig.registerSheet(Actor, ID_SYSTEME, FicheVehicule, {
+    types: ["vehicule"], makeDefault: true, label: "Fiche Véhicule Cyberpunk 2075"
+  });
+  DocumentSheetConfig.registerSheet(Actor, ID_SYSTEME, FichePlanque, {
+    types: ["planque"], makeDefault: true, label: "Fiche Planque Cyberpunk 2075"
   });
   DocumentSheetConfig.registerSheet(Actor, ID_SYSTEME, FicheEnnemi, {
     types: ["ennemi"], makeDefault: true, label: "Fiche Ennemi Cyberpunk 2075"
@@ -99,9 +103,8 @@ Hooks.once("init", () => {
   DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteHack, {
     types: ["hack"], makeDefault: true, label: "Carte de hack Cyberpunk 2075"
   });
-  DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, FicheItemSimple, {
-    types: ["ameliorationVehicule", "modulePlanque"],
-    makeDefault: true, label: "Carte provisoire Cyberpunk 2075"
+  DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteModule, {
+    types: ["ameliorationVehicule", "modulePlanque"], makeDefault: true, label: "Carte d'amélioration / module Cyberpunk 2075"
   });
 
   // Aides Handlebars
@@ -173,4 +176,39 @@ Hooks.on("preCreateActor", (acteur, donnees) => {
     bar2: { attribute: "ram" }
   };
   acteur.updateSource({ prototypeToken: foundry.utils.mergeObject(prototype, donnees.prototypeToken ?? {}) });
+});
+
+/* -------------------------------------------- */
+/*  Véhicules et planque liés aux personnages   */
+/* -------------------------------------------- */
+
+/** Personnages qui affichent ce véhicule ou cette planque sur leur page 3. */
+function personnagesLies(acteur) {
+  if ( !acteur || !["vehicule", "planque"].includes(acteur.type) ) return [];
+  const uuid = acteur.uuid;
+  return game.actors.filter(a => (a.type === "personnage") && ((a.system.planque === uuid) || a.system.vehicules.includes(uuid)));
+}
+
+/** Recalcule les personnages liés (bonus de planque) et rafraîchit leur fiche. */
+function rafraichirLies(acteur) {
+  for ( const p of personnagesLies(acteur) ) {
+    p.reset();
+    if ( p.sheet?.rendered ) p.sheet.render(false);
+  }
+  // Un véhicule dépend de son pilote (compétences des armes de bord)
+  if ( acteur?.type === "personnage" ) {
+    for ( const v of game.actors.filter(a => (a.type === "vehicule") && (a.system.pilote === acteur.uuid)) ) {
+      if ( v.sheet?.rendered ) v.sheet.render(false);
+    }
+  }
+}
+
+Hooks.on("updateActor", acteur => rafraichirLies(acteur));
+for ( const crochet of ["createItem", "updateItem", "deleteItem"] ) {
+  Hooks.on(crochet, item => { if ( item.parent instanceof Actor ) rafraichirLies(item.parent); });
+}
+
+/** Au chargement : les bonus de planque ont besoin que tous les acteurs soient là. */
+Hooks.once("ready", () => {
+  for ( const p of game.actors.filter(a => (a.type === "personnage") && a.system.aLaPlanque && a.system.planque) ) p.reset();
 });

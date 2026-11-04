@@ -754,7 +754,7 @@
 /* ============================================ */
 .cp2075 .cp-gap4 { gap: 4px; }
 .cp2075 .cp-ic-14 { width: 14px; height: 14px; }
-.cp2075.fiche-ennemi .window-content { padding: 0; }
+.cp2075.fiche-ennemi .window-content, .cp2075.fiche-bien .window-content { padding: 0; }
 .cp2075 .cp-ennemi { display: flex; flex-direction: column; gap: 14px; padding: 16px; background: var(--cp-sol); }
 .cp2075 .cp-ennemi-mort .cp-en-tete { opacity: .55; filter: grayscale(.7); }
 .cp2075 .cp-en-tete { display: flex; gap: 12px; align-items: flex-start; }
@@ -809,14 +809,40 @@
 .cp2075 .cp-en-infos b { color: var(--cp-texte); font-family: var(--cp-f-num); font-weight: 600; }
 .cp2075 .cp-en-build-item { width: auto; min-height: 0; height: 24px; padding: 0 4px; font-size: 12px; }
 /* Boutons de la fiche Ennemi : Foundry impose une hauteur fixe et une ligne aux <button> */
-.cp2075.fiche-ennemi .window-content button.cp-en-carac,
-.cp2075.fiche-ennemi .window-content button.cp-en-mini,
-.cp2075.fiche-ennemi .window-content button.cp-en-comp {
+.cp2075 .window-content button.cp-en-carac,
+.cp2075 .window-content button.cp-en-mini,
+.cp2075 .window-content button.cp-en-comp {
   height: auto; min-height: 0; line-height: 1.2; font-size: inherit; margin: 0; box-sizing: border-box;
 }
-.cp2075.fiche-ennemi .window-content button.cp-en-carac { flex-direction: column; justify-content: center; padding: 8px 4px; gap: 3px; }
-.cp2075.fiche-ennemi .window-content button.cp-en-carac .cp-lbl { font-size: 11px; }
-.cp2075.fiche-ennemi .window-content button.cp-en-carac .cp-en-bonus { font-size: 20px; line-height: 1; }
-.cp2075.fiche-ennemi .window-content button.cp-en-mini { font-size: 13px; padding: 4px 8px; }
-.cp2075.fiche-ennemi .window-content button.cp-en-comp { font-size: 13px; padding: 5px 10px; }
+.cp2075 .window-content button.cp-en-carac { flex-direction: column; justify-content: center; padding: 8px 4px; gap: 3px; }
+.cp2075 .window-content button.cp-en-carac .cp-lbl { font-size: 11px; }
+.cp2075 .window-content button.cp-en-carac .cp-en-bonus { font-size: 20px; line-height: 1; }
+.cp2075 .window-content button.cp-en-mini { font-size: 13px; padding: 4px 8px; }
+.cp2075 .window-content button.cp-en-comp { font-size: 13px; padding: 5px 10px; }
 .cp2075.fiche-ennemi .cp-en-caracs { align-items: stretch; }
+
+/* ============================================ */
+/*  Étape 7 · Véhicules et planques             */
+/* ============================================ */
+.cp2075 .cp-bien-portrait { width: 110px; height: 74px; }
+.cp2075 .cp-italique { font-style: italic; }
+.cp2075 .cp-vitesses { display: flex; gap: 2px; }
+.cp2075 .cp-vitesses span { font-family: var(--cp-f-titre); font-weight: 700; font-size: 13px; width: 22px; text-align: center; padding: 2px 0;
+  border: 1px solid var(--cp-separateur); color: var(--cp-tres-doux); }
+.cp2075 .cp-vitesses span.cp-base { border-color: var(--cp-champ-bord); color: var(--cp-doux); }
+.cp2075 .cp-vitesses span.cp-actif { background: var(--cp-jaune); border-color: var(--cp-jaune); color: var(--cp-sol); }
+.cp2075 .cp-bien-mini { width: 22px; height: 22px; object-fit: cover; border: 1px solid var(--cp-bordure); flex: none; }
+.cp2075 .cp-bien-pilote { flex-direction: row; align-items: center; }
+.cp2075 .cp-en-stat .cp-inp { width: 100%; }
+
+/* Cartes de la page 3 de la fiche Personnage */
+.cp2075 .cp-bien-carte { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; }
+.cp2075 .cp-bien-carte.cp-survol { outline: 1px dashed var(--cp-jaune); outline-offset: -3px; }
+.cp2075 .cp-bien-detruit { opacity: .6; }
+.cp2075 .cp-bien-vignette { width: 64px; height: 42px; object-fit: cover; border: 1px solid var(--cp-bordure); flex: none; }
+.cp2075 .cp-bien-nom { font-family: var(--cp-f-titre); font-weight: 700; font-size: 15px; }
+.cp2075 .cp-bien-champs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.cp2075 .cp-bien-champ { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.cp2075 .cp-bien-champ .cp-inp { width: 100%; min-height: 0; height: 26px; padding: 0 6px; }
+.cp2075 .cp-bien-ligne { padding: 3px 0; border-bottom: 1px solid var(--cp-separateur); }
+.cp2075 .cp-bien-present { flex: none; gap: 4px; }

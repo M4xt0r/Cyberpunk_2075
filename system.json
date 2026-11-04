@@ -2,7 +2,7 @@
   "id": "cyberpunk2075",
   "title": "Cyberpunk 2075",
   "description": "Système de jeu Cyberpunk 2075 en d20 : fiches, jets, implants, Humanité et hacks, dans la charte « Nuit de Dogtown ».",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13.350"
@@ -49,5 +49,5 @@
   "secondaryTokenAttribute": "ram",
   "url": "https://github.com/M4xt0r/Cyberpunk_2075",
   "manifest": "https://github.com/M4xt0r/Cyberpunk_2075/releases/latest/download/system.json",
-  "download": "https://github.com/M4xt0r/Cyberpunk_2075/releases/download/v0.6.1/cyberpunk2075.zip"
+  "download": "https://github.com/M4xt0r/Cyberpunk_2075/releases/download/v0.7.0/cyberpunk2075.zip"
 }

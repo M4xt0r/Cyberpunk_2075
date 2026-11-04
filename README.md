@@ -23,7 +23,7 @@ Les versions suivantes s'installent avec le bouton **Mettre à jour** du systèm
 | 4 | Classes et progression : talents, carte mère, sous-classes, pack de démarrage, bouton Monter | ✅ v0.4.0 |
 | 5 | Hacks : carte, lancement contre la Glace, RAM ou PV (OverClocking), Protocole de violation rapide, emplacements | ✅ v0.5.0 |
 | 6 | Ennemis : fiche compacte, bonus saisis, stats forcées, compétences clés, builds A / B, réduction, mort à 0 PV | ✅ v0.6.0 |
-| 7 | Véhicules et planques | à venir |
+| 7 | Véhicules et planques : fiches, améliorations, modules, pilotage, page 3 éditable sur place | ✅ v0.7.0 |
 | 8 | Compendiums (contenu Notion), animations et sons | à venir |
 
 ## Crédits

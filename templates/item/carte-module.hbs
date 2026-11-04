@@ -1,0 +1,90 @@
+<div class="cp-barrette {{#if edition}}cp-barrette-mj{{/if}}">
+  {{> "systems/cyberpunk2075/templates/item/partials/haut.hbs"}}
+
+  <div class="cp-c-zone">
+    {{#if edition}}
+    <div class="cp-c-etiquette cp-c-formulaire">
+      <img class="cp-c-image cp-c-image-edition" src="{{item.img}}" alt="" data-action="editImage" data-edit="img" title="Changer l'image">
+      <div class="cp-c-grille3">
+        <label class="cp-c-f cp-span3">Nom<input class="cp-c-inp cp-c-inp-nom" type="text" name="name" value="{{item.name}}"></label>
+        <label class="cp-c-f">Prix {{#unless system.sansNiveaux}}niv. {{nv}}{{/unless}} (€$)<input class="cp-c-inp" type="number" name="{{prefixe}}.prix" value="{{donneesNv.prix}}" min="0"></label>
+        {{#if vehicule}}
+        <label class="cp-c-f cp-ligne"><input type="checkbox" name="system.pickupSeulement" {{checked system.pickupSeulement}}> Pick-up seulement</label>
+        <label class="cp-c-f cp-ligne"><input type="checkbox" name="system.armeIntegree" {{checked system.armeIntegree}}> Arme intégrée</label>
+        {{else}}
+        <label class="cp-c-f">Types autorisés (vide = tous)<select class="cp-c-sel cp-c-multiple" name="system.types" multiple size="3">{{selectOptions choixTypesPlanque selected=system.types}}</select></label>
+        <label class="cp-c-f cp-ligne"><input type="checkbox" name="system.vieOffice" {{checked system.vieOffice}}> Module de Vie (d'office en Appartement)</label>
+        {{/if}}
+        <label class="cp-c-f cp-span3">Phrase d'ambiance<input class="cp-c-inp cp-c-inp-texte" type="text" name="system.ambiance" value="{{system.ambiance}}"></label>
+      </div>
+    </div>
+    {{else}}
+    <div class="cp-c-etiquette">
+      <img class="cp-c-image" src="{{item.img}}" alt="">
+      <div class="cp-c-texte">
+        <span class="cp-lbl cp-c-surtitre">{{surtitre}}</span>
+        <span class="cp-c-nom">{{item.name}}</span>
+        {{#if system.ambiance}}<span class="cp-c-ambiance">{{system.ambiance}}</span>{{/if}}
+        <div class="cp-c-tags">
+          {{#if system.sansNiveaux}}<span class="cp-lbl cp-c-tag">Sans niveau</span>{{/if}}
+          <span class="cp-lbl cp-c-tag">{{prix}}</span>
+          {{#if system.armeIntegree}}<span class="cp-lbl cp-c-tag">Arme</span>{{/if}}
+        </div>
+      </div>
+      <div class="cp-c-code"><div class="cp-c-barres" aria-hidden="true"></div><span class="cp-num">{{codeBarre}}</span></div>
+    </div>
+    {{/if}}
+  </div>
+
+  {{> "systems/cyberpunk2075/templates/item/partials/plaques.hbs"}}
+
+  {{#if edition}}
+  <div class="cp-ligne cp-entre cp-c-titre-bloc"><span class="cp-lbl cp-jaune">Bloc effet · niv. {{nv}}</span></div>
+  <div class="cp-c-section">
+    <label class="cp-c-f">Effet (une ligne)<input class="cp-c-inp cp-c-inp-texte" type="text" name="{{prefixe}}.effet.description" value="{{donneesNv.effet.description}}" placeholder="{{#if vehicule}}Augmente la vitesse de 1 cran{{else}}+1 à tous vos soins prodigués{{/if}}"></label>
+    <div class="cp-c-f">Modificateurs (toujours appliqués{{#unless vehicule}} aux personnages présents à la planque{{/unless}})
+      <div class="cp-c-modifs" data-modifs="{{cheminModifs}}">
+        {{#each modifs}}
+        <div class="cp-c-modif" data-ligne>
+          <select class="cp-c-sel" data-modif="cible" aria-label="Cible">{{selectOptions ../choixCibles selected=cible}}</select>
+          <input class="cp-c-inp cp-c-court" type="text" data-modif="valeur" value="{{valeur}}" aria-label="Valeur">
+          <button type="button" class="cp-x" data-action="supprimerModif" data-chemin="{{../cheminModifs}}" data-index="{{i}}" aria-label="Retirer ce modificateur">×</button>
+        </div>
+        {{/each}}
+        <button type="button" class="cp-c-depot" data-action="ajouterModif" data-chemin="{{cheminModifs}}">+ Ajouter un modificateur ({{#if vehicule}}ex. Vitesse +1 cran, Maniabilité +2{{else}}ex. Places de parking +1, Comp. Médecine +2{{/if}})</button>
+      </div>
+    </div>
+    {{#if system.armeIntegree}}
+    <span class="cp-lbl cp-jaune">Bloc attaque · utilise les compétences du pilote</span>
+    <div class="cp-c-grille3">
+      <label class="cp-c-f">Type d'arme<select class="cp-c-sel" name="system.typeArmeIntegree">{{selectOptions choixTypesArme selected=system.typeArmeIntegree}}</select></label>
+      <label class="cp-c-f">Compétence<select class="cp-c-sel" name="system.competence">{{selectOptions choixCompetences selected=system.competence}}</select></label>
+      <label class="cp-c-f">Carac. aux dégâts<select class="cp-c-sel" name="system.carac">{{selectOptions choixCaracs selected=system.carac}}</select></label>
+      <label class="cp-c-f">Dé (niv. {{nv}})<input class="cp-c-inp" type="text" name="{{prefixe}}.de" value="{{donneesNv.de}}"></label>
+      <label class="cp-c-f">Bonus fixe<input class="cp-c-inp" type="number" name="{{prefixe}}.bonusFixe" value="{{donneesNv.bonusFixe}}"></label>
+      <label class="cp-c-f">Type de dégâts<select class="cp-c-sel" name="{{prefixe}}.typeDegats">{{selectOptions choixDegats selected=donneesNv.typeDegats}}</select></label>
+      <label class="cp-c-f">Défense visée<select class="cp-c-sel" name="system.attaque.defense">{{selectOptions choixDefenses selected=system.attaque.defense}}</select></label>
+      <label class="cp-c-f">Portée (m)<input class="cp-c-inp" type="number" name="system.portee" value="{{system.portee}}" step="any"></label>
+      <label class="cp-c-f">Zone (rayon m)<input class="cp-c-inp" type="number" name="system.attaque.zone" value="{{system.attaque.zone}}" step="any" placeholder="—"></label>
+    </div>
+    {{/if}}
+    <label class="cp-c-f">Règles<textarea class="cp-c-inp cp-c-inp-texte" name="system.description" rows="3">{{system.description}}</textarea></label>
+  </div>
+  {{else}}
+  <div class="cp-c-puces cp-c-puces-{{nbPuces}}">
+    {{#each puces}}
+    <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">{{label}}</span><span class="cp-c-val {{#if num}}cp-num{{/if}} {{#if couleur}}cp-t-{{couleur}}{{/if}}">{{valeur}}</span></div></div>
+    {{/each}}
+  </div>
+  <div class="cp-c-cables cp-c-puces-{{nbPuces}}">{{#each puces}}<div class="cp-c-vt"></div>{{/each}}</div>
+  <div class="cp-c-bus"><span class="cp-pastille-cable"></span><span class="cp-c-trace"></span><span class="cp-pastille-cable"></span></div>
+  <div class="cp-c-regles">
+    <div class="cp-col cp-gap6 cp-pousse">
+      <span class="cp-lbl cp-doux">Règles</span>
+      {{#if regles}}<div class="cp-c-p">{{{regles}}}</div>{{else}}<p class="cp-c-p cp-doux">—</p>{{/if}}
+    </div>
+  </div>
+  {{/if}}
+
+  {{> "systems/cyberpunk2075/templates/item/partials/bas.hbs" bloc=(ifThen vehicule "Amélioration · se pose sur le véhicule" "Module · se pose sur la planque") note=(ifThen system.armeIntegree "Bouton Attaquer sur la fiche du véhicule" "")}}
+</div>

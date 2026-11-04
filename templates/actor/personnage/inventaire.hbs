@@ -50,13 +50,100 @@
     </div>
 
     <div class="cp-col cp-gap16">
+      {{!-- ====== Véhicules ====== --}}
       <section class="cp-col cp-gap8">
-        <h2 class="cp-lbl cp-doux cp-titre-h2">Véhicule</h2>
-        <div class="cp-carte cp-coupe"><p class="cp-petit cp-doux">Les véhicules, éditables d'ici, arrivent à l'étape 7.</p></div>
+        <div class="cp-ligne cp-entre"><h2 class="cp-lbl cp-doux cp-titre-h2">Véhicules</h2><span class="cp-petit cp-doux">ⓘ ouvre la fiche du véhicule</span></div>
+        {{#each vehicules}}
+        <div class="cp-carte cp-coupe cp-bien-carte {{#if detruit}}cp-bien-detruit{{/if}}" data-bien="{{uuid}}" data-bien-depot>
+          {{#if manquant}}
+          <div class="cp-ligne cp-entre"><span class="cp-petit cp-rouge-txt">{{nom}} (supprimé ?)</span>{{#if ../peutModifier}}<button type="button" class="cp-x" data-action="retirerVehicule" aria-label="Retirer">×</button>{{/if}}</div>
+          {{else}}
+          <div class="cp-ligne cp-gap8">
+            <img class="cp-bien-vignette" src="{{img}}" alt="">
+            <div class="cp-col cp-pousse">
+              <span class="cp-ligne cp-gap6"><button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirActeur" aria-label="Fiche de {{nom}}">i</button><span class="cp-bien-nom">{{nom}}</span></span>
+              <span class="cp-petit cp-doux">{{categorie}}{{#if blinde}} · blindé{{/if}}{{#if pilote}} · pilote : {{pilote}}{{/if}}{{#if endommage}} · <span class="cp-rouge-txt">endommagé</span>{{/if}}{{#if detruit}} · <span class="cp-rouge-txt">détruit</span>{{/if}}</span>
+            </div>
+            <button type="button" class="cp-btn cp-btn-principal cp-btn-mini" data-action="piloterVehicule" title="Poursuite : 1d20 + Pilotage + Maniabilité + Vitesse">Piloter</button>
+            {{#if ../edition}}<button type="button" class="cp-x" data-action="retirerVehicule" aria-label="Retirer {{nom}} de la fiche" title="Retirer de la fiche (le véhicule n'est pas supprimé)">×</button>{{/if}}
+          </div>
+          <div class="cp-bien-champs">
+            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Vitesse</span>
+              {{#if modifiable}}<select class="cp-inp" data-bien-champ="system.vitesse">{{selectOptions ../choixVitessesBien selected=vitesse}}</select>{{else}}<span class="cp-num">{{vitesse}}</span>{{/if}}
+              {{#if vitesseModifiee}}<span class="cp-petit cp-jaune">→ {{vitesseEffective}}</span>{{/if}}</label>
+            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Maniab.</span>
+              {{#if modifiable}}<input class="cp-inp cp-num" type="number" data-bien-champ="system.maniabilite" data-type="nombre" value="{{maniabilite}}">{{else}}<span class="cp-num">{{maniabilite}}</span>{{/if}}
+              {{#if (ne maniabilite maniabiliteEffective)}}<span class="cp-petit cp-jaune">→ {{maniabiliteEffective}}</span>{{/if}}</label>
+            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">PV</span>
+              <span class="cp-ligne cp-gap4">{{#if modifiable}}<input class="cp-inp cp-num" type="number" data-bien-champ="system.vie.value" data-type="nombre" value="{{vie}}" min="0">{{else}}<span class="cp-num">{{vie}}</span>{{/if}}<span class="cp-num cp-doux">/{{vieMax}}</span></span></label>
+            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Places</span>
+              {{#if modifiable}}<input class="cp-inp cp-num" type="number" data-bien-champ="system.places" data-type="nombre" value="{{places}}" min="0">{{else}}<span class="cp-num">{{places}}</span>{{/if}}</label>
+          </div>
+          <div class="cp-barre"><div class="cp-barre-rempli cp-fond-rouge" style="width:{{viePct}}%"></div></div>
+          <div class="cp-col cp-gap4">
+            <span class="cp-ligne cp-entre"><span class="cp-lbl cp-doux">Améliorations</span><span class="cp-num cp-petit {{#if slotsPleins}}cp-rouge-txt{{/if}}">{{slotsUtilises}}/{{slots}} slots</span></span>
+            {{#each ameliorations}}
+            <div class="cp-ligne cp-gap6 cp-bien-ligne" data-item-id="{{id}}">
+              <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItemBien" aria-label="Infos {{nom}}">i</button>
+              <span class="cp-pousse cp-petit">{{nom}}{{#if niveau}} <span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}{{#if probleme}} <span class="cp-rouge-txt" title="{{probleme}}">!</span>{{/if}}</span>
+              {{#if ../modifiable}}{{#if ../../edition}}<button type="button" class="cp-x" data-action="supprimerItemBien" aria-label="Retirer {{nom}}">×</button>{{/if}}{{/if}}
+            </div>
+            {{else}}<span class="cp-petit cp-doux">Aucune{{#if modifiable}} · glisse une amélioration sur cette carte{{/if}}</span>{{/each}}
+          </div>
+          {{/if}}
+        </div>
+        {{else}}
+        <p class="cp-petit cp-doux">Aucun véhicule.</p>
+        {{/each}}
+        {{#if peutModifier}}
+        <div class="cp-ligne cp-gap6">
+          {{#if peutCreerActeur}}<button type="button" class="cp-c-depot cp-pousse" data-action="ajouterVehicule">+ Ajouter un véhicule</button>{{/if}}
+          <select class="cp-inp cp-pousse" data-lier-vehicule aria-label="Lier un véhicule existant"><option value="">Lier un véhicule existant…</option>{{selectOptions choixVehicules}}</select>
+        </div>
+        <span class="cp-petit cp-doux">Ou glisse un véhicule depuis l'onglet Acteurs.</span>
+        {{/if}}
       </section>
+
+      {{!-- ====== Planque ====== --}}
       <section class="cp-col cp-gap8">
-        <h2 class="cp-lbl cp-doux cp-titre-h2">Planque</h2>
-        <div class="cp-carte cp-coupe"><p class="cp-petit cp-doux">La planque partagée par le groupe arrive à l'étape 7.</p></div>
+        <div class="cp-ligne cp-entre"><h2 class="cp-lbl cp-doux cp-titre-h2">Planque</h2><span class="cp-petit cp-doux">partagée par le groupe</span></div>
+        {{#if planque}}
+        <div class="cp-carte cp-coupe cp-bien-carte" data-bien="{{planque.uuid}}" data-bien-depot>
+          <div class="cp-ligne cp-gap8">
+            <img class="cp-bien-vignette" src="{{planque.img}}" alt="">
+            <div class="cp-col cp-pousse">
+              <span class="cp-ligne cp-gap6"><button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirActeur" aria-label="Fiche de {{planque.nom}}">i</button><span class="cp-bien-nom">{{planque.nom}}</span></span>
+              <span class="cp-petit cp-doux">{{planque.typeLabel}} · {{planque.qualiteLabel}} · {{planque.parking}} place{{#if (gt planque.parking 1)}}s{{/if}} de parking{{#if planque.hebergement}} · loge {{planque.hebergement}}{{/if}}</span>
+            </div>
+            <label class="cp-ligne cp-petit cp-bien-present" title="Les bonus des modules (Charcudoc, NetRunner…) s'appliquent quand tu y es"><input type="checkbox" name="system.aLaPlanque" {{checked system.aLaPlanque}} {{#unless peutModifier}}disabled{{/unless}}> Sur place</label>
+          </div>
+          <div class="cp-bien-champs">
+            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Type</span>{{#if planque.modifiable}}<select class="cp-inp" data-bien-champ="system.type">{{selectOptions choixTypesPlanque selected=planque.type}}</select>{{else}}<span>{{planque.typeLabel}}</span>{{/if}}</label>
+            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Niveau</span>{{#if planque.modifiable}}<select class="cp-inp" data-bien-champ="system.niveau" data-type="nombre">{{selectOptions choixNiveauxPlanque selected=planque.niveau}}</select>{{else}}<span class="cp-num">{{planque.niveau}}</span>{{/if}}</label>
+            <label class="cp-bien-champ"><span class="cp-lbl cp-doux">Qualité</span>{{#if planque.modifiable}}<select class="cp-inp" data-bien-champ="system.qualite">{{selectOptions choixQualitesPlanque selected=planque.qualite}}</select>{{else}}<span>{{planque.qualiteLabel}}</span>{{/if}}</label>
+            <span class="cp-bien-champ"><span class="cp-lbl cp-doux">Parking</span><span class="cp-num">{{planque.parking}}</span></span>
+          </div>
+          <div class="cp-col cp-gap4">
+            <span class="cp-ligne cp-entre"><span class="cp-lbl cp-doux">Modules</span><span class="cp-num cp-petit {{#if planque.modules.pleins}}cp-rouge-txt{{/if}}">{{planque.modules.utilises}}/{{planque.modules.max}}</span></span>
+            {{#each planque.lignes}}
+            <div class="cp-ligne cp-gap6 cp-bien-ligne" data-item-id="{{id}}">
+              <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItemBien" aria-label="Infos {{nom}}">i</button>
+              <span class="cp-pousse cp-petit">{{nom}}{{#if niveau}} <span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}{{#if horsSlot}} <span class="cp-doux">· d'office</span>{{/if}}{{#if infos}} <span class="cp-doux">· {{infos}}</span>{{/if}}</span>
+              {{#if ../planque.modifiable}}{{#if ../edition}}<button type="button" class="cp-x" data-action="supprimerItemBien" aria-label="Retirer {{nom}}">×</button>{{/if}}{{/if}}
+            </div>
+            {{else}}<span class="cp-petit cp-doux">Aucun module{{#if planque.modifiable}} · glisse un module sur cette carte{{/if}}</span>{{/each}}
+          </div>
+          {{#if edition}}<select class="cp-inp" name="system.planque" aria-label="Changer de planque">{{selectOptions choixPlanques selected=system.planque}}</select>{{/if}}
+        </div>
+        {{else}}
+        {{#if planqueManquante}}<p class="cp-petit cp-rouge-txt">La planque liée n'existe plus.</p>{{/if}}
+        {{#if peutModifier}}
+        <div class="cp-ligne cp-gap6">
+          <select class="cp-inp cp-pousse" name="system.planque" aria-label="Planque">{{selectOptions choixPlanques selected=system.planque}}</select>
+          {{#if peutCreerActeur}}<button type="button" class="cp-c-depot" data-action="creerPlanque">+ Créer la planque</button>{{/if}}
+        </div>
+        {{else}}<p class="cp-petit cp-doux">Pas de planque.</p>{{/if}}
+        {{/if}}
       </section>
     </div>
   </div>

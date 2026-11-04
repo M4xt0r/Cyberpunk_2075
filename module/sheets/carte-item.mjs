@@ -1,7 +1,7 @@
 import {
   CHEMIN, CARACS, COMPETENCES, NIVEAUX, TYPES_ARME, REGLES_ARME, TYPES_DEGATS, DEFENSES, STYLES_ANIMATION,
   ACTIVATIONS, PERIODES, CATEGORIES_OBJET, QUALITES, TYPES_JET, ciblesModificateurs,
-  EMPLACEMENTS, MOMENTS_ANIMATION, STYLES_ANIM_IMPLANT, EFFETS_SPECIAUX, CAPSULES
+  EMPLACEMENTS, MOMENTS_ANIMATION, STYLES_ANIM_IMPLANT, EFFETS_SPECIAUX, CAPSULES, TYPES_PLANQUE
 } from "../config.mjs";
 import { signe } from "../dice/jets.mjs";
 import { jouerAnimation } from "../animations.mjs";
@@ -799,5 +799,56 @@ export class CarteHack extends CarteItem {
     const base = { scene: canvas.scene.id, source: source.id, cibles: cibles.map(t => t.id), touches: cibles.map(t => t.id), point: null, rayon: 0, style: "impact" };
     if ( s.glitch ) await jouerAnimation({ ...base, impact: s.glitch, son: s.animation.son });
     if ( s.impactEffectif ) await jouerAnimation({ ...base, impact: s.impactEffectif, son: s.glitch ? "" : s.animation.son });
+  }
+}
+
+
+/* ============================================ */
+/*  Amélioration de véhicule, module de planque */
+/* ============================================ */
+
+export class CarteModule extends CarteItem {
+
+  static PARTS = {
+    carte: { template: `${CHEMIN}/templates/item/carte-module.hbs` }
+  };
+
+  /** @override */
+  async _prepareContext(options) {
+    const c = await super._prepareContext(options);
+    const s = this.item.system;
+    const vehicule = this.item.type === "ameliorationVehicule";
+    const n = c.donneesNv;
+    const e = n.effet;
+    const cibles = ciblesModificateurs();
+    const modifs = e.modificateurs.filter(m => m.cible).map(m => `${signe(m.valeur)} ${(cibles[m.cible] ?? m.cible).replace(/^(Comp|Carac)\. · /, "")}`);
+    const restriction = vehicule
+      ? [s.pickupSeulement && "Pick-up seulement", s.armeIntegree && "Interdit sur moto"].filter(Boolean).join(" · ")
+      : [s.types.length && `Seulement : ${s.types.map(k => TYPES_PLANQUE[k]?.label ?? k).join(", ")}`, s.vieOffice && "D'office dans un Appartement, hors emplacement"].filter(Boolean).join(" · ");
+
+    const puces = [{ label: "Effet", valeur: e.description || (modifs.length ? modifs.join(" · ") : "—"), couleur: (!e.description && modifs.length) ? "jaune" : null }];
+    if ( e.description && modifs.length ) puces.push({ label: "Modificateur", valeur: modifs.join(" · "), num: true, couleur: "jaune" });
+    if ( vehicule && s.armeIntegree ) puces.push({ label: `Arme · ${COMPETENCES[s.competence]?.label ?? "—"}`, valeur: s.formuleLisible(c.nv), num: true, couleur: "jaune" });
+    puces.push({ label: "Restriction", valeur: restriction || "Aucune" });
+
+    Object.assign(c, {
+      vehicule,
+      reference: `CP2075 · ${vehicule ? "VEH-AMEL" : "PLQ-MOD"} · Rév.${c.nv}`,
+      surtitre: vehicule ? "Amélioration de véhicule · 1 slot" : "Module de planque · 1 emplacement",
+      prix: prix(n.prix),
+      puces,
+      nbPuces: puces.length,
+      choixCibles: cibles,
+      choixTypesArme: Object.fromEntries(Object.entries(TYPES_ARME).map(([k, v]) => [k, v.label])),
+      choixCompetences: Object.fromEntries(Object.entries(COMPETENCES).map(([k, v]) => [k, v.label])),
+      choixCaracs: { "": "Aucune", ...Object.fromEntries(Object.entries(CARACS).map(([k, v]) => [k, v.label])) },
+      choixDegats: TYPES_DEGATS,
+      choixDefenses: DEFENSES,
+      choixTypesPlanque: Object.fromEntries(Object.entries(TYPES_PLANQUE).map(([k, v]) => [k, v.label])),
+      cheminModifs: `system.niveaux.n${c.nv}.effet.modificateurs`,
+      modifs: e.modificateurs.map((m, i) => ({ ...m, i })),
+      prefixe: `system.niveaux.n${c.nv}`
+    });
+    return c;
   }
 }

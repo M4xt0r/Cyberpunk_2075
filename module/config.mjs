@@ -180,7 +180,10 @@ export function ciblesModificateurs() {
     vieMax: "PV max", ram: "RAM max", glace: "Glace", adaptabilite: "Adaptabilité",
     initiative: "Initiative", deplacement: "Déplacement (m)", attention: "Attention",
     touche: "Jets d'attaque", degats: "Dégâts infligés", degatsRecus: "Dégâts reçus", soinsRecus: "Soins reçus",
-    slotsHack: "Emplacements de hack"
+    slotsHack: "Emplacements de hack",
+    soinsDonnes: "Soins prodigués",
+    vitesse: "Vitesse du véhicule (crans)", maniabilite: "Maniabilité du véhicule",
+    parking: "Places de parking (planque)", hebergement: "Personnes logées (planque)"
   };
   for ( const [cle, c] of Object.entries(CARACS) ) cibles[`carac.${cle}`] = `Carac. · ${c.labelLong ?? c.label}`;
   for ( const [cle, c] of Object.entries(COMPETENCES) ) cibles[`comp.${cle}`] = `Comp. · ${c.label}`;
@@ -239,3 +242,33 @@ export const EFFETS_SPECIAUX = {
 
 /** Dé du repos long pour la jauge d'Humanité. */
 export const REPOS_HUMANITE = "1d6 + @safr + @captec";
+
+/* -------------------------------------------- */
+/*  Véhicules et planques                       */
+/* -------------------------------------------- */
+
+/** Crans de vitesse, du plus lent au plus rapide ; le bonus de pilotage est l'index (E +0 … A +4). */
+export const VITESSES = ["E", "D", "C", "B", "A"];
+
+export const CATEGORIES_VEHICULE = {
+  moto: { label: "Moto", armesInterdites: true },
+  voiture: { label: "Voiture" },
+  utilitaire: { label: "Utilitaire" },
+  blinde: { label: "Blindé", blinde: true }
+};
+
+/** Types de planque (Notion) : prix, modules et parking par niveau ; revenus du Bar. */
+export const TYPES_PLANQUE = {
+  local: { label: "Local", niveaux: { 1: { prix: 6000, modules: 1, parking: 0 }, 2: { prix: 8000, modules: 2, parking: 0 } } },
+  appartement: { label: "Appartement", vieOffice: true, niveaux: { 1: { prix: 9000, modules: 1, parking: 1 }, 2: { prix: 10000, modules: 2, parking: 1 } } },
+  garage: { label: "Garage", niveaux: { 1: { prix: 12000, modules: 2, parking: 2 }, 2: { prix: 15000, modules: 3, parking: 2 } } },
+  hangar: { label: "Hangar", niveaux: { 1: { prix: 19000, modules: 4, parking: 2 }, 2: { prix: 22000, modules: 5, parking: 4 } } },
+  bar: { label: "Bar", niveaux: { 1: { prix: 28000, modules: 1, parking: 2, revenu: 100 }, 2: { prix: 30000, modules: 2, parking: 2, revenu: 200 } } }
+};
+
+export const QUALITES_PLANQUE = {
+  miteux: { label: "Miteux", prix: 0 },
+  moyen: { label: "Moyen", prix: 500 },
+  correcte: { label: "Correcte", prix: 1000 },
+  luxueux: { label: "Luxueux", prix: 2500 }
+};

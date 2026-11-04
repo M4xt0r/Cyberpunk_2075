@@ -17,7 +17,11 @@ export async function utiliserObjet(item) {
 
   // Jet associé
   let jet = null;
-  if ( effet?.jet.formule ) jet = await lancerFormule(effet.jet.formule, acteur);
+  let formule = effet?.jet.formule ?? "";
+  // Soins prodigués (Module de Charcudoc…) : bonus ajouté aux soins du lanceur
+  const bonusSoins = (effet?.jet.type === "soin") ? (acteur.system.modificateurs?.soinsDonnes ?? 0) : 0;
+  if ( formule && bonusSoins ) formule = `${formule} ${bonusSoins > 0 ? "+" : "-"} ${Math.abs(bonusSoins)}`;
+  if ( formule ) jet = await lancerFormule(formule, acteur);
 
   // Humanité
   let humanite = null;
@@ -56,7 +60,7 @@ export async function utiliserObjet(item) {
     description: effet?.type === "actif" && effet.duree ? `Actif pendant ${effet.duree} tour${effet.duree > 1 ? "s" : ""}` : null,
     jet: jet ? {
       total: jet.total,
-      formule: effet.jet.formule,
+      formule,
       detail: jet.result,
       soin: nature === "soin",
       typeLabel: nature === "soin" ? "Soin" : `Dégâts · ${TYPES_DEGATS[effet.jet.typeDegats] ?? (effet.jet.typeDegats || "—")}`

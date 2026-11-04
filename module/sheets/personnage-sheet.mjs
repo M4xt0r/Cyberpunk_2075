@@ -1,5 +1,7 @@
+import { VITESSES, CATEGORIES_VEHICULE, TYPES_PLANQUE, QUALITES_PLANQUE } from "../config.mjs";
 import { CHEMIN, CARACS, COMPETENCES, ETATS, NATURES, STRESS, COUVERTS, NIVEAUX, TYPES_ARME, TYPES_DEGATS, CATEGORIES_OBJET, QUALITES, EMPLACEMENTS, CAPSULES, ciblesModificateurs } from "../config.mjs";
 import { CapsuleData } from "../data/implant.mjs";
+import { ligneAmelioration, ligneModule } from "./vehicule-sheet.mjs";
 import { signe } from "../dice/jets.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
@@ -42,7 +44,14 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       poserCapsule: FichePersonnage.#poserCapsule,
       reposLong: FichePersonnage.#reposLong,
       monter: FichePersonnage.#monter,
-      jetDeMort: FichePersonnage.#jetDeMort
+      jetDeMort: FichePersonnage.#jetDeMort,
+      ajouterVehicule: FichePersonnage.#ajouterVehicule,
+      retirerVehicule: FichePersonnage.#retirerVehicule,
+      ouvrirActeur: FichePersonnage.#ouvrirActeur,
+      piloterVehicule: FichePersonnage.#piloterVehicule,
+      creerPlanque: FichePersonnage.#creerPlanque,
+      ouvrirItemBien: FichePersonnage.#ouvrirItemBien,
+      supprimerItemBien: FichePersonnage.#supprimerItemBien
     }
   };
 
@@ -158,9 +167,58 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       maitrisesDepassees: s.maitrises.utilisees > s.maitrises.max
     });
 
-    Object.assign(contexte, this.#preparerItems());
+    Object.assign(contexte, this.#preparerItems(), this.#preparerBiens());
     contexte.tabs = this._prepareTabs("primary");
     return contexte;
+  }
+
+  /** Véhicules et planque (page 3), éditables sur place. */
+  #preparerBiens() {
+    const s = this.actor.system;
+    const trouver = uuid => { try { return fromUuidSync(uuid, { strict: false }); } catch { return null; } };
+    const vehicules = s.vehicules.map(uuid => {
+      const v = trouver(uuid);
+      if ( !v ) return { uuid, manquant: true, nom: "Véhicule introuvable" };
+      const vs = v.system;
+      return {
+        uuid, nom: v.name, img: v.img,
+        modifiable: v.isOwner,
+        categorie: CATEGORIES_VEHICULE[vs.categorie]?.label ?? vs.categorie,
+        vitesse: vs.vitesse, vitesseEffective: vs.vitesseEffective, vitesseModifiee: vs.vitesse !== vs.vitesseEffective,
+        maniabilite: vs.maniabilite, maniabiliteEffective: vs.maniabiliteEffective,
+        vie: vs.vie.value, vieMax: vs.vie.max, viePct: vs.vie.max ? Math.clamp(Math.round(vs.vie.value / vs.vie.max * 100), 0, 100) : 0,
+        places: vs.places, slots: vs.slots, slotsUtilises: vs.slotsUtilises, slotsPleins: vs.slotsPleins,
+        blinde: vs.blinde, detruit: vs.detruit, endommage: vs.endommage,
+        pilote: vs.piloteActeur?.name ?? null, estPilote: vs.pilote === this.actor.uuid,
+        ameliorations: v.items.filter(i => i.type === "ameliorationVehicule").map(i => ligneAmelioration(i, v))
+      };
+    });
+    const p = s.planque ? trouver(s.planque) : null;
+    let planque = null;
+    if ( p ) {
+      const ps = p.system;
+      planque = {
+        uuid: p.uuid, nom: p.name, img: p.img, modifiable: p.isOwner,
+        type: ps.type, niveau: ps.niveau, qualite: ps.qualite,
+        typeLabel: TYPES_PLANQUE[ps.type]?.label, qualiteLabel: QUALITES_PLANQUE[ps.qualite]?.label,
+        modules: ps.modules, parking: ps.parking, hebergement: ps.hebergement, revenu: ps.revenu,
+        bonus: ps.bonusOccupants.length,
+        lignes: p.items.filter(i => i.type === "modulePlanque").map(i => ligneModule(i, p))
+      };
+    }
+    const visibles = type => game.actors.filter(a => (a.type === type) && a.testUserPermission(game.user, "OBSERVER"));
+    return {
+      vehicules,
+      choixVehicules: Object.fromEntries(visibles("vehicule").filter(v => !s.vehicules.includes(v.uuid)).map(v => [v.uuid, v.name])),
+      peutCreerActeur: Actor.canUserCreate?.(game.user) ?? game.user.isGM,
+      planque,
+      planqueManquante: !!s.planque && !p,
+      choixPlanques: { "": "— aucune —", ...Object.fromEntries(visibles("planque").map(a => [a.uuid, a.name])) },
+      choixVitessesBien: Object.fromEntries(VITESSES.map(l => [l, l])),
+      choixTypesPlanque: Object.fromEntries(Object.entries(TYPES_PLANQUE).map(([k, d]) => [k, d.label])),
+      choixQualitesPlanque: Object.fromEntries(Object.entries(QUALITES_PLANQUE).map(([k, q]) => [k, q.label])),
+      choixNiveauxPlanque: { 1: "Niv. 1", 2: "Niv. 2" }
+    };
   }
 
   /** Armes (page 2) et objets (page 3). */
@@ -381,6 +439,30 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       });
     }
 
+    // Véhicules et planque : champs modifiés directement sur l'acteur lié
+    for ( const champ of this.element.querySelectorAll("[data-bien-champ]") ) {
+      champ.addEventListener("change", async event => {
+        event.stopPropagation();
+        const bien = await fromUuid(champ.closest("[data-bien]")?.dataset.bien);
+        if ( !bien?.isOwner ) return ui.notifications.warn("Tu n'as pas le droit de modifier cet élément (demande au MJ).");
+        let valeur = champ.value;
+        if ( champ.type === "checkbox" ) valeur = champ.checked;
+        else if ( champ.dataset.type === "nombre" ) valeur = Number.parseInt(String(valeur).replace("−", "-")) || 0;
+        bien.update({ [champ.dataset.bienChamp]: valeur });
+      });
+    }
+    // Lier un véhicule existant
+    this.element.querySelector("[data-lier-vehicule]")?.addEventListener("change", event => {
+      event.stopPropagation();
+      const uuid = event.currentTarget.value;
+      if ( uuid ) this.actor.update({ "system.vehicules": [...this.actor.system.vehicules, uuid] });
+    });
+    // Dépôt d'une amélioration sur un véhicule, d'un module sur la planque
+    for ( const zone of this.element.querySelectorAll("[data-bien-depot]") ) {
+      zone.addEventListener("dragover", event => { event.preventDefault(); zone.classList.add("cp-survol"); });
+      zone.addEventListener("dragleave", () => zone.classList.remove("cp-survol"));
+    }
+
     // Champs « miroir » de l'en-tête : ils recopient leur valeur dans le vrai champ avant l'envoi du formulaire.
     for ( const miroir of this.element.querySelectorAll("[data-miroir]") ) {
       miroir.addEventListener("change", event => {
@@ -433,9 +515,29 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
   /*  Glisser-déposer                             */
   /* -------------------------------------------- */
 
+  /** Un véhicule ou une planque glissé sur la fiche y est lié. @override */
+  async _onDropActor(event, acteur) {
+    if ( !this.isEditable ) return null;
+    if ( acteur.type === "vehicule" ) {
+      if ( this.actor.system.vehicules.includes(acteur.uuid) ) return null;
+      return this.actor.update({ "system.vehicules": [...this.actor.system.vehicules, acteur.uuid] });
+    }
+    if ( acteur.type === "planque" ) return this.actor.update({ "system.planque": acteur.uuid });
+    return null;
+  }
+
   /** Une seule classe et une seule sous-classe : la nouvelle remplace l'ancienne. @override */
   async _onDropItem(event, item) {
     if ( !this.actor.isOwner ) return null;
+
+    // Amélioration de véhicule ou module : sur la carte du véhicule ou de la planque
+    if ( ["ameliorationVehicule", "modulePlanque"].includes(item.type) ) {
+      const bien = await fromUuid(event.target.closest?.("[data-bien]")?.dataset.bien);
+      const attendu = (item.type === "ameliorationVehicule") ? "vehicule" : "planque";
+      if ( bien?.type !== attendu ) return ui.notifications.warn(`Glisse ${item.name} sur la carte ${attendu === "vehicule" ? "du véhicule" : "de la planque"} (page Inventaire & biens).`);
+      if ( !bien.isOwner ) return ui.notifications.warn(`Tu ne peux pas modifier ${bien.name}.`);
+      return bien.sheet._onDropItem(event, item);
+    }
 
     // Amélioration ou capsule : sur la ligne d'un implant
     if ( ["ameliorationImplant", "capsule"].includes(item.type) ) {
@@ -605,6 +707,49 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
     if ( !this.isEditable ) return;
     const item = this.#itemDe(cible);
     return item?.update({ "system.porte": !item.system.porte });
+  }
+
+  /** Crée un véhicule (si le joueur en a le droit) et le lie à la fiche. */
+  static async #ajouterVehicule() {
+    if ( !this.isEditable ) return;
+    const v = await Actor.implementation.create({ name: `Véhicule de ${this.actor.name}`, type: "vehicule", ownership: { default: 0, [game.user.id]: 3 } });
+    if ( v ) await this.actor.update({ "system.vehicules": [...this.actor.system.vehicules, v.uuid] });
+  }
+
+  static async #retirerVehicule(event, cible) {
+    if ( !this.isEditable ) return;
+    const uuid = cible.closest("[data-bien]")?.dataset.bien;
+    return this.actor.update({ "system.vehicules": this.actor.system.vehicules.filter(u => u !== uuid) });
+  }
+
+  static async #ouvrirActeur(event, cible) {
+    const bien = await fromUuid(cible.closest("[data-bien]")?.dataset.bien);
+    return bien?.sheet.render(true);
+  }
+
+  static async #piloterVehicule(event, cible) {
+    const v = await fromUuid(cible.closest("[data-bien]")?.dataset.bien);
+    if ( !v ) return;
+    // Le personnage de la fiche prend le volant s'il n'y a pas de pilote
+    if ( !v.system.pilote && v.isOwner ) await v.update({ "system.pilote": this.actor.uuid });
+    return v.piloter({ rapide: event.shiftKey });
+  }
+
+  static async #creerPlanque() {
+    if ( !this.isEditable ) return;
+    const p = await Actor.implementation.create({ name: "Planque du groupe", type: "planque", ownership: { default: 3 } });
+    if ( p ) await this.actor.update({ "system.planque": p.uuid });
+  }
+
+  static async #ouvrirItemBien(event, cible) {
+    const bien = await fromUuid(cible.closest("[data-bien]")?.dataset.bien);
+    return bien?.items.get(cible.closest("[data-item-id]")?.dataset.itemId)?.sheet.render(true);
+  }
+
+  static async #supprimerItemBien(event, cible) {
+    const bien = await fromUuid(cible.closest("[data-bien]")?.dataset.bien);
+    if ( !bien?.isOwner ) return;
+    return bien.items.get(cible.closest("[data-item-id]")?.dataset.itemId)?.delete();
   }
 
   static async #activer(event, cible) {

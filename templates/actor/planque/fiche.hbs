@@ -1,0 +1,88 @@
+<section class="cp-ennemi cp-bien">
+
+  <header class="cp-en-tete">
+    <img class="cp-en-portrait cp-bien-portrait {{#if edition}}cp-modifiable{{/if}}" src="{{acteur.img}}" alt="" {{#if edition}}data-action="changerPortrait" title="Changer l'image"{{/if}}>
+    <div class="cp-col cp-pousse cp-gap4">
+      {{#if edition}}
+      <input class="cp-inp cp-inp-nom" type="text" name="name" value="{{acteur.name}}" aria-label="Nom">
+      <label class="cp-c-f">Adresse, quartier<input class="cp-inp" type="text" name="system.adresse" value="{{system.adresse}}" placeholder="Watson, Little China…"></label>
+      {{else}}
+      <span class="cp-lbl cp-doux">Planque · {{typeLabel}}{{#if system.adresse}} · {{system.adresse}}{{/if}}</span>
+      <span class="cp-nom cp-en-nom">{{acteur.name}}</span>
+      <div class="cp-ligne cp-gap6 cp-en-tags">
+        <span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>
+        <span class="cp-badge-type">{{qualiteLabel}}</span>
+        <span class="cp-badge-type">{{prixTexte}}</span>
+      </div>
+      {{/if}}
+    </div>
+    {{#if peutModifier}}
+    <div class="cp-col cp-gap6 cp-en-droite">
+      {{#if edition}}
+      <button type="button" class="cp-btn cp-btn-principal cp-btn-mini" data-action="basculerMode"><i class="fa-solid fa-lock-open"></i> Terminer</button>
+      {{else}}
+      <button type="button" class="cp-cadenas" data-action="basculerMode" title="Passer en mode édition" aria-label="Passer en mode édition"><i class="fa-solid fa-lock"></i></button>
+      {{/if}}
+    </div>
+    {{/if}}
+  </header>
+
+  {{#if edition}}
+  <div class="cp-en-stats">
+    <label class="cp-en-stat"><span class="cp-lbl cp-doux">Type</span><select class="cp-inp" name="system.type">{{selectOptions choixTypes selected=system.type}}</select></label>
+    <label class="cp-en-stat"><span class="cp-lbl cp-doux">Niveau</span><select class="cp-inp" name="system.niveau">{{selectOptions choixNiveaux selected=system.niveau}}</select></label>
+    <label class="cp-en-stat"><span class="cp-lbl cp-doux">Qualité</span><select class="cp-inp" name="system.qualite">{{selectOptions choixQualites selected=system.qualite}}</select></label>
+    <label class="cp-en-stat"><span class="cp-lbl cp-doux">Modules ✎</span><input class="cp-inp cp-num" type="number" name="system.modulesForces" value="{{system.modulesForces}}" placeholder="{{modulesCalcul}}" min="0"></label>
+    <label class="cp-en-stat"><span class="cp-lbl cp-doux">Parking ✎</span><input class="cp-inp cp-num" type="number" name="system.parkingForce" value="{{system.parkingForce}}" placeholder="{{parkingCalcul}}" min="0"></label>
+    {{#if system.revenu}}<label class="cp-en-stat cp-ligne cp-petit"><input type="checkbox" name="system.barman" {{checked system.barman}}> Barman recruté</label>{{/if}}
+  </div>
+  {{else}}
+  <div class="cp-en-stats">
+    <div class="cp-en-stat"><span class="cp-lbl cp-doux">Modules</span><span class="cp-num cp-en-stat-val {{#if system.modules.pleins}}cp-rouge-txt{{/if}}">{{system.modules.utilises}}/{{system.modules.max}}</span></div>
+    <div class="cp-en-stat"><span class="cp-lbl cp-doux">Parking</span><span class="cp-num cp-en-stat-val">{{system.parking}}</span><span class="cp-petit cp-doux">places</span></div>
+    <div class="cp-en-stat"><span class="cp-lbl cp-doux">Logement</span><span class="cp-num cp-en-stat-val">{{system.hebergement}}</span><span class="cp-petit cp-doux">personnes</span></div>
+    <div class="cp-en-stat"><span class="cp-lbl cp-doux">Revenus</span>{{#if revenuTexte}}<span class="cp-petit">{{revenuTexte}}</span>{{else}}<span class="cp-num cp-en-stat-val">—</span>{{/if}}</div>
+  </div>
+  {{/if}}
+
+  <section class="cp-col cp-gap6">
+    <div class="cp-ligne cp-entre">
+      <h2 class="cp-lbl cp-doux cp-titre-h2">Modules</h2>
+      <span class="cp-num cp-petit {{#if system.modules.pleins}}cp-rouge-txt{{/if}}">{{system.modules.utilises}} / {{system.modules.max}}</span>
+    </div>
+    {{#each modules}}
+    <div class="cp-en-item" data-item-id="{{id}}">
+      <div class="cp-ligne cp-gap6">
+        <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
+        <span class="cp-en-item-nom">{{nom}}</span>
+        {{#if niveau}}<span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}
+        {{#if horsSlot}}<span class="cp-badge-type">D'office</span>{{/if}}
+        {{#if ../edition}}<button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>{{/if}}
+      </div>
+      {{#if infos}}<span class="cp-petit cp-doux">{{infos}}</span>{{/if}}
+      {{#if probleme}}<span class="cp-petit cp-rouge-txt">{{probleme}}</span>{{/if}}
+    </div>
+    {{else}}
+    <p class="cp-petit cp-doux">Aucun module.</p>
+    {{/each}}
+    {{#if peutModifier}}<div class="cp-zone-depot">+ Glisser un module de planque</div>{{/if}}
+  </section>
+
+  <section class="cp-col cp-gap6">
+    <h2 class="cp-lbl cp-doux cp-titre-h2">Occupants</h2>
+    {{#if bonus.length}}<span class="cp-petit">Bonus quand on y est : <span class="cp-jaune">{{#each bonus}}{{this}}{{#unless @last}} · {{/unless}}{{/each}}</span></span>{{/if}}
+    <div class="cp-ligne cp-gap6 cp-en-comps">
+      {{#each occupants}}<span class="cp-en-comp {{#unless present}}cp-en-comp-implicite{{/unless}}"><img class="cp-bien-mini" src="{{img}}" alt="">{{nom}}{{#if present}} · sur place{{/if}}</span>
+      {{else}}<span class="cp-petit cp-doux">Personne. Glisse un personnage ici, ou choisis la planque en page 3 de sa fiche.</span>{{/each}}
+    </div>
+  </section>
+
+  {{#if edition}}
+  <section class="cp-col cp-gap6">
+    <h2 class="cp-lbl cp-doux cp-titre-h2">Notes</h2>
+    <textarea class="cp-zone-texte" name="system.description" rows="4">{{system.description}}</textarea>
+  </section>
+  {{else if system.description}}
+  <section class="cp-col cp-gap6"><h2 class="cp-lbl cp-doux cp-titre-h2">Notes</h2><div class="cp-petit">{{{description}}}</div></section>
+  {{/if}}
+</section>

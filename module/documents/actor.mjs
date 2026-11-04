@@ -12,6 +12,11 @@ export default class ActeurCP extends Actor {
   getRollData() {
     // Copie : ne jamais ajouter de clés au vrai objet system
     const donnees = { ...super.getRollData() };
+    // Véhicule : les formules (1d6 + Pilotage) se lisent sur le pilote
+    if ( this.type === "vehicule" ) {
+      const pilote = this.system.piloteActeur;
+      return { ...(pilote?.getRollData() ?? {}), ...donnees, vitesse: this.system.bonusVitesse, maniabilite: this.system.maniabiliteEffective };
+    }
     if ( !["personnage", "ennemi"].includes(this.type) ) return donnees;
     const s = this.system;
     for ( const cle of Object.keys(CARACS) ) donnees[cle] = s.caracs[cle].bonus;
@@ -25,6 +30,10 @@ export default class ActeurCP extends Actor {
   /** Token par défaut : barre de vie, ennemi hostile et non lié. @override */
   async _preCreate(donnees, options, utilisateur) {
     if ( (await super._preCreate(donnees, options, utilisateur)) === false ) return false;
+    if ( ["vehicule", "planque"].includes(this.type) ) {
+      this.updateSource({ prototypeToken: { actorLink: true, disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL, bar1: { attribute: this.type === "vehicule" ? "vie" : null }, ...(donnees.prototypeToken ?? {}) } });
+      return;
+    }
     if ( this.type !== "ennemi" ) return;
     const T = CONST.TOKEN_DISPOSITIONS;
     this.updateSource({ prototypeToken: {
@@ -142,10 +151,12 @@ export default class ActeurCP extends Actor {
   async subirDegats(montant) {
     const s = this.system;
     const reduction = (this.type === "ennemi") ? s.reductionTotale : Math.max(0, -(s.modificateurs?.degatsRecus ?? 0));
+    if ( !s.vie ) return { avant: 0, apres: 0, reduit: 0 };
     const reel = Math.max(0, montant - reduction);
     const avant = s.vie?.value ?? 0;
     const apres = Math.max(0, avant - reel);
     await this.update({ "system.vie.value": apres });
+    if ( this.type === "vehicule" ) await this.#etatVehicule(avant, apres);
     // Un ennemi meurt à 0 PV
     if ( (this.type === "ennemi") && (avant > 0) && (apres === 0) ) {
       await this.toggleStatusEffect("dead", { active: true, overlay: true }).catch(() => null);
@@ -166,6 +177,54 @@ export default class ActeurCP extends Actor {
       if ( usures.length ) await this.updateEmbeddedDocuments("Item", usures);
     }
     return { avant, apres, reduit: montant - reel };
+  }
+
+  /** Véhicule : alerte à la moitié des PV (−1 cran de vitesse) et à la destruction. */
+  async #etatVehicule(avant, apres) {
+    const max = this.system.vie.max;
+    const blinde = this.system.blinde;
+    if ( (avant > 0) && (apres === 0) ) {
+      const jet = await new Roll(blinde ? "1d6" : "2d6").evaluate();
+      return ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        rolls: [jet],
+        content: `<div class="cp-msg cp-msg-alerte"><div class="cp-msg-etiquette cp-msg-etiquette-rouge"><span class="cp-msg-type">Véhicule</span><span class="cp-msg-titre">${this.name} détruit</span></div>
+          <div class="cp-msg-puce"><span class="cp-msg-total cp-jaune">${jet.total}</span><div class="cp-msg-des"><span class="cp-num cp-msg-detail">${jet.formula} : ${jet.result}</span><span>dégâts pour chaque occupant${blinde ? " (blindé)" : ""}</span></div></div>
+          <div class="cp-msg-boutons cp-mj-seul"><button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-montant="${jet.total}">Appliquer</button><span class="cp-msg-source cp-pousse">aux tokens sélectionnés</span></div>
+          <div class="cp-msg-broches"></div></div>`
+      });
+    }
+    if ( (avant > max / 2) && (apres <= max / 2) && (apres > 0) ) ui.notifications.warn(`${this.name} est endommagé : −1 cran de vitesse.`);
+  }
+
+  /**
+   * Piloter (poursuite) : 1d20 + Pilotage du pilote + Maniabilité + bonus de Vitesse.
+   * @param {object} [options]
+   * @param {boolean} [options.rapide]
+   */
+  async piloter({ rapide = false } = {}) {
+    if ( this.type !== "vehicule" ) return null;
+    const s = this.system;
+    const pilote = s.piloteActeur;
+    if ( !pilote ) return ui.notifications.warn(`${this.name} n'a pas de pilote : choisis-le sur la fiche du véhicule.`);
+    if ( s.detruit ) return ui.notifications.warn(`${this.name} est détruit.`);
+    const parts = [
+      { label: `Pilotage (${pilote.name})`, valeur: pilote.system.competences?.pilotage?.score ?? 0 },
+      { label: "Maniabilité", valeur: s.maniabiliteEffective },
+      { label: `Vitesse ${s.vitesseEffective}`, valeur: s.bonusVitesse }
+    ];
+    return this.#jetPour(pilote, { type: "Pilotage", titre: this.name, parts, rapide });
+  }
+
+  async #jetPour(acteur, { type, titre, parts, rapide }) {
+    const totalBonus = parts.reduce((x, p) => x + p.valeur, 0);
+    let options = { mode: "normal", dd: null, bonus: 0, visibilite: "public" };
+    if ( !rapide ) {
+      options = await demanderOptionsJet({ type, titre, totalBonus });
+      if ( !options ) return null;
+    }
+    if ( options.bonus ) parts = [...parts, { label: "Bonus du MJ", valeur: options.bonus }];
+    return lancerJetD20({ acteur, type, titre, parts, ...options });
   }
 
   /**

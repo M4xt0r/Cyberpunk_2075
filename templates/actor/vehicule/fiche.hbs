@@ -1,0 +1,125 @@
+<section class="cp-ennemi cp-bien {{#if system.detruit}}cp-ennemi-mort{{/if}}">
+
+  <header class="cp-en-tete">
+    <img class="cp-en-portrait cp-bien-portrait {{#if edition}}cp-modifiable{{/if}}" src="{{acteur.img}}" alt="" {{#if edition}}data-action="changerPortrait" title="Changer l'image"{{/if}}>
+    <div class="cp-col cp-pousse cp-gap4">
+      {{#if edition}}
+      <input class="cp-inp cp-inp-nom" type="text" name="name" value="{{acteur.name}}" aria-label="Nom">
+      <div class="cp-en-grille">
+        <label class="cp-c-f">Catégorie<select class="cp-inp" name="system.categorie">{{selectOptions choixCategories selected=system.categorie}}</select></label>
+        <label class="cp-c-f">Prix (€$)<input class="cp-inp cp-num" type="number" name="system.prix" value="{{system.prix}}" min="0"></label>
+        <span></span>
+        <label class="cp-c-f cp-ligne cp-petit cp-en-case"><input type="checkbox" name="system.blinde" {{checked system.blinde}}> Blindé</label>
+        <label class="cp-c-f cp-ligne cp-petit cp-en-case"><input type="checkbox" name="system.pickup" {{checked system.pickup}}> Pick-up</label>
+        <label class="cp-c-f cp-ligne cp-petit cp-en-case"><input type="checkbox" name="system.armesInterdites" {{checked system.armesInterdites}}> Pas d'arme (moto)</label>
+        <label class="cp-c-f cp-span3">Phrase d'ambiance<input class="cp-inp" type="text" name="system.ambiance" value="{{system.ambiance}}"></label>
+      </div>
+      {{else}}
+      <span class="cp-lbl cp-doux">{{categorie}} · {{prixTexte}}</span>
+      <span class="cp-nom cp-en-nom">{{acteur.name}}</span>
+      <div class="cp-ligne cp-gap6 cp-en-tags">
+        {{#if system.blinde}}<span class="cp-badge-type cp-badge-actif-t">Blindé</span>{{/if}}
+        {{#if system.pickup}}<span class="cp-badge-type">Pick-up</span>{{/if}}
+        {{#if system.endommage}}<span class="cp-badge-type cp-rouge-txt">Endommagé · −1 cran</span>{{/if}}
+        {{#if system.detruit}}<span class="cp-badge-type cp-rouge-txt">Détruit</span>{{/if}}
+      </div>
+      {{#if system.ambiance}}<span class="cp-petit cp-doux cp-italique">{{system.ambiance}}</span>{{/if}}
+      {{/if}}
+    </div>
+    {{#if peutModifier}}
+    <div class="cp-col cp-gap6 cp-en-droite">
+      {{#if edition}}
+      <button type="button" class="cp-btn cp-btn-principal cp-btn-mini" data-action="basculerMode"><i class="fa-solid fa-lock-open"></i> Terminer</button>
+      {{else}}
+      <button type="button" class="cp-cadenas" data-action="basculerMode" title="Passer en mode édition" aria-label="Passer en mode édition"><i class="fa-solid fa-lock"></i></button>
+      {{/if}}
+    </div>
+    {{/if}}
+  </header>
+
+  {{!-- Vie --}}
+  {{#if edition}}
+  <div class="cp-en-stats">
+    <label class="cp-en-stat"><span class="cp-lbl cp-doux">Vitesse</span><select class="cp-inp" name="system.vitesse">{{selectOptions choixVitesses selected=system.vitesse}}</select></label>
+    <label class="cp-en-stat"><span class="cp-lbl cp-doux">Maniabilité</span><input class="cp-inp cp-num" type="number" name="system.maniabilite" value="{{system.maniabilite}}"></label>
+    <label class="cp-en-stat"><span class="cp-lbl cp-doux">Vie max (base)</span><input class="cp-inp cp-num" type="number" name="system.vie.base" value="{{system.vie.base}}" min="0"></label>
+    <label class="cp-en-stat"><span class="cp-lbl cp-doux">Slots</span><input class="cp-inp cp-num" type="number" name="system.slots" value="{{system.slots}}" min="0"></label>
+    <label class="cp-en-stat"><span class="cp-lbl cp-doux">Places</span><input class="cp-inp cp-num" type="number" name="system.places" value="{{system.places}}" min="0"></label>
+    <label class="cp-en-stat cp-span3"><span class="cp-lbl cp-doux">Places · précision</span><input class="cp-inp" type="text" name="system.placesNote" value="{{system.placesNote}}" placeholder="+ 6 dans la remorque"></label>
+  </div>
+  {{else}}
+  <div class="cp-en-vie">
+    <span class="cp-ic cp-ic-vie cp-rouge cp-ic-18"></span>
+    <span class="cp-lbl">Vie</span>
+    <button type="button" class="cp-ib" data-action="ajusterVie" data-delta="-1" aria-label="−1 PV (Maj : −10)" title="Dégâts (Maj : −10)">−</button>
+    <span class="cp-num cp-en-vie-val"><input class="cp-mini-inp cp-num" type="number" name="system.vie.value" value="{{vie.value}}" aria-label="Vie actuelle" {{#unless peutModifier}}disabled{{/unless}}>/{{vie.max}}</span>
+    <button type="button" class="cp-ib" data-action="ajusterVie" data-delta="1" aria-label="+1 PV (Maj : +10)">+</button>
+    <div class="cp-barre cp-pousse"><div class="cp-barre-rempli cp-fond-rouge" style="width:{{vie.pct}}%"></div></div>
+  </div>
+
+  <div class="cp-en-stats">
+    <div class="cp-en-stat">
+      <span class="cp-lbl cp-doux">Vitesse</span>
+      <span class="cp-vitesses">{{#each vitesses}}<span class="{{#if actif}}cp-actif{{/if}} {{#if base}}cp-base{{/if}}">{{l}}</span>{{/each}}</span>
+      <span class="cp-petit cp-doux">+{{system.bonusVitesse}} au pilotage{{#if vitesseModifiee}} · base {{system.vitesse}}{{/if}}</span>
+    </div>
+    <div class="cp-en-stat"><span class="cp-lbl cp-doux">Maniabilité</span><span class="cp-num cp-en-stat-val">{{maniabilite}}</span></div>
+    <div class="cp-en-stat"><span class="cp-lbl cp-doux">Adaptab.</span><span class="cp-num cp-en-stat-val">{{system.adaptabilite.valeur}}</span><span class="cp-petit cp-doux">10 + maniabilité</span></div>
+    <div class="cp-en-stat"><span class="cp-lbl cp-doux">Places</span><span class="cp-num cp-en-stat-val">{{system.places}}</span>{{#if system.placesNote}}<span class="cp-petit cp-doux">{{system.placesNote}}</span>{{/if}}</div>
+  </div>
+  {{/if}}
+
+  {{!-- Pilote --}}
+  <section class="cp-col cp-gap6">
+    <h2 class="cp-lbl cp-doux cp-titre-h2">Pilote</h2>
+    <div class="cp-ligne cp-gap8 cp-en-item cp-bien-pilote">
+      {{#if pilote}}<img class="cp-bien-mini" src="{{pilote.img}}" alt="">{{/if}}
+      <div class="cp-col cp-pousse">
+        {{#if peutModifier}}
+        <select class="cp-inp" name="system.pilote" aria-label="Pilote">{{selectOptions choixPilotes selected=system.pilote}}</select>
+        {{else}}<span class="cp-en-item-nom">{{#if pilote}}{{pilote.nom}}{{else}}Aucun pilote{{/if}}</span>{{/if}}
+        <span class="cp-petit cp-doux">{{#if pilote}}Pilotage {{pilote.pilotage}} · Maniabilité {{maniabilite}} · Vitesse +{{system.bonusVitesse}} = <b class="cp-jaune">{{totalPilotage}}</b>{{else}}Glisse un personnage sur la fiche ou choisis-le.{{/if}}</span>
+      </div>
+      <button type="button" class="cp-btn cp-btn-principal cp-btn-mini" data-action="piloter" {{#unless pilote}}disabled{{/unless}} title="Poursuite : 1d20 + Pilotage + Maniabilité + Vitesse">Piloter</button>
+    </div>
+  </section>
+
+  {{!-- Améliorations --}}
+  <section class="cp-col cp-gap6">
+    <div class="cp-ligne cp-entre">
+      <h2 class="cp-lbl cp-doux cp-titre-h2">Améliorations</h2>
+      <span class="cp-num cp-petit {{#if system.slotsPleins}}cp-rouge-txt{{/if}}">{{system.slotsUtilises}} / {{system.slots}} slots</span>
+    </div>
+    {{#each ameliorations}}
+    <div class="cp-en-item" data-item-id="{{id}}">
+      <div class="cp-ligne cp-gap6">
+        <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
+        <span class="cp-en-item-nom">{{nom}}</span>
+        {{#if niveau}}<span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}
+        {{#if probleme}}<span class="cp-badge-type cp-rouge-txt" title="{{probleme}}">!</span>{{/if}}
+        {{#if ../edition}}<button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>{{/if}}
+      </div>
+      {{#if infos}}<span class="cp-petit cp-doux cp-en-infos">{{{infos}}}</span>{{/if}}
+      {{#if probleme}}<span class="cp-petit cp-rouge-txt">{{probleme}}</span>{{/if}}
+      {{#if arme}}{{#unless ../edition}}
+      <div class="cp-ligne cp-gap6">
+        <button type="button" class="cp-btn cp-btn-mini cp-btn-principal" data-action="attaquer">Attaquer</button>
+        {{#unless degatsSeuls}}<button type="button" class="cp-btn cp-btn-mini" data-action="degats">Dégâts</button>{{/unless}}
+      </div>
+      {{/unless}}{{/if}}
+    </div>
+    {{else}}
+    <p class="cp-petit cp-doux">Aucune amélioration.</p>
+    {{/each}}
+    {{#if peutModifier}}<div class="cp-zone-depot">+ Glisser une amélioration de véhicule</div>{{/if}}
+  </section>
+
+  {{#if edition}}
+  <section class="cp-col cp-gap6">
+    <h2 class="cp-lbl cp-doux cp-titre-h2">Notes</h2>
+    <textarea class="cp-zone-texte" name="system.description" rows="4">{{system.description}}</textarea>
+  </section>
+  {{else if system.description}}
+  <section class="cp-col cp-gap6"><h2 class="cp-lbl cp-doux cp-titre-h2">Notes</h2><div class="cp-petit">{{{description}}}</div></section>
+  {{/if}}
+</section>

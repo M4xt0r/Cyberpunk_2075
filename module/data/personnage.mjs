@@ -65,6 +65,9 @@ export default class PersonnageData extends foundry.abstract.TypeDataModel {
       }),
 
       eddies: entier(0),
+      vehicules: new f.ArrayField(new f.StringField({ required: true, blank: false }), { initial: [] }),
+      planque: new f.StringField({ required: true, blank: true, initial: "" }),
+      aLaPlanque: new f.BooleanField({ initial: false }),
 
       bio: new f.SchemaField({
         histoire: new f.HTMLField({ required: true, initial: "" }),
@@ -93,6 +96,15 @@ export default class PersonnageData extends foundry.abstract.TypeDataModel {
         if ( !cible || !Number.isFinite(valeur) ) continue;
         total[cible] = (total[cible] ?? 0) + valeur;
         (sources[cible] ??= []).push(`${valeur >= 0 ? "+" : "−"}${Math.abs(valeur)} ${item.name}`);
+      }
+    }
+    // Modules de la planque (Charcudoc, NetRunner, Mécano…) quand le personnage y est
+    if ( this.aLaPlanque && this.planque ) {
+      let planque = null;
+      try { planque = fromUuidSync(this.planque, { strict: false }); } catch { planque = null; }
+      for ( const { cible, valeur, source } of planque?.system?.bonusOccupants ?? [] ) {
+        total[cible] = (total[cible] ?? 0) + valeur;
+        (sources[cible] ??= []).push(`${valeur >= 0 ? "+" : "−"}${Math.abs(valeur)} ${source} (planque)`);
       }
     }
     return { total, sources };

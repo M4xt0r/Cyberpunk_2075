@@ -92,7 +92,7 @@ export default class ItemCP extends Item {
 
   /** L'item peut-il attaquer (arme, implant à arme intégrée) ? */
   get peutAttaquer() {
-    return (this.type === "arme") || ((this.type === "implant") && this.system.armeIntegree);
+    return (this.type === "arme") || (["implant", "ameliorationVehicule"].includes(this.type) && this.system.armeIntegree);
   }
 
   /** Attaque avec l'arme (fenêtre, jet, chat, animation). */
