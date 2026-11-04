@@ -1,0 +1,64 @@
+<div class="cp-msg cp-msg-hack">
+  <div class="cp-msg-qui"><span>{{acteur}}</span><span>{{heure}}</span></div>
+  <div class="cp-msg-etiquette">
+    <span class="cp-msg-type">Hack · {{activation}}</span>
+    <span class="cp-msg-titre">{{titre}}</span>
+    <span class="cp-num cp-msg-ram {{#if payeEnPV}}cp-rouge-txt{{/if}}">{{cout}}</span>
+  </div>
+
+  {{#if jet}}
+  <div class="cp-msg-puce">
+    <span class="cp-msg-total">{{jet.total}}</span>
+    <div class="cp-msg-des">
+      <span class="cp-num cp-msg-detail">{{#if jet.plusieursDes}}2d20 ({{#each jet.des}}{{#if ecarte}}<s>{{valeur}}</s>{{else}}{{valeur}}{{/if}}{{#unless @last}}, {{/unless}}{{/each}}){{else}}1d20 ({{#each jet.des}}{{valeur}}{{/each}}){{/if}}{{#each jet.parts}} {{valeur}} <span class="cp-msg-source">{{label}}</span>{{/each}}</span>
+      <span>Défense : Glace (il faut la dépasser)</span>
+    </div>
+  </div>
+  {{/if}}
+  {{#if effet}}<div class="cp-msg-note">{{effet}}</div>{{/if}}
+
+  {{#each cibles}}
+  <div class="cp-msg-cible">
+    <span class="cp-pousse">{{nom}}{{#if robot}} <span class="cp-msg-source">· robot</span>{{/if}}{{#if force}} <span class="cp-msg-source">· forcé</span>{{/if}}</span>
+    {{#if glace}}<span class="cp-num cp-msg-source cp-mj-seul">{{glace}}</span>{{/if}}
+    {{#if inconnue}}<span class="cp-ko cp-ko-gris">À juger</span>
+    {{else if rate}}<span class="cp-ko">Raté</span>
+    {{else}}<span class="cp-ok cp-ok-bleu">Piraté</span>{{/if}}
+  </div>
+  {{#if montant}}
+  <div class="cp-msg-puce cp-msg-puce-cible">
+    <span class="cp-msg-total cp-jaune">{{montant}}</span>
+    <div class="cp-msg-des"><span class="cp-num cp-msg-detail">{{formule}} : {{detail}}</span><span>{{../typeDegats}} · cible {{#if robot}}robot{{else}}organique{{/if}}</span></div>
+    <span class="cp-msg-mini cp-mj-seul">
+      <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-montant="{{montant}}" data-cible="{{token}}">Appliquer</button>
+      <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-montant="{{montant}}" data-facteur="0.5" data-cible="{{token}}">½</button>
+    </span>
+  </div>
+  {{/if}}
+  {{#unless rate}}{{#if ../humaniteCible}}
+  <div class="cp-msg-boutons cp-mj-seul">
+    <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="humanite" data-montant="{{../humaniteCible}}" data-cible="{{token}}">+{{../humaniteCible}}💀 à {{nom}}</button>
+  </div>
+  {{/if}}{{/unless}}
+  {{#if forcer}}
+  <div class="cp-msg-boutons cp-proprio-seul">
+    <button type="button" class="cp-msg-bt2" data-cp-action="forcerHack" data-index="{{@index}}">Protocole de violation rapide · {{forcer}} RAM</button>
+  </div>
+  {{/if}}
+  {{/each}}
+
+  {{#if sansCible}}
+  <div class="cp-msg-puce">
+    <span class="cp-msg-total cp-jaune">{{sansCible.montant}}</span>
+    <div class="cp-msg-des"><span class="cp-num cp-msg-detail">{{sansCible.formule}} : {{sansCible.detail}}</span><span>{{typeDegats}} · aucune cible</span></div>
+  </div>
+  <div class="cp-msg-boutons cp-mj-seul">
+    <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-montant="{{sansCible.montant}}">Appliquer</button>
+    <span class="cp-msg-source cp-pousse">aux tokens sélectionnés · MJ</span>
+  </div>
+  {{else if aucuneCible}}<div class="cp-msg-note">Aucune cible : le MJ applique l'effet.</div>{{/if}}
+
+  {{#if humaniteLanceur}}<div class="cp-msg-note cp-rouge-txt">+{{humaniteLanceur}}💀 pour le lanceur</div>{{/if}}
+  <div class="cp-msg-note cp-num cp-droite-txt">{{reste}}</div>
+  <div class="cp-msg-broches"></div>
+</div>

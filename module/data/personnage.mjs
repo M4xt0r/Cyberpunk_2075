@@ -156,7 +156,11 @@ export default class PersonnageData extends foundry.abstract.TypeDataModel {
     this.humanite.calcule = 100 + this.humanite.gains;
     this.humanite.max = this.humanite.forcer ?? this.humanite.calcule;
     this.humanite.min = this._minimumHumanite();
-    this.edgerunner = (this.parent?.items ?? []).some(i => i.system?.special === "edgerunner");
+    const items = this.parent?.items ?? [];
+    this.edgerunner = items.some(i => i.system?.special === "edgerunner");
+    this.overclocking = items.some(i => i.system?.special === "overclocking");
+    this.violation = items.some(i => i.system?.special === "violation");
+    this.hacks = { slots: Math.max(0, mod("slotsHack")), utilises: items.filter(i => i.type === "hack").length };
 
     const couvert = COUVERTS[this.couvert] ?? COUVERTS[0];
     this.adaptabilite.calcule = safr.total + ref.total + couvert.adaptabilite + mod("adaptabilite");

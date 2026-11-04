@@ -2,6 +2,7 @@
  * Boutons des barrettes du chat et animations des messages.
  */
 import { appliquer } from "./attaque.mjs";
+import { forcerHack } from "./hack.mjs";
 import { jouerAnimation } from "../animations.mjs";
 
 const drapeaux = message => message.flags?.cyberpunk2075 ?? {};
@@ -39,6 +40,11 @@ async function surAction(message, bouton) {
   if ( action === "attaqueSup" ) {
     const item = await fromUuid(d.item);
     return item?.attaquer({ supplementaire: true });
+  }
+
+  if ( action === "forcerHack" ) {
+    bouton.disabled = true;
+    return forcerHack(message, Number(bouton.dataset.index));
   }
 
   if ( action === "appliquer" ) {

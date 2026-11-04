@@ -91,7 +91,30 @@
         <h2 class="cp-lbl cp-doux cp-titre-h2">Hacks</h2>
         <span class="cp-ligne cp-gap6"><span class="cp-ic cp-ic-ram cp-bleu cp-ic-18"></span><span class="cp-num cp-petit">{{ram.value}}/{{ram.max}}</span></span>
       </div>
-      <p class="cp-petit cp-doux">Les hacks arrivent à l'étape 5.</p>
+      <div class="cp-ligne cp-entre cp-petit">
+        <span class="cp-doux">Emplacements de hack</span>
+        <span class="cp-num {{#if infoHacks.plein}}cp-rouge-txt{{/if}}">{{infoHacks.utilises}} / {{infoHacks.slots}}</span>
+      </div>
+      {{#each hacks}}
+      <div class="cp-carte cp-coupe cp-hack {{#if manque}}cp-hack-manque{{/if}}" data-item-id="{{id}}">
+        <div class="cp-ligne">
+          <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
+          <span class="cp-hack-nom">{{nom}}</span>
+          <span class="cp-hack-cout cp-num" title="{{coutTexte}}">{{cout}}<span class="cp-hack-unite">RAM</span></span>
+          {{#if ../edition}}<button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>{{/if}}
+        </div>
+        <span class="cp-petit cp-doux">{{info}}</span>
+        {{#if resume}}<span class="cp-petit">{{resume}}</span>{{/if}}
+        {{#unless ../edition}}
+        <div class="cp-ligne cp-gap8">
+          <button type="button" class="cp-btn cp-btn-principal cp-btn-mini cp-btn-hack" data-action="lancerHack" {{#if manque}}disabled{{/if}} title="Maj + clic : sans fenêtre">{{#if manque}}RAM insuffisante{{else}}Lancer{{/if}}</button>
+        </div>
+        {{/unless}}
+      </div>
+      {{else}}
+      <p class="cp-petit cp-doux">Aucun hack.{{#if infoHacks.sansPuce}} Il faut une Puce de piratage (Port neural) pour avoir des emplacements.{{/if}}</p>
+      {{/each}}
+      {{#if edition}}<div class="cp-zone-depot">+ Glisser un hack depuis le compendium</div>{{/if}}
     </section>
   </div>
 </section>

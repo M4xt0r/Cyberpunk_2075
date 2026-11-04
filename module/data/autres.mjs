@@ -17,10 +17,8 @@ export class VehiculeData extends ActeurProvisoire {}
 export class PlanqueData extends ActeurProvisoire {}
 
 /* ============================================ */
-/*  Items pas encore construits (étapes 3 à 7)  */
+/*  Items pas encore construits (étape 7)       */
 /* ============================================ */
-
-export class HackData extends ItemBase {}
 
 export class AmeliorationVehiculeData extends ItemBase {}
 export class ModulePlanqueData extends ItemBase {}

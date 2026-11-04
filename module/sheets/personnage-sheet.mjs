@@ -37,6 +37,7 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       basculerPorte: FichePersonnage.#basculerPorte,
       arreterEffet: FichePersonnage.#arreterEffet,
       activer: FichePersonnage.#activer,
+      lancerHack: FichePersonnage.#lancerHack,
       ajouterAmelioration: FichePersonnage.#ajouterAmelioration,
       poserCapsule: FichePersonnage.#poserCapsule,
       reposLong: FichePersonnage.#reposLong,
@@ -251,7 +252,31 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
         };
       });
 
-    return { armes, objets, talents, choixNiveaux, aArmes: armes.length > 0, aObjets: objets.length > 0, ...this.#preparerImplants(niveauBadge) };
+    const ram = acteur.system.ram.value;
+    const hacks = acteur.items.filter(i => i.type === "hack")
+      .sort((a, b) => (a.system.ram - b.system.ram) || a.name.localeCompare(b.name))
+      .map(item => {
+        const s = item.system;
+        const cout = s.cout(s.variable.actif ? 1 : 0);
+        return {
+          id: item.id,
+          nom: item.name,
+          cout: s.variable.actif ? `${s.variable.parUnite}×` : s.ram,
+          coutTexte: s.coutTexte,
+          info: [activations[s.activation], (s.defense === "glace") ? "contre Glace" : "sans jet", s.duree ? `${s.duree} t.` : null].filter(Boolean).join(" · "),
+          resume: s.resume,
+          manque: (cout > ram) && !acteur.system.overclocking
+        };
+      });
+    const slots = acteur.system.hacks;
+    const infoHacks = {
+      slots: slots.slots,
+      utilises: slots.utilises,
+      plein: slots.utilises > slots.slots,
+      sansPuce: slots.slots === 0
+    };
+
+    return { armes, objets, talents, hacks, infoHacks, choixNiveaux, aArmes: armes.length > 0, aObjets: objets.length > 0, ...this.#preparerImplants(niveauBadge) };
   }
 
   /** Implants rangés par emplacement, côté gauche et côté droit de la silhouette. */
@@ -440,6 +465,13 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       const nb = this.actor.items.filter(i => (i.type === "implant") && (i.system.emplacement === item.system.emplacement)).length;
       if ( (max !== null) && (nb >= max) ) ui.notifications.warn(`Emplacement ${def.label} plein (${max} max) : l'implant est posé quand même.`);
     }
+    // Hack : un emplacement de hack par puce
+    if ( (item.type === "hack") && (item.parent !== this.actor) ) {
+      const { slots, utilises } = this.actor.system.hacks;
+      if ( this.actor.items.some(i => (i.type === "hack") && (i.name === item.name)) ) return ui.notifications.warn(`${item.name} est déjà installé.`);
+      if ( !slots ) ui.notifications.warn("Aucun emplacement de hack : installe d'abord une Puce de piratage. Le hack est posé quand même.");
+      else if ( utilises >= slots ) ui.notifications.warn(`Emplacements de hack pleins (${slots}) : le hack est posé quand même.`);
+    }
     if ( ["classe", "sousClasse"].includes(item.type) && (item.parent !== this.actor) ) {
       const anciens = this.actor.items.filter(i => i.type === item.type).map(i => i.id);
       if ( anciens.length ) await this.actor.deleteEmbeddedDocuments("Item", anciens);
@@ -577,6 +609,10 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
 
   static async #activer(event, cible) {
     return this.#itemDe(cible)?.activer();
+  }
+
+  static async #lancerHack(event, cible) {
+    return this.#itemDe(cible)?.lancer({ rapide: event.shiftKey });
   }
 
   static async #monter() {

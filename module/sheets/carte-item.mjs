@@ -733,3 +733,71 @@ export class CarteSousClasse extends CarteItem {
     return this.item.update({ [chemin]: liste });
   }
 }
+
+/* ============================================ */
+/*  Hack                                        */
+/* ============================================ */
+
+export class CarteHack extends CarteItem {
+
+  static DEFAULT_OPTIONS = {
+    actions: {
+      testerHack: CarteHack.#testerHack
+    }
+  };
+
+  static PARTS = {
+    carte: { template: `${CHEMIN}/templates/item/carte-hack.hbs` }
+  };
+
+  /** @override */
+  async _prepareContext(options) {
+    const c = await super._prepareContext(options);
+    const s = this.item.system;
+    const typeDegats = TYPES_DEGATS[s.degats.type] ?? s.degats.type;
+    const avecJet = s.defense === "glace";
+    const puces = [
+      { label: "Coût en RAM", valeur: s.variable.actif ? `${s.ram ? `${s.ram} + ` : ""}${s.variable.parUnite}/u` : s.ram, num: true, couleur: "glace" },
+      { label: "Touche", valeur: avecJet ? (c.possedeParActeur ? `1d20 ${signe(s.scoreTouche)}` : `1d20 + ${s.competenceLabel}`) : "Sans jet", num: avecJet && c.possedeParActeur },
+      { label: "Contre", valeur: avecJet ? "Glace" : "Aucune défense" },
+      { label: "Dégâts", valeur: s.faitDegats ? [s.degats.organique && `${s.degats.organique}`, (s.degats.robot && (s.degats.robot !== s.degats.organique)) && `robot ${s.degats.robot}`].filter(Boolean).join(" · ") : (s.humanite.cible ? `+${s.humanite.cible}💀` : "—"), num: !s.faitDegats && !!s.humanite.cible, couleur: s.faitDegats ? "jaune" : (s.humanite.cible ? "rouge" : null) }
+    ];
+    const tags = [ACTIVATIONS[s.activation]];
+    if ( s.duree ) tags.push(`${s.duree} tour${s.duree > 1 ? "s" : ""}`);
+    if ( s.faitDegats ) tags.push(typeDegats);
+    if ( s.humanite.lanceur ) tags.push(`+${s.humanite.lanceur}💀 au lanceur`);
+    const fichier = (champ, label, type, defaut) => {
+      const valeur = foundry.utils.getProperty(this.item, champ);
+      return { champ, label, type, valeur, nom: nomFichier(valeur), defaut };
+    };
+    Object.assign(c, {
+      reference: `CP2075 · HCK · ${s.coutTexte}`,
+      puces,
+      nbPuces: puces.length,
+      tags,
+      typeDegats,
+      prixTexte: prix(s.prix),
+      coutTexte: s.coutTexte,
+      choixActivations: ACTIVATIONS,
+      choixDefenses: { glace: "Glace", aucune: "Aucune (pas de jet)" },
+      choixTypesDegats: TYPES_DEGATS,
+      choixCompetences: Object.fromEntries(Object.entries(COMPETENCES).map(([k, v]) => [k, v.label])),
+      fichiers: [
+        fichier("system.animation.impact", "Animation d'effet", "imagevideo", nomFichier(s.impactEffectif) || "aucune"),
+        fichier("system.animation.son", "Son", "audio", "aucun")
+      ]
+    });
+    return c;
+  }
+
+  static async #testerHack() {
+    const source = canvas?.tokens?.controlled[0];
+    if ( !source ) return ui.notifications.warn("Sélectionne un token sur la scène pour tester les animations.");
+    const s = this.item.system;
+    const cibles = Array.from(game.user.targets);
+    if ( !cibles.length ) return ui.notifications.warn("Cible au moins un token (touche T) pour tester le hack.");
+    const base = { scene: canvas.scene.id, source: source.id, cibles: cibles.map(t => t.id), touches: cibles.map(t => t.id), point: null, rayon: 0, style: "impact" };
+    if ( s.glitch ) await jouerAnimation({ ...base, impact: s.glitch, son: s.animation.son });
+    if ( s.impactEffectif ) await jouerAnimation({ ...base, impact: s.impactEffectif, son: s.glitch ? "" : s.animation.son });
+  }
+}

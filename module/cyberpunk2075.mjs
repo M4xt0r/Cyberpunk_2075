@@ -9,11 +9,12 @@ import ArmeData from "./data/arme.mjs";
 import ImplantData, { AmeliorationImplantData, CapsuleData } from "./data/implant.mjs";
 import { tourDeCombat } from "./documents/humanite.mjs";
 import ObjetData from "./data/objet.mjs";
+import HackData from "./data/hack.mjs";
 import ActeurCP from "./documents/actor.mjs";
 import ItemCP from "./documents/item.mjs";
 import FichePersonnage from "./sheets/personnage-sheet.mjs";
 import { FicheItemSimple, FicheActeurSimple } from "./sheets/simples.mjs";
-import { CarteArme, CarteObjet, CarteImplant, CarteSousImplant, CarteTalent, CarteClasse, CarteSousClasse } from "./sheets/carte-item.mjs";
+import { CarteArme, CarteObjet, CarteImplant, CarteSousImplant, CarteTalent, CarteClasse, CarteSousClasse, CarteHack } from "./sheets/carte-item.mjs";
 import { TalentData, ClasseData, SousClasseData } from "./data/progression.mjs";
 import { signe } from "./dice/jets.mjs";
 import { surRenduMessage, surCreationMessage } from "./dice/chat.mjs";
@@ -42,7 +43,7 @@ Hooks.once("init", () => {
     ameliorationImplant: AmeliorationImplantData,
     capsule: CapsuleData,
     objet: ObjetData,
-    hack: Autres.HackData,
+    hack: HackData,
     talent: TalentData,
     classe: ClasseData,
     sousClasse: SousClasseData,
@@ -89,8 +90,11 @@ Hooks.once("init", () => {
   DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteSousClasse, {
     types: ["sousClasse"], makeDefault: true, label: "Carte de sous-classe Cyberpunk 2075"
   });
+  DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteHack, {
+    types: ["hack"], makeDefault: true, label: "Carte de hack Cyberpunk 2075"
+  });
   DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, FicheItemSimple, {
-    types: ["hack", "ameliorationVehicule", "modulePlanque"],
+    types: ["ameliorationVehicule", "modulePlanque"],
     makeDefault: true, label: "Carte provisoire Cyberpunk 2075"
   });
 
@@ -108,6 +112,8 @@ Hooks.once("init", () => {
     `${CHEMIN}/templates/chat/jet.hbs`,
     `${CHEMIN}/templates/chat/attaque.hbs`,
     `${CHEMIN}/templates/chat/degats.hbs`,
+    `${CHEMIN}/templates/chat/hack.hbs`,
+    `${CHEMIN}/templates/dialogs/hack.hbs`,
     `${CHEMIN}/templates/chat/utilisation.hbs`,
     `${CHEMIN}/templates/chat/alerte.hbs`,
     `${CHEMIN}/templates/chat/progression.hbs`,

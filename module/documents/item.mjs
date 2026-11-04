@@ -1,6 +1,7 @@
 import ArmeData from "../data/arme.mjs";
 import { attaquer, lancerDegats } from "../dice/attaque.mjs";
 import { utiliserObjet, activerImplant } from "../dice/utilisation.mjs";
+import { lancerHack } from "../dice/hack.mjs";
 import { appliquerClasse, appliquerSousClasse } from "./progression.mjs";
 
 /**
@@ -105,5 +106,11 @@ export default class ItemCP extends Item {
   async utiliser(options = {}) {
     if ( this.type !== "objet" ) return null;
     return utiliserObjet(this, options);
+  }
+
+  /** Lance un hack (RAM, jet contre la Glace, chat, animation). */
+  async lancer(options = {}) {
+    if ( this.type !== "hack" ) return null;
+    return lancerHack(this, options);
   }
 }

@@ -1,0 +1,93 @@
+<div class="cp-barrette cp-barrette-hack {{#if edition}}cp-barrette-mj{{/if}}">
+  {{> "systems/cyberpunk2075/templates/item/partials/haut.hbs"}}
+
+  <div class="cp-c-zone">
+    {{#if edition}}
+    <div class="cp-c-etiquette cp-c-formulaire">
+      <img class="cp-c-image cp-c-image-edition" src="{{item.img}}" alt="" data-action="editImage" data-edit="img" title="Changer l'image">
+      <div class="cp-c-grille3">
+        <label class="cp-c-f cp-span3">Nom<input class="cp-c-inp cp-c-inp-nom" type="text" name="name" value="{{item.name}}"></label>
+        <label class="cp-c-f">Prix (€$)<input class="cp-c-inp" type="number" name="system.prix" value="{{system.prix}}" min="0"></label>
+        <label class="cp-c-f">Activation<select class="cp-c-sel" name="system.activation">{{selectOptions choixActivations selected=system.activation}}</select></label>
+        <label class="cp-c-f">Durée (tours, 0 = instantané)<input class="cp-c-inp" type="number" name="system.duree" value="{{system.duree}}" min="0"></label>
+        <label class="cp-c-f cp-span3">Phrase d'ambiance<input class="cp-c-inp cp-c-inp-texte" type="text" name="system.ambiance" value="{{system.ambiance}}"></label>
+      </div>
+    </div>
+    {{else}}
+    <div class="cp-c-etiquette">
+      <div class="cp-c-source cp-c-source-ram">
+        <span class="cp-lbl">RAM</span>
+        <span class="cp-num cp-c-source-niv">{{#if system.variable.actif}}X{{else}}{{system.ram}}{{/if}}</span>
+        <span class="cp-lbl cp-petit">{{prixTexte}}</span>
+      </div>
+      <div class="cp-c-texte">
+        <span class="cp-lbl cp-c-surtitre">Hack · Puce de piratage</span>
+        <span class="cp-c-nom">{{item.name}}</span>
+        {{#if system.ambiance}}<span class="cp-c-ambiance">{{system.ambiance}}</span>{{/if}}
+        <div class="cp-c-tags">
+          {{#each tags}}<span class="cp-lbl cp-c-tag">{{this}}</span>{{/each}}
+        </div>
+      </div>
+      <div class="cp-c-code"><div class="cp-c-barres" aria-hidden="true"></div><span class="cp-num">{{codeBarre}}</span></div>
+    </div>
+    {{/if}}
+  </div>
+
+  {{#if edition}}
+  <div class="cp-ligne cp-entre cp-c-titre-bloc"><span class="cp-lbl cp-jaune">Bloc hack</span></div>
+  <div class="cp-c-section">
+    <div class="cp-c-grille3">
+      <label class="cp-c-f">Coût en RAM (fixe)<input class="cp-c-inp" type="number" name="system.ram" value="{{system.ram}}" min="0"></label>
+      <label class="cp-c-f">Défense visée<select class="cp-c-sel" name="system.defense">{{selectOptions choixDefenses selected=system.defense}}</select></label>
+      <label class="cp-c-f">Compétence<select class="cp-c-sel" name="system.competence">{{selectOptions choixCompetences selected=system.competence}}</select></label>
+      <label class="cp-c-f cp-ligne cp-petit cp-span3"><input type="checkbox" name="system.variable.actif" {{checked system.variable.actif}}> Coût variable (le joueur choisit une quantité au lancement)</label>
+      {{#if system.variable.actif}}
+      <label class="cp-c-f">RAM par unité<input class="cp-c-inp" type="number" name="system.variable.parUnite" value="{{system.variable.parUnite}}" min="0"></label>
+      <label class="cp-c-f cp-span2">Unité<input class="cp-c-inp" type="text" name="system.variable.unite" value="{{system.variable.unite}}" placeholder="carré de 1,5 m"></label>
+      {{/if}}
+      <label class="cp-c-f">Bonus au toucher<input class="cp-c-inp" type="number" name="system.bonusTouche" value="{{system.bonusTouche}}"></label>
+      <label class="cp-c-f">Dégâts · organique<input class="cp-c-inp" type="text" name="system.degats.organique" value="{{system.degats.organique}}" placeholder="ex. 1d6 + Piratage"></label>
+      <label class="cp-c-f">Dégâts · robot<input class="cp-c-inp" type="text" name="system.degats.robot" value="{{system.degats.robot}}" placeholder="vide = comme organique"></label>
+      <label class="cp-c-f">Type de dégâts<select class="cp-c-sel" name="system.degats.type">{{selectOptions choixTypesDegats selected=system.degats.type}}</select></label>
+      <label class="cp-c-f">💀 infligés à la cible<input class="cp-c-inp" type="number" name="system.humanite.cible" value="{{system.humanite.cible}}"></label>
+      <label class="cp-c-f">💀 pour le lanceur<input class="cp-c-inp" type="number" name="system.humanite.lanceur" value="{{system.humanite.lanceur}}"></label>
+      <label class="cp-c-f cp-span3">Effet (une ligne, rappelé dans le chat)<input class="cp-c-inp cp-c-inp-texte" type="text" name="system.effet" value="{{system.effet}}"></label>
+    </div>
+    <div class="cp-ligne cp-entre">
+      <span class="cp-lbl cp-jaune">Animation</span>
+      <label class="cp-ligne cp-petit"><input type="checkbox" name="system.animation.glitch" {{checked system.animation.glitch}}> Glitch sur les cibles</label>
+    </div>
+    <div class="cp-c-grille3">
+      {{#each fichiers}}
+      <div class="cp-c-f">{{label}}
+        <div class="cp-ligne cp-gap6">
+          <button type="button" class="cp-c-depot" data-action="choisirFichier" data-champ="{{champ}}" data-type="{{type}}">{{#if nom}}<span class="cp-num cp-clair">{{nom}}</span>{{else}}<span class="cp-doux">défaut : {{defaut}}</span>{{/if}} · changer</button>
+          {{#if valeur}}<button type="button" class="cp-x" data-action="viderFichier" data-champ="{{champ}}" aria-label="Revenir au défaut">×</button>{{/if}}
+        </div>
+      </div>
+      {{/each}}
+      <div class="cp-c-f">Essai<button type="button" class="cp-c-bt2" data-action="testerHack">▶ Tester sur les cibles</button></div>
+    </div>
+    <label class="cp-c-f">Règles complètes<textarea class="cp-c-inp cp-c-inp-texte" name="system.description" rows="4">{{system.description}}</textarea></label>
+  </div>
+  {{else}}
+  <div class="cp-c-puces cp-c-puces-{{nbPuces}}">
+    {{#each puces}}
+    <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">{{label}}</span><span class="cp-c-val {{#if num}}cp-num cp-c-val-grand{{/if}} {{#if couleur}}cp-t-{{couleur}}{{/if}}">{{valeur}}</span></div></div>
+    {{/each}}
+  </div>
+  <div class="cp-c-cables cp-c-puces-{{nbPuces}}">{{#each puces}}<div class="cp-c-vt"></div>{{/each}}</div>
+  <div class="cp-c-bus"><span class="cp-pastille-cable"></span><span class="cp-c-trace"></span><span class="cp-pastille-cable"></span></div>
+  <div class="cp-c-regles">
+    <div class="cp-col cp-gap6 cp-pousse">
+      <span class="cp-lbl cp-doux">Règles</span>
+      {{#if system.effet}}<p class="cp-c-p">{{system.effet}}</p>{{/if}}
+      {{#if system.variable.actif}}<p class="cp-c-p cp-jaune">Coût : {{coutTexte}}</p>{{/if}}
+      {{#if regles}}<div class="cp-c-p">{{{regles}}}</div>{{/if}}
+      {{#unless system.effet}}{{#unless regles}}<p class="cp-c-p cp-doux">Réussi si le jet dépasse la Glace de la cible.</p>{{/unless}}{{/unless}}
+    </div>
+  </div>
+  {{/if}}
+
+  {{> "systems/cyberpunk2075/templates/item/partials/bas.hbs" bloc="Bloc hack" note="Bouton Lancer sur la fiche · page 2"}}
+</div>

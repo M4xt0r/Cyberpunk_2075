@@ -179,7 +179,8 @@ export function ciblesModificateurs() {
   const cibles = {
     vieMax: "PV max", ram: "RAM max", glace: "Glace", adaptabilite: "Adaptabilité",
     initiative: "Initiative", deplacement: "Déplacement (m)", attention: "Attention",
-    touche: "Jets d'attaque", degats: "Dégâts infligés", degatsRecus: "Dégâts reçus", soinsRecus: "Soins reçus"
+    touche: "Jets d'attaque", degats: "Dégâts infligés", degatsRecus: "Dégâts reçus", soinsRecus: "Soins reçus",
+    slotsHack: "Emplacements de hack"
   };
   for ( const [cle, c] of Object.entries(CARACS) ) cibles[`carac.${cle}`] = `Carac. · ${c.labelLong ?? c.label}`;
   for ( const [cle, c] of Object.entries(COMPETENCES) ) cibles[`comp.${cle}`] = `Comp. · ${c.label}`;
@@ -231,7 +232,9 @@ export const MOMENTS_SON = { activation: "Son à l'activation", toucher: "Son au
 /** Effets que le code gère lui-même (case « Effet spécial géré par le code »). */
 export const EFFETS_SPECIAUX = {
   "": "Aucun",
-  edgerunner: "Edgerunner (+1 place partout sauf Port neural)"
+  edgerunner: "Edgerunner (+1 place partout sauf Port neural)",
+  overclocking: "OverClocking (payer les hacks en PV)",
+  violation: "Protocole de violation rapide (forcer un hack raté en RAM)"
 };
 
 /** Dé du repos long pour la jauge d'Humanité. */
