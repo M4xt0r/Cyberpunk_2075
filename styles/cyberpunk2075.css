@@ -808,3 +808,15 @@
 .cp2075 .cp-en-item-nom { font-family: var(--cp-f-titre); font-weight: 700; font-size: 14px; flex: 1; min-width: 0; }
 .cp2075 .cp-en-infos b { color: var(--cp-texte); font-family: var(--cp-f-num); font-weight: 600; }
 .cp2075 .cp-en-build-item { width: auto; min-height: 0; height: 24px; padding: 0 4px; font-size: 12px; }
+/* Boutons de la fiche Ennemi : Foundry impose une hauteur fixe et une ligne aux <button> */
+.cp2075.fiche-ennemi .window-content button.cp-en-carac,
+.cp2075.fiche-ennemi .window-content button.cp-en-mini,
+.cp2075.fiche-ennemi .window-content button.cp-en-comp {
+  height: auto; min-height: 0; line-height: 1.2; font-size: inherit; margin: 0; box-sizing: border-box;
+}
+.cp2075.fiche-ennemi .window-content button.cp-en-carac { flex-direction: column; justify-content: center; padding: 8px 4px; gap: 3px; }
+.cp2075.fiche-ennemi .window-content button.cp-en-carac .cp-lbl { font-size: 11px; }
+.cp2075.fiche-ennemi .window-content button.cp-en-carac .cp-en-bonus { font-size: 20px; line-height: 1; }
+.cp2075.fiche-ennemi .window-content button.cp-en-mini { font-size: 13px; padding: 4px 8px; }
+.cp2075.fiche-ennemi .window-content button.cp-en-comp { font-size: 13px; padding: 5px 10px; }
+.cp2075.fiche-ennemi .cp-en-caracs { align-items: stretch; }
