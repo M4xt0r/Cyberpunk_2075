@@ -1,0 +1,36 @@
+<div class="cp-dlg">
+  <div class="cp-etiquette">
+    <span class="cp-etiquette-titre">{{titre}}</span>
+    <span class="cp-num">{{formule}}</span>
+  </div>
+
+  <fieldset class="cp-champ">
+    <legend>Mode</legend>
+    <div class="cp-seg">
+      <label><input type="radio" name="mode" value="avantage"><span>Avantage</span></label>
+      <label><input type="radio" name="mode" value="normal" {{#unless desavantage}}checked{{/unless}}><span>Normal</span></label>
+      <label><input type="radio" name="mode" value="desavantage" {{#if desavantage}}checked{{/if}}><span>Désavantage</span></label>
+    </div>
+  </fieldset>
+  {{#if alerteStress}}<div class="cp-avert">Stress 1 : désavantage appliqué automatiquement.</div>{{/if}}
+
+  <label class="cp-champ">
+    <span class="cp-legende">Tir à couvert</span>
+    <select class="cp-inp" name="couvert">
+      {{#each couverts}}<option value="{{i}}" {{#if selectionne}}selected{{/if}}>{{label}}</option>{{/each}}
+    </select>
+  </label>
+
+  <label class="cp-champ">
+    <span class="cp-legende">Bonus ou malus du MJ</span>
+    <input class="cp-inp cp-num" type="text" name="bonus" value="+0">
+  </label>
+
+  <label class="cp-ligne cp-petit"><input type="checkbox" name="vehicule"> Depuis un véhicule en mouvement (désavantage)</label>
+
+  <div class="cp-ligne cp-entre cp-petit cp-doux">
+    <span>{{#if nbCibles}}{{nbCibles}} cible{{#if (gt nbCibles 1)}}s{{/if}} visée{{#if (gt nbCibles 1)}}s{{/if}}{{else}}Aucune cible visée (touche T){{/if}}</span>
+    <span>contre {{defense}}</span>
+  </div>
+  <span class="cp-aide">Astuce : Maj + clic sur Attaquer lance directement, sans fenêtre.</span>
+</div>

@@ -5,21 +5,28 @@
 import * as CONFIG_CP from "./config.mjs";
 import PersonnageData from "./data/personnage.mjs";
 import * as Autres from "./data/autres.mjs";
+import ArmeData from "./data/arme.mjs";
+import ObjetData from "./data/objet.mjs";
 import ActeurCP from "./documents/actor.mjs";
+import ItemCP from "./documents/item.mjs";
 import FichePersonnage from "./sheets/personnage-sheet.mjs";
 import { FicheItemSimple, FicheActeurSimple } from "./sheets/simples.mjs";
+import { CarteArme, CarteObjet } from "./sheets/carte-item.mjs";
 import { signe } from "./dice/jets.mjs";
+import { surRenduMessage, surCreationMessage } from "./dice/chat.mjs";
+import { jouerAnimation } from "./animations.mjs";
 
 const { ID_SYSTEME, CHEMIN } = CONFIG_CP;
 
 Hooks.once("init", () => {
   console.log("Cyberpunk 2075 | Initialisation du système");
 
-  globalThis.cyberpunk2075 = { config: CONFIG_CP };
+  globalThis.cyberpunk2075 = { config: CONFIG_CP, jouerAnimation };
   CONFIG.CP2075 = CONFIG_CP;
 
   // Documents et modèles de données
   CONFIG.Actor.documentClass = ActeurCP;
+  CONFIG.Item.documentClass = ItemCP;
   Object.assign(CONFIG.Actor.dataModels, {
     personnage: PersonnageData,
     ennemi: Autres.EnnemiData,
@@ -27,11 +34,11 @@ Hooks.once("init", () => {
     planque: Autres.PlanqueData
   });
   Object.assign(CONFIG.Item.dataModels, {
-    arme: Autres.ArmeData,
+    arme: ArmeData,
     implant: Autres.ImplantData,
     ameliorationImplant: Autres.AmeliorationImplantData,
     capsule: Autres.CapsuleData,
-    objet: Autres.ObjetData,
+    objet: ObjetData,
     hack: Autres.HackData,
     talent: Autres.TalentData,
     classe: Autres.ClasseData,
@@ -58,7 +65,14 @@ Hooks.once("init", () => {
   DocumentSheetConfig.registerSheet(Actor, ID_SYSTEME, FicheActeurSimple, {
     types: ["ennemi", "vehicule", "planque"], makeDefault: true, label: "Fiche provisoire Cyberpunk 2075"
   });
+  DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteArme, {
+    types: ["arme"], makeDefault: true, label: "Carte d'arme Cyberpunk 2075"
+  });
+  DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteObjet, {
+    types: ["objet"], makeDefault: true, label: "Carte d'objet Cyberpunk 2075"
+  });
   DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, FicheItemSimple, {
+    types: ["implant", "ameliorationImplant", "capsule", "hack", "talent", "classe", "sousClasse", "ameliorationVehicule", "modulePlanque"],
     makeDefault: true, label: "Carte provisoire Cyberpunk 2075"
   });
 
@@ -73,16 +87,43 @@ Hooks.once("init", () => {
     `${CHEMIN}/templates/actor/personnage/inventaire.hbs`,
     `${CHEMIN}/templates/actor/personnage/bio.hbs`,
     `${CHEMIN}/templates/chat/jet.hbs`,
-    `${CHEMIN}/templates/dialogs/jet.hbs`
+    `${CHEMIN}/templates/chat/attaque.hbs`,
+    `${CHEMIN}/templates/chat/degats.hbs`,
+    `${CHEMIN}/templates/chat/utilisation.hbs`,
+    `${CHEMIN}/templates/dialogs/jet.hbs`,
+    `${CHEMIN}/templates/dialogs/attaque.hbs`,
+    `${CHEMIN}/templates/item/partials/haut.hbs`,
+    `${CHEMIN}/templates/item/partials/plaques.hbs`,
+    `${CHEMIN}/templates/item/partials/bas.hbs`
   ]);
 });
 
 /* -------------------------------------------- */
 
-/** Messages du chat : ce qui est réservé au MJ disparaît pour les joueurs. */
-Hooks.on("renderChatMessageHTML", (message, html) => {
-  if ( game.user.isGM ) return;
-  for ( const el of html.querySelectorAll(".cp-mj-seul") ) el.remove();
+/** Messages du chat : boutons, parties réservées au MJ ou au propriétaire. */
+Hooks.on("renderChatMessageHTML", surRenduMessage);
+
+/** Animations : jouées par chaque client à la création du message. */
+Hooks.on("createChatMessage", surCreationMessage);
+
+/**
+ * Effets actifs des objets : un tour de moins au début du tour du porteur.
+ * Exécuté par un seul MJ pour éviter les doublons.
+ */
+Hooks.on("updateCombat", async (combat, changements) => {
+  if ( !("turn" in changements) && !("round" in changements) ) return;
+  if ( game.users.activeGM?.id !== game.user.id ) return;
+  const acteur = combat.combatant?.actor;
+  if ( !acteur ) return;
+  const majs = [];
+  for ( const item of acteur.items ) {
+    const a = item.system.actif;
+    if ( !a?.enCours ) continue;
+    const tours = Math.max(0, a.tours - 1);
+    majs.push({ _id: item.id, "system.actif.tours": tours, "system.actif.enCours": tours > 0 });
+    if ( tours === 0 ) ChatMessage.create({ content: `<div class="cp-msg"><div class="cp-msg-note">${acteur.name} : fin de l'effet de ${item.name}.</div></div>`, speaker: ChatMessage.getSpeaker({ actor: acteur }) });
+  }
+  if ( majs.length ) await acteur.updateEmbeddedDocuments("Item", majs);
 });
 
 /** Nouveau personnage : le token est lié à la fiche et voit la scène. */

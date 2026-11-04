@@ -1,4 +1,4 @@
-import { CHEMIN, CARACS, COMPETENCES, ETATS, NATURES, STRESS, COUVERTS } from "../config.mjs";
+import { CHEMIN, CARACS, COMPETENCES, ETATS, NATURES, STRESS, COUVERTS, NIVEAUX, TYPES_ARME, TYPES_DEGATS, CATEGORIES_OBJET, QUALITES, ciblesModificateurs } from "../config.mjs";
 import { signe } from "../dice/jets.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
@@ -6,7 +6,7 @@ const { ActorSheetV2 } = foundry.applications.sheets;
 
 /**
  * Fiche Personnage : 4 pages, mode joueur et mode édition.
- * Page 1 complète ; pages 2 et 3 arrivent aux étapes suivantes.
+ * Pages 1 et 4 complètes ; armes (page 2) et objets (page 3) depuis l'étape 2.
  */
 export default class FichePersonnage extends HandlebarsApplicationMixin(ActorSheetV2) {
 
@@ -28,7 +28,13 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       fixerStress: FichePersonnage.#fixerStress,
       fixerMort: FichePersonnage.#fixerMort,
       ouvrirItem: FichePersonnage.#ouvrirItem,
-      supprimerItem: FichePersonnage.#supprimerItem
+      supprimerItem: FichePersonnage.#supprimerItem,
+      attaquer: FichePersonnage.#attaquer,
+      degats: FichePersonnage.#degats,
+      utiliser: FichePersonnage.#utiliser,
+      ajusterItem: FichePersonnage.#ajusterItem,
+      basculerPorte: FichePersonnage.#basculerPorte,
+      arreterEffet: FichePersonnage.#arreterEffet
     }
   };
 
@@ -141,8 +147,79 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       maitrisesDepassees: s.maitrises.utilisees > s.maitrises.max
     });
 
+    Object.assign(contexte, this.#preparerItems());
     contexte.tabs = this._prepareTabs("primary");
     return contexte;
+  }
+
+  /** Armes (page 2) et objets (page 3). */
+  #preparerItems() {
+    const acteur = this.actor;
+    const tri = (a, b) => (a.sort - b.sort) || a.name.localeCompare(b.name);
+    const niveauBadge = s => s.aNiveaux ? { label: NIVEAUX[s.niveauEffectif].label, couleur: NIVEAUX[s.niveauEffectif].couleur } : null;
+    const choixNiveaux = { 1: "Niv. 1", 2: "Niv. 2", 3: "Niv. 3" };
+
+    const armes = acteur.items.filter(i => i.type === "arme").sort(tri).map(item => {
+      const s = item.system;
+      const grenade = s.type === "grenade";
+      const infos = [];
+      if ( s.attaque.defense !== "aucune" ) infos.push(`Touche <b>${signe(s.scoreTouche)}</b>`);
+      infos.push(`Dégâts <b>${s.formuleLisible()}</b>`);
+      if ( s.portee ) infos.push(`${s.portee} m`);
+      if ( s.attaque.zone ) infos.push(`zone ${s.attaque.zone} m`);
+      return {
+        id: item.id,
+        nom: item.name,
+        img: item.img,
+        niveau: niveauBadge(s),
+        aNiveaux: s.aNiveaux,
+        niveauPossede: s.niveauEffectif,
+        type: TYPES_ARME[s.type]?.label ?? s.type,
+        competence: COMPETENCES[s.competence]?.label ?? "",
+        infos: infos.join(" · "),
+        typeDegats: TYPES_DEGATS[s.n?.typeDegats] ?? "",
+        grenade,
+        quantite: s.quantite,
+        epuise: s.quantite <= 0,
+        labelAttaque: grenade ? "Lancer" : "Attaquer",
+        boutonDegats: !grenade && (s.attaque.defense !== "aucune")
+      };
+    });
+
+    const cibles = ciblesModificateurs();
+    const objets = acteur.items.filter(i => i.type === "objet").sort(tri).map(item => {
+      const s = item.system;
+      const e = s.effet;
+      const resume = [];
+      if ( s.qualite !== "aucune" ) resume.push(`Repas « ${QUALITES[s.qualite].label} »`);
+      else resume.push(CATEGORIES_OBJET[s.categorie]);
+      if ( e?.jet.formule ) resume.push(`${e.jet.type === "soin" ? "soigne" : "dégâts"} ${e.jet.formule}`);
+      if ( e?.modificateurs.length ) resume.push(e.modificateurs.map(m => `${signe(m.valeur)} ${cibles[m.cible]?.replace(/^(Comp|Carac)\. · /, "") ?? m.cible}`).join(", "));
+      if ( s.coutHumaniteTotal ) resume.push(`${s.coutHumaniteTotal > 0 ? "+" : "−"}${Math.abs(s.coutHumaniteTotal)} Humanité`);
+      if ( s.chargesMax > 0 ) resume.push(`<span class="cp-num">${s.chargesRestantes}/${s.chargesMax}</span> ${s.uneChargeParUtilisation ? "utilisations" : "charges"}`);
+      const restantes = s.utilisationsRestantes;
+      return {
+        id: item.id,
+        nom: item.name,
+        img: item.img,
+        niveau: niveauBadge(s),
+        aNiveaux: s.aNiveaux,
+        niveauPossede: s.niveauEffectif,
+        resume: resume.join(" · "),
+        quantite: s.quantite,
+        sePorte: s.sePorte,
+        porte: s.porte,
+        utilisable: s.utilisable,
+        bloque: !!s.blocage,
+        blocage: s.blocage,
+        labelUtiliser: s.qualite !== "aucune" ? "Manger" : "Utiliser",
+        enCours: s.actif.enCours,
+        tours: s.actif.tours,
+        usages: (restantes === null) ? null : `${restantes}/${s.utilisationsMax}`
+      };
+    });
+
+    return { armes, objets, choixNiveaux, aArmes: armes.length > 0, aObjets: objets.length > 0 };
   }
 
   /** Données d'affichage d'une jauge value / max avec max forçable. */
@@ -171,6 +248,16 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
     await super._onRender(contexte, options);
     this.element.classList.toggle("cp-mode-edition", this.enEdition);
     this.element.classList.toggle("cp-lecture-seule", !this.isEditable);
+
+    // Champs d'items (niveau possédé, quantité) : mis à jour sur l'item, pas sur la fiche
+    for ( const champ of this.element.querySelectorAll("[data-item-champ]") ) {
+      champ.addEventListener("change", event => {
+        event.stopPropagation();
+        const item = this.actor.items.get(champ.closest("[data-item-id]")?.dataset.itemId);
+        const valeur = Number.parseInt(event.currentTarget.value);
+        if ( item && Number.isFinite(valeur) ) item.update({ [champ.dataset.itemChamp]: valeur });
+      });
+    }
 
     // Champs « miroir » de l'en-tête : ils recopient leur valeur dans le vrai champ avant l'envoi du formulaire.
     for ( const miroir of this.element.querySelectorAll("[data-miroir]") ) {
@@ -284,7 +371,49 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
 
   static async #supprimerItem(event, cible) {
     if ( !this.enEdition ) return;
-    const item = this.actor.items.get(cible.closest("[data-item-id]")?.dataset.itemId);
+    const item = this.#itemDe(cible);
     return item?.delete();
+  }
+
+  /** Item de la ligne cliquée. */
+  #itemDe(cible) {
+    return this.actor.items.get(cible.closest("[data-item-id]")?.dataset.itemId) ?? null;
+  }
+
+  static async #attaquer(event, cible) {
+    return this.#itemDe(cible)?.attaquer({ rapide: event.shiftKey });
+  }
+
+  static async #degats(event, cible) {
+    return this.#itemDe(cible)?.lancerDegats();
+  }
+
+  static async #utiliser(event, cible) {
+    return this.#itemDe(cible)?.utiliser();
+  }
+
+  /** −/+ sur un champ d'item : data-champ, data-delta. */
+  static async #ajusterItem(event, cible) {
+    if ( !this.isEditable ) return;
+    const item = this.#itemDe(cible);
+    if ( !item ) return;
+    const champ = cible.dataset.champ;
+    const actuel = Number(foundry.utils.getProperty(item, champ)) || 0;
+    const nouveau = Math.max(0, actuel + Number(cible.dataset.delta));
+    const maj = { [champ]: nouveau };
+    // Racheter un objet à charges : il revient plein
+    if ( (champ === "system.quantite") && (actuel === 0) && (nouveau > 0) && (item.system.chargesMax > 0) ) maj["system.chargesRestantes"] = item.system.chargesMax;
+    return item.update(maj);
+  }
+
+  static async #basculerPorte(event, cible) {
+    if ( !this.isEditable ) return;
+    const item = this.#itemDe(cible);
+    return item?.update({ "system.porte": !item.system.porte });
+  }
+
+  static async #arreterEffet(event, cible) {
+    if ( !this.isEditable ) return;
+    return this.#itemDe(cible)?.update({ "system.actif.enCours": false, "system.actif.tours": 0 });
   }
 }

@@ -1,0 +1,114 @@
+<div class="cp-barrette {{#if edition}}cp-barrette-mj{{/if}}">
+  {{> "systems/cyberpunk2075/templates/item/partials/haut.hbs"}}
+
+  {{!-- ====== Étiquette ====== --}}
+  <div class="cp-c-zone">
+    {{#if edition}}
+    <div class="cp-c-etiquette cp-c-formulaire">
+      <img class="cp-c-image cp-c-image-edition" src="{{item.img}}" alt="" data-action="editImage" data-edit="img" title="Changer l'image">
+      <div class="cp-c-grille3">
+        <label class="cp-c-f cp-span3">Nom<input class="cp-c-inp cp-c-inp-nom" type="text" name="name" value="{{item.name}}"></label>
+        <label class="cp-c-f">Catégorie<select class="cp-c-sel" name="system.categorie">{{selectOptions choixCategories selected=system.categorie}}</select></label>
+        <label class="cp-c-f">Prix {{#unless system.sansNiveaux}}niv. {{nv}}{{/unless}} (€$)<input class="cp-c-inp" type="number" name="{{prefixe}}.prix" value="{{donneesNv.prix}}" min="0"></label>
+        <label class="cp-c-f">Charges<input class="cp-c-inp" type="number" name="{{prefixe}}.charges" value="{{donneesNv.charges}}" min="0"></label>
+        <label class="cp-c-f cp-span3">Phrase d'ambiance<input class="cp-c-inp cp-c-inp-texte" type="text" name="system.ambiance" value="{{system.ambiance}}"></label>
+      </div>
+    </div>
+    {{else}}
+    <div class="cp-c-etiquette">
+      <img class="cp-c-image" src="{{item.img}}" alt="">
+      <div class="cp-c-texte">
+        <span class="cp-lbl cp-c-surtitre">Objet · {{categorieLabel}}</span>
+        <span class="cp-c-nom">{{item.name}}</span>
+        {{#if system.ambiance}}<span class="cp-c-ambiance">{{system.ambiance}}</span>{{/if}}
+        <div class="cp-c-tags">
+          {{#if system.sansNiveaux}}<span class="cp-lbl cp-c-tag">Sans niveau</span>{{/if}}
+          <span class="cp-lbl cp-c-tag">{{prix}}</span>
+          {{#if qualiteLabel}}<span class="cp-lbl cp-c-tag">Repas « {{qualiteLabel}} »</span>{{/if}}
+          {{#if system.sePorte}}<span class="cp-lbl cp-c-tag">Se porte</span>{{/if}}
+        </div>
+      </div>
+      <div class="cp-c-code"><div class="cp-c-barres" aria-hidden="true"></div><span class="cp-num">{{codeBarre}}</span></div>
+    </div>
+    {{/if}}
+  </div>
+
+  {{#if edition}}
+  <div class="cp-c-options">
+    <label class="cp-ligne"><input type="checkbox" name="system.sePorte" {{checked system.sePorte}}> Se porte (case « Porté »)</label>
+    <label class="cp-ligne"><input type="checkbox" name="system.uneChargeParUtilisation" {{checked system.uneChargeParUtilisation}}> Une charge par utilisation</label>
+    <label class="cp-ligne">Nourriture <select class="cp-c-sel cp-c-sel-court" name="system.qualite">{{selectOptions choixQualites selected=system.qualite}}</select></label>
+  </div>
+  {{/if}}
+
+  {{> "systems/cyberpunk2075/templates/item/partials/plaques.hbs"}}
+
+  {{#if edition}}
+  {{!-- ====== Bloc effet (édition) ====== --}}
+  <div class="cp-ligne cp-entre cp-c-titre-bloc">
+    <span class="cp-lbl cp-jaune">Bloc effet</span>
+    <div class="cp-seg cp-seg-court">
+      <label><input type="radio" name="{{prefixe}}.effet.type" value="passif" {{#if (eq donneesNv.effet.type "passif")}}checked{{/if}}><span>Passif</span></label>
+      <label><input type="radio" name="{{prefixe}}.effet.type" value="actif" {{#if (eq donneesNv.effet.type "actif")}}checked{{/if}}><span>Actif</span></label>
+    </div>
+  </div>
+  <div class="cp-c-puces cp-c-puces-3">
+    <div class="cp-c-pins"><div class="cp-c-puce"><label class="cp-c-f">Jet associé<input class="cp-c-inp" type="text" name="{{prefixe}}.effet.jet.formule" value="{{donneesNv.effet.jet.formule}}" placeholder="ex. 1d8 + Médecine"></label></div></div>
+    <div class="cp-c-pins"><div class="cp-c-puce"><label class="cp-c-f">Type de jet<select class="cp-c-sel" name="{{prefixe}}.effet.jet.type">{{selectOptions choixJets selected=donneesNv.effet.jet.type}}</select></label>
+      {{#if (eq donneesNv.effet.jet.type "degats")}}<select class="cp-c-sel" name="{{prefixe}}.effet.jet.typeDegats" aria-label="Type de dégâts">{{selectOptions choixDegats selected=donneesNv.effet.jet.typeDegats}}</select>{{/if}}
+    </div></div>
+    <div class="cp-c-pins"><div class="cp-c-puce"><label class="cp-c-f">Coût en Humanité (💀)<input class="cp-c-inp" type="number" name="{{prefixe}}.effet.coutHumanite" value="{{donneesNv.effet.coutHumanite}}"></label><span class="cp-petit cp-doux">négatif : en retire (Immunosuppresseur −15)</span></div></div>
+  </div>
+  {{#if (eq donneesNv.effet.type "actif")}}
+  <div class="cp-c-grille4 cp-c-zone">
+    <label class="cp-c-f">Activation<select class="cp-c-sel" name="{{prefixe}}.effet.activation">{{selectOptions choixActivations selected=donneesNv.effet.activation}}</select></label>
+    <label class="cp-c-f">Durée (tours)<input class="cp-c-inp" type="number" name="{{prefixe}}.effet.duree" value="{{donneesNv.effet.duree}}" min="0"></label>
+    <label class="cp-c-f">Utilisations<select class="cp-c-sel" name="{{prefixe}}.effet.utilisations.periode">{{selectOptions choixPeriodes selected=donneesNv.effet.utilisations.periode}}</select></label>
+    <label class="cp-c-f">Nombre<input class="cp-c-inp" type="number" name="{{prefixe}}.effet.utilisations.max" value="{{donneesNv.effet.utilisations.max}}" min="0"></label>
+    <label class="cp-c-f">💀 par kill<input class="cp-c-inp" type="number" name="{{prefixe}}.effet.humaniteKill" value="{{donneesNv.effet.humaniteKill}}"></label>
+    <label class="cp-c-f">Cibles max<input class="cp-c-inp" type="number" name="{{prefixe}}.effet.ciblesMax" value="{{donneesNv.effet.ciblesMax}}" min="0"></label>
+  </div>
+  {{/if}}
+  <div class="cp-c-bus"><span class="cp-pastille-cable"></span><span class="cp-c-trace"></span><span class="cp-pastille-cable"></span></div>
+
+  <div class="cp-c-section">
+    <div class="cp-c-f">Modificateurs {{#if (eq donneesNv.effet.type "actif")}}(pendant la durée){{else}}(toujours appliqués{{#if system.sePorte}} quand l'objet est porté{{/if}}){{/if}}
+      <div class="cp-c-modifs" data-modifs="{{cheminModifs}}">
+        {{#each modifs}}
+        <div class="cp-c-modif" data-ligne>
+          <select class="cp-c-sel" data-modif="cible" aria-label="Cible">{{selectOptions ../choixCibles selected=cible}}</select>
+          <input class="cp-c-inp cp-c-court" type="text" data-modif="valeur" value="{{valeur}}" aria-label="Valeur">
+          <button type="button" class="cp-x" data-action="supprimerModif" data-chemin="{{../cheminModifs}}" data-index="{{i}}" aria-label="Retirer ce modificateur">×</button>
+        </div>
+        {{/each}}
+        <button type="button" class="cp-c-depot" data-action="ajouterModif" data-chemin="{{cheminModifs}}">+ Ajouter un modificateur (ex. Gilet : −2 dégâts reçus)</button>
+      </div>
+    </div>
+    <label class="cp-c-f">Règles<textarea class="cp-c-inp cp-c-inp-texte" name="system.description" rows="3">{{system.description}}</textarea></label>
+  </div>
+
+  {{else}}
+  {{!-- ====== Lecture ====== --}}
+  {{#if puces.length}}
+  <div class="cp-c-puces cp-c-puces-{{nbPuces}}">
+    {{#each puces}}
+    <div class="cp-c-pins"><div class="cp-c-puce {{#if accent}}cp-c-puce-accent{{/if}}">
+      <span class="cp-lbl cp-doux">{{label}}</span>
+      {{#if charges}}<span class="cp-c-charges">{{#each charges}}<span class="{{#if pleine}}cp-plein{{/if}}"></span>{{/each}}</span><span class="cp-num cp-petit cp-doux">{{valeur}}</span>
+      {{else}}<span class="cp-c-val {{#if num}}cp-num cp-c-val-grand{{/if}} {{#if couleur}}cp-t-{{couleur}}{{/if}}">{{valeur}}</span>{{/if}}
+    </div></div>
+    {{/each}}
+  </div>
+  <div class="cp-c-cables cp-c-puces-{{nbPuces}}">{{#each puces}}<div class="cp-c-vt"></div>{{/each}}</div>
+  <div class="cp-c-bus"><span class="cp-pastille-cable"></span><span class="cp-c-trace"></span><span class="cp-pastille-cable"></span></div>
+  {{/if}}
+  <div class="cp-c-regles">
+    <div class="cp-col cp-gap6 cp-pousse">
+      <span class="cp-lbl cp-doux">Règles</span>
+      {{#if regles}}<div class="cp-c-p">{{{regles}}}</div>{{else}}<p class="cp-c-p cp-doux">—</p>{{/if}}
+    </div>
+  </div>
+  {{/if}}
+
+  {{> "systems/cyberpunk2075/templates/item/partials/bas.hbs" bloc=(concat "Bloc effet · " typeEffet " · " categorieLabel) note=(ifThen system.utilisable "Bouton Utiliser sur la fiche" "")}}
+</div>

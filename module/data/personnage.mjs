@@ -110,6 +110,7 @@ export default class PersonnageData extends foundry.abstract.TypeDataModel {
   prepareDerivedData() {
     const { total: mods, sources } = this._collecterModificateurs();
     const mod = cle => mods[cle] ?? 0;
+    this.modificateurs = mods;
     this.sourcesModificateurs = sources;
 
     // Caractéristiques : bonus = valeur − 5
@@ -166,6 +167,17 @@ export default class PersonnageData extends foundry.abstract.TypeDataModel {
     this.initiative.valeur = this.initiative.forcer ?? this.initiative.calcule;
     this.deplacement.calcule = 6 + this.deplacement.bonus + mod("deplacement");
     this.deplacement.valeur = this.deplacement.forcer ?? this.deplacement.calcule;
+  }
+
+  /**
+   * Valeur de défense contre une attaque.
+   * @param {"adaptabilite"|"glace"|"aucune"} type
+   * @returns {number|null}
+   */
+  defense(type) {
+    if ( type === "adaptabilite" ) return this.adaptabilite.valeur;
+    if ( type === "glace" ) return this.glace.valeur;
+    return null;
   }
 
   /** Minimum d'Humanité = somme des 💀 d'installation des implants posés (étape 3). */

@@ -18,7 +18,7 @@ Les versions suivantes s'installent avec le bouton **Mettre à jour** du systèm
 | Étape | Contenu | État |
 |---|---|---|
 | 1 | Squelette, fiche Personnage page 1 (identité, stats, caractéristiques, compétences, jets) | ✅ v0.1.0 |
-| 2 | Armes et objets : items à niveaux, Bloc Effet, attaques, dégâts, critiques | à venir |
+| 2 | Armes et objets : items à niveaux, Bloc Effet, attaques, dégâts, critiques, animations | ✅ v0.2.0 |
 | 3 | Implants et Humanité | à venir |
 | 4 | Classes et progression | à venir |
 | 5 | Hacks | à venir |

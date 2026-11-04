@@ -1,0 +1,23 @@
+{{#if edition}}
+<div class="cp-c-onglets">
+  {{#unless system.sansNiveaux}}
+  {{#each plaques}}
+  <button type="button" class="cp-c-onglet cp-c-{{couleur}} {{#if vu}}cp-actif{{/if}}" data-action="editerNiveau" data-niveau="{{i}}">{{label}}</button>
+  {{/each}}
+  <span class="cp-pousse"></span>
+  {{#if (gt nv 1)}}<button type="button" class="cp-c-bt2" data-action="copierNiveau">Copier le niv. {{nvPrecedent}}</button>{{/if}}
+  {{else}}<span class="cp-pousse cp-c-mk">Valeurs uniques</span>{{/unless}}
+  <label class="cp-ligne cp-petit cp-doux"><input type="checkbox" name="system.sansNiveaux" {{checked system.sansNiveaux}}> Sans niveaux</label>
+</div>
+{{else}}
+  {{#unless system.sansNiveaux}}
+  <div class="cp-c-plaques">
+    {{#each plaques}}
+    <button type="button" class="cp-c-plaque cp-c-{{couleur}} {{#if vu}}cp-actif{{/if}}" data-action="voirNiveau" data-niveau="{{i}}">
+      <span class="cp-ligne cp-entre"><span class="cp-lbl">{{label}}</span>{{#if possede}}<span class="cp-lbl cp-c-possede">Possédé</span>{{/if}}</span>
+      <span class="cp-num">{{prix}}</span>
+    </button>
+    {{/each}}
+  </div>
+  {{/unless}}
+{{/if}}

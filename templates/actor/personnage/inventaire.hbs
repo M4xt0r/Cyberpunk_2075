@@ -1,13 +1,63 @@
 <section class="tab cp-page cp-page-inventaire {{tab.cssClass}}" data-group="primary" data-tab="inventaire">
-  <div class="cp-carte cp-coupe cp-eddies">
-    <span class="cp-lbl cp-doux">Eddies</span>
-    <span class="cp-ligne-base">
-      <input class="cp-inp-grand cp-num" type="number" name="system.eddies" value="{{system.eddies}}" step="1" aria-label="Eddies" {{#unless peutModifier}}disabled{{/unless}}>
-      <span class="cp-num cp-jaune">€$</span>
-    </span>
-  </div>
-  <div class="cp-carte cp-coupe cp-en-construction">
-    <span class="cp-lbl cp-jaune">Inventaire &amp; biens</span>
-    <p>Objets, véhicules et planque arrivent aux étapes 2 et 7 du plan.</p>
+  <div class="cp-combat-grille cp-grille-inventaire">
+
+    <div class="cp-col cp-gap16">
+      <div class="cp-carte cp-coupe cp-eddies">
+        <span class="cp-lbl cp-doux">Eddies</span>
+        <span class="cp-ligne-base">
+          <input class="cp-inp-grand cp-num" type="number" name="system.eddies" value="{{system.eddies}}" step="1" aria-label="Eddies" {{#unless peutModifier}}disabled{{/unless}}>
+          <span class="cp-num cp-jaune">€$</span>
+        </span>
+      </div>
+
+      <section class="cp-col cp-gap8">
+        <div class="cp-ligne cp-entre"><h2 class="cp-lbl cp-doux cp-titre-h2">Inventaire</h2><span class="cp-petit cp-doux">{{#if edition}}Quantité · Porté{{else}}ⓘ ouvre la carte de l'objet{{/if}}</span></div>
+        <div class="cp-carte cp-coupe cp-inventaire">
+          {{#each objets}}
+          <div class="cp-objet {{#if bloque}}cp-objet-vide{{/if}}" data-item-id="{{id}}">
+            {{#if ../edition}}
+            <button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>
+            <span class="cp-pousse cp-objet-nom">{{nom}}</span>
+            {{#if aNiveaux}}<select class="cp-inp cp-sel-niveau" data-item-champ="system.niveau" aria-label="Niveau possédé">{{selectOptions ../choixNiveaux selected=niveauPossede}}</select>{{/if}}
+            <input class="cp-inp cp-num cp-court cp-qte-inp" type="number" min="0" value="{{quantite}}" data-item-champ="system.quantite" aria-label="Quantité {{nom}}">
+            {{#if sePorte}}<input type="checkbox" data-action="basculerPorte" {{checked porte}} aria-label="{{nom}} porté">{{else}}<span class="cp-case-vide"></span>{{/if}}
+            {{else}}
+            <button type="button" class="cp-ib" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
+            <div class="cp-col cp-pousse">
+              <span class="cp-objet-nom">{{nom}}
+                {{#if niveau}}<span class="cp-badge-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}
+                {{#if sePorte}}<button type="button" class="cp-badge-porte {{#if porte}}cp-plein{{/if}}" data-action="basculerPorte" title="Porter / ranger" {{#unless ../peutModifier}}disabled{{/unless}}>{{#if porte}}Porté{{else}}Rangé{{/if}}</button>{{/if}}
+                {{#if enCours}}<button type="button" class="cp-badge-actif" data-action="arreterEffet" title="Arrêter l'effet" {{#unless ../peutModifier}}disabled{{/unless}}>Actif · {{tours}} t.</button>{{/if}}
+              </span>
+              <span class="cp-petit cp-doux">{{{resume}}}{{#if usages}} · {{usages}}{{/if}}</span>
+            </div>
+            <span class="cp-qte">
+              <button type="button" class="cp-qb" data-action="ajusterItem" data-champ="system.quantite" data-delta="-1" aria-label="Retirer un {{nom}}" {{#unless ../peutModifier}}disabled{{/unless}}>−</button>
+              <span class="cp-num">{{quantite}}</span>
+              <button type="button" class="cp-qb" data-action="ajusterItem" data-champ="system.quantite" data-delta="1" aria-label="Ajouter un {{nom}}" {{#unless ../peutModifier}}disabled{{/unless}}>+</button>
+            </span>
+            {{#if utilisable}}
+            <button type="button" class="cp-btn cp-btn-principal cp-btn-petit cp-btn-utiliser" data-action="utiliser" {{#if bloque}}disabled title="{{blocage}}"{{/if}}>{{labelUtiliser}}</button>
+            {{else}}<span class="cp-btn-utiliser"></span>{{/if}}
+            {{/if}}
+          </div>
+          {{else}}
+          <p class="cp-petit cp-doux">Inventaire vide.</p>
+          {{/each}}
+          {{#if edition}}<div class="cp-zone-depot">+ Glisser un objet depuis le compendium</div>{{/if}}
+        </div>
+      </section>
+    </div>
+
+    <div class="cp-col cp-gap16">
+      <section class="cp-col cp-gap8">
+        <h2 class="cp-lbl cp-doux cp-titre-h2">Véhicule</h2>
+        <div class="cp-carte cp-coupe"><p class="cp-petit cp-doux">Les véhicules, éditables d'ici, arrivent à l'étape 7.</p></div>
+      </section>
+      <section class="cp-col cp-gap8">
+        <h2 class="cp-lbl cp-doux cp-titre-h2">Planque</h2>
+        <div class="cp-carte cp-coupe"><p class="cp-petit cp-doux">La planque partagée par le groupe arrive à l'étape 7.</p></div>
+      </section>
+    </div>
   </div>
 </section>

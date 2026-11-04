@@ -1,0 +1,36 @@
+<div class="cp-msg {{#if critique}}cp-msg-critique{{/if}}">
+  <div class="cp-msg-qui"><span>{{acteur}}</span><span>{{heure}}</span></div>
+  <div class="cp-msg-etiquette">
+    <span class="cp-msg-type">{{#if critique}}Critique !{{else}}{{#if supplementaire}}Attaque supp.{{else}}Attaque{{/if}}{{/if}}</span>
+    <span class="cp-msg-titre">{{titre}}</span>
+    {{#if niveau}}<span class="cp-msg-niv cp-c-{{niveau.couleur}}">{{niveau.label}}</span>{{/if}}
+  </div>
+  <div class="cp-msg-puce">
+    <span class="cp-msg-total">{{total}}</span>
+    <div class="cp-msg-des">
+      <span class="cp-num cp-msg-detail">{{#if plusieursDes}}2d20 ({{#each des}}{{#if ecarte}}<s>{{valeur}}</s>{{else}}{{valeur}}{{/if}}{{#unless @last}}, {{/unless}}{{/each}}){{else}}1d20 ({{#each des}}{{valeur}}{{/each}}){{/if}}{{#each parts}} {{valeur}} <span class="cp-msg-source">{{label}}</span>{{/each}}</span>
+      <span>Défense : {{defense}}{{#if modeLabel}} · {{modeLabel}}{{/if}}</span>
+      {{#if critique}}<span class="cp-msg-nat">20 naturel : dé de critique ajouté</span>{{/if}}
+      {{#if sniper}}<span class="cp-msg-nat">Sniper : toujours critique en cas de réussite</span>{{/if}}
+    </div>
+  </div>
+
+  {{#each cibles}}
+  <div class="cp-msg-cible">
+    <span class="cp-pousse">{{nom}}{{#if horsPortee}} <span class="cp-msg-source">· hors portée</span>{{/if}}</span>
+    {{#unless inconnue}}<span class="cp-num cp-msg-source cp-mj-seul">{{defense}}</span>{{/unless}}
+    {{#if inconnue}}<span class="cp-ko cp-ko-gris">À juger</span>
+    {{else if critique}}<span class="cp-ok cp-ok-jaune">Critique</span>
+    {{else if touche}}<span class="cp-ok">Touché</span>
+    {{else}}<span class="cp-ko">Raté</span>{{/if}}
+  </div>
+  {{/each}}
+  {{#if sansCible}}<div class="cp-msg-note">Aucune cible : jet sans comparaison.</div>{{/if}}
+  {{#if regle}}<div class="cp-msg-note">{{regle}}</div>{{/if}}
+
+  <div class="cp-msg-boutons cp-proprio-seul">
+    {{#if boutonDegats}}<button type="button" class="cp-msg-bt" data-cp-action="lancerDegats">Lancer les dégâts</button>{{/if}}
+    {{#if attaqueSup}}<button type="button" class="cp-msg-bt2" data-cp-action="attaqueSup">Attaque supplémentaire</button>{{/if}}
+  </div>
+  <div class="cp-msg-broches"></div>
+</div>

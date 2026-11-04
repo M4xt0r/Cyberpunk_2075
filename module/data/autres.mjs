@@ -1,7 +1,7 @@
 import { CARACS } from "../config.mjs";
+import { ItemBase, entier } from "./champs.mjs";
 
 const f = foundry.data.fields;
-const entier = (initial = 0, options = {}) => new f.NumberField({ required: true, nullable: false, integer: true, initial, ...options });
 
 /* ============================================ */
 /*  Acteurs pas encore construits (étapes 6-7)  */
@@ -18,26 +18,9 @@ export class VehiculeData extends ActeurProvisoire {}
 export class PlanqueData extends ActeurProvisoire {}
 
 /* ============================================ */
-/*  Items                                       */
+/*  Items pas encore construits (étapes 3 à 7)  */
 /* ============================================ */
 
-/**
- * Base commune à tous les items : description.
- * Les niveaux, le Bloc Effet et le Bloc Attaque arrivent à l'étape 2.
- * `modificateursActifs` est lu par la fiche Personnage pour appliquer les bonus passifs.
- */
-class ItemBase extends foundry.abstract.TypeDataModel {
-  static defineSchema() {
-    return { description: new f.HTMLField({ required: true, initial: "" }) };
-  }
-
-  /** Modificateurs appliqués au porteur : [{cible, valeur}]. Vide tant que le Bloc Effet n'existe pas. */
-  get modificateursActifs() {
-    return [];
-  }
-}
-
-export class ArmeData extends ItemBase {}
 export class ImplantData extends ItemBase {
   static defineSchema() {
     return {
@@ -48,7 +31,6 @@ export class ImplantData extends ItemBase {
 }
 export class AmeliorationImplantData extends ItemBase {}
 export class CapsuleData extends ItemBase {}
-export class ObjetData extends ItemBase {}
 export class HackData extends ItemBase {}
 export class TalentData extends ItemBase {}
 

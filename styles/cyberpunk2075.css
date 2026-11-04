@@ -59,7 +59,10 @@
 .application.cp2075.cp-fiche-simple .window-content,
 .application.cp2075.cp-dialogue .window-content { padding: 12px; overflow-y: auto; }
 
-.cp2075 button { font-family: var(--cp-f-titre); }
+/* Seulement dans le contenu : les boutons de l'en-tête de fenêtre gardent la police d'icônes de Foundry */
+.cp2075 .window-content button:not([class*="fa-"]) { font-family: var(--cp-f-titre); }
+.application.cp2075 .window-header .header-control { color: var(--cp-doux); }
+.application.cp2075 .window-header .header-control:hover { color: var(--cp-jaune); }
 .cp2075 button:focus-visible, .cp2075 input:focus-visible, .cp2075 select:focus-visible, .cp2075 a:focus-visible {
   outline: 2px solid var(--cp-jaune); outline-offset: 1px; box-shadow: none;
 }
@@ -379,3 +382,223 @@
   padding: 0; min-height: 0; height: auto; width: auto; line-height: 1.3; color: var(--cp-texte); text-align: left; align-self: flex-start;
 }
 .cp2075 button.cp-jetable.cp-num:hover { color: var(--cp-jaune); box-shadow: none; }
+
+/* ==========================================================================
+   Étape 2 — armes, objets, cartes d'items, barrettes de chat
+   ========================================================================== */
+
+.cp2075 .cp-gap8 { gap: 8px; }
+.cp2075 .cp-gap16 { gap: 16px; }
+.cp2075 .cp-span3 { grid-column: span 3; }
+.cp2075 .cp-vert, .cp2075 .cp-t-vert { color: var(--cp-niv1); }
+.cp2075 .cp-t-jaune { color: var(--cp-jaune); }
+.cp2075 .cp-t-rouge { color: var(--cp-rouge-txt); }
+.cp2075 .cp-ic-18 { width: 18px; height: 18px; }
+.cp2075 .cp-droite-txt { text-align: right; }
+.cp2075 .cp-titre-h2 { margin: 0; border: 0; font-size: 12px; }
+
+/* Couleurs de niveau (badges en contour, texte toujours écrit) */
+.cp2075 .cp-c-niv1, .cp-msg .cp-c-niv1 { --niv: var(--cp-niv1); --niv-txt: var(--cp-niv1); --niv-fond: #15281E; }
+.cp2075 .cp-c-niv2, .cp-msg .cp-c-niv2 { --niv: var(--cp-niv2); --niv-txt: var(--cp-niv2); --niv-fond: #18223A; }
+.cp2075 .cp-c-niv3, .cp-msg .cp-c-niv3 { --niv: var(--cp-niv3); --niv-txt: var(--cp-rouge-txt); --niv-fond: #2D1719; }
+.cp2075 .cp-badge-niv {
+  font-family: var(--cp-f-titre); font-weight: 600; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  border: 1px solid var(--niv); color: var(--niv-txt); padding: 1px 6px; flex: none;
+}
+.cp2075 .cp-sel-niveau { width: auto; min-height: 26px; padding: 2px 4px; font-size: 12px; }
+
+/* Petits boutons ⓘ et quantités */
+.cp2075 .cp-ib {
+  width: 24px; height: 24px; min-height: 0; flex: none; padding: 0; border-radius: 0; line-height: 1;
+  border: 1px solid var(--cp-champ-bord); background: #0E0D12; color: var(--cp-doux);
+  font-family: var(--cp-f-num); font-size: 12px; font-weight: 700; cursor: pointer;
+}
+.cp2075 .cp-ib:hover { color: var(--cp-jaune); border-color: var(--cp-jaune); box-shadow: none; }
+.cp2075 .cp-qte { display: inline-flex; align-items: center; gap: 6px; flex: none; }
+.cp2075 .cp-qte .cp-num { min-width: 18px; text-align: center; font-weight: 700; }
+.cp2075 .cp-qb {
+  width: 22px; height: 22px; min-height: 0; padding: 0; border-radius: 0; line-height: 1;
+  border: 1px solid var(--cp-champ-bord); background: var(--cp-sol); color: var(--cp-jaune); font-size: 14px; cursor: pointer;
+}
+.cp2075 .cp-btn-secondaire { background: var(--cp-carte); color: var(--cp-jaune); outline: 2px solid var(--cp-jaune); outline-offset: -2px; }
+.cp2075 .cp-btn-secondaire:hover { background: var(--cp-jaune-fond); }
+.cp2075 .cp-btn:disabled { background: var(--cp-separateur); color: var(--cp-tres-doux); outline-color: var(--cp-bordure); cursor: default; }
+
+/* Page 2 : combat */
+.cp2075 .cp-combat-grille { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.cp2075 .cp-implants-attente { flex-direction: row; align-items: center; gap: 16px; min-height: 320px; }
+.cp2075 .cp-silhouette { width: 110px; height: auto; opacity: .35; filter: invert(1); border: 0; flex: none; }
+.cp2075 .cp-implants-attente p { margin: 0; }
+.cp2075 .cp-arme { gap: 8px; padding: 10px 14px 12px; }
+.cp2075 .cp-arme-nom { font-family: var(--cp-f-titre); font-weight: 700; font-size: 17px; }
+.cp2075 .cp-arme-infos b { color: var(--cp-jaune); font-weight: 700; }
+
+/* Page 3 : inventaire */
+.cp2075 .cp-grille-inventaire { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+.cp2075 .cp-inventaire { padding: 4px 14px 10px; gap: 0; }
+.cp2075 .cp-objet { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--cp-separateur); }
+.cp2075 .cp-objet:last-of-type { border-bottom: 0; }
+.cp2075 .cp-objet-vide .cp-objet-nom { color: var(--cp-doux); }
+.cp2075 .cp-objet-nom { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.cp2075 .cp-btn-utiliser { min-width: 84px; justify-content: center; flex: none; }
+.cp2075 .cp-qte-inp { width: 52px; }
+.cp2075 .cp-case-vide { width: 13px; flex: none; }
+.cp2075 .cp-badge-porte, .cp2075 .cp-badge-actif {
+  font-family: var(--cp-f-titre); font-weight: 600; font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+  width: auto; min-height: 0; height: auto; line-height: 1.4; border-radius: 0; padding: 1px 6px; cursor: pointer;
+  background: transparent; border: 1px solid var(--cp-champ-bord); color: var(--cp-doux);
+}
+.cp2075 .cp-badge-porte.cp-plein { border-color: var(--cp-jaune); color: var(--cp-jaune); }
+.cp2075 .cp-badge-actif { border-color: var(--cp-orange); color: var(--cp-orange); }
+
+/* ---------- Carte « barrette de RAM » ---------- */
+
+.application.cp-carte-fenetre .window-content { padding: 0; background: #0B0A0E; overflow-y: auto; }
+.cp2075 .cp-barrette {
+  position: relative; box-sizing: border-box; color: var(--cp-texte); font-family: var(--cp-f-texte);
+  background-color: #16151C;
+  background-image: repeating-linear-gradient(0deg, transparent 0 23px, #1C1B23 23px 24px), repeating-linear-gradient(90deg, transparent 0 23px, #1C1B23 23px 24px);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 74px), calc(100% - 8px) calc(100% - 74px), calc(100% - 8px) calc(100% - 58px), 100% calc(100% - 58px), 100% 100%, 0 100%, 0 calc(100% - 58px), 8px calc(100% - 58px), 8px calc(100% - 74px), 0 calc(100% - 74px));
+  margin: 16px; display: flex; flex-direction: column;
+}
+.cp2075 .cp-barrette-mj { outline: 2px solid var(--cp-jaune); outline-offset: -2px; }
+.cp2075 .cp-c-marquages { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; }
+.cp2075 .cp-c-mk { font-family: var(--cp-f-num); font-size: 10px; letter-spacing: .12em; color: var(--cp-tres-doux); text-transform: uppercase; }
+.cp2075 .cp-c-mj { font-family: var(--cp-f-titre); font-weight: 600; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; background: var(--cp-jaune); color: var(--cp-sol); padding: 3px 8px; }
+.cp2075 .cp-c-bt2 {
+  font-family: var(--cp-f-titre); font-weight: 600; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  background: transparent; color: var(--cp-jaune); border: 1px solid var(--cp-jaune); border-radius: 0; padding: 4px 8px;
+  width: auto; min-height: 0; height: auto; line-height: 1.2; cursor: pointer;
+}
+.cp2075 .cp-c-zone { padding: 0 16px; }
+
+/* Étiquette claire, comme sur une vraie barrette */
+.cp2075 .cp-c-etiquette { background: #E8E6E1; color: var(--cp-sol); display: flex; gap: 16px; padding: 14px 16px; }
+.cp2075 .cp-c-image { width: 120px; height: 120px; flex: none; object-fit: contain; background: var(--cp-sol); border: 0; }
+.cp2075 .cp-c-image-edition { width: 104px; height: 104px; outline: 1px dashed var(--cp-jaune); outline-offset: -1px; cursor: pointer; }
+.cp2075 .cp-c-texte { display: flex; flex-direction: column; gap: 6px; min-width: 0; flex: 1; }
+.cp2075 .cp-c-surtitre { color: #55535E; font-size: 10px; }
+.cp2075 .cp-c-nom { font-family: var(--cp-f-titre); font-weight: 700; font-size: 32px; line-height: 1; }
+.cp2075 .cp-c-ambiance { font-size: 14px; font-style: italic; color: #3A3843; }
+.cp2075 .cp-c-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; }
+.cp2075 .cp-c-tag { border: 1px solid var(--cp-sol); padding: 2px 7px; font-size: 10px; }
+.cp2075 .cp-c-code { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; color: #55535E; font-size: 11px; }
+.cp2075 .cp-c-barres { height: 22px; width: 90px; background: repeating-linear-gradient(90deg, #121116 0 2px, transparent 2px 3px, #121116 3px 4px, transparent 4px 7px, #121116 7px 10px, transparent 10px 12px); }
+
+/* Formulaires de l'étiquette (édition MJ) : champs blancs */
+.cp2075 .cp-c-formulaire { gap: 14px; padding: 12px 14px; color: #3A3843; }
+.cp2075 .cp-c-grille2, .cp2075 .cp-c-grille3, .cp2075 .cp-c-grille4 { display: grid; gap: 8px; flex: 1; min-width: 0; }
+.cp2075 .cp-c-grille2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cp2075 .cp-c-grille3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cp2075 .cp-c-grille4 { grid-template-columns: repeat(3, minmax(0, 1fr)); padding-top: 10px; padding-bottom: 4px; }
+.cp2075 .cp-c-f { display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: var(--cp-doux); min-width: 0; }
+.cp2075 .cp-c-formulaire .cp-c-f { color: #3A3843; }
+.cp2075 .cp-c-inp, .cp2075 .cp-c-sel {
+  font-family: var(--cp-f-num); font-size: 13px; font-weight: 700; color: var(--cp-texte);
+  background: var(--cp-sol); border: 1px solid var(--cp-champ-bord); border-radius: 0;
+  padding: 5px 7px; box-sizing: border-box; width: 100%; min-height: 30px; height: auto;
+}
+.cp2075 .cp-c-sel { font-family: var(--cp-f-texte); font-weight: 400; padding: 4px 6px; }
+.cp2075 .cp-c-formulaire .cp-c-inp, .cp2075 .cp-c-formulaire .cp-c-sel { background: #FFFFFF; color: var(--cp-sol); border-color: #8E8486; }
+.cp2075 .cp-c-inp-nom { font-family: var(--cp-f-titre); font-size: 18px; }
+.cp2075 .cp-c-inp-texte { font-family: var(--cp-f-texte); font-weight: 400; }
+.cp2075 textarea.cp-c-inp { resize: vertical; line-height: 1.45; }
+.cp2075 .cp-c-court { width: 64px; flex: none; text-align: center; }
+.cp2075 .cp-c-sel-court { width: auto; }
+.cp2075 .cp-c-options { display: flex; gap: 16px; flex-wrap: wrap; padding: 10px 16px 0; font-size: 12px; }
+
+/* Plaques et onglets de niveau */
+.cp2075 .cp-c-plaques { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 14px 16px 0; }
+.cp2075 .cp-c-plaque {
+  display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; text-align: left; cursor: pointer;
+  border: 1px solid var(--cp-bordure); border-radius: 0; background: var(--cp-sol); color: var(--cp-doux);
+  font-family: var(--cp-f-texte); width: auto; height: auto; min-height: 0; line-height: 1.3;
+}
+.cp2075 .cp-c-plaque .cp-lbl { color: var(--niv-txt); }
+.cp2075 .cp-c-plaque.cp-actif { border-color: var(--niv); background: var(--niv-fond); color: var(--cp-texte); }
+.cp2075 .cp-c-possede { font-size: 9px; }
+.cp2075 .cp-c-onglets { display: flex; align-items: center; gap: 6px; padding: 14px 16px 0; }
+.cp2075 .cp-c-onglet {
+  font-family: var(--cp-f-titre); font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  background: var(--cp-sol); color: var(--niv-txt); border: 1px solid var(--cp-bordure); border-radius: 0;
+  padding: 7px 12px; width: auto; min-height: 0; height: auto; line-height: 1.2; cursor: pointer;
+}
+.cp2075 .cp-c-onglet.cp-actif { background: var(--niv); border-color: var(--niv); color: var(--cp-sol); }
+
+/* Puces de valeurs reliées par des câbles à un bus */
+.cp2075 .cp-c-puces { display: grid; gap: 12px; padding: 16px 16px 0; }
+.cp2075 .cp-c-puces-1 { grid-template-columns: minmax(0, 1fr); }
+.cp2075 .cp-c-puces-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cp2075 .cp-c-puces-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cp2075 .cp-c-puces-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cp2075 .cp-c-pins {
+  padding: 5px 0;
+  background:
+    repeating-linear-gradient(90deg, #8E8486 0 2px, transparent 2px 8px) top / 100% 4px no-repeat,
+    repeating-linear-gradient(90deg, #8E8486 0 2px, transparent 2px 8px) bottom / 100% 4px no-repeat;
+}
+.cp2075 .cp-c-puce { background: #0E0D12; border: 1px solid var(--cp-separateur); padding: 9px 12px; display: flex; flex-direction: column; gap: 4px; min-height: 58px; box-sizing: border-box; height: 100%; }
+.cp2075 .cp-c-puce .cp-lbl { font-size: 10px; }
+.cp2075 .cp-c-puce-accent { border-color: var(--cp-jaune); }
+.cp2075 .cp-c-val { font-size: 14px; font-weight: 600; }
+.cp2075 .cp-c-val-grand { font-size: 16px; font-weight: 700; }
+.cp2075 .cp-c-charges { display: flex; gap: 4px; padding: 4px 0; flex-wrap: wrap; }
+.cp2075 .cp-c-charges span { width: 22px; height: 10px; background: var(--cp-separateur); }
+.cp2075 .cp-c-charges span.cp-plein { background: var(--cp-jaune); }
+.cp2075 .cp-c-cables { display: grid; gap: 12px; padding: 0 16px; height: 18px; }
+.cp2075 .cp-c-vt { width: 2px; background: var(--cp-jaune); margin: 0 auto; }
+.cp2075 .cp-c-bus { display: flex; align-items: center; padding: 0 16px; margin-top: 10px; }
+.cp2075 .cp-c-cables + .cp-c-bus { margin-top: 0; }
+.cp2075 .cp-c-trace { flex: 1; height: 2px; background: var(--cp-jaune); }
+.cp2075 .cp-c-apercu { padding: 6px 18px 0; font-size: 11px; color: var(--cp-doux); }
+.cp2075 .cp-c-titre-bloc { padding: 12px 16px 0; }
+.cp2075 .cp-seg-court span { padding: 5px 12px; }
+
+/* Règles, sections d'édition */
+.cp2075 .cp-c-regles { display: flex; gap: 16px; padding: 14px 16px 16px; }
+.cp2075 .cp-c-anim { width: 200px; flex: none; border-left: 1px solid var(--cp-separateur); padding-left: 14px; }
+.cp2075 .cp-c-p, .cp2075 .cp-c-p p { margin: 0 0 4px; font-size: 14px; line-height: 1.55; }
+.cp2075 .cp-c-section { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px 6px; }
+.cp2075 .cp-c-depot {
+  display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 30px; flex: 1; width: 100%;
+  font-family: var(--cp-f-texte); font-size: 11px; color: var(--cp-jaune); border: 1px dashed #8C7A2A; border-radius: 0;
+  padding: 4px 8px; box-sizing: border-box; background: transparent; cursor: pointer; line-height: 1.3; height: auto; overflow: hidden;
+}
+.cp2075 .cp-c-modifs { display: flex; flex-direction: column; gap: 6px; }
+.cp2075 .cp-c-modif { display: flex; align-items: center; gap: 8px; }
+
+/* Bas : marquage du bloc et contacts dorés coupés par une encoche */
+.cp2075 .cp-c-bas { display: flex; justify-content: space-between; padding: 8px 24px 4px; }
+.cp2075 .cp-c-connecteur { display: flex; gap: 16px; padding: 0 22px; height: 40px; align-items: flex-end; background: linear-gradient(#16151C 0 10px, #121116 10px); }
+.cp2075 .cp-c-contacts { flex: 1.3; height: 30px; background: repeating-linear-gradient(90deg, #E0B93A 0 9px, transparent 9px 13px); }
+.cp2075 .cp-c-contacts-long { flex: 3; }
+
+/* ---------- Barrettes de chat (compléments) ---------- */
+
+.cp-msg .cp-msg-niv { font-family: var(--cp-f-titre); font-weight: 600; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; border: 1px solid var(--niv); color: #121116; background: var(--niv); padding: 0 4px; }
+.cp-msg .cp-msg-cible { display: flex; align-items: center; gap: 8px; margin: 0 10px; padding: 6px 0; border-bottom: 1px solid var(--cp-separateur); font-size: 12px; }
+.cp-msg .cp-msg-puce + .cp-msg-cible { margin-top: 6px; }
+.cp-msg .cp-pousse { flex: 1; min-width: 0; }
+.cp-msg .cp-jaune { color: var(--cp-jaune); }
+.cp-msg .cp-vert { color: var(--cp-niv1); }
+.cp-msg .cp-ok-jaune { color: var(--cp-jaune); border-color: var(--cp-jaune); }
+.cp-msg .cp-ko-gris { color: var(--cp-doux); border-color: var(--cp-champ-bord); }
+.cp-msg .cp-msg-note { margin: 6px 10px 0; font-size: 11px; color: var(--cp-doux); line-height: 1.4; }
+.cp-msg .cp-msg-boutons { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 8px 10px 0; }
+.cp-msg .cp-msg-colonne { flex-direction: column; align-items: stretch; }
+.cp-msg .cp-msg-mini { display: inline-flex; gap: 4px; }
+.cp-msg .cp-msg-bt, .cp-msg .cp-msg-bt2 {
+  font-family: var(--cp-f-titre); font-weight: 600; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  border-radius: 0; padding: 5px 8px; cursor: pointer; width: auto; min-height: 0; height: auto; line-height: 1.2; flex: none;
+}
+.cp-msg .cp-msg-bt { background: var(--cp-jaune); color: var(--cp-sol); border: 1px solid var(--cp-jaune); }
+.cp-msg .cp-msg-bt:hover { background: var(--cp-texte); border-color: var(--cp-texte); }
+.cp-msg .cp-msg-bt2 { background: transparent; color: var(--cp-jaune); border: 1px solid var(--cp-jaune); }
+.cp-msg .cp-msg-ligne { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.cp-msg .cp-msg-cout { margin-left: auto; color: var(--cp-rouge-txt); font-size: 11px; }
+.cp-msg .cp-msg-jauge { position: relative; height: 6px; background: var(--cp-separateur); }
+.cp-msg .cp-msg-jauge div { height: 6px; background: var(--cp-rouge-txt); }
+.cp-msg .cp-msg-puce.cp-msg-colonne { flex-direction: column; align-items: stretch; gap: 6px; }
+
+/* Fenêtre d'attaque */
+.cp2075 .cp-avert { padding: 7px 10px; border-left: 3px solid var(--cp-rouge); background: #24171A; font-size: 12px; color: #FF9A9C; }

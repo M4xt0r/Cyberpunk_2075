@@ -1,0 +1,51 @@
+import ArmeData from "../data/arme.mjs";
+import { attaquer, lancerDegats } from "../dice/attaque.mjs";
+import { utiliserObjet } from "../dice/utilisation.mjs";
+
+/**
+ * Item Cyberpunk 2075.
+ */
+export default class ItemCP extends Item {
+
+  /** Valeurs par défaut du type d'arme à la création. @override */
+  async _preCreate(donnees, options, utilisateur) {
+    if ( (await super._preCreate(donnees, options, utilisateur)) === false ) return false;
+    if ( (this.type === "arme") && !foundry.utils.hasProperty(donnees, "system.competence") ) {
+      const maj = ArmeData.valeursParType(this.system.type);
+      this.updateSource(foundry.utils.expandObject(maj));
+    }
+    if ( (this.type === "objet") && (this.system.chargesRestantes === 0) && (this.system.chargesMax > 0) ) {
+      this.updateSource({ "system.chargesRestantes": this.system.chargesMax });
+    }
+  }
+
+  /** Changement de type d'arme : la compétence, la défense et la zone suivent. @override */
+  async _preUpdate(changements, options, utilisateur) {
+    if ( (await super._preUpdate(changements, options, utilisateur)) === false ) return false;
+    const nouveauType = foundry.utils.getProperty(changements, "system.type");
+    if ( (this.type === "arme") && nouveauType && (nouveauType !== this.system.type) ) {
+      const maj = ArmeData.valeursParType(nouveauType);
+      for ( const [cle, valeur] of Object.entries(maj) ) {
+        if ( !foundry.utils.hasProperty(changements, cle) ) foundry.utils.setProperty(changements, cle, valeur);
+      }
+    }
+  }
+
+  /** Attaque avec l'arme (fenêtre, jet, chat, animation). */
+  async attaquer(options = {}) {
+    if ( this.type !== "arme" ) return null;
+    return attaquer(this, options);
+  }
+
+  /** Dégâts directs, sans jet d'attaque. */
+  async lancerDegats(options = {}) {
+    if ( this.type !== "arme" ) return null;
+    return lancerDegats(this, options);
+  }
+
+  /** Utilise un objet (soin, effet actif, consommable). */
+  async utiliser(options = {}) {
+    if ( this.type !== "objet" ) return null;
+    return utiliserObjet(this, options);
+  }
+}

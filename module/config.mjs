@@ -5,6 +5,7 @@
 
 export const ID_SYSTEME = "cyberpunk2075";
 export const CHEMIN = `systems/${ID_SYSTEME}`;
+export const ANIM = `${CHEMIN}/assets/animations`;
 
 /** Les 5 caractéristiques, dans l'ordre de la fiche. */
 export const CARACS = {
@@ -51,8 +52,8 @@ export const NIVEAUX_MAITRISE = [2, 4, 6, 7, 9];
 
 /** Bonus de maîtrise selon le niveau. */
 export function bonusMaitrise(niveau) {
-  if (niveau >= 9) return 4;
-  if (niveau >= 5) return 3;
+  if ( niveau >= 9 ) return 4;
+  if ( niveau >= 5 ) return 3;
   return 2;
 }
 
@@ -88,3 +89,99 @@ export const DD = [
   { valeur: 20, label: "Difficile" },
   { valeur: 25, label: "Quasi impossible" }
 ];
+
+/* -------------------------------------------- */
+/*  Items                                       */
+/* -------------------------------------------- */
+
+/** Couleurs et dés de critique des niveaux d'items. */
+export const NIVEAUX = {
+  1: { label: "Niv. 1", couleur: "niv1", critique: "1d6" },
+  2: { label: "Niv. 2", couleur: "niv2", critique: "1d8" },
+  3: { label: "Niv. 3", couleur: "niv3", critique: "1d10" }
+};
+
+/** Types d'armes : compétence par défaut, animation par défaut, code de marquage. */
+export const TYPES_ARME = {
+  pistolet: { label: "Pistolet", competence: "armeDePoing", code: "PST", anim: { style: "projectile", projectile: "projectiles/balle.png" }, degats: "balle" },
+  corpsACorps: { label: "Corps à corps", competence: "corpsACorps", code: "CAC", anim: { style: "impact", impact: "impacts/coup_tranchant.webm" }, degats: "corpsACorps" },
+  mitraillette: { label: "Mitraillette", competence: "armeLourde", code: "MIT", anim: { style: "projectile", projectile: "projectiles/balle.png" }, degats: "balle" },
+  pompe: { label: "Fusil à pompe", competence: "armeLourde", code: "PMP", anim: { style: "projectile", projectile: "projectiles/chevrotine.png" }, degats: "balle", portee: 15 },
+  sniper: { label: "Sniper", competence: "sniper", code: "SNP", anim: { style: "projectile", projectile: "projectiles/balle.png" }, degats: "balle" },
+  grenade: { label: "Grenade", competence: "explosif", code: "GRN", anim: { style: "projectileZone", projectile: "projectiles/grenade.png", zone: "zones/explosion.webm" }, degats: "explosion", zone: 5, defense: "aucune" },
+  autre: { label: "Autre", competence: "armeLourde", code: "AUT", anim: { style: "projectile", projectile: "projectiles/balle.png" }, degats: "balle" }
+};
+
+/** Règles automatiques rappelées sur la carte et dans le chat. */
+export const REGLES_ARME = {
+  mitraillette: "Une attaque supplémentaire si l'action principale a servi à tirer avec ; ne consomme pas l'action bonus.",
+  pompe: "Portée 15 m : au-delà, la moitié des dégâts.",
+  sniper: "Toujours critique en cas de réussite.",
+  grenade: "Dégâts de zone, consommée au lancer."
+};
+
+export const TYPES_DEGATS = {
+  balle: "Balle",
+  corpsACorps: "Corps à corps",
+  electrique: "Électrique",
+  feu: "Feu",
+  poison: "Poison",
+  iem: "IEM",
+  explosion: "Explosion"
+};
+
+/** Impact par défaut selon le type de dégâts (si l'item n'en fixe pas). */
+export const IMPACT_PAR_DEGATS = {
+  electrique: "impacts/electricite.webm",
+  feu: "impacts/flammes.webm",
+  poison: "impacts/poison.webm",
+  iem: "zones/iem.webm"
+};
+
+export const DEFENSES = { adaptabilite: "Adaptabilité", glace: "Glace", aucune: "Aucune (dégâts automatiques)" };
+
+export const STYLES_ANIMATION = {
+  aucune: "Aucune",
+  projectile: "Projectile",
+  impact: "Impact sur la cible",
+  zone: "Zone",
+  projectileImpact: "Projectile puis impact",
+  projectileZone: "Projectile puis zone",
+  soi: "Sur soi"
+};
+
+export const ACTIVATIONS = { action: "Action", bonus: "Action bonus", reaction: "Réaction" };
+
+export const PERIODES = {
+  illimite: "Illimité",
+  combat: "Par combat",
+  repos: "Par repos long",
+  jour: "Par jour",
+  bm: "BM fois (par repos long)"
+};
+
+export const CATEGORIES_OBJET = { utilitaire: "Utilitaire", consommable: "Consommable", domestique: "Domestique" };
+
+/** Qualité de la nourriture : effet sur la jauge d'Humanité (Notion : −1 dès Bof, −1 par palier). */
+export const QUALITES = {
+  aucune: { label: "—", humanite: 0, prix: 0 },
+  pourrie: { label: "Pourrie", humanite: 0, prix: 15 },
+  bof: { label: "Bof", humanite: -1, prix: 25 },
+  pasmal: { label: "Pas mal", humanite: -2, prix: 45 },
+  bon: { label: "Bon", humanite: -3, prix: 105 },
+  luxe: { label: "Luxe", humanite: -4, prix: 550 }
+};
+
+export const TYPES_JET = { degats: "Dégâts", soin: "Soin" };
+
+/** Cibles possibles d'un modificateur (Bloc Effet). */
+export function ciblesModificateurs() {
+  const cibles = {
+    vieMax: "PV max", ram: "RAM max", glace: "Glace", adaptabilite: "Adaptabilité",
+    initiative: "Initiative", deplacement: "Déplacement (m)", attention: "Attention",
+    touche: "Jets d'attaque", degats: "Dégâts infligés", degatsRecus: "Dégâts reçus", soinsRecus: "Soins reçus"
+  };
+  for ( const [cle, c] of Object.entries(CARACS) ) cibles[`carac.${cle}`] = `Carac. · ${c.labelLong ?? c.label}`;
+  for ( const [cle, c] of Object.entries(COMPETENCES) ) cibles[`comp.${cle}`] = `Comp. · ${c.label}`;
+  return cibles;
+}
