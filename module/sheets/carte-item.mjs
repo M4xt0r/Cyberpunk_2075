@@ -42,7 +42,8 @@ class CarteItem extends HandlebarsApplicationMixin(ItemSheetV2) {
       ajouterLigne: CarteItem.#ajouterLigne,
       supprimerLigne: CarteItem.#supprimerLigne,
       choisirFichierLigne: CarteItem.#choisirFichierLigne,
-      testerAnimations: CarteItem.#testerAnimations
+      testerAnimations: CarteItem.#testerAnimations,
+      ouvrirReference: CarteItem.#ouvrirReference
     }
   };
 
@@ -106,6 +107,23 @@ class CarteItem extends HandlebarsApplicationMixin(ItemSheetV2) {
     for ( const el of this.element.querySelectorAll("[data-modif]") ) {
       el.addEventListener("change", () => this.#enregistrerModifs(el.closest("[data-modifs]")));
     }
+    // Zones de dépôt (talents, sous-classes, items du pack)
+    if ( this.isEditable ) {
+      for ( const zone of this.element.querySelectorAll("[data-depot]") ) {
+        zone.addEventListener("dragover", event => { event.preventDefault(); zone.classList.add("cp-survol"); });
+        zone.addEventListener("dragleave", () => zone.classList.remove("cp-survol"));
+        zone.addEventListener("drop", async event => {
+          event.preventDefault();
+          event.stopPropagation();
+          zone.classList.remove("cp-survol");
+          const donnees = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+          if ( (donnees?.type !== "Item") || !donnees.uuid ) return ui.notifications.warn("Glisse un item (depuis la barre latérale ou un compendium).");
+          const item = await fromUuid(donnees.uuid);
+          if ( item ) await this._surDepot(zone.dataset, item);
+        });
+      }
+    }
+
     // Tableaux génériques (améliorations compatibles, animations) : idem
     for ( const el of this.element.querySelectorAll("[data-liste] [data-cle]") ) {
       el.addEventListener("change", event => {
@@ -113,6 +131,20 @@ class CarteItem extends HandlebarsApplicationMixin(ItemSheetV2) {
         this.#enregistrerListe(el.closest("[data-liste]"));
       });
     }
+  }
+
+  /**
+   * Un item est déposé sur une zone [data-depot]. À surcharger.
+   * @param {DOMStringMap} zone  data-* de la zone.
+   * @param {Item} item
+   */
+  async _surDepot(zone, item) {}
+
+  /** Ajoute une référence {uuid, nom, resume, ...} à un tableau. */
+  async _ajouterReference(chemin, item, extra = {}) {
+    const liste = foundry.utils.deepClone(foundry.utils.getProperty(this.item.toObject(), chemin) ?? []);
+    liste.push({ uuid: item.uuid, nom: item.name, resume: item.system.resume ?? "", ...extra });
+    return this.item.update({ [chemin]: liste });
   }
 
   /** Relit toutes les lignes d'un tableau et enregistre le tableau entier. */
@@ -124,7 +156,9 @@ class CarteItem extends HandlebarsApplicationMixin(ItemSheetV2) {
       actuel[i] ??= {};
       for ( const champ of ligne.querySelectorAll("[data-cle]") ) {
         const v = champ.value;
-        actuel[i][champ.dataset.cle] = (champ.dataset.type === "nombre") ? (Number.parseInt(String(v).replace("−", "-")) || 0) : v;
+        if ( champ.dataset.type === "nombre" ) actuel[i][champ.dataset.cle] = Number.parseInt(String(v).replace("−", "-")) || 0;
+        else if ( champ.dataset.type === "multiple" ) actuel[i][champ.dataset.cle] = [...champ.selectedOptions].map(o => o.value).join(",");
+        else actuel[i][champ.dataset.cle] = v;
       }
     });
     return this.item.update({ [chemin]: actuel });
@@ -218,6 +252,13 @@ class CarteItem extends HandlebarsApplicationMixin(ItemSheetV2) {
         this.item.update({ [chemin]: liste });
       }
     }).browse();
+  }
+
+  /** Ouvre la carte d'un item référencé par UUID. */
+  static async #ouvrirReference(event, cible) {
+    const item = await fromUuid(cible.dataset.uuid);
+    if ( !item ) return ui.notifications.warn("Cet item n'existe plus (supprimé ou compendium manquant).");
+    return item.sheet.render(true);
   }
 
   /** Joue les animations de l'implant sur le token sélectionné, vers les cibles visées. */
@@ -493,5 +534,202 @@ export class CarteSousImplant extends CarteItem {
       modifs: capsule ? [] : s.effet.modificateurs.map((m, i) => ({ ...m, i }))
     });
     return c;
+  }
+}
+
+/* ============================================ */
+/*  Talent                                      */
+/* ============================================ */
+
+const SOURCES_TALENT = { classe: "Classe", sousClasse: "Sous-classe", ultime: "Trait ultime", autre: "Autre" };
+
+export class CarteTalent extends CarteItem {
+
+  static PARTS = {
+    carte: { template: `${CHEMIN}/templates/item/carte-talent.hbs` }
+  };
+
+  /** @override */
+  async _prepareContext(options) {
+    const c = await super._prepareContext(options);
+    const s = this.item.system;
+    const e = s.effet;
+    const cibles = ciblesModificateurs();
+    const modifs = e.modificateurs.map(m => `${signe(m.valeur)} ${(cibles[m.cible] ?? m.cible).replace(/^(Comp|Carac)\. · /, "")}`);
+    const actif = e.type === "actif";
+    const max = s.utilisationsMax;
+    const puces = actif ? [
+      { label: "Activation", valeur: ACTIVATIONS[e.activation] },
+      { label: "Cibles", valeur: e.ciblesMax ? `${e.ciblesMax} max` : "—", num: !!e.ciblesMax },
+      { label: "Durée", valeur: e.duree ? `${e.duree} tour${e.duree > 1 ? "s" : ""}` : "Instantané" },
+      { label: "Utilisations", valeur: e.utilisations.periode === "illimite" ? "Illimité" : `${e.utilisations.periode === "bm" ? "BM fois" : `${e.utilisations.max}×`} ${PERIODES[e.utilisations.periode].replace(/^BM fois /, "").toLowerCase()}${(max !== null) && c.possedeParActeur ? ` · reste ${s.utilisationsRestantes}/${max}` : ""}` }
+    ] : [
+      { label: "Effet", valeur: e.description || "Passif" },
+      { label: "Modificateur", valeur: modifs.join(" · ") || "—", num: !!modifs.length, couleur: modifs.length ? "jaune" : null }
+    ];
+    Object.assign(c, {
+      reference: `CP2075 · TAL-${(SOURCES_TALENT[s.source] ?? "AUT").slice(0, 3).toUpperCase()} · Niv.${s.niveauObtention}`,
+      sourceLabel: SOURCES_TALENT[s.source],
+      actif,
+      typeEffet: actif ? "actif" : "passif",
+      puces,
+      nbPuces: puces.length,
+      modifsTexte: actif && modifs.length ? modifs.join(" · ") : null,
+      choixSources: SOURCES_TALENT,
+      choixSpeciaux: EFFETS_SPECIAUX,
+      choixActivations: ACTIVATIONS,
+      choixPeriodes: PERIODES,
+      choixJets: TYPES_JET,
+      choixCibles: cibles,
+      cheminModifs: "system.effet.modificateurs",
+      modifs: e.modificateurs.map((m, i) => ({ ...m, i })),
+      prefixe: "system"
+    });
+    return c;
+  }
+}
+
+/* ============================================ */
+/*  Classe (carte mère)                         */
+/* ============================================ */
+
+export class CarteClasse extends CarteItem {
+
+  static DEFAULT_OPTIONS = {
+    classes: ["cp-carte-classe"],
+    position: { width: 1000 },
+    actions: {
+      retirerReference: CarteClasse.#retirerReference
+    }
+  };
+
+  static PARTS = {
+    carte: { template: `${CHEMIN}/templates/item/carte-classe.hbs` }
+  };
+
+  /** @override */
+  async _prepareContext(options) {
+    const c = await super._prepareContext(options);
+    const s = this.item.system;
+    const parNiveau = {};
+    for ( const t of s.talents ) (parNiveau[t.niveau] ??= []).push(t);
+    Object.assign(c, {
+      reference: `CP2075 · CLS-${this.item.name.normalize("NFD").replace(/[^A-Za-z]/g, "").toUpperCase().slice(0, 6)} · Carte mère`,
+      texteBonus: s.texteBonus,
+      eddies: prix(s.eddies),
+      piste: Array.from({ length: 10 }, (_, i) => {
+        const n = i + 1;
+        return { n, talent: !!parNiveau[n], maitrise: [2, 4, 6, 7, 9].includes(n), sousClasse: (n === 1) || (n === 5), ultime: n === 10 };
+      }),
+      talents: s.talents.map((t, i) => ({ ...t, i, ultime: t.niveau === 10 })).sort((a, b) => a.niveau - b.niveau),
+      sousClasses: s.sousClasses.map((r, i) => ({ ...r, i })),
+      nbSousClasses: s.sousClasses.length,
+      niveauxTalents: [...new Set(s.talents.map(t => t.niveau))].sort((a, b) => a - b).join(" · ") || "—",
+      bonusCaracs: Object.entries(CARACS).map(([cle, def]) => ({ cle, label: def.abrev, valeur: s.bonus[cle] ?? 0 }))
+    });
+    return c;
+  }
+
+  /** @override */
+  async _surDepot(zone, item) {
+    if ( zone.depot === "talent" ) {
+      if ( item.type !== "talent" ) return ui.notifications.warn("Glisse un talent sur la piste.");
+      const niveau = Number(zone.niveau) || item.system.niveauObtention || 3;
+      return this._ajouterReference("system.talents", item, { niveau });
+    }
+    if ( zone.depot === "sousClasse" ) {
+      if ( item.type !== "sousClasse" ) return ui.notifications.warn("Glisse une sous-classe.");
+      const s = item.system;
+      const comp = s.maitrises.map(m => m.competence ? COMPETENCES[m.competence]?.label : "au choix").filter(Boolean).join(" · ");
+      const tal = s.talents.map(t => `Niv. ${t.niveau} ${t.nom}`).join(" · ");
+      if ( !s.classeParente ) await item.update({ "system.classeParente": this.item.name }).catch(() => null);
+      return this._ajouterReference("system.sousClasses", item, { resume: [comp, tal].filter(Boolean).join("\n") });
+    }
+  }
+
+  static async #retirerReference(event, cible) {
+    if ( !this.isEditable ) return;
+    const chemin = cible.dataset.chemin;
+    const liste = foundry.utils.deepClone(foundry.utils.getProperty(this.item.toObject(), chemin) ?? []);
+    liste.splice(Number(cible.dataset.index), 1);
+    return this.item.update({ [chemin]: liste });
+  }
+}
+
+/* ============================================ */
+/*  Sous-classe (barrette)                      */
+/* ============================================ */
+
+const CATEGORIES_PACK = {
+  arme: "Arme", implant: "Implant", cyberAccessoire: "Cyber-accessoire", objet: "Objet",
+  hack: "Hack", vehicule: "Véhicule", module: "Module de planque", autre: "Autre"
+};
+
+export class CarteSousClasse extends CarteItem {
+
+  static DEFAULT_OPTIONS = {
+    actions: {
+      retirerReference: CarteSousClasse.#retirerReference
+    }
+  };
+
+  static PARTS = {
+    carte: { template: `${CHEMIN}/templates/item/carte-sous-classe.hbs` }
+  };
+
+  /** @override */
+  async _prepareContext(options) {
+    const c = await super._prepareContext(options);
+    const s = this.item.system;
+    const choixComp = Object.fromEntries(Object.entries(COMPETENCES).map(([k, v]) => [k, v.label]));
+    const pack = s.pack.map((p, i) => ({
+      ...p, i,
+      precis: p.mode === "precis",
+      categorieLabel: CATEGORIES_PACK[p.categorie] ?? p.categorie,
+      prixMaxTexte: p.prixMax ? `≤ ${prix(p.prixMax)}` : "",
+      aNiveau: ["arme", "implant", "objet"].includes(p.type),
+      estImplant: p.type === "implant"
+    }));
+    Object.assign(c, {
+      reference: `CP2075 · SCL-${(s.classeParente || "XXX").normalize("NFD").replace(/[^A-Za-z]/g, "").toUpperCase().slice(0, 4)}-${this.item.name.normalize("NFD").replace(/[^A-Za-z]/g, "").toUpperCase().slice(0, 3)} · Barrette`,
+      maitrises: s.maitrises.map((m, i) => ({
+        ...m, i, num: i + 1,
+        label: m.competence ? COMPETENCES[m.competence]?.label : null,
+        liste: m.choix ? m.choix.split(",").map(k => COMPETENCES[k.trim()]?.label).filter(Boolean).join(", ") : "toutes",
+        choixSelect: Object.fromEntries((m.choix || "").split(",").filter(Boolean).map(k => [k.trim(), true]))
+      })),
+      packImplants: pack.filter(p => p.estImplant || (p.categorie === "implant") || (p.categorie === "cyberAccessoire")),
+      packInventaire: pack.filter(p => !(p.estImplant || (p.categorie === "implant") || (p.categorie === "cyberAccessoire"))),
+      pack,
+      talents: s.talents.map((t, i) => ({ ...t, i })).sort((a, b) => a.niveau - b.niveau),
+      choixComp: { "": "Au choix…", ...choixComp },
+      listeComp: Object.entries(COMPETENCES).map(([k, v]) => ({ k, label: v.label })),
+      choixModes: { precis: "Item précis", choix: "Au choix", gratuit: "Gratuit" },
+      choixCategories: CATEGORIES_PACK,
+      choixNiveaux: { 1: "Niv. 1", 2: "Niv. 2", 3: "Niv. 3" },
+      modeleChoix: JSON.stringify({ mode: "choix", uuid: "", nom: "", resume: "", type: "", niveau: 1, quantite: 1, categorie: "arme", prixMax: 1000, texte: "" }),
+      modeleGratuit: JSON.stringify({ mode: "gratuit", uuid: "", nom: "", resume: "", type: "", niveau: 1, quantite: 1, categorie: "module", prixMax: 0, texte: "" })
+    });
+    return c;
+  }
+
+  /** @override */
+  async _surDepot(zone, item) {
+    if ( zone.depot === "talent" ) {
+      if ( item.type !== "talent" ) return ui.notifications.warn("Glisse un talent.");
+      return this._ajouterReference("system.talents", item, { niveau: Number(zone.niveau) || 1 });
+    }
+    if ( zone.depot === "pack" ) {
+      if ( ["classe", "sousClasse", "talent"].includes(item.type) ) return ui.notifications.warn("Le pack contient des implants, armes, objets…");
+      return this._ajouterReference("system.pack", item, { mode: "precis", type: item.type, niveau: item.system.niveau ?? 1, quantite: 1, categorie: item.type, prixMax: 0, texte: "" });
+    }
+  }
+
+  static async #retirerReference(event, cible) {
+    if ( !this.isEditable ) return;
+    const chemin = cible.dataset.chemin;
+    const liste = foundry.utils.deepClone(foundry.utils.getProperty(this.item.toObject(), chemin) ?? []);
+    liste.splice(Number(cible.dataset.index), 1);
+    return this.item.update({ [chemin]: liste });
   }
 }

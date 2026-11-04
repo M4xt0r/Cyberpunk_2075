@@ -661,3 +661,67 @@
 .cp-msg .cp-msg-texte { color: var(--cp-texte); font-size: 12px; }
 .cp-msg .cp-orange { color: var(--cp-orange); }
 .cp-msg .cp-rouge-txt { color: var(--cp-rouge-txt); }
+
+/* ==========================================================================
+   Étape 4 — talents, classes, sous-classes, progression
+   ========================================================================== */
+
+.cp2075 .cp-pre { white-space: pre-line; }
+.cp2075 .cp-survol { outline: 2px dashed var(--cp-jaune) !important; outline-offset: 2px; background: var(--cp-jaune-fond) !important; }
+
+/* Talents sur la fiche */
+.cp2075 .cp-talent { gap: 4px; padding: 8px 12px 10px; }
+.cp2075 .cp-talent-ultime { outline: 1px solid var(--cp-niv2); outline-offset: -1px; }
+.cp2075 .cp-talent-nom { font-family: var(--cp-f-titre); font-weight: 700; font-size: 15px; flex: 1; min-width: 0; }
+.cp2075 .cp-badge-type { font-family: var(--cp-f-titre); font-weight: 600; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; border: 1px solid var(--cp-champ-bord); color: var(--cp-doux); padding: 1px 6px; flex: none; }
+.cp2075 .cp-badge-actif-t { border-color: var(--cp-jaune); color: var(--cp-jaune); }
+
+/* Cartes : talent */
+.cp2075 .cp-c-source { width: 120px; height: 120px; flex: none; background: var(--cp-sol); color: var(--cp-jaune); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.cp2075 .cp-c-source-niv { font-size: 40px; font-weight: 700; line-height: 1; color: var(--cp-texte); }
+
+/* Carte mère : classe */
+.application.cp-carte-classe { min-width: 760px; }
+.cp2075 .cp-barrette-large { margin: 16px; }
+.cp2075 .cp-c-image-grande { width: 150px; height: 150px; }
+.cp2075 .cp-c-nom-grand { font-size: 44px; }
+.cp2075 .cp-c-grille-classe { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: 8px; flex: 1; min-width: 0; }
+.cp2075 .cp-c-deux { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; padding: 16px 16px 0; }
+.cp2075 .cp-c-puces-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.cp2075 .cp-c-puces-classe { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+.cp2075 .cp-c-titre-puce { font-family: var(--cp-f-titre); font-weight: 700; font-size: 16px; }
+.cp2075 .cp-gros-titre { font-size: 19px; }
+.cp2075 .cp-c-puce-bleue { border-color: var(--cp-niv2); }
+.cp2075 .cp-piste { position: relative; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); padding: 2px 0 6px; }
+.cp2075 .cp-piste-trace { position: absolute; left: 5%; right: 5%; top: 21px; height: 2px; background: var(--cp-jaune); }
+.cp2075 .cp-piste-niv { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: var(--cp-tres-doux); position: relative; padding: 2px 0; }
+.cp2075 .cp-piste-niv.cp-avec-talent .cp-num { color: var(--cp-jaune); }
+.cp2075 .cp-piste-niv[data-depot] { cursor: copy; }
+.cp2075 .cp-piste-pastille { width: 12px; height: 12px; border: 2px solid var(--cp-champ-bord); border-radius: 50%; background: #16151C; box-sizing: border-box; position: relative; z-index: 1; }
+.cp2075 .cp-piste-pastille.cp-plein { border-color: var(--cp-jaune); background: var(--cp-jaune); }
+.cp2075 .cp-piste-pastille.cp-petite { width: 8px; height: 8px; border-width: 1px; border-color: var(--cp-jaune); margin-top: 2px; }
+.cp2075 .cp-piste-pastille.cp-sc { border-color: var(--cp-doux); }
+.cp2075 .cp-piste-pastille.cp-ultime.cp-plein { border-color: var(--cp-niv2); background: var(--cp-niv2); }
+.cp2075 .cp-ports { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cp2075 .cp-port { background: #0B0A0E; border: 1px solid var(--cp-bordure); padding: 8px; display: flex; flex-direction: column; gap: 6px; }
+.cp2075 .cp-port-vide { border-style: dashed; justify-content: center; min-height: 70px; }
+.cp2075 .cp-port-barrette { background: #1C1B23; border-top: 2px solid var(--cp-jaune); padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; }
+.cp2075 .cp-port-contacts { height: 10px; background: repeating-linear-gradient(90deg, #E0B93A 0 5px, transparent 5px 8px); }
+
+/* Sous-classe : maîtrises et pack */
+.cp2075 .cp-c-puce-choix { border-style: dashed; border-color: var(--cp-jaune); }
+.cp2075 .cp-c-multi { min-height: 80px; font-size: 12px; }
+.cp2075 .cp-c-ligne-pack { display: grid; grid-template-columns: 108px minmax(0, 1.5fr) minmax(0, 1fr) 54px 22px; gap: 6px; align-items: center; }
+.cp2075 .cp-c-element {
+  font-family: var(--cp-f-texte); font-size: 13px; text-align: left; color: var(--cp-texte); background: transparent;
+  border: 1px solid var(--cp-bordure); border-radius: 0; padding: 4px 6px; min-height: 30px; height: auto; width: 100%; cursor: pointer;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.cp2075 .cp-c-depot-zone { min-height: 38px; }
+.cp2075 .cp-c-ligne-lecture { font-size: 13px; padding: 3px 0; gap: 8px; }
+.cp2075 .cp-c-qte { width: 22px; text-align: center; flex: none; }
+.cp2075 .cp-c-tag-choix { border: 1px dashed var(--cp-jaune); color: var(--cp-jaune); padding: 0 5px; font-size: 10px; flex: none; }
+
+/* Message de progression */
+.cp-msg .cp-msg-etiquette-jaune { background: var(--cp-jaune); }
+.cp-msg .cp-msg-ligne-prog { font-size: 12px; color: var(--cp-texte); }

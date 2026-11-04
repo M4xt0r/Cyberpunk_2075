@@ -1,0 +1,124 @@
+<div class="cp-barrette cp-barrette-large {{#if edition}}cp-barrette-mj{{/if}}">
+  {{> "systems/cyberpunk2075/templates/item/partials/haut.hbs"}}
+
+  <div class="cp-c-zone">
+    {{#if edition}}
+    <div class="cp-c-etiquette cp-c-formulaire">
+      <img class="cp-c-image cp-c-image-edition" src="{{item.img}}" alt="" data-action="editImage" data-edit="img" title="Changer l'image">
+      <div class="cp-c-grille-classe">
+        <label class="cp-c-f">Nom<input class="cp-c-inp cp-c-inp-nom" type="text" name="name" value="{{item.name}}"></label>
+        <label class="cp-c-f">Texte d'ambiance<textarea class="cp-c-inp cp-c-inp-texte" name="system.ambiance" rows="3">{{system.ambiance}}</textarea></label>
+      </div>
+    </div>
+    {{else}}
+    <div class="cp-c-etiquette">
+      <img class="cp-c-image cp-c-image-grande" src="{{item.img}}" alt="">
+      <div class="cp-c-texte">
+        <span class="cp-lbl cp-c-surtitre">Classe</span>
+        <span class="cp-c-nom cp-c-nom-grand">{{item.name}}</span>
+        {{#if system.ambiance}}<span class="cp-c-ambiance">{{system.ambiance}}</span>{{/if}}
+        <div class="cp-c-tags">
+          <span class="cp-lbl cp-c-tag">{{nbSousClasses}} sous-classe{{#if (gt nbSousClasses 1)}}s{{/if}}</span>
+          <span class="cp-lbl cp-c-tag">Talents niv. {{niveauxTalents}}</span>
+        </div>
+      </div>
+      <div class="cp-c-code"><div class="cp-c-barres" aria-hidden="true"></div><span class="cp-num">{{codeBarre}}</span></div>
+    </div>
+    {{/if}}
+  </div>
+
+  {{!-- ====== Pack de départ et gains ====== --}}
+  <div class="cp-c-deux">
+    <div class="cp-col cp-gap8">
+      <span class="cp-lbl {{#if edition}}cp-jaune{{else}}cp-doux{{/if}}">Pack de départ</span>
+      {{#if edition}}
+      <div class="cp-c-puces cp-c-puces-6 cp-c-sans-marge">
+        {{#each bonusCaracs}}<div class="cp-c-pins"><div class="cp-c-puce"><label class="cp-c-f">{{label}}<input class="cp-c-inp" type="number" name="system.bonus.{{cle}}" value="{{valeur}}"></label></div></div>{{/each}}
+        <div class="cp-c-pins"><div class="cp-c-puce"><label class="cp-c-f">Eddies<input class="cp-c-inp" type="number" name="system.eddies" value="{{system.eddies}}" min="0"></label></div></div>
+      </div>
+      {{else}}
+      <div class="cp-c-puces cp-c-puces-classe cp-c-sans-marge">
+        <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">Caractéristiques</span><span class="cp-num cp-c-val-grand cp-jaune">{{texteBonus}}</span></div></div>
+        <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">Eddies</span><span class="cp-num cp-c-val-grand cp-jaune">{{eddies}}</span></div></div>
+      </div>
+      {{/if}}
+    </div>
+    <div class="cp-col cp-gap8">
+      <span class="cp-lbl {{#if edition}}cp-jaune{{else}}cp-doux{{/if}}">{{#if edition}}Gains à chaque niveau (dés){{else}}À chaque niveau{{/if}}</span>
+      <div class="cp-c-puces cp-c-puces-3 cp-c-sans-marge">
+        {{#if edition}}
+        <div class="cp-c-pins"><div class="cp-c-puce"><label class="cp-c-f">PV<input class="cp-c-inp" type="text" name="system.gains.vie" value="{{system.gains.vie}}"></label></div></div>
+        <div class="cp-c-pins"><div class="cp-c-puce"><label class="cp-c-f">RAM<input class="cp-c-inp" type="text" name="system.gains.ram" value="{{system.gains.ram}}"></label></div></div>
+        <div class="cp-c-pins"><div class="cp-c-puce"><label class="cp-c-f">Humanité max<input class="cp-c-inp" type="text" name="system.gains.humanite" value="{{system.gains.humanite}}"></label></div></div>
+        {{else}}
+        <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">PV</span><span class="cp-num cp-c-val-grand cp-t-rouge">+{{system.gains.vie}}</span></div></div>
+        <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">RAM</span><span class="cp-num cp-c-val-grand cp-bleu-txt">+{{system.gains.ram}}</span></div></div>
+        <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">Humanité max</span><span class="cp-num cp-c-val-grand">+{{system.gains.humanite}}</span></div></div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  {{!-- ====== Piste de progression ====== --}}
+  <div class="cp-c-section">
+    <span class="cp-lbl {{#if edition}}cp-jaune{{else}}cp-doux{{/if}}">{{#if edition}}Talents de classe · glisser un talent sur un niveau{{else}}Progression · niveaux 1 à 10{{/if}}</span>
+    <div class="cp-piste">
+      <div class="cp-piste-trace"></div>
+      {{#each piste}}
+      <div class="cp-piste-niv {{#if talent}}cp-avec-talent{{/if}}" {{#if @root.edition}}data-depot="talent" data-niveau="{{n}}" title="Déposer un talent au niveau {{n}}"{{/if}}>
+        <span class="cp-num">{{n}}</span>
+        <span class="cp-piste-pastille {{#if talent}}cp-plein{{else if maitrise}}cp-petite{{else if sousClasse}}cp-sc{{/if}} {{#if ultime}}cp-ultime{{/if}}"></span>
+      </div>
+      {{/each}}
+    </div>
+    {{#if talents.length}}
+    <div class="cp-c-puces cp-c-puces-3 cp-c-sans-marge">
+      {{#each talents}}
+      <div class="cp-c-pins"><div class="cp-c-puce {{#if ultime}}cp-c-puce-bleue{{/if}}">
+        <span class="cp-ligne cp-entre">
+          <span class="cp-lbl {{#if ultime}}cp-bleu-txt{{else}}cp-jaune{{/if}}">Niv. {{niveau}} · {{#if ultime}}Trait ultime{{else}}Talent{{/if}}</span>
+          <span class="cp-ligne cp-gap6">
+            <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirReference" data-uuid="{{uuid}}" aria-label="Infos {{nom}}">i</button>
+            {{#if @root.edition}}<button type="button" class="cp-x" data-action="retirerReference" data-chemin="system.talents" data-index="{{i}}" aria-label="Retirer {{nom}}">×</button>{{/if}}
+          </span>
+        </span>
+        <span class="cp-c-titre-puce">{{nom}}</span>
+        {{#if resume}}<span class="cp-petit cp-doux">{{resume}}</span>{{/if}}
+      </div></div>
+      {{/each}}
+    </div>
+    {{/if}}
+    <span class="cp-petit cp-tres-doux">Niv. 1 et 5 : talents de sous-classe · petites pastilles : maîtrise en plus (2, 4, 6, 7, 9){{#if edition}} · un talent déposé est donné seul à la montée de niveau{{/if}}</span>
+  </div>
+
+  {{!-- ====== Sous-classes ====== --}}
+  <div class="cp-c-section">
+    <span class="cp-lbl {{#if edition}}cp-jaune{{else}}cp-doux{{/if}}">{{#if edition}}Sous-classes rattachées{{else}}Sous-classes · emplacements{{/if}}</span>
+    <div class="cp-ports">
+      {{#each sousClasses}}
+      <div class="cp-port">
+        <div class="cp-port-barrette">
+          <div class="cp-ligne cp-entre">
+            <span class="cp-c-titre-puce cp-gros-titre">{{nom}}</span>
+            <span class="cp-ligne cp-gap6">
+              <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirReference" data-uuid="{{uuid}}" aria-label="Ouvrir {{nom}}">i</button>
+              {{#if @root.edition}}<button type="button" class="cp-x" data-action="retirerReference" data-chemin="system.sousClasses" data-index="{{i}}" aria-label="Détacher {{nom}}">×</button>{{/if}}
+            </span>
+          </div>
+          {{#if resume}}<span class="cp-petit cp-doux cp-pre">{{resume}}</span>{{/if}}
+        </div>
+        <div class="cp-port-contacts"></div>
+      </div>
+      {{/each}}
+      {{#if edition}}<div class="cp-port cp-port-vide" data-depot="sousClasse"><span class="cp-c-depot">+ Glisser une sous-classe</span></div>{{/if}}
+    </div>
+  </div>
+
+  {{#if edition}}
+  <div class="cp-c-section"><label class="cp-c-f">Règles et notes<textarea class="cp-c-inp cp-c-inp-texte" name="system.description" rows="3">{{system.description}}</textarea></label></div>
+  {{else if regles}}
+  <div class="cp-c-regles"><div class="cp-c-p">{{{regles}}}</div></div>
+  {{/if}}
+
+  {{> "systems/cyberpunk2075/templates/item/partials/bas.hbs" bloc="Se glisse sur la fiche · puis la sous-classe" note="Montée de niveau automatique"}}
+</div>

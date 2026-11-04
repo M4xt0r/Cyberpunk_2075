@@ -1,0 +1,15 @@
+<div class="cp-msg cp-msg-progression">
+  <div class="cp-msg-qui"><span>{{acteur}}</span><span>{{heure}}</span></div>
+  <div class="cp-msg-etiquette cp-msg-etiquette-jaune">
+    <span class="cp-msg-type">{{type}}</span>
+    <span class="cp-msg-titre">{{titre}}</span>
+  </div>
+  <div class="cp-msg-puce cp-msg-colonne">
+    {{#each lignes}}<span class="cp-msg-ligne-prog">{{this}}</span>{{/each}}
+  </div>
+  {{#if rappels.length}}
+  <div class="cp-msg-note"><b>À choisir :</b></div>
+  {{#each rappels}}<div class="cp-msg-note cp-jaune">◇ {{this}}</div>{{/each}}
+  {{/if}}
+  <div class="cp-msg-broches"></div>
+</div>

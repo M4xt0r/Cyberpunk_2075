@@ -13,7 +13,8 @@ import ActeurCP from "./documents/actor.mjs";
 import ItemCP from "./documents/item.mjs";
 import FichePersonnage from "./sheets/personnage-sheet.mjs";
 import { FicheItemSimple, FicheActeurSimple } from "./sheets/simples.mjs";
-import { CarteArme, CarteObjet, CarteImplant, CarteSousImplant } from "./sheets/carte-item.mjs";
+import { CarteArme, CarteObjet, CarteImplant, CarteSousImplant, CarteTalent, CarteClasse, CarteSousClasse } from "./sheets/carte-item.mjs";
+import { TalentData, ClasseData, SousClasseData } from "./data/progression.mjs";
 import { signe } from "./dice/jets.mjs";
 import { surRenduMessage, surCreationMessage } from "./dice/chat.mjs";
 import { jouerAnimation } from "./animations.mjs";
@@ -42,9 +43,9 @@ Hooks.once("init", () => {
     capsule: CapsuleData,
     objet: ObjetData,
     hack: Autres.HackData,
-    talent: Autres.TalentData,
-    classe: Autres.ClasseData,
-    sousClasse: Autres.SousClasseData,
+    talent: TalentData,
+    classe: ClasseData,
+    sousClasse: SousClasseData,
     ameliorationVehicule: Autres.AmeliorationVehiculeData,
     modulePlanque: Autres.ModulePlanqueData
   });
@@ -79,8 +80,17 @@ Hooks.once("init", () => {
   DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteSousImplant, {
     types: ["ameliorationImplant", "capsule"], makeDefault: true, label: "Carte d'amélioration Cyberpunk 2075"
   });
+  DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteTalent, {
+    types: ["talent"], makeDefault: true, label: "Carte de talent Cyberpunk 2075"
+  });
+  DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteClasse, {
+    types: ["classe"], makeDefault: true, label: "Carte de classe Cyberpunk 2075"
+  });
+  DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, CarteSousClasse, {
+    types: ["sousClasse"], makeDefault: true, label: "Carte de sous-classe Cyberpunk 2075"
+  });
   DocumentSheetConfig.registerSheet(Item, ID_SYSTEME, FicheItemSimple, {
-    types: ["hack", "talent", "classe", "sousClasse", "ameliorationVehicule", "modulePlanque"],
+    types: ["hack", "ameliorationVehicule", "modulePlanque"],
     makeDefault: true, label: "Carte provisoire Cyberpunk 2075"
   });
 
@@ -100,6 +110,7 @@ Hooks.once("init", () => {
     `${CHEMIN}/templates/chat/degats.hbs`,
     `${CHEMIN}/templates/chat/utilisation.hbs`,
     `${CHEMIN}/templates/chat/alerte.hbs`,
+    `${CHEMIN}/templates/chat/progression.hbs`,
     `${CHEMIN}/templates/dialogs/ameliorations.hbs`,
     `${CHEMIN}/templates/dialogs/jet.hbs`,
     `${CHEMIN}/templates/dialogs/attaque.hbs`,

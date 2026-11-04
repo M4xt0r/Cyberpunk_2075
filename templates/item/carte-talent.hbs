@@ -1,0 +1,93 @@
+<div class="cp-barrette {{#if edition}}cp-barrette-mj{{/if}}">
+  {{> "systems/cyberpunk2075/templates/item/partials/haut.hbs"}}
+
+  <div class="cp-c-zone">
+    {{#if edition}}
+    <div class="cp-c-etiquette cp-c-formulaire">
+      <img class="cp-c-image cp-c-image-edition" src="{{item.img}}" alt="" data-action="editImage" data-edit="img" title="Changer l'image">
+      <div class="cp-c-grille3">
+        <label class="cp-c-f cp-span3">Nom<input class="cp-c-inp cp-c-inp-nom" type="text" name="name" value="{{item.name}}"></label>
+        <label class="cp-c-f">Source<select class="cp-c-sel" name="system.source">{{selectOptions choixSources selected=system.source}}</select></label>
+        <label class="cp-c-f">Niveau d'obtention<input class="cp-c-inp" type="number" name="system.niveauObtention" value="{{system.niveauObtention}}" min="1" max="10"></label>
+        <label class="cp-c-f">Effet spécial<select class="cp-c-sel" name="system.special">{{selectOptions choixSpeciaux selected=system.special}}</select></label>
+        <label class="cp-c-f cp-span3">Phrase d'ambiance<input class="cp-c-inp cp-c-inp-texte" type="text" name="system.ambiance" value="{{system.ambiance}}"></label>
+      </div>
+    </div>
+    {{else}}
+    <div class="cp-c-etiquette">
+      <div class="cp-c-source">
+        <span class="cp-lbl">{{sourceLabel}}</span>
+        <span class="cp-num cp-c-source-niv">{{system.niveauObtention}}</span>
+        <span class="cp-lbl cp-petit">niveau</span>
+      </div>
+      <div class="cp-c-texte">
+        <span class="cp-lbl cp-c-surtitre">Talent · {{sourceLabel}}</span>
+        <span class="cp-c-nom">{{item.name}}</span>
+        {{#if system.ambiance}}<span class="cp-c-ambiance">{{system.ambiance}}</span>{{/if}}
+        <div class="cp-c-tags">
+          <span class="cp-lbl cp-c-tag">{{#if actif}}Actif{{else}}Passif{{/if}}</span>
+          {{#if system.special}}<span class="cp-lbl cp-c-tag">Effet géré par le code</span>{{/if}}
+        </div>
+      </div>
+      <div class="cp-c-code"><div class="cp-c-barres" aria-hidden="true"></div><span class="cp-num">{{codeBarre}}</span></div>
+    </div>
+    {{/if}}
+  </div>
+
+  {{#if edition}}
+  <div class="cp-ligne cp-entre cp-c-titre-bloc">
+    <span class="cp-lbl cp-jaune">Bloc effet</span>
+    <div class="cp-seg cp-seg-court">
+      <label><input type="radio" name="system.effet.type" value="passif" {{#if (eq system.effet.type "passif")}}checked{{/if}}><span>Passif</span></label>
+      <label><input type="radio" name="system.effet.type" value="actif" {{#if (eq system.effet.type "actif")}}checked{{/if}}><span>Actif</span></label>
+    </div>
+  </div>
+  <div class="cp-c-section">
+    <label class="cp-c-f">Description courte (sur la classe et la fiche)<input class="cp-c-inp cp-c-inp-texte" type="text" name="system.effet.description" value="{{system.effet.description}}"></label>
+    {{#if actif}}
+    <div class="cp-c-grille3">
+      <label class="cp-c-f">Activation<select class="cp-c-sel" name="system.effet.activation">{{selectOptions choixActivations selected=system.effet.activation}}</select></label>
+      <label class="cp-c-f">Utilisations<select class="cp-c-sel" name="system.effet.utilisations.periode">{{selectOptions choixPeriodes selected=system.effet.utilisations.periode}}</select></label>
+      <label class="cp-c-f">Nombre<input class="cp-c-inp" type="number" name="system.effet.utilisations.max" value="{{system.effet.utilisations.max}}" min="0"></label>
+      <label class="cp-c-f">Durée (tours)<input class="cp-c-inp" type="number" name="system.effet.duree" value="{{system.effet.duree}}" min="0"></label>
+      <label class="cp-c-f">Cibles max<input class="cp-c-inp" type="number" name="system.effet.ciblesMax" value="{{system.effet.ciblesMax}}" min="0"></label>
+      <label class="cp-c-f">Coût 💀 / utilisation<input class="cp-c-inp" type="number" name="system.effet.coutHumanite" value="{{system.effet.coutHumanite}}"></label>
+      <label class="cp-c-f">Jet associé<input class="cp-c-inp" type="text" name="system.effet.jet.formule" value="{{system.effet.jet.formule}}" placeholder="ex. 1d8"></label>
+      <label class="cp-c-f">Type de jet<select class="cp-c-sel" name="system.effet.jet.type">{{selectOptions choixJets selected=system.effet.jet.type}}</select></label>
+      <label class="cp-c-f">💀 par kill<input class="cp-c-inp" type="number" name="system.effet.humaniteKill" value="{{system.effet.humaniteKill}}"></label>
+    </div>
+    {{/if}}
+    <div class="cp-c-f">Modificateurs {{#if actif}}(pendant la durée){{else}}(toujours appliqués){{/if}}
+      <div class="cp-c-modifs" data-modifs="{{cheminModifs}}">
+        {{#each modifs}}
+        <div class="cp-c-modif" data-ligne>
+          <select class="cp-c-sel" data-modif="cible" aria-label="Cible">{{selectOptions ../choixCibles selected=cible}}</select>
+          <input class="cp-c-inp cp-c-court" type="text" data-modif="valeur" value="{{valeur}}" aria-label="Valeur">
+          <button type="button" class="cp-x" data-action="supprimerModif" data-chemin="{{../cheminModifs}}" data-index="{{i}}" aria-label="Retirer">×</button>
+        </div>
+        {{/each}}
+        <button type="button" class="cp-c-depot" data-action="ajouterModif" data-chemin="{{cheminModifs}}">+ Ajouter un modificateur</button>
+      </div>
+    </div>
+    <label class="cp-c-f">Règles complètes<textarea class="cp-c-inp cp-c-inp-texte" name="system.description" rows="4">{{system.description}}</textarea></label>
+  </div>
+  {{else}}
+  <div class="cp-c-puces cp-c-puces-{{nbPuces}}">
+    {{#each puces}}
+    <div class="cp-c-pins"><div class="cp-c-puce"><span class="cp-lbl cp-doux">{{label}}</span><span class="cp-c-val {{#if num}}cp-num cp-c-val-grand{{/if}} {{#if couleur}}cp-t-{{couleur}}{{/if}}">{{valeur}}</span></div></div>
+    {{/each}}
+  </div>
+  <div class="cp-c-cables cp-c-puces-{{nbPuces}}">{{#each puces}}<div class="cp-c-vt"></div>{{/each}}</div>
+  <div class="cp-c-bus"><span class="cp-pastille-cable"></span><span class="cp-c-trace"></span><span class="cp-pastille-cable"></span></div>
+  <div class="cp-c-regles">
+    <div class="cp-col cp-gap6 cp-pousse">
+      <span class="cp-lbl cp-doux">Règles</span>
+      {{#if actif}}{{#if system.effet.description}}<p class="cp-c-p">{{system.effet.description}}</p>{{/if}}{{/if}}
+      {{#if modifsTexte}}<p class="cp-c-p cp-jaune">Pendant l'effet : {{modifsTexte}}</p>{{/if}}
+      {{#if regles}}<div class="cp-c-p">{{{regles}}}</div>{{/if}}
+    </div>
+  </div>
+  {{/if}}
+
+  {{> "systems/cyberpunk2075/templates/item/partials/bas.hbs" bloc=(concat "Bloc effet · " typeEffet) note=(ifThen actif "Bouton Utiliser sur la fiche" "Toujours appliqué")}}
+</div>

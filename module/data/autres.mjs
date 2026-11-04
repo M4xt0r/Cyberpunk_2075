@@ -1,5 +1,4 @@
-import { CARACS } from "../config.mjs";
-import { ItemBase, entier } from "./champs.mjs";
+import { ItemBase } from "./champs.mjs";
 
 const f = foundry.data.fields;
 
@@ -22,37 +21,6 @@ export class PlanqueData extends ActeurProvisoire {}
 /* ============================================ */
 
 export class HackData extends ItemBase {}
-
-/** Talent provisoire (étape 4) : l'effet spécial Edgerunner est déjà reconnu. */
-export class TalentData extends ItemBase {
-  static defineSchema() {
-    return {
-      ...super.defineSchema(),
-      special: new f.StringField({ required: true, blank: true, initial: "" })
-    };
-  }
-}
-
-export class ClasseData extends ItemBase {
-  static defineSchema() {
-    const bonus = {};
-    for ( const cle of Object.keys(CARACS) ) bonus[cle] = entier(0);
-    return {
-      ...super.defineSchema(),
-      bonus: new f.SchemaField(bonus),
-      eddies: entier(0, { min: 0 })
-    };
-  }
-}
-
-export class SousClasseData extends ItemBase {
-  static defineSchema() {
-    return {
-      ...super.defineSchema(),
-      classeParente: new f.StringField({ required: true, initial: "" })
-    };
-  }
-}
 
 export class AmeliorationVehiculeData extends ItemBase {}
 export class ModulePlanqueData extends ItemBase {}

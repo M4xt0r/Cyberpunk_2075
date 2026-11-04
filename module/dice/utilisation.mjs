@@ -88,7 +88,7 @@ export async function utiliserObjet(item) {
 function animationsActivation(item, source) {
   if ( !source ) return [];
   const cibles = Array.from(game.user.targets);
-  const lignes = item.system.animations.filter(a => ["activation", "duree"].includes(a.moment) && a.fichier);
+  const lignes = (item.system.animations ?? []).filter(a => ["activation", "duree"].includes(a.moment) && a.fichier);
   const base = { scene: canvas.scene.id, source: source.id, cibles: cibles.map(t => t.id), touches: cibles.map(t => t.id), point: null, rayon: item.system.attaque?.zone ?? 0, son: "" };
   const liste = lignes.map(a => {
     if ( a.style === "soi" ) return { ...base, style: "soi", impact: a.fichier };
@@ -96,7 +96,7 @@ function animationsActivation(item, source) {
     if ( a.style === "zone" ) return { ...base, cibles: cibles.length ? base.cibles : [source.id], style: "zone", zone: a.fichier };
     return { ...base, style: "projectile", projectile: a.fichier };
   });
-  const son = item.system.sons.activation;
+  const son = item.system.sons?.activation;
   if ( son ) {
     if ( liste.length ) liste[0].son = son;
     else liste.push({ ...base, style: "aucune", son });
@@ -110,7 +110,7 @@ function animationsActivation(item, source) {
  */
 export async function activerImplant(item) {
   const acteur = item.actor;
-  if ( !acteur ) return ui.notifications.warn("L'implant doit être installé sur un personnage.");
+  if ( !acteur ) return ui.notifications.warn(`${item.name} doit être sur la fiche d'un personnage.`);
   const sys = item.system;
   const effet = sys.effet;
   if ( effet?.type !== "actif" ) return ui.notifications.warn(`${item.name} n'a pas d'effet actif.`);

@@ -62,7 +62,27 @@
     {{!-- ====== Talents (étape 4) ====== --}}
     <section class="cp-col cp-gap8">
       <h2 class="cp-lbl cp-doux cp-titre-h2">Talents</h2>
-      <p class="cp-petit cp-doux">Les talents de classe et de sous-classe arrivent à l'étape 4.</p>
+      {{#each talents}}
+      <div class="cp-carte cp-coupe cp-talent {{#if ultime}}cp-talent-ultime{{/if}}" data-item-id="{{id}}">
+        <div class="cp-ligne">
+          <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
+          <span class="cp-talent-nom">{{nom}}</span>
+          <span class="cp-badge-type {{#if actif}}cp-badge-actif-t{{/if}}">{{#if actif}}Actif{{else}}Passif{{/if}}</span>
+          {{#if ../edition}}<button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>{{/if}}
+        </div>
+        <span class="cp-petit cp-doux">{{info}}</span>
+        {{#if resume}}<span class="cp-petit">{{resume}}</span>{{/if}}
+        {{#if actif}}{{#unless ../edition}}
+        <div class="cp-ligne cp-gap8">
+          <button type="button" class="cp-btn cp-btn-principal cp-btn-mini" data-action="activer" {{#if bloque}}disabled{{/if}}>Utiliser</button>
+          {{#if usages}}<span class="cp-num cp-petit cp-doux">{{usages}}</span>{{/if}}
+          {{#if enCours}}<button type="button" class="cp-badge-actif" data-action="arreterEffet" title="Arrêter l'effet">{{tours}} t.</button>{{/if}}
+        </div>
+        {{/unless}}{{/if}}
+      </div>
+      {{else}}
+      <p class="cp-petit cp-doux">Aucun talent. Ils arrivent avec la classe, la sous-classe et la montée de niveau.</p>
+      {{/each}}
     </section>
 
     {{!-- ====== Hacks (étape 5) ====== --}}

@@ -1,6 +1,7 @@
 import { CARACS, COMPETENCES } from "../config.mjs";
 import { demanderOptionsJet, lancerJetD20, signe } from "../dice/jets.mjs";
 import { preparerMiseAJour, posterAlertes, reposLong, jetDeMort } from "./humanite.mjs";
+import { monterNiveau } from "./progression.mjs";
 
 /**
  * Acteur Cyberpunk 2075 : données de jet, jets en un clic, dégâts et soins reçus.
@@ -42,6 +43,11 @@ export default class ActeurCP extends Actor {
   /** Repos long (RAM, utilisations, stress, Humanité). */
   async reposLong() {
     return reposLong(this);
+  }
+
+  /** Montée de niveau (dés de gain, talents, maîtrise). */
+  async monterNiveau() {
+    return monterNiveau(this);
   }
 
   /** Jet de mort à 0 PV. */

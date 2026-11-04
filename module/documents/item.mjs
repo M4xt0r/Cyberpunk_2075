@@ -1,6 +1,7 @@
 import ArmeData from "../data/arme.mjs";
 import { attaquer, lancerDegats } from "../dice/attaque.mjs";
 import { utiliserObjet, activerImplant } from "../dice/utilisation.mjs";
+import { appliquerClasse, appliquerSousClasse } from "./progression.mjs";
 
 /**
  * Item Cyberpunk 2075.
@@ -42,6 +43,10 @@ export default class ItemCP extends Item {
   /** Poser un implant, une amélioration ou une capsule : la jauge d'Humanité monte de son coût. @override */
   _onCreate(donnees, options, idUtilisateur) {
     super._onCreate(donnees, options, idUtilisateur);
+    if ( (idUtilisateur === game.user.id) && (this.actor?.type === "personnage") && !options.cpProgression ) {
+      if ( this.type === "classe" ) appliquerClasse(this.actor, this, 1);
+      if ( this.type === "sousClasse" ) appliquerSousClasse(this.actor, this);
+    }
     if ( !this.compteDansMinimum || (idUtilisateur !== game.user.id) || (this.actor?.type !== "personnage") ) return;
     const cout = Number(this.system.coutInstallation) || 0;
     if ( cout ) this.actor.modifierHumanite(cout);
@@ -63,6 +68,9 @@ export default class ItemCP extends Item {
   /** Retirer un implant retire aussi ses améliorations et sa capsule. @override */
   _onDelete(options, idUtilisateur) {
     super._onDelete(options, idUtilisateur);
+    if ( (this.type === "classe") && (idUtilisateur === game.user.id) && (this.actor?.type === "personnage") && game.actors.has(this.actor.id) ) {
+      appliquerClasse(this.actor, this, -1);
+    }
     if ( (this.type !== "implant") || (idUtilisateur !== game.user.id) || !this.actor ) return;
     const acteur = this.actor;
     if ( !acteur.items.size || (!acteur.isToken && !game.actors.has(acteur.id)) ) return;
@@ -87,9 +95,9 @@ export default class ItemCP extends Item {
     return lancerDegats(this, options);
   }
 
-  /** Active un implant à effet actif. */
+  /** Active un implant ou un talent à effet actif. */
   async activer() {
-    if ( this.type !== "implant" ) return null;
+    if ( !["implant", "talent"].includes(this.type) ) return null;
     return activerImplant(this);
   }
 

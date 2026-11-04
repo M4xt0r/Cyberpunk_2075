@@ -40,6 +40,7 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       ajouterAmelioration: FichePersonnage.#ajouterAmelioration,
       poserCapsule: FichePersonnage.#poserCapsule,
       reposLong: FichePersonnage.#reposLong,
+      monter: FichePersonnage.#monter,
       jetDeMort: FichePersonnage.#jetDeMort
     }
   };
@@ -228,7 +229,29 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       };
     });
 
-    return { armes, objets, choixNiveaux, aArmes: armes.length > 0, aObjets: objets.length > 0, ...this.#preparerImplants(niveauBadge) };
+    const sources = { classe: "Classe", sousClasse: "Sous-classe", ultime: "Trait ultime", autre: "Talent" };
+    const activations = { action: "action", bonus: "action bonus", reaction: "réaction" };
+    const talents = acteur.items.filter(i => i.type === "talent")
+      .sort((a, b) => (a.system.niveauObtention - b.system.niveauObtention) || a.name.localeCompare(b.name))
+      .map(item => {
+        const s = item.system;
+        const max = s.utilisationsMax;
+        const restantes = s.utilisationsRestantes;
+        return {
+          id: item.id,
+          nom: item.name,
+          actif: s.estActif,
+          ultime: s.source === "ultime",
+          info: [sources[s.source], `niv. ${s.niveauObtention}`, s.estActif ? activations[s.effet.activation] : null].filter(Boolean).join(" · "),
+          resume: s.effet.description,
+          usages: (max === null) ? null : `${restantes}/${max} ${s.effet.utilisations.periode === "combat" ? "par combat" : "par repos long"}`,
+          bloque: restantes === 0,
+          enCours: s.actif.enCours,
+          tours: s.actif.tours
+        };
+      });
+
+    return { armes, objets, talents, choixNiveaux, aArmes: armes.length > 0, aObjets: objets.length > 0, ...this.#preparerImplants(niveauBadge) };
   }
 
   /** Implants rangés par emplacement, côté gauche et côté droit de la silhouette. */
@@ -554,6 +577,11 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
 
   static async #activer(event, cible) {
     return this.#itemDe(cible)?.activer();
+  }
+
+  static async #monter() {
+    if ( !this.enEdition ) return;
+    return this.actor.monterNiveau();
   }
 
   static async #reposLong() {

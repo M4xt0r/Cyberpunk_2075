@@ -1,0 +1,145 @@
+<div class="cp-barrette {{#if edition}}cp-barrette-mj{{/if}}">
+  {{> "systems/cyberpunk2075/templates/item/partials/haut.hbs"}}
+
+  <div class="cp-c-zone">
+    {{#if edition}}
+    <div class="cp-c-etiquette cp-c-formulaire">
+      <img class="cp-c-image cp-c-image-edition" src="{{item.img}}" alt="" data-action="editImage" data-edit="img" title="Changer l'image">
+      <div class="cp-c-grille2">
+        <label class="cp-c-f">Nom<input class="cp-c-inp cp-c-inp-nom" type="text" name="name" value="{{item.name}}"></label>
+        <label class="cp-c-f">Classe parente<input class="cp-c-inp cp-c-inp-texte" type="text" name="system.classeParente" value="{{system.classeParente}}" placeholder="ex. Solo"></label>
+        <label class="cp-c-f cp-span2">Phrase d'ambiance<input class="cp-c-inp cp-c-inp-texte" type="text" name="system.ambiance" value="{{system.ambiance}}"></label>
+      </div>
+    </div>
+    {{else}}
+    <div class="cp-c-etiquette">
+      <img class="cp-c-image" src="{{item.img}}" alt="">
+      <div class="cp-c-texte">
+        <span class="cp-lbl cp-c-surtitre">Sous-classe{{#if system.classeParente}} · {{system.classeParente}}{{/if}}</span>
+        <span class="cp-c-nom">{{item.name}}</span>
+        {{#if system.ambiance}}<span class="cp-c-ambiance">{{system.ambiance}}</span>{{/if}}
+        <div class="cp-c-tags">
+          {{#if system.classeParente}}<span class="cp-lbl cp-c-tag">Classe parente : {{system.classeParente}}</span>{{/if}}
+          <span class="cp-lbl cp-c-tag">Talents niv. 1 · 5</span>
+        </div>
+      </div>
+      <div class="cp-c-code"><div class="cp-c-barres" aria-hidden="true"></div><span class="cp-num">{{codeBarre}}</span></div>
+    </div>
+    {{/if}}
+  </div>
+
+  {{!-- ====== Maîtrises ====== --}}
+  <div class="cp-c-section">
+    <span class="cp-lbl {{#if edition}}cp-jaune{{else}}cp-doux{{/if}}">Compétences maîtrisées ({{maitrises.length}})</span>
+    {{#if edition}}
+    <div class="cp-c-puces cp-c-puces-3 cp-c-sans-marge" data-liste="system.maitrises">
+      {{#each maitrises}}
+      <div class="cp-c-pins" data-ligne><div class="cp-c-puce">
+        <label class="cp-c-f">Maîtrise {{num}}<select class="cp-c-sel" data-cle="competence">{{selectOptions ../choixComp selected=competence}}</select></label>
+        {{#unless competence}}
+        <label class="cp-c-f">Parmi (Ctrl + clic, vide = toutes)
+          <select class="cp-c-sel cp-c-multi" data-cle="choix" data-type="multiple" multiple size="4">
+            {{#each ../listeComp}}<option value="{{k}}" {{#if (lookup ../choixSelect k)}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+        </label>
+        {{/unless}}
+      </div></div>
+      {{/each}}
+    </div>
+    {{else}}
+    <div class="cp-c-puces cp-c-puces-3 cp-c-sans-marge">
+      {{#each maitrises}}
+      <div class="cp-c-pins"><div class="cp-c-puce {{#unless label}}cp-c-puce-choix{{/unless}}">
+        {{#if label}}<span class="cp-c-val">◆ {{label}}</span>
+        {{else}}<span class="cp-c-val cp-jaune">◇ Au choix</span><span class="cp-petit cp-doux">{{liste}}</span>{{/if}}
+      </div></div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+
+  {{!-- ====== Pack de démarrage ====== --}}
+  <div class="cp-c-section">
+    <span class="cp-lbl {{#if edition}}cp-jaune{{else}}cp-doux{{/if}}">Pack de démarrage{{#unless edition}} · ajouté à la création{{/unless}}</span>
+    {{#if edition}}
+    <div class="cp-c-liste" data-liste="system.pack">
+      {{#if pack.length}}<div class="cp-c-ligne-pack cp-c-entetes"><span>Ligne</span><span>Élément</span><span>Niveau / prix max</span><span>Qté</span><span></span></div>{{/if}}
+      {{#each pack}}
+      <div class="cp-c-ligne-pack" data-ligne>
+        <select class="cp-c-sel" data-cle="mode" aria-label="Type de ligne">{{selectOptions ../choixModes selected=mode}}</select>
+        {{#if precis}}
+        <button type="button" class="cp-c-element" data-action="ouvrirReference" data-uuid="{{uuid}}">{{nom}}</button>
+        {{#if aNiveau}}<select class="cp-c-sel" data-cle="niveau" data-type="nombre" aria-label="Niveau">{{selectOptions ../choixNiveaux selected=niveau}}</select>{{else}}<span class="cp-petit cp-tres-doux">—</span>{{/if}}
+        {{else}}
+        <span class="cp-ligne cp-gap6">
+          <select class="cp-c-sel" data-cle="categorie" aria-label="Catégorie">{{selectOptions ../choixCategories selected=categorie}}</select>
+          <input class="cp-c-inp cp-c-inp-texte" type="text" data-cle="texte" value="{{texte}}" placeholder="précision" aria-label="Précision">
+        </span>
+        <input class="cp-c-inp" type="number" data-cle="prixMax" data-type="nombre" value="{{prixMax}}" min="0" aria-label="Prix maximum (€$)" title="Prix maximum (€$), 0 = sans limite">
+        {{/if}}
+        <input class="cp-c-inp" type="number" data-cle="quantite" data-type="nombre" value="{{quantite}}" min="1" aria-label="Quantité">
+        <button type="button" class="cp-x" data-action="retirerReference" data-chemin="system.pack" data-index="{{i}}" aria-label="Retirer">×</button>
+      </div>
+      {{/each}}
+      <div class="cp-c-depot cp-c-depot-zone" data-depot="pack">+ Glisser un item (implant, arme, objet…) ici</div>
+      <div class="cp-ligne cp-gap8">
+        <button type="button" class="cp-c-bt2" data-action="ajouterLigne" data-chemin="system.pack" data-modele="{{modeleChoix}}">+ Ligne « au choix »</button>
+        <button type="button" class="cp-c-bt2" data-action="ajouterLigne" data-chemin="system.pack" data-modele="{{modeleGratuit}}">+ Ligne « gratuit »</button>
+      </div>
+      <span class="cp-petit cp-tres-doux">« Au choix » : le joueur choisit à la création, dans la catégorie et sous le prix max. « Gratuit » : ex. 1 module (Mécano), 2 hacks ≤ 1 000 €$ (NetRunner).</span>
+    </div>
+    {{else}}
+    <div class="cp-c-puces cp-c-puces-2 cp-c-sans-marge">
+      <div class="cp-c-pins"><div class="cp-c-puce">
+        <span class="cp-lbl cp-doux">Implants</span>
+        {{#each packImplants}}
+        <div class="cp-ligne cp-c-ligne-lecture">
+          {{#if precis}}<button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirReference" data-uuid="{{uuid}}" aria-label="Infos {{nom}}">i</button><span class="cp-pousse">{{#if (gt quantite 1)}}{{quantite}} {{/if}}{{nom}}</span>{{#if aNiveau}}<span class="cp-badge-niv cp-c-niv{{niveau}}">Niv. {{niveau}}</span>{{/if}}
+          {{else}}<span class="cp-num cp-c-qte">{{quantite}}</span><span class="cp-pousse">{{categorieLabel}} {{#if (eq mode "gratuit")}}gratuit{{else}}au choix{{/if}}{{#if texte}} · {{texte}}{{/if}}</span>{{#if prixMaxTexte}}<span class="cp-lbl cp-c-tag-choix">{{prixMaxTexte}}</span>{{/if}}{{/if}}
+        </div>
+        {{else}}<span class="cp-petit cp-tres-doux">—</span>{{/each}}
+      </div></div>
+      <div class="cp-c-pins"><div class="cp-c-puce">
+        <span class="cp-lbl cp-doux">Inventaire</span>
+        {{#each packInventaire}}
+        <div class="cp-ligne cp-c-ligne-lecture">
+          <span class="cp-num cp-c-qte">{{quantite}}</span>
+          {{#if precis}}<span class="cp-pousse">{{nom}}</span>{{#if aNiveau}}<span class="cp-badge-niv cp-c-niv{{niveau}}">Niv. {{niveau}}</span>{{/if}}<button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirReference" data-uuid="{{uuid}}" aria-label="Infos {{nom}}">i</button>
+          {{else}}<span class="cp-pousse">{{categorieLabel}} {{#if (eq mode "gratuit")}}gratuit{{else}}au choix{{/if}}{{#if texte}} · {{texte}}{{/if}}</span>{{#if prixMaxTexte}}<span class="cp-lbl cp-c-tag-choix">{{prixMaxTexte}}</span>{{/if}}{{/if}}
+        </div>
+        {{else}}<span class="cp-petit cp-tres-doux">—</span>{{/each}}
+      </div></div>
+    </div>
+    {{/if}}
+  </div>
+  <div class="cp-c-bus"><span class="cp-pastille-cable"></span><span class="cp-c-trace"></span><span class="cp-pastille-cable"></span></div>
+
+  {{!-- ====== Talents ====== --}}
+  <div class="cp-c-section">
+    <span class="cp-lbl {{#if edition}}cp-jaune{{else}}cp-doux{{/if}}">Talents de sous-classe</span>
+    <div class="cp-c-puces cp-c-puces-2 cp-c-sans-marge">
+      {{#each talents}}
+      <div class="cp-c-pins"><div class="cp-c-puce">
+        <span class="cp-ligne cp-entre">
+          <span class="cp-lbl cp-jaune">Niv. {{niveau}}</span>
+          <span class="cp-ligne cp-gap6">
+            <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirReference" data-uuid="{{uuid}}" aria-label="Infos {{nom}}">i</button>
+            {{#if @root.edition}}<button type="button" class="cp-x" data-action="retirerReference" data-chemin="system.talents" data-index="{{i}}" aria-label="Retirer {{nom}}">×</button>{{/if}}
+          </span>
+        </span>
+        <span class="cp-c-titre-puce">{{nom}}</span>
+        {{#if resume}}<span class="cp-petit cp-doux">{{resume}}</span>{{/if}}
+      </div></div>
+      {{/each}}
+    </div>
+    {{#if edition}}
+    <div class="cp-ligne cp-gap8">
+      <div class="cp-c-depot cp-c-depot-zone" data-depot="talent" data-niveau="1">+ Glisser le talent du niveau 1</div>
+      <div class="cp-c-depot cp-c-depot-zone" data-depot="talent" data-niveau="5">+ Glisser le talent du niveau 5</div>
+    </div>
+    <label class="cp-c-f">Règles et notes<textarea class="cp-c-inp cp-c-inp-texte" name="system.description" rows="3">{{system.description}}</textarea></label>
+    {{else if regles}}<div class="cp-c-p">{{{regles}}}</div>{{/if}}
+  </div>
+
+  {{> "systems/cyberpunk2075/templates/item/partials/bas.hbs" bloc=(concat "Se branche sur la carte mère " system.classeParente) note="Les choix se font à la création"}}
+</div>
