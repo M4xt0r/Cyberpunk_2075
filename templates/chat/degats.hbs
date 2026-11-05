@@ -16,7 +16,7 @@
 
   {{#each cibles}}
   <div class="cp-msg-cible">
-    <span class="cp-pousse">{{nom}}{{#if horsPortee}} <span class="cp-msg-source">· ½ hors portée</span>{{/if}}</span>
+    <span class="cp-pousse">{{nom}}{{#if zone}} <span class="cp-msg-source">· dans la zone</span>{{/if}}{{#if horsPortee}} <span class="cp-msg-source">· ½ hors portée</span>{{/if}}</span>
     <span class="cp-num">{{montant}}</span>
     <span class="cp-msg-mini cp-mj-seul">
       <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-montant="{{montant}}" data-cible="{{token}}" title="Appliquer les dégâts">Appliquer</button>
@@ -25,6 +25,12 @@
     </span>
   </div>
   {{/each}}
+
+  {{#if plusieurs}}
+  <div class="cp-msg-boutons cp-mj-seul">
+    <button type="button" class="cp-msg-bt" data-cp-action="appliquerTous" title="Appliquer les dégâts à toutes les cibles listées">Appliquer à tous</button>
+  </div>
+  {{/if}}
 
   {{#if sansCible}}
   <div class="cp-msg-boutons cp-mj-seul">

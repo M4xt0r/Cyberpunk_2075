@@ -29,6 +29,25 @@ function distance(a, b) {
   }
 }
 
+/**
+ * Arme à zone : tous les tokens dans le rayon autour du point d'impact (la première cible touchée)
+ * subissent les dégâts, pas seulement la cible visée.
+ */
+function ajouterZone(sys, touchees, tokensCibles) {
+  const rayon = sys.attaque?.zone;
+  if ( !rayon || !canvas?.ready || !touchees.length ) return;
+  const premier = tokensCibles.find(t => t.document.uuid === touchees[0].token) ?? fromUuidSync(touchees[0].token, { strict: false })?.object;
+  if ( !premier ) return;
+  const deja = new Set(touchees.map(c => c.token));
+  for ( const t of canvas.tokens.placeables ) {
+    if ( !t.actor || t.document.hidden || deja.has(t.document.uuid) ) continue;
+    const d = distance(premier, t);
+    if ( (d === null) || (d > rayon) ) continue;
+    touchees.push({ token: t.document.uuid, nom: t.name, touche: true, critique: false, horsPortee: false, zone: true });
+    deja.add(t.document.uuid);
+  }
+}
+
 /** Point dans la direction du regard du token, à une distance en mètres. */
 function pointDevant(token, metres = 10) {
   const px = (metres / canvas.dimensions.distance) * canvas.dimensions.size;
@@ -237,6 +256,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   }
   const touchees = cibles.filter(c => c.touche !== false);
   const avecCritique = critique || touchees.some(c => c.critique);
+  ajouterZone(sys, touchees, tokensCibles);
 
   // Le dé peut contenir une compétence (« 1d12 + Corps à corps », « 1d6 + Pilotage »)
   const termes = [traduireFormule(n.de || "0")];
@@ -282,6 +302,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     detail: detail.join(" "),
     cibles: lignes,
     sansCible: !lignes.length,
+    plusieurs: lignes.length > 1,
     zone: sys.attaque.zone ? `Zone : ${sys.attaque.zone} m de rayon` : null,
     reglePompe: lignes.some(l => l.horsPortee) ? "Hors portée (15 m) : moitié des dégâts" : null
   };

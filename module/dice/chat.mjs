@@ -47,6 +47,13 @@ async function surAction(message, bouton) {
     return forcerHack(message, Number(bouton.dataset.index));
   }
 
+  if ( action === "appliquerTous" ) {
+    bouton.disabled = true;
+    const lignes = bouton.closest(".cp-msg")?.querySelectorAll("[data-cp-action='appliquer'][data-cible]:not([data-facteur])") ?? [];
+    for ( const b of lignes ) await appliquer("degats", Number(b.dataset.montant), [b.dataset.cible], { attaquant: d.acteur, arme: d.item });
+    return;
+  }
+
   if ( action === "appliquer" ) {
     const nature = bouton.dataset.nature ?? "degats";
     const facteur = Number(bouton.dataset.facteur ?? 1);
@@ -62,6 +69,7 @@ export async function surCreationMessage(message) {
   const d = drapeaux(message);
   const liste = [d.animation, ...(d.animations ?? [])].filter(a => a);
   if ( !liste.length || !canvas?.ready ) return;
+  await attendreDes(message);
   for ( const anim of liste ) {
     if ( canvas.scene?.id !== anim.scene ) continue;
     try {
@@ -70,4 +78,18 @@ export async function surCreationMessage(message) {
       console.warn("Cyberpunk 2075 | Animation impossible :", err);
     }
   }
+}
+
+/**
+ * Dice So Nice : l'animation attend la fin du lancer de dés 3D du message
+ * (au plus 8 secondes, au cas où le lancer ne serait pas montré à ce client).
+ */
+function attendreDes(message) {
+  if ( !game.modules.get("dice-so-nice")?.active || !message.rolls?.length ) return Promise.resolve();
+  return new Promise(resolve => {
+    let id = null;
+    const fin = () => { Hooks.off("diceSoNiceRollComplete", id); clearTimeout(minuteur); resolve(); };
+    id = Hooks.on("diceSoNiceRollComplete", messageId => { if ( messageId === message.id ) fin(); });
+    const minuteur = setTimeout(fin, 8000);
+  });
 }
