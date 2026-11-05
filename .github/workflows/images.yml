@@ -6,6 +6,9 @@ name: Importer des images Notion
 on:
   workflow_dispatch:
     inputs:
+      lot:
+        description: "Numéro du lot (secret IMAGES_LOTn)"
+        default: "1"
       largeur:
         description: "Largeur maximale en pixels"
         default: "512"
@@ -24,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Télécharger et convertir
         env:
-          IMAGES: ${{ secrets.IMAGES_LOT }}
+          IMAGES: ${{ secrets[format('IMAGES_LOT{0}', inputs.lot)] }}
           LARGEUR: ${{ inputs.largeur }}
         run: |
           pip install --quiet pillow
