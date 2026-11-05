@@ -11,7 +11,8 @@ const GRIS = 0x6E6C78;
 const NOIR = 0x0B0A0E;
 const ORANGE = 0xFF9A3C;
 const ROUGE = 0xFF4D5E;
-const ICONE_CRANE = `${CHEMIN}/assets/icones/humanite.png`;
+// Icône blanche : la teinte PIXI multiplie les couleurs (une icône noire resterait noire)
+const ICONE_CRANE = `${CHEMIN}/assets/icones/humanite-blanc.png`;
 
 let textureCrane = null;
 
@@ -104,11 +105,12 @@ function dessinerCrane(token, conteneur, acteur) {
   g.position.set(cx, cy);
   if ( psy ) {
     g.beginFill(couleur, 1).drawCircle(0, 0, r).endFill();
-    // Petits traits « glitch » autour du crâne
+    // Réticule de cible : 4 traits alignés sur les axes, centrés sur le rond
+    const l = Math.max(5, Math.round(r * 0.3));
     g.lineStyle(2, couleur, 1);
-    g.moveTo(-r - 6, r * 0.1).lineTo(-r - 1, r * 0.1);
-    g.moveTo(r + 1, -r * 0.3).lineTo(r + 6, -r * 0.3);
-    g.moveTo(0, -r - 6).lineTo(0, -r - 1);
+    for ( const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]] ) {
+      g.moveTo(dx * (r + 2), dy * (r + 2)).lineTo(dx * (r + 2 + l), dy * (r + 2 + l));
+    }
   } else {
     g.beginFill(NOIR, 1).drawCircle(0, 0, r).endFill();
     if ( etat === "surLeFil" ) {

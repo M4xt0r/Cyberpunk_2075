@@ -88,11 +88,13 @@ export const MixinAttaque = Base => class extends Base {
     const typeDegats = this.n?.typeDegats;
     const chemin = (val, defaut) => val || (defaut ? `${ANIM}/${defaut}` : "");
     const impactDefaut = def.impact ?? (this.typeArme === "corpsACorps" ? null : IMPACT_PAR_DEGATS[typeDegats]);
+    // Arme à tir explosif avec zone (Lance-projectile, missiles) : roquette puis explosion
+    const explosive = (def.style === "projectile") && (this.attaque.zone > 0) && (typeDegats === "explosion");
     return {
-      style: a.style || def.style,
-      projectile: chemin(a.projectile, def.projectile),
-      impact: chemin(a.impact, impactDefaut),
-      zone: chemin(a.zone, def.zone),
+      style: a.style || (explosive ? "projectileZone" : def.style),
+      projectile: chemin(a.projectile, explosive ? "projectiles/roquette.png" : def.projectile),
+      impact: chemin(a.impact, explosive ? null : impactDefaut),
+      zone: chemin(a.zone, explosive ? "zones/explosion.webm" : def.zone),
       son: a.son
     };
   }
