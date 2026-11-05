@@ -6,7 +6,7 @@ name: Importer des images Notion
 on:
   push:
     branches:
-      - images-import
+      - 'images-import-*'
 
 permissions:
   contents: write
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: images-import
+          ref: ${{ github.ref_name }}
           path: lot
       - uses: actions/checkout@v4
         with:
@@ -62,4 +62,4 @@ jobs:
             git commit -m "Images Notion importées"
             for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
           fi
-          git push origin --delete images-import || true
+          git push origin --delete "${{ github.ref_name }}" || true
