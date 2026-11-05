@@ -21,6 +21,8 @@ import { TalentData, ClasseData, SousClasseData } from "./data/progression.mjs";
 import { signe } from "./dice/jets.mjs";
 import { surRenduMessage, surCreationMessage } from "./dice/chat.mjs";
 import { jouerAnimation } from "./animations.mjs";
+import BarreActions from "./hud/barre.mjs";
+import { chargerIndicateurs, dessinerIndicateurs, redessinerActeur } from "./hud/indicateurs.mjs";
 
 const { ID_SYSTEME, CHEMIN } = CONFIG_CP;
 
@@ -132,7 +134,8 @@ Hooks.once("init", () => {
     `${CHEMIN}/templates/dialogs/attaque.hbs`,
     `${CHEMIN}/templates/item/partials/haut.hbs`,
     `${CHEMIN}/templates/item/partials/plaques.hbs`,
-    `${CHEMIN}/templates/item/partials/bas.hbs`
+    `${CHEMIN}/templates/item/partials/bas.hbs`,
+    `${CHEMIN}/templates/hud/barre.hbs`
   ]);
 });
 
@@ -214,3 +217,31 @@ for ( const crochet of ["createItem", "updateItem", "deleteItem"] ) {
 Hooks.once("ready", () => {
   for ( const p of game.actors.filter(a => (a.type === "personnage") && a.system.surPlace) ) p.reset();
 });
+
+/* -------------------------------------------- */
+/*  Scène : barre d'actions et indicateurs      */
+/* -------------------------------------------- */
+
+let barre = null;
+const rafraichirBarre = acteur => { if ( barre?.concerne(acteur) ) barre.rafraichir(); };
+
+Hooks.once("ready", async () => {
+  barre = new BarreActions();
+  globalThis.cyberpunk2075.barre = barre;
+  barre.render({ force: true });
+  await chargerIndicateurs();
+  if ( canvas?.ready ) canvas.tokens.placeables.forEach(dessinerIndicateurs);
+});
+
+// Indicateurs (couvert, crâne d'Humanité) sur les tokens
+Hooks.on("drawToken", token => dessinerIndicateurs(token));
+Hooks.on("updateToken", doc => { if ( doc.object ) dessinerIndicateurs(doc.object); });
+Hooks.on("updateActor", acteur => { redessinerActeur(acteur); rafraichirBarre(acteur); });
+
+// Barre d'actions : suit les changements de l'acteur affiché et de la scène
+for ( const crochet of ["createItem", "updateItem", "deleteItem"] ) {
+  Hooks.on(crochet, item => { if ( item.parent instanceof Actor ) rafraichirBarre(item.parent); });
+}
+for ( const crochet of ["canvasReady", "createToken", "deleteToken", "updateToken"] ) Hooks.on(crochet, () => barre?.rafraichir());
+Hooks.on("updateUser", (user, changements) => { if ( (user.id === game.user.id) && ("character" in changements) ) barre?.rafraichir(); });
+Hooks.on("controlToken", (token, controle) => barre?.suivreToken(token, controle));

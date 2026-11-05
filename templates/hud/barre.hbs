@@ -1,0 +1,70 @@
+<div class="cp-b-cadre">
+  <div class="cp-b-tete">
+    {{#if mj}}
+    <label class="cp-b-choix">
+      <span class="cp-lbl cp-doux">Token</span>
+      <select data-choix-token aria-label="Choisir le token">
+        {{#if aucunToken}}<option value="">Aucun token sur la scène</option>{{/if}}
+        {{#each choixTokens}}<option value="{{id}}" {{#if actif}}selected{{/if}}>{{#if ennemi}}☠ {{/if}}{{nom}}</option>{{/each}}
+      </select>
+    </label>
+    {{/if}}
+
+    {{#if acteur}}
+    <button type="button" class="cp-b-portrait" data-action="ouvrirFiche" title="Ouvrir la fiche" aria-label="Ouvrir la fiche de {{acteur.nom}}">
+      <img src="{{acteur.img}}" alt="">
+    </button>
+    <span class="cp-b-nom">{{acteur.nom}}</span>
+    {{#each jauges}}<span class="cp-num cp-b-jauge {{classe}}">{{label}} {{valeur}}</span>{{/each}}
+
+    <div class="cp-b-jets">
+      <button type="button" class="cp-b-bouton-jets {{#if ouvert}}cp-ouvert{{/if}}" data-action="basculerJets" aria-expanded="{{#if ouvert}}true{{else}}false{{/if}}">
+        Compétences <span aria-hidden="true">{{#if ouvert}}▾{{else}}▴{{/if}}</span>
+      </button>
+      {{#if ouvert}}
+      <div class="cp-b-menu" role="menu">
+        <span class="cp-lbl cp-jaune">{{#if acteur.perso}}Compétences maîtrisées{{else}}Compétences clés{{/if}}</span>
+        {{#each competences}}
+        <button type="button" class="cp-b-ligne-jet" role="menuitem" data-action="jet" data-competence="{{cle}}"><span>{{label}}</span><span class="cp-num">{{valeur}}</span></button>
+        {{else}}
+        <span class="cp-b-vide">Aucune</span>
+        {{/each}}
+        <span class="cp-lbl cp-jaune">Caractéristiques</span>
+        {{#each caracs}}
+        <button type="button" class="cp-b-ligne-jet" role="menuitem" data-action="jet" data-carac="{{cle}}"><span><span class="cp-ic cp-ic-{{icone}}" aria-hidden="true"></span>{{label}}</span><span class="cp-num">{{valeur}}</span></button>
+        {{/each}}
+        <span class="cp-b-astuce">Maj + clic : jet sans fenêtre</span>
+      </div>
+      {{/if}}
+    </div>
+    {{else}}
+    {{#unless mj}}<span class="cp-b-vide">Aucun personnage assigné : demande au MJ de t'en attribuer un.</span>{{/unless}}
+    {{/if}}
+  </div>
+
+  {{#if acteur}}
+  <div class="cp-b-colonnes">
+    {{#each colonnes}}
+    <div class="cp-b-col">
+      <span class="cp-lbl {{#if bleu}}cp-b-bleu{{else}}cp-jaune{{/if}} cp-b-titre">{{titre}}</span>
+      <div class="cp-b-liste">
+        {{#each lignes}}
+        <div class="cp-b-tuile {{#if bloque}}cp-b-bloque{{/if}}" data-item-id="{{id}}">
+          <button type="button" class="cp-b-i" data-action="infos" aria-label="Infos {{nom}}">i</button>
+          <div class="cp-b-texte">
+            <span class="cp-b-item">{{nom}}</span>
+            <span class="cp-num cp-b-infos {{#if rouge}}cp-b-rouge{{/if}} {{#if ../bleu}}cp-b-bleu{{/if}}">{{infos}}</span>
+          </div>
+          {{#if ../../acteur.peutAgir}}
+          <button type="button" class="cp-b-agir {{#if ../bleu}}cp-b-agir-bleu{{/if}}" data-action="action" {{#if bloque}}disabled{{/if}}>{{#if bloque}}{{raison}}{{else}}{{label}}{{/if}}</button>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{else}}
+    <span class="cp-b-vide">Aucune arme, aucun implant actif, aucun hack ni talent actif.</span>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
