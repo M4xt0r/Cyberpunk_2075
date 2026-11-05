@@ -1,17 +1,12 @@
 name: Importer des images Notion
 
-# Lancé à la main (gh workflow run) : télécharge un lot d'images depuis des liens
-# signés temporaires, gardés dans le secret IMAGES_LOT (JSON { "chemin": "lien" }),
-# les convertit en WebP et les ajoute au dépôt.
+# Envoi sur la branche images-import d'un fichier outils/images-lot.json
+# ({ "chemin": "lien signé temporaire" }) : télécharge, convertit en WebP,
+# ajoute les images sur main, puis supprime la branche.
 on:
-  workflow_dispatch:
-    inputs:
-      lot:
-        description: "Numéro du lot (secret IMAGES_LOTn)"
-        default: "1"
-      largeur:
-        description: "Largeur maximale en pixels"
-        default: "512"
+  push:
+    branches:
+      - images-import
 
 permissions:
   contents: write
@@ -25,24 +20,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: images-import
+          path: lot
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: depot
       - name: Télécharger et convertir
-        env:
-          IMAGES: ${{ secrets[format('IMAGES_LOT{0}', inputs.lot)] }}
-          LARGEUR: ${{ inputs.largeur }}
         run: |
           pip install --quiet pillow
-          echo "$IMAGES" > /tmp/lot.json
+          cd depot
           python3 - <<'PY'
           import json, os, urllib.request, io
           from PIL import Image
-          lot = json.load(open("/tmp/lot.json"))
-          largeur = int(os.environ.get("LARGEUR") or 512)
+          lot = json.load(open("../lot/outils/images-lot.json"))
           ok = 0
-          for chemin, lien in lot.items():
+          for chemin, info in lot.items():
+              lien, largeur = (info, 512) if isinstance(info, str) else (info["url"], info.get("largeur", 512))
               try:
                   donnees = urllib.request.urlopen(lien, timeout=60).read()
-                  img = Image.open(io.BytesIO(donnees))
-                  img.seek(0)
+                  img = Image.open(io.BytesIO(donnees)); img.seek(0)
                   img = img.convert("RGBA")
                   if img.width > largeur:
                       img = img.resize((largeur, round(img.height * largeur / img.width)), Image.LANCZOS)
@@ -51,14 +49,17 @@ jobs:
                   ok += 1
                   print("ok", chemin)
               except Exception as e:
-                  print("ECHEC", chemin, type(e).__name__)
+                  print("ECHEC", chemin, type(e).__name__, e)
           print(f"{ok}/{len(lot)} images")
           PY
-      - name: Enregistrer
+      - name: Enregistrer sur main et supprimer la branche
         run: |
+          cd depot
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets
-          if git diff --cached --quiet; then echo "Rien de nouveau"; exit 0; fi
-          git commit -m "Images Notion importées"
-          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
+          if ! git diff --cached --quiet; then
+            git commit -m "Images Notion importées"
+            for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
+          fi
+          git push origin --delete images-import || true
