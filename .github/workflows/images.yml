@@ -1,0 +1,61 @@
+name: Importer des images Notion
+
+# Lancé à la main (gh workflow run) : télécharge un lot d'images depuis des liens
+# signés temporaires, gardés dans le secret IMAGES_LOT (JSON { "chemin": "lien" }),
+# les convertit en WebP et les ajoute au dépôt.
+on:
+  workflow_dispatch:
+    inputs:
+      largeur:
+        description: "Largeur maximale en pixels"
+        default: "512"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: images
+  cancel-in-progress: false
+
+jobs:
+  importer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Télécharger et convertir
+        env:
+          IMAGES: ${{ secrets.IMAGES_LOT }}
+          LARGEUR: ${{ inputs.largeur }}
+        run: |
+          pip install --quiet pillow
+          echo "$IMAGES" > /tmp/lot.json
+          python3 - <<'PY'
+          import json, os, urllib.request, io
+          from PIL import Image
+          lot = json.load(open("/tmp/lot.json"))
+          largeur = int(os.environ.get("LARGEUR") or 512)
+          ok = 0
+          for chemin, lien in lot.items():
+              try:
+                  donnees = urllib.request.urlopen(lien, timeout=60).read()
+                  img = Image.open(io.BytesIO(donnees))
+                  img.seek(0)
+                  img = img.convert("RGBA")
+                  if img.width > largeur:
+                      img = img.resize((largeur, round(img.height * largeur / img.width)), Image.LANCZOS)
+                  os.makedirs(os.path.dirname(chemin), exist_ok=True)
+                  img.save(chemin, "WEBP", quality=85)
+                  ok += 1
+                  print("ok", chemin)
+              except Exception as e:
+                  print("ECHEC", chemin, type(e).__name__)
+          print(f"{ok}/{len(lot)} images")
+          PY
+      - name: Enregistrer
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          if git diff --cached --quiet; then echo "Rien de nouveau"; exit 0; fi
+          git commit -m "Images Notion importées"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
