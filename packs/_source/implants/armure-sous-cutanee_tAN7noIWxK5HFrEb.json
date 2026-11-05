@@ -1,0 +1,138 @@
+{
+  "_id": "tAN7noIWxK5HFrEb",
+  "_key": "!items!tAN7noIWxK5HFrEb",
+  "name": "Armure sous-cutanée",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/armure-sous-cutanee.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Plusieurs décennies de succès sur le marché des armures.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "cutane",
+    "coutMin": 10,
+    "coutMax": 10,
+    "coutInstallation": 10,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 8000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Réduit de 2 les dégâts par balle reçus.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 10000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Réduit de 4 les dégâts par balle reçus.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 12000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Réduit de 6 les dégâts par balle reçus.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "ygVYPzYI9pf8FhUi",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

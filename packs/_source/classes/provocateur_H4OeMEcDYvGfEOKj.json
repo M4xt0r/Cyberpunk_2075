@@ -1,0 +1,47 @@
+{
+  "_id": "H4OeMEcDYvGfEOKj",
+  "_key": "!items!H4OeMEcDYvGfEOKj",
+  "name": "Provocateur",
+  "type": "talent",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Par une réaction, jusqu'à 3 cibles sont forcées de vous attaquer jusqu'au début de leur prochain tour. Utilisable un nombre de fois égal à votre BM.</p>",
+    "ambiance": "",
+    "source": "classe",
+    "niveauObtention": 3,
+    "special": "",
+    "effet": {
+      "type": "actif",
+      "description": "Par une réaction, jusqu'à 3 cibles sont forcées de vous attaquer jusqu'au début de leur prochain tour. Utilisable un nombre de fois égal à votre BM.",
+      "modificateurs": [],
+      "activation": "reaction",
+      "coutHumanite": 0,
+      "humaniteKill": 0,
+      "utilisations": {
+        "periode": "bm",
+        "max": 0
+      },
+      "duree": 0,
+      "ciblesMax": 3,
+      "jet": {
+        "formule": "",
+        "type": "soin",
+        "typeDegats": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    }
+  },
+  "effects": [],
+  "folder": "O2M1F9N1ZRCgyuM2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

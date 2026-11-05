@@ -1,0 +1,226 @@
+{
+  "_id": "STMuK0hDXTt6xByR",
+  "_key": "!items!STMuK0hDXTt6xByR",
+  "name": "Optique Kiroshi",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/optique-kiroshi.webp",
+  "system": {
+    "description": "<p>Améliorations (max 2) : 500 €$ et +3💀 par amélioration.</p>",
+    "ambiance": "Le matériel cybernétique optique de Kiroshi est un ensemble très populaire composé d'améliorations électroneurales aux fonctions d'analyse de l'environnement.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "oculaire",
+    "coutMin": 5,
+    "coutMax": 15,
+    "coutInstallation": 5,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [
+      {
+        "nom": "Vision de l'aigle",
+        "prix": 500,
+        "cout": 3,
+        "effet": "Possibilité de zoomer avec sa vue, +1 Perception.",
+        "cible": "comp.perception",
+        "valeur": 1
+      },
+      {
+        "nom": "Trajectoire balistique",
+        "prix": 500,
+        "cout": 3,
+        "effet": "Voit la trajectoire de visée de son arme et peut faire des ricochets ; ignore les bonus de couvert avec les armes de poing.",
+        "cible": "",
+        "valeur": 0
+      },
+      {
+        "nom": "Vision thermique",
+        "prix": 500,
+        "cout": 3,
+        "effet": "Possibilité de voir les fluctuations thermiques.",
+        "cible": "",
+        "valeur": 0
+      },
+      {
+        "nom": "Rayon d'explosion",
+        "prix": 500,
+        "cout": 3,
+        "effet": "Voit la trajectoire et le rayon d'explosion de l'explosif utilisé, +1 en Explosif.",
+        "cible": "comp.explosif",
+        "valeur": 1
+      },
+      {
+        "nom": "Anti-éblouissement",
+        "prix": 500,
+        "cout": 3,
+        "effet": "Immunité contre les flashs et l'aveuglement laser.",
+        "cible": "",
+        "valeur": 0
+      },
+      {
+        "nom": "Amplificateur de lumière",
+        "prix": 500,
+        "cout": 3,
+        "effet": "Vision en lumière faible, obscurité presque totale.",
+        "cible": "",
+        "valeur": 0
+      },
+      {
+        "nom": "Pénétration de couvert",
+        "prix": 500,
+        "cout": 3,
+        "effet": "Réduit de moitié le couvert d'une cible.",
+        "cible": "",
+        "valeur": 0
+      },
+      {
+        "nom": "Analyseur de glace",
+        "prix": 500,
+        "cout": 3,
+        "effet": "Révèle la Glace d'une cible.",
+        "cible": "",
+        "valeur": 0
+      },
+      {
+        "nom": "Diagnostic médical",
+        "prix": 500,
+        "cout": 3,
+        "effet": "+1 aux jets de Médecine, révèle la sévérité exacte des blessures d'une cible organique et son DD de stabilisation.",
+        "cible": "comp.medecine",
+        "valeur": 1
+      }
+    ],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 2000,
+        "slotsAmelioration": 1,
+        "effet": {
+          "type": "passif",
+          "description": "Scan objet (+1 Investigation)",
+          "modificateurs": [
+            {
+              "cible": "comp.investigation",
+              "valeur": 1
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 4000,
+        "slotsAmelioration": 1,
+        "effet": {
+          "type": "passif",
+          "description": "Scan objet (+2 Investigation)",
+          "modificateurs": [
+            {
+              "cible": "comp.investigation",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 6000,
+        "slotsAmelioration": 2,
+        "effet": {
+          "type": "passif",
+          "description": "Scan objet (+2 Investigation)",
+          "modificateurs": [
+            {
+              "cible": "comp.investigation",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "RxVnJrmm33kiS0HC",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

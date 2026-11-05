@@ -1,0 +1,112 @@
+{
+  "_id": "ZtqkQeyF78z4ZVyX",
+  "_key": "!items!ZtqkQeyF78z4ZVyX",
+  "name": "Immunosuppresseur",
+  "type": "objet",
+  "img": "systems/cyberpunk2075/assets/notion/objets/immunosuppresseur.webp",
+  "system": {
+    "description": "<p>Retire 15💀 à votre compteur d'Humanité.</p>",
+    "ambiance": "Prenez une profonde respiration… Maintenant, reprenez le massacre.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "categorie": "consommable",
+    "quantite": 1,
+    "sePorte": false,
+    "porte": false,
+    "uneChargeParUtilisation": true,
+    "chargesRestantes": 0,
+    "qualite": "aucune",
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "animation": {
+      "style": "",
+      "projectile": "",
+      "impact": "",
+      "zone": "",
+      "son": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 300,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Retire 15💀 à votre compteur d'Humanité.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": -15,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 300,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Retire 15💀 à votre compteur d'Humanité.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": -15,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 300,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Retire 15💀 à votre compteur d'Humanité.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": -15,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "22lAWH6PSHhZfSxJ",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -1,0 +1,60 @@
+{
+  "_id": "76qmPtWVNIBUueH9",
+  "_key": "!items!76qmPtWVNIBUueH9",
+  "name": "C4",
+  "type": "arme",
+  "img": "icons/svg/explosion.svg",
+  "system": {
+    "description": "<p>Se colle sur une surface et explose au bout du temps choisi : 1d12+CapTech de dégâts.</p>",
+    "ambiance": "Simple, efficace, on n'en demande pas plus.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "explosif",
+    "carac": "captec",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "aucune",
+      "bonusTouche": 0,
+      "zone": 5,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "grenade",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 1000,
+        "de": "1d12",
+        "bonusFixe": 0,
+        "typeDegats": "explosion"
+      },
+      "n2": {
+        "prix": 1000,
+        "de": "1d12",
+        "bonusFixe": 0,
+        "typeDegats": "explosion"
+      },
+      "n3": {
+        "prix": 1000,
+        "de": "1d12",
+        "bonusFixe": 0,
+        "typeDegats": "explosion"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "2cadYKQvQOPXrvhI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -1,0 +1,153 @@
+{
+  "_id": "niV99RUZQENXiTAd",
+  "_key": "!items!niV99RUZQENXiTAd",
+  "name": "Processeur tactique",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/processeur-tactique.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Analyse les mouvements ennemis et anticipe leurs actions pour vous permettre de frapper avant eux.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "nerveux",
+    "coutMin": 5,
+    "coutMax": 5,
+    "coutInstallation": 5,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 1000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Ajoute +2 au jet d'ordre de jeu au début d'un combat.",
+          "modificateurs": [
+            {
+              "cible": "initiative",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 2000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Ajoute +4 au jet d'ordre de jeu au début d'un combat.",
+          "modificateurs": [
+            {
+              "cible": "initiative",
+              "valeur": 4
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 3000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Ajoute +6 au jet d'ordre de jeu au début d'un combat.",
+          "modificateurs": [
+            {
+              "cible": "initiative",
+              "valeur": 6
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "O4hhAjb6s5DYQBgs",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

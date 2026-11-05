@@ -1,0 +1,60 @@
+{
+  "_id": "phym0RYd3Hn5TRW2",
+  "_key": "!items!phym0RYd3Hn5TRW2",
+  "name": "X-22 Flashbang Grenade",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/x-22-flashbang.webp",
+  "system": {
+    "description": "<p>Aveugle durant un tour les personnes dans le rayon d'action (5 mètres).</p>",
+    "ambiance": "Une grenade qui aveugle temporairement les ennemis.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "explosif",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": false,
+      "defense": "aucune",
+      "bonusTouche": 0,
+      "zone": 5,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "grenade",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 500,
+        "de": "0",
+        "bonusFixe": 0,
+        "typeDegats": "explosion"
+      },
+      "n2": {
+        "prix": 500,
+        "de": "0",
+        "bonusFixe": 0,
+        "typeDegats": "explosion"
+      },
+      "n3": {
+        "prix": 500,
+        "de": "0",
+        "bonusFixe": 0,
+        "typeDegats": "explosion"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "2cadYKQvQOPXrvhI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

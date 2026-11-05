@@ -1,0 +1,597 @@
+{
+  "_id": "jK9bl18v4iZspHo0",
+  "_key": "!actors!jK9bl18v4iZspHo0",
+  "name": "Valentinos · Membre",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/notion/ennemis/valentinos.webp",
+  "system": {
+    "faction": "Valentinos",
+    "rang": "Membre",
+    "rangNiveau": 1,
+    "nature": "organique",
+    "yeuxCyber": "auto",
+    "volant": false,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 0
+      },
+      "ref": {
+        "bonus": 2
+      },
+      "captec": {
+        "bonus": -1
+      },
+      "int": {
+        "bonus": -1
+      },
+      "safr": {
+        "bonus": 1
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "armeDePoing",
+        "valeur": 4
+      }
+    ],
+    "vie": {
+      "value": 16,
+      "max": 16,
+      "forcer": null
+    },
+    "ram": {
+      "value": 8,
+      "max": 8,
+      "forcer": null
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": null
+    },
+    "glace": {
+      "forcer": null
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 0,
+    "bm": 2,
+    "couvert": 0,
+    "notes": ""
+  },
+  "items": [
+    {
+      "_id": "RWFz6fJ3HfaE74Kk",
+      "_key": "!actors.items!jK9bl18v4iZspHo0.RWFz6fJ3HfaE74Kk",
+      "name": "Liberty",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/liberty.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Ça sent la poudre à canon. Et la liberté.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "ref",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pistolet",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 900,
+            "de": "1d10",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 1350,
+            "de": "1d10",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1800,
+            "de": "1d10",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "2Zd5uzmiLydkIwzo",
+      "_key": "!actors.items!jK9bl18v4iZspHo0.2Zd5uzmiLydkIwzo",
+      "name": "Accélérateur synaptique",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/accelerateur-synaptique.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Neuroprocesseur régulant l'équilibre hormonal durant les situations risquées et boostant les réflexes.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 10,
+        "coutMax": 10,
+        "coutInstallation": 10,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 4000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +1 aux compétences de Réflexes, +1 en Perception et +2 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 1
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 2
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 5000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +2 aux compétences de Réflexes, +2 en Perception et +2 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 2
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 2
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 6000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +2 aux compétences de Réflexes, +2 en Perception et +3 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 2
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 3
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "bvAmrXnHPTZrwW6S",
+      "_key": "!actors.items!jK9bl18v4iZspHo0.bvAmrXnHPTZrwW6S",
+      "name": "Nue",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/nue.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Conçu pour s'adapter à n'importe quelle main.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "safr",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pistolet",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 500,
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 750,
+            "de": "1d6",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1000,
+            "de": "1d6",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "EtKwV0X9Y4DhpOB5",
+      "_key": "!actors.items!jK9bl18v4iZspHo0.EtKwV0X9Y4DhpOB5",
+      "name": "Index revolver",
+      "type": "implant",
+      "img": "icons/svg/circuit.svg",
+      "system": {
+        "description": "",
+        "ambiance": "Un mécanisme de tir intégré à l'index, conçu pour surprendre une cible sans dégainer d'arme.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "bras",
+        "coutMin": 2,
+        "coutMax": 2,
+        "coutInstallation": 2,
+        "armeIntegree": true,
+        "capsuleAutorisee": true,
+        "typeArmeIntegree": "pistolet",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 1500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "1d6 de dégâts.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 2000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "1d6+1 de dégâts.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 2000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "1d6+1 de dégâts.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    }
+  ],
+  "effects": [],
+  "folder": "mc2R29fdbyuDJ5hb",
+  "sort": 1,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Valentinos · Membre",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/ennemis/valentinos.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

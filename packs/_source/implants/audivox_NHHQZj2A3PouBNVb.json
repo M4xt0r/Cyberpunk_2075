@@ -1,0 +1,138 @@
+{
+  "_id": "NHHQZj2A3PouBNVb",
+  "_key": "!items!NHHQZj2A3PouBNVb",
+  "name": "Audivox",
+  "type": "implant",
+  "img": "icons/svg/circuit.svg",
+  "system": {
+    "description": "",
+    "ambiance": "Qui t'a mis de l'autotune partout ? Pourquoi ne pas le mettre directement dans sa bouche ?",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "facial",
+    "coutMin": 2,
+    "coutMax": 2,
+    "coutInstallation": 2,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Modulateur de voix (son, intonation, effet), +2 en Spectacle lorsqu'il est utilisé.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Modulateur de voix (son, intonation, effet), +2 en Spectacle lorsqu'il est utilisé.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Modulateur de voix (son, intonation, effet), +2 en Spectacle lorsqu'il est utilisé.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "FWDG7iMCf7LtKQq2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -1,0 +1,42 @@
+{
+  "_id": "VF6IwR3Buv6BwumG",
+  "_key": "!actors!VF6IwR3Buv6BwumG",
+  "name": "Hangar",
+  "type": "planque",
+  "img": "systems/cyberpunk2075/assets/notion/bannieres/planques.webp",
+  "system": {
+    "type": "hangar",
+    "niveau": 1,
+    "qualite": "miteux",
+    "modulesForces": null,
+    "parkingForce": null,
+    "barman": false,
+    "adresse": "",
+    "description": "<p><em>Que celui qui me dit qu'il manque de place mange mon cracheur.</em></p>"
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 3,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Hangar",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/bannieres/planques.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": null
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

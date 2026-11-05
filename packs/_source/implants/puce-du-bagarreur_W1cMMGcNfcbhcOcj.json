@@ -1,0 +1,153 @@
+{
+  "_id": "W1cMMGcNfcbhcOcj",
+  "_key": "!items!W1cMMGcNfcbhcOcj",
+  "name": "Puce du bagarreur",
+  "type": "implant",
+  "img": "icons/svg/circuit.svg",
+  "system": {
+    "description": "",
+    "ambiance": "",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "portNeural",
+    "coutMin": 0,
+    "coutMax": 0,
+    "coutInstallation": 0,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 100,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+1 en Corps à corps.",
+          "modificateurs": [
+            {
+              "cible": "comp.corpsACorps",
+              "valeur": 1
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 250,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+2 en Corps à corps.",
+          "modificateurs": [
+            {
+              "cible": "comp.corpsACorps",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 250,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+2 en Corps à corps.",
+          "modificateurs": [
+            {
+              "cible": "comp.corpsACorps",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "RHVl94GDR90JE9B2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

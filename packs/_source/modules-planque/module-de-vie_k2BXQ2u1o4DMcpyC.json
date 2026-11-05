@@ -1,0 +1,105 @@
+{
+  "_id": "k2BXQ2u1o4DMcpyC",
+  "_key": "!items!k2BXQ2u1o4DMcpyC",
+  "name": "Module de Vie",
+  "type": "modulePlanque",
+  "img": "icons/svg/house.svg",
+  "system": {
+    "description": "<p>Présent d'office dans les Appartements, où il ne peut pas être retiré et ne prend pas d'emplacement de module.</p>",
+    "ambiance": "Il faut bien se reposer des fois.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "types": [],
+    "vieOffice": true,
+    "niveaux": {
+      "n1": {
+        "prix": 200,
+        "effet": {
+          "type": "passif",
+          "description": "Peut loger 2 personnes.",
+          "modificateurs": [
+            {
+              "cible": "hebergement",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 300,
+        "effet": {
+          "type": "passif",
+          "description": "Peut loger 4 personnes.",
+          "modificateurs": [
+            {
+              "cible": "hebergement",
+              "valeur": 4
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 400,
+        "effet": {
+          "type": "passif",
+          "description": "Peut loger 6 personnes.",
+          "modificateurs": [
+            {
+              "cible": "hebergement",
+              "valeur": 6
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

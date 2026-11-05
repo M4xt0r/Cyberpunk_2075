@@ -1,0 +1,51 @@
+{
+  "_id": "AgkEofgsJ2z4efpt",
+  "_key": "!actors!AgkEofgsJ2z4efpt",
+  "name": "Thorton Galena G240",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/thorton-galena.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "E",
+    "maniabilite": 0,
+    "vie": {
+      "value": 20,
+      "base": 20
+    },
+    "slots": 1,
+    "places": 4,
+    "placesNote": "",
+    "prix": 8000,
+    "ambiance": "Bon marché et fiable, ce favori culte a été immortalisé dans le tube punk-rock de 2034, « Poundin' Gina in my Galena ».",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 10,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Thorton Galena G240",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/thorton-galena.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

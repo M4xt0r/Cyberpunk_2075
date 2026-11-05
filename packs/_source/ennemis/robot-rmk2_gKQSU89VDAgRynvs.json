@@ -1,0 +1,230 @@
+{
+  "_id": "gKQSU89VDAgRynvs",
+  "_key": "!actors!gKQSU89VDAgRynvs",
+  "name": "Robot RMK2",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/notion/ennemis/robot-rmk2.webp",
+  "system": {
+    "faction": "Robot RMK2",
+    "rang": "Robot RMK2",
+    "rangNiveau": 2,
+    "nature": "robot",
+    "yeuxCyber": "auto",
+    "volant": false,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 3
+      },
+      "ref": {
+        "bonus": 3
+      },
+      "captec": {
+        "bonus": 0
+      },
+      "int": {
+        "bonus": -2
+      },
+      "safr": {
+        "bonus": -2
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "armeDePoing",
+        "valeur": 4
+      },
+      {
+        "competence": "armeLourde",
+        "valeur": 4
+      },
+      {
+        "competence": "sniper",
+        "valeur": 4
+      },
+      {
+        "competence": "corpsACorps",
+        "valeur": 4
+      }
+    ],
+    "vie": {
+      "value": 30,
+      "max": 30,
+      "forcer": 30
+    },
+    "ram": {
+      "value": 8,
+      "max": 8,
+      "forcer": null
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": 12
+    },
+    "glace": {
+      "forcer": 12
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 4,
+    "bm": 2,
+    "couvert": 0,
+    "notes": "<p>Peau de métal : −4 aux dégâts reçus.</p>"
+  },
+  "items": [
+    {
+      "_id": "DCbu0Dul1ANPQbKv",
+      "_key": "!actors.items!gKQSU89VDAgRynvs.DCbu0Dul1ANPQbKv",
+      "name": "Mitrailleuse intégrée",
+      "type": "arme",
+      "img": "icons/svg/target.svg",
+      "system": {
+        "description": "",
+        "ambiance": "",
+        "sansNiveaux": true,
+        "niveau": 1,
+        "competence": "armeLourde",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "mitraillette",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 0,
+            "de": "1d8",
+            "bonusFixe": 3,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 0,
+            "de": "1d8",
+            "bonusFixe": 3,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 0,
+            "de": "1d8",
+            "bonusFixe": 3,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    },
+    {
+      "_id": "xDh8LGTbs2RI0zJE",
+      "_key": "!actors.items!gKQSU89VDAgRynvs.xDh8LGTbs2RI0zJE",
+      "name": "Poings hydrauliques",
+      "type": "arme",
+      "img": "icons/svg/target.svg",
+      "system": {
+        "description": "",
+        "ambiance": "",
+        "sansNiveaux": true,
+        "niveau": 1,
+        "competence": "corpsACorps",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "corpsACorps",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 0,
+            "de": "1d10",
+            "bonusFixe": 3,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 0,
+            "de": "1d10",
+            "bonusFixe": 3,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 0,
+            "de": "1d10",
+            "bonusFixe": 3,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    }
+  ],
+  "effects": [],
+  "folder": "K4h8cyTFEP0cZBvq",
+  "sort": 2,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Robot RMK2",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/ennemis/robot-rmk2.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

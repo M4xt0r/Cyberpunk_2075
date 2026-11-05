@@ -1,0 +1,138 @@
+{
+  "_id": "p3HYnh3soBMXpN2v",
+  "_key": "!items!p3HYnh3soBMXpN2v",
+  "name": "Masque à empreinte comportementale synchronisée",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/masque-a-empreinte-comportementale-synchronisee.webp",
+  "system": {
+    "description": "",
+    "ambiance": "",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "facial",
+    "coutMin": 20,
+    "coutMax": 20,
+    "coutInstallation": 20,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 95000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Permet de prendre l'apparence, la voix, les tics et les expressions faciales d'une personne scannée au préalable, durant 35 minutes.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 95000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Permet de prendre l'apparence, la voix, les tics et les expressions faciales d'une personne scannée au préalable, durant 35 minutes.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 95000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Permet de prendre l'apparence, la voix, les tics et les expressions faciales d'une personne scannée au préalable, durant 35 minutes.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "FWDG7iMCf7LtKQq2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

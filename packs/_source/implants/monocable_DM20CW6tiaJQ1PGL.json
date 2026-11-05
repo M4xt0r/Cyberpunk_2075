@@ -1,0 +1,138 @@
+{
+  "_id": "DM20CW6tiaJQ1PGL",
+  "_key": "!items!DM20CW6tiaJQ1PGL",
+  "name": "Monocâble",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/monocable.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Câble composé d'un filament unique et faisant office de fouet. Sa partie tranchante n'est pas plus large qu'une molécule.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "corpsACorps",
+    "carac": "",
+    "portee": 3,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 2,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "bras",
+    "coutMin": 10,
+    "coutMax": 10,
+    "coutInstallation": 10,
+    "armeIntegree": true,
+    "capsuleAutorisee": true,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": true,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 6500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+2 en Corps à corps lors de l'utilisation, 1d8+Càc de dégâts, touche 2 cibles à moins de 1,5 m l'une de l'autre sur une portée de 3 m. +1💀 par ennemi tué.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 1,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 2,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d8 + Corps à corps",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 8500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+3 en Corps à corps lors de l'utilisation, 1d8+Càc de dégâts, touche 3 cibles à moins de 1,5 m l'une de l'autre sur une portée de 3 m. +1💀 par ennemi tué.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 1,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 3,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d8 + Corps à corps",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 8500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+3 en Corps à corps lors de l'utilisation, 1d8+Càc de dégâts, touche 3 cibles à moins de 1,5 m l'une de l'autre sur une portée de 3 m. +1💀 par ennemi tué.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 1,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 3,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d8 + Corps à corps",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "sK3bjGEvSJFuSWO5",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

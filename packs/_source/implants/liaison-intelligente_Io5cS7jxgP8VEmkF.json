@@ -1,0 +1,138 @@
+{
+  "_id": "Io5cS7jxgP8VEmkF",
+  "_key": "!items!Io5cS7jxgP8VEmkF",
+  "name": "Liaison intelligente",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/liaison-intelligente.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Matériel cybernétique permettant une connexion rapide et directe, avec une faible latence, aux objets compatibles comme les armes à feu et les implants.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "nerveux",
+    "coutMin": 5,
+    "coutMax": 5,
+    "coutInstallation": 5,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 3500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Donne un bonus de +2 aux jets de touche si l'utilisateur utilise une arme intelligente.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 3500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Donne un bonus de +2 aux jets de touche si l'utilisateur utilise une arme intelligente.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 3500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Donne un bonus de +2 aux jets de touche si l'utilisateur utilise une arme intelligente.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "O4hhAjb6s5DYQBgs",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

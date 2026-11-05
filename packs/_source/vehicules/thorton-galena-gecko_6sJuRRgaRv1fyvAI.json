@@ -1,0 +1,51 @@
+{
+  "_id": "6sJuRRgaRv1fyvAI",
+  "_key": "!actors!6sJuRRgaRv1fyvAI",
+  "name": "Thorton Galena « Gecko »",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/thorton-gecko.webp",
+  "system": {
+    "categorie": "blinde",
+    "pickup": false,
+    "blinde": true,
+    "armesInterdites": false,
+    "vitesse": "D",
+    "maniabilite": 0,
+    "vie": {
+      "value": 100,
+      "base": 100
+    },
+    "slots": 2,
+    "places": 2,
+    "placesNote": "",
+    "prix": 15000,
+    "ambiance": "Une voiture qui se comporte comme du beurre et flotte comme dans un rêve, peu importe où la route vous mène.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "fpI7yOwQ7nsaP6LZ",
+  "sort": 20,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Thorton Galena « Gecko »",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/thorton-gecko.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

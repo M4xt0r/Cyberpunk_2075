@@ -1,0 +1,46 @@
+{
+  "_id": "SkrAWKjdxkhTgjDh",
+  "_key": "!items!SkrAWKjdxkhTgjDh",
+  "name": "Redémarrage optique",
+  "type": "hack",
+  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "system": {
+    "description": "<p>Rend la cible aveugle durant 1 tour si elle n'a pas d'yeux organiques.</p>",
+    "ambiance": "",
+    "prix": 500,
+    "ram": 4,
+    "variable": {
+      "actif": false,
+      "parUnite": 0,
+      "unite": "carré de 1,5 m"
+    },
+    "activation": "action",
+    "defense": "glace",
+    "competence": "piratage",
+    "bonusTouche": 0,
+    "degats": {
+      "organique": "",
+      "robot": "",
+      "type": "electrique"
+    },
+    "humanite": {
+      "cible": 0,
+      "lanceur": 0
+    },
+    "duree": 1,
+    "effet": "Rend la cible aveugle durant 1 tour si elle n'a pas d'yeux organiques.",
+    "special": "",
+    "animation": {
+      "glitch": true,
+      "impact": "",
+      "son": ""
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

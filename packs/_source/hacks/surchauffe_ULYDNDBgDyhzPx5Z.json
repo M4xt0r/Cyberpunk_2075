@@ -1,0 +1,46 @@
+{
+  "_id": "ULYDNDBgDyhzPx5Z",
+  "_key": "!items!ULYDNDBgDyhzPx5Z",
+  "name": "Surchauffe",
+  "type": "hack",
+  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "system": {
+    "description": "<p>Les implants de la cible surchauffent : 1d4 de dégâts de feu par implant de la cible, sur 3 tours. Si la cible en meurt, +5💀. Détruit les puces de la cible.</p>",
+    "ambiance": "",
+    "prix": 800,
+    "ram": 6,
+    "variable": {
+      "actif": false,
+      "parUnite": 0,
+      "unite": "carré de 1,5 m"
+    },
+    "activation": "action",
+    "defense": "glace",
+    "competence": "piratage",
+    "bonusTouche": 0,
+    "degats": {
+      "organique": "1d4",
+      "robot": "",
+      "type": "feu"
+    },
+    "humanite": {
+      "cible": 0,
+      "lanceur": 0
+    },
+    "duree": 3,
+    "effet": "Les implants de la cible surchauffent : 1d4 de dégâts de feu par implant de la cible, sur 3 tours. Si la cible en meurt, +5💀. Détruit les puces de la cible.",
+    "special": "",
+    "animation": {
+      "glitch": true,
+      "impact": "",
+      "son": ""
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

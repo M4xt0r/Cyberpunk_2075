@@ -1,0 +1,46 @@
+{
+  "_id": "yreT14SiCwRoQQqu",
+  "_key": "!items!yreT14SiCwRoQQqu",
+  "name": "Pare-feu réactif",
+  "type": "hack",
+  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "system": {
+    "description": "<p>En réaction, augmente de +4 la Glace de vous ou d'une cible jusqu'à la fin du tour.</p>",
+    "ambiance": "",
+    "prix": 1000,
+    "ram": 3,
+    "variable": {
+      "actif": false,
+      "parUnite": 0,
+      "unite": "carré de 1,5 m"
+    },
+    "activation": "reaction",
+    "defense": "aucune",
+    "competence": "piratage",
+    "bonusTouche": 0,
+    "degats": {
+      "organique": "",
+      "robot": "",
+      "type": "electrique"
+    },
+    "humanite": {
+      "cible": 0,
+      "lanceur": 0
+    },
+    "duree": 1,
+    "effet": "En réaction, augmente de +4 la Glace de vous ou d'une cible jusqu'à la fin du tour.",
+    "special": "",
+    "animation": {
+      "glitch": true,
+      "impact": "",
+      "son": ""
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

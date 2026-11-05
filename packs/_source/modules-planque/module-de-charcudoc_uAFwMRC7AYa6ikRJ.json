@@ -1,0 +1,129 @@
+{
+  "_id": "uAFwMRC7AYa6ikRJ",
+  "_key": "!items!uAFwMRC7AYa6ikRJ",
+  "name": "Module de Charcudoc",
+  "type": "modulePlanque",
+  "img": "icons/svg/house.svg",
+  "system": {
+    "description": "",
+    "ambiance": "Une table d'opération peut se rendre vite indispensable en temps de guerre.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "types": [],
+    "vieOffice": false,
+    "niveaux": {
+      "n1": {
+        "prix": 300,
+        "effet": {
+          "type": "passif",
+          "description": "+1 à tous vos soins prodigués et +2 à vos jets de Charcutage et Médecine.",
+          "modificateurs": [
+            {
+              "cible": "soinsDonnes",
+              "valeur": 1
+            },
+            {
+              "cible": "comp.charcutage",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.medecine",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 600,
+        "effet": {
+          "type": "passif",
+          "description": "+2 à tous vos soins prodigués et +2 à vos jets de Charcutage et Médecine.",
+          "modificateurs": [
+            {
+              "cible": "soinsDonnes",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.charcutage",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.medecine",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 900,
+        "effet": {
+          "type": "passif",
+          "description": "+2 à tous vos soins prodigués et +3 à vos jets de Charcutage et Médecine.",
+          "modificateurs": [
+            {
+              "cible": "soinsDonnes",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.charcutage",
+              "valeur": 3
+            },
+            {
+              "cible": "comp.medecine",
+              "valeur": 3
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -1,0 +1,46 @@
+{
+  "_id": "pUcXIheK3exOPlgF",
+  "_key": "!items!pUcXIheK3exOPlgF",
+  "name": "Libérateur d'ocytocine",
+  "type": "hack",
+  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "system": {
+    "description": "<p>Ajoute +2 à votre jet de Persuasion ou de Négociation.</p>",
+    "ambiance": "",
+    "prix": 800,
+    "ram": 4,
+    "variable": {
+      "actif": false,
+      "parUnite": 0,
+      "unite": "carré de 1,5 m"
+    },
+    "activation": "action",
+    "defense": "aucune",
+    "competence": "piratage",
+    "bonusTouche": 0,
+    "degats": {
+      "organique": "",
+      "robot": "",
+      "type": "electrique"
+    },
+    "humanite": {
+      "cible": 0,
+      "lanceur": 0
+    },
+    "duree": 0,
+    "effet": "Ajoute +2 à votre jet de Persuasion ou de Négociation.",
+    "special": "",
+    "animation": {
+      "glitch": true,
+      "impact": "",
+      "son": ""
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

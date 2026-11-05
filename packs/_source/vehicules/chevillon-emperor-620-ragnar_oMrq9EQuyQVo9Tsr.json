@@ -1,0 +1,51 @@
+{
+  "_id": "oMrq9EQuyQVo9Tsr",
+  "_key": "!actors!oMrq9EQuyQVo9Tsr",
+  "name": "Chevillon Emperor 620 Ragnar",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/chevillon-emperor.webp",
+  "system": {
+    "categorie": "utilitaire",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "C",
+    "maniabilite": 0,
+    "vie": {
+      "value": 80,
+      "base": 80
+    },
+    "slots": 3,
+    "places": 5,
+    "placesNote": "",
+    "prix": 20000,
+    "ambiance": "Récompensé par la « Ceinture de sécurité dorée » au salon de l'automobile de Cologne en 2072.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "nJNCCNfwxrroX8vN",
+  "sort": 14,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Chevillon Emperor 620 Ragnar",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/chevillon-emperor.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "_id": "cEy5cpHbjbrsscdz",
+  "_key": "!items!cEy5cpHbjbrsscdz",
+  "name": "6e sens",
+  "type": "talent",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Vous savez d'un simple regard si quelqu'un vous ment. Utilisable un nombre de fois égal à votre BM.</p>",
+    "ambiance": "",
+    "source": "sousClasse",
+    "niveauObtention": 1,
+    "special": "",
+    "effet": {
+      "type": "passif",
+      "description": "Vous savez d'un simple regard si quelqu'un vous ment. Utilisable un nombre de fois égal à votre BM.",
+      "modificateurs": [],
+      "activation": "action",
+      "coutHumanite": 0,
+      "humaniteKill": 0,
+      "utilisations": {
+        "periode": "bm",
+        "max": 0
+      },
+      "duree": 0,
+      "ciblesMax": 0,
+      "jet": {
+        "formule": "",
+        "type": "soin",
+        "typeDegats": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    }
+  },
+  "effects": [],
+  "folder": "O2M1F9N1ZRCgyuM2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

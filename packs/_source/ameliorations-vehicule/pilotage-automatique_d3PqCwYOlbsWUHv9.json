@@ -1,0 +1,116 @@
+{
+  "_id": "d3PqCwYOlbsWUHv9",
+  "_key": "!items!d3PqCwYOlbsWUHv9",
+  "name": "Pilotage automatique",
+  "type": "ameliorationVehicule",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "",
+    "ambiance": "Dormir au volant n'a jamais été plus vrai.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "armeLourde",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "armeIntegree": false,
+    "typeArmeIntegree": "autre",
+    "pickupSeulement": false,
+    "niveaux": {
+      "n1": {
+        "prix": 5000,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de donner des ordres de déplacement à votre véhicule.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 5000,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de donner des ordres de déplacement à votre véhicule.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 5000,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de donner des ordres de déplacement à votre véhicule.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

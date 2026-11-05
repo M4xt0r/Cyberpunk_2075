@@ -1,0 +1,51 @@
+{
+  "_id": "hjKBKQyOngdJuewr",
+  "_key": "!actors!hjKBKQyOngdJuewr",
+  "name": "Kaukaz Bratsk U4020",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/kaukaz-bratsk.webp",
+  "system": {
+    "categorie": "utilitaire",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "E",
+    "maniabilite": -3,
+    "vie": {
+      "value": 80,
+      "base": 80
+    },
+    "slots": 2,
+    "places": 3,
+    "placesNote": "+ 6 dans la remorque",
+    "prix": 28000,
+    "ambiance": "Ce mauvais garçon brûle autant de carburant par heure qu'il en faudrait pour chauffer un mégabloc entier. Et avouons-le : il est aussi gros et laid qu'un mégabloc.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "nJNCCNfwxrroX8vN",
+  "sort": 15,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Kaukaz Bratsk U4020",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/kaukaz-bratsk.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

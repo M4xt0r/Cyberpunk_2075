@@ -1,0 +1,138 @@
+{
+  "_id": "qMTYt5kKugGuvPaW",
+  "_key": "!items!qMTYt5kKugGuvPaW",
+  "name": "Index revolver",
+  "type": "implant",
+  "img": "icons/svg/circuit.svg",
+  "system": {
+    "description": "",
+    "ambiance": "Un mécanisme de tir intégré à l'index, conçu pour surprendre une cible sans dégainer d'arme.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "bras",
+    "coutMin": 2,
+    "coutMax": 2,
+    "coutInstallation": 2,
+    "armeIntegree": true,
+    "capsuleAutorisee": true,
+    "typeArmeIntegree": "pistolet",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 1500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "1d6 de dégâts.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 2000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "1d6+1 de dégâts.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 1,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 2000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "1d6+1 de dégâts.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 1,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "sK3bjGEvSJFuSWO5",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

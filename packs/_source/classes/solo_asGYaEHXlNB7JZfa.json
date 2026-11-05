@@ -1,0 +1,63 @@
+{
+  "_id": "asGYaEHXlNB7JZfa",
+  "_key": "!items!asGYaEHXlNB7JZfa",
+  "name": "Solo",
+  "type": "classe",
+  "img": "systems/cyberpunk2075/assets/notion/classes/solo.webp",
+  "system": {
+    "description": "<p>Les Solos sont des tueurs à gages, des gardes du corps et des mercenaires. En gros vous connaissez très peu les mots « discussion » et « compromis » : les effusions de sang et la poudre sont votre système de communication.</p>",
+    "ambiance": "",
+    "bonus": {
+      "const": 2,
+      "ref": 0,
+      "captec": 0,
+      "int": 0,
+      "safr": 1
+    },
+    "eddies": 5000,
+    "gains": {
+      "vie": "1d2",
+      "ram": "0",
+      "humanite": "1d4"
+    },
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.FYBZnGsrewxa5Z54",
+        "nom": "Expert en armement",
+        "resume": "Vous gagnez un bonus de +1 aux dégâts des armes à feu ou de mêlée que vous tenez.",
+        "niveau": 3
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.RZanyQFrp6B8e8JE",
+        "nom": "Dur à cuire",
+        "resume": "Une fois par repos long, un coup qui vous mettrait à 0 PV vous laisse à 1 PV, sans stress.",
+        "niveau": 8
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.fTLqwXniwghKg9wX",
+        "nom": "Edgerunner",
+        "resume": "Vous transcendez la limite d'implants de 1 pour chaque partie du corps, sauf le port neural.",
+        "niveau": 10
+      }
+    ],
+    "sousClasses": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.741dIJCgSQDR6Nih",
+        "nom": "Gunner",
+        "resume": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.JUN3vueOjKy5X67b",
+        "nom": "Samouraï",
+        "resume": ""
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "eNmo02U3Xb76w2qz",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -1,0 +1,51 @@
+{
+  "_id": "st5RXVERpR3mSprM",
+  "_key": "!actors!st5RXVERpR3mSprM",
+  "name": "Quadra Type-66 « Javelina »",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/quadra-javelina.webp",
+  "system": {
+    "categorie": "blinde",
+    "pickup": false,
+    "blinde": true,
+    "armesInterdites": false,
+    "vitesse": "B",
+    "maniabilite": 2,
+    "vie": {
+      "value": 100,
+      "base": 100
+    },
+    "slots": 3,
+    "places": 2,
+    "placesNote": "",
+    "prix": 26000,
+    "ambiance": "Propulsé par un moteur optimisé avec une finition blindée.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "fpI7yOwQ7nsaP6LZ",
+  "sort": 18,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Quadra Type-66 « Javelina »",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/quadra-javelina.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

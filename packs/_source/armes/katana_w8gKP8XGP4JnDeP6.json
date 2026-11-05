@@ -1,0 +1,60 @@
+{
+  "_id": "w8gKP8XGP4JnDeP6",
+  "_key": "!items!w8gKP8XGP4JnDeP6",
+  "name": "Katana",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/katana.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Pointu et mortel. Faites attention à ne pas vous couper.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "corpsACorps",
+    "carac": "safr",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "corpsACorps",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 300,
+        "de": "1d10",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 500,
+        "de": "1d10",
+        "bonusFixe": 1,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 700,
+        "de": "1d10",
+        "bonusFixe": 2,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "OaPgPIYn09gJTUdY",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

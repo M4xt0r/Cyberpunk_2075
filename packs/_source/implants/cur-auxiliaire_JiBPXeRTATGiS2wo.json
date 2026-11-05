@@ -1,0 +1,138 @@
+{
+  "_id": "JiBPXeRTATGiS2wo",
+  "_key": "!items!JiBPXeRTATGiS2wo",
+  "name": "Cœur auxiliaire",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/coeur-auxiliaire.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Ce matériel cybernétique sert normalement de défibrillateur standard, mais dans la rue son utilité est tout autre.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "sanguin",
+    "coutMin": 20,
+    "coutMax": 20,
+    "coutInstallation": 20,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 10000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Réanime le possesseur avec 30 % de sa santé max, +5💀, 1 fois par jour.",
+          "modificateurs": [],
+          "activation": "reaction",
+          "coutHumanite": 5,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "jour",
+            "max": 1
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 13500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Réanime le possesseur avec 60 % de sa santé max, +10💀, 1 fois par jour.",
+          "modificateurs": [],
+          "activation": "reaction",
+          "coutHumanite": 10,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "jour",
+            "max": 1
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 13500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Réanime le possesseur avec 60 % de sa santé max, +10💀, 1 fois par jour.",
+          "modificateurs": [],
+          "activation": "reaction",
+          "coutHumanite": 10,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "jour",
+            "max": 1
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "RuAmyGEPMNr6iWBd",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

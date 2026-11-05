@@ -1,0 +1,153 @@
+{
+  "_id": "Nh6opD3uQhg2fNhQ",
+  "_key": "!items!Nh6opD3uQhg2fNhQ",
+  "name": "Bras de gorille",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/bras-de-gorille.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Membres de rechange classiques et fiables, adaptés à tous types de travaux.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "bras",
+    "coutMin": 5,
+    "coutMax": 5,
+    "coutInstallation": 5,
+    "armeIntegree": false,
+    "capsuleAutorisee": true,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 6500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+2 en Constitution.",
+          "modificateurs": [
+            {
+              "cible": "carac.const",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 8500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+3 en Constitution.",
+          "modificateurs": [
+            {
+              "cible": "carac.const",
+              "valeur": 3
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 8500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+3 en Constitution.",
+          "modificateurs": [
+            {
+              "cible": "carac.const",
+              "valeur": 3
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "sK3bjGEvSJFuSWO5",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

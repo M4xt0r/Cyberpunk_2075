@@ -1,0 +1,226 @@
+{
+  "_id": "SLPlIVwoWYwpcP9A",
+  "_key": "!actors!SLPlIVwoWYwpcP9A",
+  "name": "Wyvern · Assaut",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/notion/ennemis/wyvern.webp",
+  "system": {
+    "faction": "Wyvern",
+    "rang": "Wyvern · Assaut",
+    "rangNiveau": 2,
+    "nature": "robot",
+    "yeuxCyber": "auto",
+    "volant": true,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 0
+      },
+      "ref": {
+        "bonus": 0
+      },
+      "captec": {
+        "bonus": 0
+      },
+      "int": {
+        "bonus": 0
+      },
+      "safr": {
+        "bonus": 0
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "armeDePoing",
+        "valeur": 7
+      },
+      {
+        "competence": "armeLourde",
+        "valeur": 7
+      },
+      {
+        "competence": "sniper",
+        "valeur": 7
+      }
+    ],
+    "vie": {
+      "value": 28,
+      "max": 28,
+      "forcer": 28
+    },
+    "ram": {
+      "value": 0,
+      "max": 0,
+      "forcer": 0
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": 14
+    },
+    "glace": {
+      "forcer": 12
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 0,
+    "bm": 2,
+    "couvert": 0,
+    "notes": ""
+  },
+  "items": [
+    {
+      "_id": "8VrjGoRJ4Z9wxvqp",
+      "_key": "!actors.items!SLPlIVwoWYwpcP9A.8VrjGoRJ4Z9wxvqp",
+      "name": "Mitrailleuse",
+      "type": "arme",
+      "img": "icons/svg/target.svg",
+      "system": {
+        "description": "",
+        "ambiance": "",
+        "sansNiveaux": true,
+        "niveau": 1,
+        "competence": "armeLourde",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "mitraillette",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 0,
+            "de": "1d10",
+            "bonusFixe": 3,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 0,
+            "de": "1d10",
+            "bonusFixe": 3,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 0,
+            "de": "1d10",
+            "bonusFixe": 3,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    },
+    {
+      "_id": "r2FXihqlbucCy34w",
+      "_key": "!actors.items!SLPlIVwoWYwpcP9A.r2FXihqlbucCy34w",
+      "name": "Missile",
+      "type": "arme",
+      "img": "icons/svg/target.svg",
+      "system": {
+        "description": "",
+        "ambiance": "",
+        "sansNiveaux": true,
+        "niveau": 1,
+        "competence": "armeLourde",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": 3,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "autre",
+        "intelligente": false,
+        "munitions": 2,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 0,
+            "de": "1d10",
+            "bonusFixe": 4,
+            "typeDegats": "explosion"
+          },
+          "n2": {
+            "prix": 0,
+            "de": "1d10",
+            "bonusFixe": 4,
+            "typeDegats": "explosion"
+          },
+          "n3": {
+            "prix": 0,
+            "de": "1d10",
+            "bonusFixe": 4,
+            "typeDegats": "explosion"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    }
+  ],
+  "effects": [],
+  "folder": "jdWyu3GGNxwk01yN",
+  "sort": 1,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Wyvern · Assaut",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/ennemis/wyvern.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

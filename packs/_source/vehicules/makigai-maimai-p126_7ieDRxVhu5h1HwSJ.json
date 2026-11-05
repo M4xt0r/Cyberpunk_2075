@@ -1,0 +1,51 @@
+{
+  "_id": "7ieDRxVhu5h1HwSJ",
+  "_key": "!actors!7ieDRxVhu5h1HwSJ",
+  "name": "Makigai MaiMai P126",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/makigai-maimai.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "E",
+    "maniabilite": -1,
+    "vie": {
+      "value": 20,
+      "base": 20
+    },
+    "slots": 1,
+    "places": 2,
+    "placesNote": "",
+    "prix": 6000,
+    "ambiance": "La plus petite voiture produite en série autorisée dans les rues de Night City.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 6,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Makigai MaiMai P126",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/makigai-maimai.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

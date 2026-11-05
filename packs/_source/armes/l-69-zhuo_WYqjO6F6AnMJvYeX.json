@@ -1,0 +1,60 @@
+{
+  "_id": "WYqjO6F6AnMJvYeX",
+  "_key": "!items!WYqjO6F6AnMJvYeX",
+  "name": "L-69 Zhuo",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/l-69-zhuo.webp",
+  "system": {
+    "description": "<p>Portée de 15 mètres : au-delà, la moitié des dégâts.</p>",
+    "ambiance": "La référence en matière d'innovation d'armement.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeLourde",
+    "carac": "captec",
+    "portee": 15,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "pompe",
+    "intelligente": true,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 1300,
+        "de": "1d12",
+        "bonusFixe": 1,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 1950,
+        "de": "1d12",
+        "bonusFixe": 2,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 2600,
+        "de": "1d12",
+        "bonusFixe": 4,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "shcE5aClBPNlI54P",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

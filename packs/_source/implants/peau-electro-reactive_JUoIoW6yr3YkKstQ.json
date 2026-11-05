@@ -1,0 +1,138 @@
+{
+  "_id": "JUoIoW6yr3YkKstQ",
+  "_key": "!items!JUoIoW6yr3YkKstQ",
+  "name": "Peau électro-réactive",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/peau-electro-reactive.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Faites un retour à l'envoyeur !",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "cutane",
+    "coutMin": 10,
+    "coutMax": 10,
+    "coutInstallation": 10,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 4000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Après des dégâts au corps à corps, utilisez votre réaction pour infliger 1d4 de dégâts électriques. Si la cible en meurt, +2💀.",
+          "modificateurs": [],
+          "activation": "reaction",
+          "coutHumanite": 0,
+          "humaniteKill": 2,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "1d4",
+            "type": "degats",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "electrique"
+      },
+      "n2": {
+        "prix": 5000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Après des dégâts au corps à corps, utilisez votre réaction pour infliger 1d4+1 de dégâts électriques. Si la cible en meurt, +2💀.",
+          "modificateurs": [],
+          "activation": "reaction",
+          "coutHumanite": 0,
+          "humaniteKill": 2,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "1d4+1",
+            "type": "degats",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "electrique"
+      },
+      "n3": {
+        "prix": 6000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Après des dégâts au corps à corps, utilisez votre réaction pour infliger 1d4+2 de dégâts électriques. Si la cible en meurt, +2💀.",
+          "modificateurs": [],
+          "activation": "reaction",
+          "coutHumanite": 0,
+          "humaniteKill": 2,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "1d4+2",
+            "type": "degats",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "electrique"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "ygVYPzYI9pf8FhUi",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

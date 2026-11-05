@@ -1,0 +1,153 @@
+{
+  "_id": "RzFmgxGCKfv4V4bC",
+  "_key": "!items!RzFmgxGCKfv4V4bC",
+  "name": "Biomoniteur",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/biomoniteur.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Implant conçu pour coordonner les processus de régénération.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "sanguin",
+    "coutMin": 5,
+    "coutMax": 5,
+    "coutInstallation": 5,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 4000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Ajoute 5 PV au possesseur.",
+          "modificateurs": [
+            {
+              "cible": "vieMax",
+              "valeur": 5
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 6000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Ajoute 10 PV au possesseur.",
+          "modificateurs": [
+            {
+              "cible": "vieMax",
+              "valeur": 10
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 8000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Ajoute 15 PV au possesseur.",
+          "modificateurs": [
+            {
+              "cible": "vieMax",
+              "valeur": 15
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "RuAmyGEPMNr6iWBd",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

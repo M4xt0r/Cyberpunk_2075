@@ -1,0 +1,153 @@
+{
+  "_id": "AEZ0KJjWmMFIvtiM",
+  "_key": "!items!AEZ0KJjWmMFIvtiM",
+  "name": "Chevilles fortifiées",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/chevilles-fortifiees.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Articulations de cheville renforcées avec des fibres plastiques et des capsules articulaires remplies de nanogel.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "jambe",
+    "coutMin": 5,
+    "coutMax": 5,
+    "coutInstallation": 5,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 6500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+2 en Athlétisme.",
+          "modificateurs": [
+            {
+              "cible": "comp.athletisme",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 8500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+3 en Athlétisme.",
+          "modificateurs": [
+            {
+              "cible": "comp.athletisme",
+              "valeur": 3
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 10500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+4 en Athlétisme.",
+          "modificateurs": [
+            {
+              "cible": "comp.athletisme",
+              "valeur": 4
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "pKqfMpBefSHsb11h",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

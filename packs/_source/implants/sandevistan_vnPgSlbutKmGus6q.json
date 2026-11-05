@@ -1,0 +1,138 @@
+{
+  "_id": "vnPgSlbutKmGus6q",
+  "_key": "!items!vnPgSlbutKmGus6q",
+  "name": "Sandevistan",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/sandevistan.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Cet implant offre des vitesses de connexion fulgurantes, une grande flexibilité en matière de système de combat et une perception optimisée en combat. Idéal pour les spécialistes.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "nerveux",
+    "coutMin": 20,
+    "coutMax": 20,
+    "coutInstallation": 20,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": true,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 20000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+          "modificateurs": [],
+          "activation": "reaction",
+          "coutHumanite": 15,
+          "humaniteKill": 5,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 1,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 20000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+          "modificateurs": [],
+          "activation": "reaction",
+          "coutHumanite": 15,
+          "humaniteKill": 5,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 1,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 20000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+          "modificateurs": [],
+          "activation": "reaction",
+          "coutHumanite": 15,
+          "humaniteKill": 5,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 1,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "O4hhAjb6s5DYQBgs",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

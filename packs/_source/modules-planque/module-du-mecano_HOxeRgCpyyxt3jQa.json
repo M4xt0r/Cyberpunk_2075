@@ -1,0 +1,108 @@
+{
+  "_id": "HOxeRgCpyyxt3jQa",
+  "_key": "!items!HOxeRgCpyyxt3jQa",
+  "name": "Module du Mécano",
+  "type": "modulePlanque",
+  "img": "icons/svg/house.svg",
+  "system": {
+    "description": "<p>Disponible seulement dans le garage et le hangar.</p>",
+    "ambiance": "Une clé à molette, une voiture, une bière, et le travail sera forcément bien fait.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "types": [
+      "garage",
+      "hangar"
+    ],
+    "vieOffice": false,
+    "niveaux": {
+      "n1": {
+        "prix": 300,
+        "effet": {
+          "type": "passif",
+          "description": "Ajoute 1 place de parking, +1 en Tech quand vous bricolez un véhicule.",
+          "modificateurs": [
+            {
+              "cible": "parking",
+              "valeur": 1
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 600,
+        "effet": {
+          "type": "passif",
+          "description": "Ajoute 1 place de parking, +2 en Tech quand vous bricolez un véhicule.",
+          "modificateurs": [
+            {
+              "cible": "parking",
+              "valeur": 1
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 900,
+        "effet": {
+          "type": "passif",
+          "description": "Ajoute 2 places de parking, +2 en Tech quand vous bricolez un véhicule.",
+          "modificateurs": [
+            {
+              "cible": "parking",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

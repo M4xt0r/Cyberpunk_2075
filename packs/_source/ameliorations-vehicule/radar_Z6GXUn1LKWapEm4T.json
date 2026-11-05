@@ -1,0 +1,116 @@
+{
+  "_id": "Z6GXUn1LKWapEm4T",
+  "_key": "!items!Z6GXUn1LKWapEm4T",
+  "name": "Radar",
+  "type": "ameliorationVehicule",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "",
+    "ambiance": "Bien mieux qu'un GPS.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "armeLourde",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "armeIntegree": false,
+    "typeArmeIntegree": "autre",
+    "pickupSeulement": false,
+    "niveaux": {
+      "n1": {
+        "prix": 6500,
+        "effet": {
+          "type": "passif",
+          "description": "Scanne votre environnement sur 1 km à la ronde pour ne pas perdre une cible.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 6500,
+        "effet": {
+          "type": "passif",
+          "description": "Scanne votre environnement sur 1 km à la ronde pour ne pas perdre une cible.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 6500,
+        "effet": {
+          "type": "passif",
+          "description": "Scanne votre environnement sur 1 km à la ronde pour ne pas perdre une cible.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

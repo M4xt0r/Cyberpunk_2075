@@ -1,0 +1,47 @@
+{
+  "_id": "fTLqwXniwghKg9wX",
+  "_key": "!items!fTLqwXniwghKg9wX",
+  "name": "Edgerunner",
+  "type": "talent",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Vous transcendez la limite d'implants de 1 pour chaque partie du corps, sauf le port neural.</p>",
+    "ambiance": "",
+    "source": "ultime",
+    "niveauObtention": 10,
+    "special": "edgerunner",
+    "effet": {
+      "type": "passif",
+      "description": "Vous transcendez la limite d'implants de 1 pour chaque partie du corps, sauf le port neural.",
+      "modificateurs": [],
+      "activation": "action",
+      "coutHumanite": 0,
+      "humaniteKill": 0,
+      "utilisations": {
+        "periode": "illimite",
+        "max": 0
+      },
+      "duree": 0,
+      "ciblesMax": 0,
+      "jet": {
+        "formule": "",
+        "type": "soin",
+        "typeDegats": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    }
+  },
+  "effects": [],
+  "folder": "O2M1F9N1ZRCgyuM2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

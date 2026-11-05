@@ -1,0 +1,97 @@
+{
+  "_id": "iLN20elFgXfIKf6W",
+  "_key": "!items!iLN20elFgXfIKf6W",
+  "name": "NetRunner",
+  "type": "sousClasse",
+  "img": "systems/cyberpunk2075/assets/notion/classes/hacker.webp",
+  "system": {
+    "description": "",
+    "ambiance": "",
+    "classeParente": "Hacker",
+    "maitrises": [
+      {
+        "competence": "piratage",
+        "choix": ""
+      },
+      {
+        "competence": "savoir",
+        "choix": ""
+      },
+      {
+        "competence": "tech",
+        "choix": ""
+      }
+    ],
+    "pack": [
+      {
+        "uuid": "Compendium.cyberpunk2075.implants.Item.2yTIAlBg5QAlILnQ",
+        "nom": "Puce de piratage",
+        "resume": "",
+        "mode": "precis",
+        "type": "implant",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "",
+        "nom": "",
+        "resume": "",
+        "mode": "gratuit",
+        "type": "",
+        "niveau": 1,
+        "quantite": 2,
+        "categorie": "hack",
+        "prixMax": 1000,
+        "texte": "2 hacks gratuits"
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.uwM0zCjpwhWpXu24",
+        "nom": "Nue",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.objets.Item.HMkZVyXbCuCr4p7v",
+        "nom": "Infovisière",
+        "resume": "",
+        "mode": "precis",
+        "type": "objet",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "objet",
+        "prixMax": 0,
+        "texte": ""
+      }
+    ],
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.6Kh0vFC9gcYhrjPz",
+        "nom": "Métahack",
+        "resume": "Après un hack réussi, choisissez une autre cible atteignable (2,5 m) pour la moitié de la valeur en RAM de ce hack.",
+        "niveau": 1
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.Bd0mslQnY1r1FOgn",
+        "nom": "Créateur de daemons",
+        "resume": "Vous pouvez créer des hacks personnalisés en utilisant votre compétence de Piratage (voir avec le MJ).",
+        "niveau": 5
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "DwOYNHXuaseP7Zwn",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

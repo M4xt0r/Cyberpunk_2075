@@ -1,0 +1,51 @@
+{
+  "_id": "4eXssI58HQfJMZOc",
+  "_key": "!actors!4eXssI58HQfJMZOc",
+  "name": "Archer Hella EC-D i360",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/archer-hella.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "C",
+    "maniabilite": 0,
+    "vie": {
+      "value": 40,
+      "base": 40
+    },
+    "slots": 2,
+    "places": 4,
+    "placesNote": "",
+    "prix": 13000,
+    "ambiance": "La première unité est sortie de la chaîne de montage en 2023, connue pour sa faible qualité.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 3,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Archer Hella EC-D i360",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/archer-hella.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

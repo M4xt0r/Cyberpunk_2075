@@ -1,0 +1,51 @@
+{
+  "_id": "nturgS2vX5I9VKa9",
+  "_key": "!actors!nturgS2vX5I9VKa9",
+  "name": "Thorton Colby CX410 Butte",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/thorton-colby.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": true,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "D",
+    "maniabilite": 2,
+    "vie": {
+      "value": 60,
+      "base": 60
+    },
+    "slots": 1,
+    "places": 4,
+    "placesNote": "",
+    "prix": 14000,
+    "ambiance": "Le camion de livraison le plus vendu de Night City, avec jusqu'à 100 000 unités dans la seule ville.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 11,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Thorton Colby CX410 Butte",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/thorton-colby.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

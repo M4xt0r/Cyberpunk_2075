@@ -1,0 +1,63 @@
+{
+  "_id": "4Hj36FTAJtwcRzXB",
+  "_key": "!items!4Hj36FTAJtwcRzXB",
+  "name": "Hacker",
+  "type": "classe",
+  "img": "systems/cyberpunk2075/assets/notion/classes/hacker.webp",
+  "system": {
+    "description": "<p>À l'aide de leurs implants d'interface cerveau-ordinateur, les Hackers parcourent Internet à la recherche de systèmes à pirater et d'informations à vendre. Vous avez un certain goût pour les bains glacés et votre meilleur ami n'existe que dans le net.</p>",
+    "ambiance": "",
+    "bonus": {
+      "const": 0,
+      "ref": 0,
+      "captec": 0,
+      "int": 2,
+      "safr": 1
+    },
+    "eddies": 3000,
+    "gains": {
+      "vie": "0",
+      "ram": "1d4",
+      "humanite": "1d2"
+    },
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.llTOCN6W2K5mDfOk",
+        "nom": "Contrôle des sans-âmes",
+        "resume": "Prenez le contrôle des drones, exosquelettes et véhicules. Il vous faut dépenser en RAM la Glace de la cible moins vo…",
+        "niveau": 3
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.6mVvtb8cZp925cI7",
+        "nom": "Retour de flamme",
+        "resume": "Si un piratage échoue contre vous, vous pouvez utiliser votre réaction pour infliger 1d8 de dégâts électriques.",
+        "niveau": 8
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.wh0oOi93x20U4iOZ",
+        "nom": "OverClocking",
+        "resume": "Vous pouvez dépenser des points de vie à la place de votre RAM afin de pirater.",
+        "niveau": 10
+      }
+    ],
+    "sousClasses": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.iLN20elFgXfIKf6W",
+        "nom": "NetRunner",
+        "resume": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.vzv6atSig9QZLrCo",
+        "nom": "Journaliste",
+        "resume": ""
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "eNmo02U3Xb76w2qz",
+  "sort": 2,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

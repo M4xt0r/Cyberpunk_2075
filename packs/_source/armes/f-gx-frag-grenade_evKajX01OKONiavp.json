@@ -1,0 +1,60 @@
+{
+  "_id": "evKajX01OKONiavp",
+  "_key": "!items!evKajX01OKONiavp",
+  "name": "F-GX Frag Grenade",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/f-gx-frag.webp",
+  "system": {
+    "description": "<p>1d10+3+Capacité Technique, 5 mètres de rayon.</p>",
+    "ambiance": "Grenade à main avec charge explosive conventionnelle.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "explosif",
+    "carac": "captec",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "aucune",
+      "bonusTouche": 0,
+      "zone": 5,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "grenade",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 500,
+        "de": "1d10",
+        "bonusFixe": 3,
+        "typeDegats": "explosion"
+      },
+      "n2": {
+        "prix": 500,
+        "de": "1d10",
+        "bonusFixe": 3,
+        "typeDegats": "explosion"
+      },
+      "n3": {
+        "prix": 500,
+        "de": "1d10",
+        "bonusFixe": 3,
+        "typeDegats": "explosion"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "2cadYKQvQOPXrvhI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

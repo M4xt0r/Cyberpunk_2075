@@ -1,0 +1,60 @@
+{
+  "_id": "lGeaQacnFJ9p2O1A",
+  "_key": "!items!lGeaQacnFJ9p2O1A",
+  "name": "D5 Sidewinder",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/d5-sidewinder.webp",
+  "system": {
+    "description": "<p>Ajoute une attaque bonus à l'arme à feu.</p>",
+    "ambiance": "Fusil intelligent. Choix intelligent.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeLourde",
+    "carac": "ref",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "mitraillette",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 1700,
+        "de": "1d12",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 2550,
+        "de": "1d12",
+        "bonusFixe": 1,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 3400,
+        "de": "1d12",
+        "bonusFixe": 2,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "kytfQJgWv7kzYWyu",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

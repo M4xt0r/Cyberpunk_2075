@@ -1,0 +1,63 @@
+{
+  "_id": "SOhl7CHtq5n6Yp9L",
+  "_key": "!items!SOhl7CHtq5n6Yp9L",
+  "name": "Techie",
+  "type": "classe",
+  "img": "systems/cyberpunk2075/assets/notion/classes/techie.webp",
+  "system": {
+    "description": "<p>Les Techies peuvent être des techniciens ou des spécialistes cybernétiques. Vous en connaissez un rayon sur les nouvelles technologies et vous prônez la supériorité cybernétique, au point qu'avoir les couilles en or est à prendre au sens littéral.</p>",
+    "ambiance": "",
+    "bonus": {
+      "const": 0,
+      "ref": 0,
+      "captec": 2,
+      "int": 1,
+      "safr": 0
+    },
+    "eddies": 1000,
+    "gains": {
+      "vie": "0",
+      "ram": "1d2",
+      "humanite": "1d4"
+    },
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.rGZ2R11tdUi0MTOl",
+        "nom": "Expertise",
+        "resume": "Vos jets de Tech sur une tech ont avantage.",
+        "niveau": 3
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.8TR08Lc9w666vBSw",
+        "nom": "Bricoleur",
+        "resume": "Vos jets de réparation ont avantage.",
+        "niveau": 8
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.bCyIFlXVe5QcXtCc",
+        "nom": "Surcalibrage",
+        "resume": "Vous êtes capable d'améliorer n'importe quel implant ou arme d'un niveau pour une période de 24 h, pour +5💀 au posses…",
+        "niveau": 10
+      }
+    ],
+    "sousClasses": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.9OGBqTTemax3F5K8",
+        "nom": "Mécano",
+        "resume": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.OuTs6CFZKCP3qntV",
+        "nom": "Charcudoc",
+        "resume": ""
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "eNmo02U3Xb76w2qz",
+  "sort": 1,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

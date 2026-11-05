@@ -1,0 +1,47 @@
+{
+  "_id": "bCyIFlXVe5QcXtCc",
+  "_key": "!items!bCyIFlXVe5QcXtCc",
+  "name": "Surcalibrage",
+  "type": "talent",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Vous êtes capable d'améliorer n'importe quel implant ou arme d'un niveau pour une période de 24 h, pour +5💀 au possesseur de l'implant et à l'activation de celui-ci (sauf s'il est passif). Si le niveau dépasse 3, voir avec le MJ les nouveaux effets. Deux fois par repos long.</p>",
+    "ambiance": "",
+    "source": "ultime",
+    "niveauObtention": 10,
+    "special": "",
+    "effet": {
+      "type": "actif",
+      "description": "Vous êtes capable d'améliorer n'importe quel implant ou arme d'un niveau pour une période de 24 h, pour +5💀 au possesseur de l'implant et à l'activation de celui-ci (sauf s'il est passif). Si le niveau dépasse 3, voir avec le MJ les nouveaux effets. Deux fois par repos long.",
+      "modificateurs": [],
+      "activation": "action",
+      "coutHumanite": 5,
+      "humaniteKill": 0,
+      "utilisations": {
+        "periode": "repos",
+        "max": 2
+      },
+      "duree": 0,
+      "ciblesMax": 0,
+      "jet": {
+        "formule": "",
+        "type": "soin",
+        "typeDegats": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    }
+  },
+  "effects": [],
+  "folder": "O2M1F9N1ZRCgyuM2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

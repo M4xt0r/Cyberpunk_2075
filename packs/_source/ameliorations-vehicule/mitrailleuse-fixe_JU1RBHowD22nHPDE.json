@@ -1,0 +1,116 @@
+{
+  "_id": "JU1RBHowD22nHPDE",
+  "_key": "!items!JU1RBHowD22nHPDE",
+  "name": "Mitrailleuse fixe",
+  "type": "ameliorationVehicule",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "",
+    "ambiance": "Devant se trouve l'avenir, eh bien cassez-lui la gueule !",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "pilotage",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "armeIntegree": true,
+    "typeArmeIntegree": "autre",
+    "pickupSeulement": false,
+    "niveaux": {
+      "n1": {
+        "prix": 4000,
+        "effet": {
+          "type": "passif",
+          "description": "Place 2 mitrailleuses légères à l'avant ; le pilote peut utiliser son action bonus pour attaquer : 1d6+Pilotage.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6 + Pilotage",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 4000,
+        "effet": {
+          "type": "passif",
+          "description": "Place 2 mitrailleuses légères à l'avant ; le pilote peut utiliser son action bonus pour attaquer : 1d6+Pilotage.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6 + Pilotage",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 4000,
+        "effet": {
+          "type": "passif",
+          "description": "Place 2 mitrailleuses légères à l'avant ; le pilote peut utiliser son action bonus pour attaquer : 1d6+Pilotage.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6 + Pilotage",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

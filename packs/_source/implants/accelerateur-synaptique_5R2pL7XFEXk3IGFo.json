@@ -1,0 +1,225 @@
+{
+  "_id": "5R2pL7XFEXk3IGFo",
+  "_key": "!items!5R2pL7XFEXk3IGFo",
+  "name": "Accélérateur synaptique",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/accelerateur-synaptique.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Neuroprocesseur régulant l'équilibre hormonal durant les situations risquées et boostant les réflexes.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "nerveux",
+    "coutMin": 10,
+    "coutMax": 10,
+    "coutInstallation": 10,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 4000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "S'active par réaction et ne dure qu'un tour. +1 aux compétences de Réflexes, +1 en Perception et +2 en Adaptabilité. +5💀 par utilisation.",
+          "modificateurs": [
+            {
+              "cible": "comp.discretion",
+              "valeur": 1
+            },
+            {
+              "cible": "comp.acrobatie",
+              "valeur": 1
+            },
+            {
+              "cible": "comp.larcin",
+              "valeur": 1
+            },
+            {
+              "cible": "comp.armeDePoing",
+              "valeur": 1
+            },
+            {
+              "cible": "comp.sniper",
+              "valeur": 1
+            },
+            {
+              "cible": "comp.perception",
+              "valeur": 1
+            },
+            {
+              "cible": "adaptabilite",
+              "valeur": 2
+            }
+          ],
+          "activation": "reaction",
+          "coutHumanite": 5,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 1,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 5000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "S'active par réaction et ne dure qu'un tour. +2 aux compétences de Réflexes, +2 en Perception et +2 en Adaptabilité. +5💀 par utilisation.",
+          "modificateurs": [
+            {
+              "cible": "comp.discretion",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.acrobatie",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.larcin",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.armeDePoing",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.sniper",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.perception",
+              "valeur": 2
+            },
+            {
+              "cible": "adaptabilite",
+              "valeur": 2
+            }
+          ],
+          "activation": "reaction",
+          "coutHumanite": 5,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 1,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 6000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "S'active par réaction et ne dure qu'un tour. +2 aux compétences de Réflexes, +2 en Perception et +3 en Adaptabilité. +5💀 par utilisation.",
+          "modificateurs": [
+            {
+              "cible": "comp.discretion",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.acrobatie",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.larcin",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.armeDePoing",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.sniper",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.perception",
+              "valeur": 2
+            },
+            {
+              "cible": "adaptabilite",
+              "valeur": 3
+            }
+          ],
+          "activation": "reaction",
+          "coutHumanite": 5,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 1,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "O4hhAjb6s5DYQBgs",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -1,0 +1,153 @@
+{
+  "_id": "WQn4By6v5dpXuU3P",
+  "_key": "!items!WQn4By6v5dpXuU3P",
+  "name": "Auto-Glace",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/auto-glace.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Système électronique anti-intrusion protégeant les implants cybernétiques contre d'affreux bugs.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "nerveux",
+    "coutMin": 5,
+    "coutMax": 5,
+    "coutInstallation": 5,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 3000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Augmente la Glace du possesseur de 2.",
+          "modificateurs": [
+            {
+              "cible": "glace",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 4000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Augmente la Glace du possesseur de 4.",
+          "modificateurs": [
+            {
+              "cible": "glace",
+              "valeur": 4
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 5000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Augmente la Glace du possesseur de 6.",
+          "modificateurs": [
+            {
+              "cible": "glace",
+              "valeur": 6
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "O4hhAjb6s5DYQBgs",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

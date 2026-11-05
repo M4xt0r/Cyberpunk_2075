@@ -1,0 +1,112 @@
+{
+  "_id": "gnvMiYcNPwX0SRBk",
+  "_key": "!items!gnvMiYcNPwX0SRBk",
+  "name": "Retrothrusters",
+  "type": "objet",
+  "img": "systems/cyberpunk2075/assets/notion/objets/retrothrusters.webp",
+  "system": {
+    "description": "<p>Annule les dégâts de chute.</p>",
+    "ambiance": "Non, ils ne sont pas vintage. Loin de là, en fait.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "categorie": "utilitaire",
+    "quantite": 1,
+    "sePorte": true,
+    "porte": false,
+    "uneChargeParUtilisation": true,
+    "chargesRestantes": 0,
+    "qualite": "aucune",
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "animation": {
+      "style": "",
+      "projectile": "",
+      "impact": "",
+      "zone": "",
+      "son": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 450,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Annule les dégâts de chute.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 450,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Annule les dégâts de chute.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 450,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Annule les dégâts de chute.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "5zoVjqJvn9BY2wyw",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

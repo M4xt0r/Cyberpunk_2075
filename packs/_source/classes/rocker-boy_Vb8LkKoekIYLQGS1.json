@@ -1,0 +1,133 @@
+{
+  "_id": "Vb8LkKoekIYLQGS1",
+  "_key": "!items!Vb8LkKoekIYLQGS1",
+  "name": "Rocker Boy",
+  "type": "sousClasse",
+  "img": "systems/cyberpunk2075/assets/notion/classes/anti-corpo.webp",
+  "system": {
+    "description": "",
+    "ambiance": "",
+    "classeParente": "Anti-Corpo",
+    "maitrises": [
+      {
+        "competence": "spectacle",
+        "choix": ""
+      },
+      {
+        "competence": "persuasion",
+        "choix": ""
+      },
+      {
+        "competence": "corpsACorps",
+        "choix": ""
+      }
+    ],
+    "pack": [
+      {
+        "uuid": "Compendium.cyberpunk2075.implants.Item.Ww21u6lyGoubXOXs",
+        "nom": "Moelle épaisse",
+        "resume": "",
+        "mode": "precis",
+        "type": "implant",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.implants.Item.NHHQZj2A3PouBNVb",
+        "nom": "Audivox",
+        "resume": "",
+        "mode": "precis",
+        "type": "implant",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "",
+        "nom": "",
+        "resume": "",
+        "mode": "choix",
+        "type": "",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "cyberAccessoire",
+        "prixMax": 0,
+        "texte": "1 cyber-accessoire au choix"
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.usofHY3mqUJP2OYr",
+        "nom": "Liberty",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.GCDCRN8oxS2syqvQ",
+        "nom": "M251s Ajax",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.objets.Item.RqQ9BWZ3ndEs61ag",
+        "nom": "Guitare",
+        "resume": "",
+        "mode": "precis",
+        "type": "objet",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "objet",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.76qmPtWVNIBUueH9",
+        "nom": "C4",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 1,
+        "quantite": 3,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      }
+    ],
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.Po3Q1Nv9GAAhZgEK",
+        "nom": "La voix du Rock",
+        "resume": "Par une action bonus, un allié ajoute 1d4 à son prochain jet. Utilisable un nombre de fois égal à votre BM.",
+        "niveau": 1
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.fNly7O7Zsmy9p4GI",
+        "nom": "Bagarre de rue",
+        "resume": "Quand vous vous battez, n'importe quel objet devient une arme de statistique 1d6+Càc.",
+        "niveau": 5
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "DwOYNHXuaseP7Zwn",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

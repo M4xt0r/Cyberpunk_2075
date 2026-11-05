@@ -1,0 +1,47 @@
+{
+  "_id": "hzLNr3CPeQg4hk3M",
+  "_key": "!items!hzLNr3CPeQg4hk3M",
+  "name": "Ennemi public",
+  "type": "talent",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Au début de chaque combat, les ennemis qui vous voient font un jet de Sang-Froid (DD 10 + bonus). En cas d'échec, ils ont désavantage contre vous ; au début de chacun de leurs tours, ils refont ce jet tant qu'ils ne l'ont pas réussi.</p>",
+    "ambiance": "",
+    "source": "ultime",
+    "niveauObtention": 10,
+    "special": "",
+    "effet": {
+      "type": "passif",
+      "description": "Au début de chaque combat, les ennemis qui vous voient font un jet de Sang-Froid (DD 10 + bonus). En cas d'échec, ils ont désavantage contre vous ; au début de chacun de leurs tours, ils refont ce jet tant qu'ils ne l'ont pas réussi.",
+      "modificateurs": [],
+      "activation": "action",
+      "coutHumanite": 0,
+      "humaniteKill": 0,
+      "utilisations": {
+        "periode": "illimite",
+        "max": 0
+      },
+      "duree": 0,
+      "ciblesMax": 0,
+      "jet": {
+        "formule": "",
+        "type": "soin",
+        "typeDegats": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    }
+  },
+  "effects": [],
+  "folder": "O2M1F9N1ZRCgyuM2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

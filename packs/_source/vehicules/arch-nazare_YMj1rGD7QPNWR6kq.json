@@ -1,0 +1,51 @@
+{
+  "_id": "YMj1rGD7QPNWR6kq",
+  "_key": "!actors!YMj1rGD7QPNWR6kq",
+  "name": "Arch Nazaré",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/arch-nazare.webp",
+  "system": {
+    "categorie": "moto",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": true,
+    "vitesse": "B",
+    "maniabilite": 5,
+    "vie": {
+      "value": 20,
+      "base": 20
+    },
+    "slots": 1,
+    "places": 2,
+    "placesNote": "",
+    "prix": 20000,
+    "ambiance": "Le favori des téléspectateurs n°1 de l'émission « Guns and Horses » pendant deux années consécutives.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "QQmSCySip72cQcoy",
+  "sort": 1,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Arch Nazaré",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/arch-nazare.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

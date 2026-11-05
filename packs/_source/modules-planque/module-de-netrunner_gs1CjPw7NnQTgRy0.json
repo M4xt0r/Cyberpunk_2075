@@ -1,0 +1,105 @@
+{
+  "_id": "gs1CjPw7NnQTgRy0",
+  "_key": "!items!gs1CjPw7NnQTgRy0",
+  "name": "Module de NetRunner",
+  "type": "modulePlanque",
+  "img": "icons/svg/house.svg",
+  "system": {
+    "description": "",
+    "ambiance": "Finis les bains de glace, dites bonjour à de la tech de pointe.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "types": [],
+    "vieOffice": false,
+    "niveaux": {
+      "n1": {
+        "prix": 300,
+        "effet": {
+          "type": "passif",
+          "description": "Vous permet de tout pirater à distance. Les connexions directes devront être effectuées par un allié sur place. +1 en Piratage lorsque vous êtes connecté.",
+          "modificateurs": [
+            {
+              "cible": "comp.piratage",
+              "valeur": 1
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 600,
+        "effet": {
+          "type": "passif",
+          "description": "Vous permet de tout pirater à distance. Les connexions directes devront être effectuées par un allié sur place. +2 en Piratage lorsque vous êtes connecté.",
+          "modificateurs": [
+            {
+              "cible": "comp.piratage",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 900,
+        "effet": {
+          "type": "passif",
+          "description": "Vous permet de tout pirater à distance. Les connexions directes devront être effectuées par un allié sur place. +2 en Piratage lorsque vous êtes connecté. Divise par 2 le coût du Protocole de violation rapide.",
+          "modificateurs": [
+            {
+              "cible": "comp.piratage",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

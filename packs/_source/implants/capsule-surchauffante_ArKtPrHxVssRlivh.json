@@ -1,0 +1,23 @@
+{
+  "_id": "ArKtPrHxVssRlivh",
+  "_key": "!items!ArKtPrHxVssRlivh",
+  "name": "Capsule Surchauffante",
+  "type": "capsule",
+  "img": "systems/cyberpunk2075/assets/notion/implants/lame-mantis.webp",
+  "system": {
+    "description": "<p>1d4 de dégâts de feu supplémentaires. Une seule capsule par implant de bras.</p>",
+    "ambiance": "Capsule améliorative qui modifie la technologie implantée dans les bras afin d'en augmenter la létalité.",
+    "typeDegats": "feu",
+    "de": "1d4",
+    "prix": 1000,
+    "coutInstallation": 10,
+    "implant": ""
+  },
+  "effects": [],
+  "folder": "R6UmTi7NBPq2yjhb",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

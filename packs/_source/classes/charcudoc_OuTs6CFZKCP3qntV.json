@@ -1,0 +1,121 @@
+{
+  "_id": "OuTs6CFZKCP3qntV",
+  "_key": "!items!OuTs6CFZKCP3qntV",
+  "name": "Charcudoc",
+  "type": "sousClasse",
+  "img": "systems/cyberpunk2075/assets/notion/classes/techie.webp",
+  "system": {
+    "description": "",
+    "ambiance": "",
+    "classeParente": "Techie",
+    "maitrises": [
+      {
+        "competence": "charcutage",
+        "choix": ""
+      },
+      {
+        "competence": "tech",
+        "choix": ""
+      },
+      {
+        "competence": "medecine",
+        "choix": ""
+      }
+    ],
+    "pack": [
+      {
+        "uuid": "Compendium.cyberpunk2075.implants.Item.Io5cS7jxgP8VEmkF",
+        "nom": "Liaison intelligente",
+        "resume": "",
+        "mode": "precis",
+        "type": "implant",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.NibcV7YO9OTWn4Pn",
+        "nom": "A-22B Chao",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.objets.Item.HzKLKtfGa31EG3IO",
+        "nom": "Gant de Charcudoc",
+        "resume": "",
+        "mode": "precis",
+        "type": "objet",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "objet",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.objets.Item.5L1eWQ7MQvbRfG85",
+        "nom": "Trousse de soin",
+        "resume": "",
+        "mode": "precis",
+        "type": "objet",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "objet",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.objets.Item.ZtqkQeyF78z4ZVyX",
+        "nom": "Immunosuppresseur",
+        "resume": "",
+        "mode": "precis",
+        "type": "objet",
+        "niveau": 1,
+        "quantite": 3,
+        "categorie": "objet",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "",
+        "nom": "",
+        "resume": "",
+        "mode": "gratuit",
+        "type": "",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "module",
+        "prixMax": 0,
+        "texte": "Planque Local niv. 1 avec 1 module Charcudoc (compendiums Planques et Modules)"
+      }
+    ],
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.htq5yHqZIF02yi81",
+        "nom": "Doigt de métal",
+        "resume": "Pour chaque soin que vous prodiguez, ajoutez 1d6.",
+        "niveau": 1
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.nxmND74wmCL5av5G",
+        "nom": "Premiers secours",
+        "resume": "Une fois par repos long, la première fois que vous relevez un allié à 1 PV, il ne gagne pas de point de stress.",
+        "niveau": 5
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "DwOYNHXuaseP7Zwn",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

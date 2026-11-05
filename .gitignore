@@ -1,3 +1,6 @@
 node_modules/
 *.zip
 .DS_Store
+packs/*
+!packs/_source/
+__pycache__/

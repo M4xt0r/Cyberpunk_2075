@@ -1,0 +1,60 @@
+{
+  "_id": "UCkzhPIBLUvyeOHn",
+  "_key": "!items!UCkzhPIBLUvyeOHn",
+  "name": "Couteau",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/couteau.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Pratique quand les choses deviennent risquées.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "corpsACorps",
+    "carac": "ref",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "corpsACorps",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 100,
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 200,
+        "de": "1d6",
+        "bonusFixe": 1,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 300,
+        "de": "1d6",
+        "bonusFixe": 2,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "OaPgPIYn09gJTUdY",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -1,0 +1,46 @@
+{
+  "_id": "TCXZ8e73l9iEdvz0",
+  "_key": "!items!TCXZ8e73l9iEdvz0",
+  "name": "Court-circuit",
+  "type": "hack",
+  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "system": {
+    "description": "<p>1d6+Piratage de dégâts électriques sur une cible organique, 1d8+Piratage sur un robot.</p>",
+    "ambiance": "",
+    "prix": 800,
+    "ram": 4,
+    "variable": {
+      "actif": false,
+      "parUnite": 0,
+      "unite": "carré de 1,5 m"
+    },
+    "activation": "action",
+    "defense": "glace",
+    "competence": "piratage",
+    "bonusTouche": 0,
+    "degats": {
+      "organique": "1d6 + Piratage",
+      "robot": "1d8 + Piratage",
+      "type": "electrique"
+    },
+    "humanite": {
+      "cible": 0,
+      "lanceur": 0
+    },
+    "duree": 0,
+    "effet": "1d6+Piratage de dégâts électriques sur une cible organique, 1d8+Piratage sur un robot.",
+    "special": "",
+    "animation": {
+      "glitch": true,
+      "impact": "",
+      "son": ""
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -1,0 +1,97 @@
+{
+  "_id": "741dIJCgSQDR6Nih",
+  "_key": "!items!741dIJCgSQDR6Nih",
+  "name": "Gunner",
+  "type": "sousClasse",
+  "img": "systems/cyberpunk2075/assets/notion/classes/solo.webp",
+  "system": {
+    "description": "",
+    "ambiance": "",
+    "classeParente": "Solo",
+    "maitrises": [
+      {
+        "competence": "explosif",
+        "choix": ""
+      },
+      {
+        "competence": "intimidation",
+        "choix": ""
+      },
+      {
+        "competence": "",
+        "choix": "armeDePoing,armeLourde,sniper"
+      }
+    ],
+    "pack": [
+      {
+        "uuid": "Compendium.cyberpunk2075.implants.Item.o82dsCjuCsHUdqUq",
+        "nom": "Noyau mécatronique",
+        "resume": "",
+        "mode": "precis",
+        "type": "implant",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.implants.Item.RzFmgxGCKfv4V4bC",
+        "nom": "Biomoniteur",
+        "resume": "",
+        "mode": "precis",
+        "type": "implant",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "",
+        "nom": "",
+        "resume": "",
+        "mode": "choix",
+        "type": "",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "arme",
+        "prixMax": 1000,
+        "texte": "Une arme au choix"
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.evKajX01OKONiavp",
+        "nom": "F-GX Frag Grenade",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 1,
+        "quantite": 2,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      }
+    ],
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.aDIPlm7J7sEXZ3VV",
+        "nom": "Œil de Faucon",
+        "resume": "Vous possédez une réaction supplémentaire, uniquement pour réaliser un tir de réaction.",
+        "niveau": 1
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.XV12T3vcDpkixdQv",
+        "nom": "Boucherie",
+        "resume": "Si vous avez tué une cible, vous possédez une action supplémentaire. Une fois par tour.",
+        "niveau": 5
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "DwOYNHXuaseP7Zwn",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -1,0 +1,383 @@
+{
+  "_id": "giywT58U59oVVz0S",
+  "_key": "!actors!giywT58U59oVVz0S",
+  "name": "Choom · Garde du corps",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/notion/ennemis/choom.webp",
+  "system": {
+    "faction": "Choom",
+    "rang": "Garde du corps",
+    "rangNiveau": 2,
+    "nature": "organique",
+    "yeuxCyber": "auto",
+    "volant": false,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 2
+      },
+      "ref": {
+        "bonus": 0
+      },
+      "captec": {
+        "bonus": -1
+      },
+      "int": {
+        "bonus": -1
+      },
+      "safr": {
+        "bonus": 1
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "armeLourde",
+        "valeur": 4
+      },
+      {
+        "competence": "intimidation",
+        "valeur": 4
+      }
+    ],
+    "vie": {
+      "value": 23,
+      "max": 23,
+      "forcer": 23
+    },
+    "ram": {
+      "value": 8,
+      "max": 8,
+      "forcer": null
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": null
+    },
+    "glace": {
+      "forcer": null
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 0,
+    "bm": 2,
+    "couvert": 0,
+    "notes": ""
+  },
+  "items": [
+    {
+      "_id": "TmIe6RtOelG4wGms",
+      "_key": "!actors.items!giywT58U59oVVz0S.TmIe6RtOelG4wGms",
+      "name": "Biomoniteur",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/biomoniteur.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Implant conçu pour coordonner les processus de régénération.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "sanguin",
+        "coutMin": 5,
+        "coutMax": 5,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 4000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Ajoute 5 PV au possesseur.",
+              "modificateurs": [
+                {
+                  "cible": "vieMax",
+                  "valeur": 5
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 6000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Ajoute 10 PV au possesseur.",
+              "modificateurs": [
+                {
+                  "cible": "vieMax",
+                  "valeur": 10
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 8000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Ajoute 15 PV au possesseur.",
+              "modificateurs": [
+                {
+                  "cible": "vieMax",
+                  "valeur": 15
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    },
+    {
+      "_id": "LjdPBHfGuqjAx49o",
+      "_key": "!actors.items!giywT58U59oVVz0S.LjdPBHfGuqjAx49o",
+      "name": "M221 Saratoga",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/m221-saratoga.webp",
+      "system": {
+        "description": "<p>Ajoute une attaque bonus à l'arme à feu.</p>",
+        "ambiance": "Ronronne comme un chaton.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeLourde",
+        "carac": "const",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "mitraillette",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 800,
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 1200,
+            "de": "1d6",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1600,
+            "de": "1d6",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "U2OXBgRUoj00VR07",
+      "_key": "!actors.items!giywT58U59oVVz0S.U2OXBgRUoj00VR07",
+      "name": "M2038 Tactician",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/m2038-tactician.webp",
+      "system": {
+        "description": "<p>Portée de 15 mètres : au-delà, la moitié des dégâts.</p>",
+        "ambiance": "La preuve que vous êtes sérieux.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeLourde",
+        "carac": "const",
+        "portee": 15,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pompe",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 500,
+            "de": "1d6",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 750,
+            "de": "1d6",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1200,
+            "de": "1d6",
+            "bonusFixe": 4,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    }
+  ],
+  "effects": [],
+  "folder": "chpAn2a7uFwqHPLk",
+  "sort": 2,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Choom · Garde du corps",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/ennemis/choom.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

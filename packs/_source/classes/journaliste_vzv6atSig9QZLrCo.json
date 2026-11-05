@@ -1,0 +1,109 @@
+{
+  "_id": "vzv6atSig9QZLrCo",
+  "_key": "!items!vzv6atSig9QZLrCo",
+  "name": "Journaliste",
+  "type": "sousClasse",
+  "img": "systems/cyberpunk2075/assets/notion/classes/hacker.webp",
+  "system": {
+    "description": "",
+    "ambiance": "",
+    "classeParente": "Hacker",
+    "maitrises": [
+      {
+        "competence": "piratage",
+        "choix": ""
+      },
+      {
+        "competence": "investigation",
+        "choix": ""
+      },
+      {
+        "competence": "persuasion",
+        "choix": ""
+      }
+    ],
+    "pack": [
+      {
+        "uuid": "Compendium.cyberpunk2075.implants.Item.2yTIAlBg5QAlILnQ",
+        "nom": "Puce de piratage",
+        "resume": "",
+        "mode": "precis",
+        "type": "implant",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "",
+        "nom": "",
+        "resume": "",
+        "mode": "gratuit",
+        "type": "",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "hack",
+        "prixMax": 800,
+        "texte": "1 hack gratuit"
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.NibcV7YO9OTWn4Pn",
+        "nom": "A-22B Chao",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.objets.Item.cyP00prvzF5JJD2y",
+        "nom": "Camera Glass",
+        "resume": "",
+        "mode": "precis",
+        "type": "objet",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "objet",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.objets.Item.qkGJ2jpSwFgHNYd7",
+        "nom": "Couronne de DS",
+        "resume": "",
+        "mode": "precis",
+        "type": "objet",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "objet",
+        "prixMax": 0,
+        "texte": ""
+      }
+    ],
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.KIedCSFDQwC6zyln",
+        "nom": "Crédibilité",
+        "resume": "Lorsque vous voulez convaincre des foules par un beau discours ou une vidéo, vous avez avantage sur votre jet de Pers…",
+        "niveau": 1
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.GifwwV8geKNdMiZr",
+        "nom": "Max Headroom",
+        "resume": "Lorsque vous piratez un objet en lien avec l'audiovisuel, vous avez avantage sur votre jet.",
+        "niveau": 5
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "DwOYNHXuaseP7Zwn",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

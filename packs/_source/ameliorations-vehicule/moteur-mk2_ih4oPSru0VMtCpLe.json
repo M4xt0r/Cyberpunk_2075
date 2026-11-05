@@ -1,0 +1,131 @@
+{
+  "_id": "ih4oPSru0VMtCpLe",
+  "_key": "!items!ih4oPSru0VMtCpLe",
+  "name": "Moteur MK2",
+  "type": "ameliorationVehicule",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "",
+    "ambiance": "Un moteur, c'est fait pour vibrer, alors pourquoi le laisser si silencieux ?",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeLourde",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "armeIntegree": false,
+    "typeArmeIntegree": "autre",
+    "pickupSeulement": false,
+    "niveaux": {
+      "n1": {
+        "prix": 6000,
+        "effet": {
+          "type": "passif",
+          "description": "Augmente la vitesse de 1 cran.",
+          "modificateurs": [
+            {
+              "cible": "vitesse",
+              "valeur": 1
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 8000,
+        "effet": {
+          "type": "passif",
+          "description": "Augmente la vitesse de 2 crans.",
+          "modificateurs": [
+            {
+              "cible": "vitesse",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 8000,
+        "effet": {
+          "type": "passif",
+          "description": "Augmente la vitesse de 2 crans.",
+          "modificateurs": [
+            {
+              "cible": "vitesse",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

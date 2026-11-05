@@ -1,0 +1,51 @@
+{
+  "_id": "fUt6HboF9yr2fJrP",
+  "_key": "!actors!fUt6HboF9yr2fJrP",
+  "name": "Herrera Outlaw GTS",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/herrera-outlaw.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "B",
+    "maniabilite": 2,
+    "vie": {
+      "value": 60,
+      "base": 60
+    },
+    "slots": 2,
+    "places": 4,
+    "placesNote": "",
+    "prix": 23000,
+    "ambiance": "Un favori du showbiz, l'Outlaw est piloté par l'animateur de talk-show le plus populaire, Ziggy Q, entre autres.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 5,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Herrera Outlaw GTS",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/herrera-outlaw.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

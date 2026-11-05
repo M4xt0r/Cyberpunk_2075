@@ -3,6 +3,7 @@
  */
 import { CHEMIN, CARACS, COMPETENCES, COUVERTS, DEFENSES, NIVEAUX, REGLES_ARME, TYPES_DEGATS } from "../config.mjs";
 import { signe } from "./jets.mjs";
+import { traduireFormule } from "./formules.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 const DE_PAR_MODE = { avantage: "2d20kh", normal: "1d20", desavantage: "2d20kl" };
@@ -237,14 +238,15 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   const touchees = cibles.filter(c => c.touche !== false);
   const avecCritique = critique || touchees.some(c => c.critique);
 
-  const termes = [n.de || "0"];
+  // Le dé peut contenir une compétence (« 1d12 + Corps à corps », « 1d6 + Pilotage »)
+  const termes = [traduireFormule(n.de || "0")];
   const detail = [];
   if ( n.bonusFixe ) termes.push(`${n.bonusFixe}`);
   if ( bonusCarac ) termes.push(`${bonusCarac}`);
   if ( modDegats ) termes.push(`${modDegats}`);
   for ( const sup of supplements ) termes.push(sup.de);
   if ( avecCritique ) termes.push(sys.deCritique);
-  const jet = await new Roll(termes.join(" + ")).evaluate();
+  const jet = await new Roll(termes.join(" + "), acteur.getRollData()).evaluate();
 
   // Détail lisible : « 1d6 (4) + 1 + SaFr 1 + crit 1d8 (6) »
   const des = jet.dice;

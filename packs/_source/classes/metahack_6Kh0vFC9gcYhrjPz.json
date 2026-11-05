@@ -1,0 +1,47 @@
+{
+  "_id": "6Kh0vFC9gcYhrjPz",
+  "_key": "!items!6Kh0vFC9gcYhrjPz",
+  "name": "Métahack",
+  "type": "talent",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Après un hack réussi, choisissez une autre cible atteignable (2,5 m) pour la moitié de la valeur en RAM de ce hack.</p>",
+    "ambiance": "",
+    "source": "sousClasse",
+    "niveauObtention": 1,
+    "special": "",
+    "effet": {
+      "type": "passif",
+      "description": "Après un hack réussi, choisissez une autre cible atteignable (2,5 m) pour la moitié de la valeur en RAM de ce hack.",
+      "modificateurs": [],
+      "activation": "action",
+      "coutHumanite": 0,
+      "humaniteKill": 0,
+      "utilisations": {
+        "periode": "illimite",
+        "max": 0
+      },
+      "duree": 0,
+      "ciblesMax": 0,
+      "jet": {
+        "formule": "",
+        "type": "soin",
+        "typeDegats": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    }
+  },
+  "effects": [],
+  "folder": "O2M1F9N1ZRCgyuM2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

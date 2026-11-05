@@ -1,0 +1,51 @@
+{
+  "_id": "e6R3v85VaVWo05uz",
+  "_key": "!actors!e6R3v85VaVWo05uz",
+  "name": "Mizutani Shion « Coyote »",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/mizutani-coyote.webp",
+  "system": {
+    "categorie": "blinde",
+    "pickup": false,
+    "blinde": true,
+    "armesInterdites": false,
+    "vitesse": "A",
+    "maniabilite": 3,
+    "vie": {
+      "value": 100,
+      "base": 100
+    },
+    "slots": 3,
+    "places": 2,
+    "placesNote": "",
+    "prix": 32000,
+    "ambiance": "Grâce à ses mises à niveau, ce modèle est capable d'aller à pleine vitesse même à des températures supérieures à 135 °F.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "fpI7yOwQ7nsaP6LZ",
+  "sort": 17,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Mizutani Shion « Coyote »",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/mizutani-coyote.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

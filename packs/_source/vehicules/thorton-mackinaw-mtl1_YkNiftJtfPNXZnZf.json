@@ -1,0 +1,51 @@
+{
+  "_id": "YkNiftJtfPNXZnZf",
+  "_key": "!actors!YkNiftJtfPNXZnZf",
+  "name": "Thorton Mackinaw MTL1",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/thorton-mackinaw.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": true,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "D",
+    "maniabilite": 1,
+    "vie": {
+      "value": 60,
+      "base": 60
+    },
+    "slots": 1,
+    "places": 6,
+    "placesNote": "",
+    "prix": 12000,
+    "ambiance": "Un ajout obligatoire à chaque chanson country, la voiture a même son propre musée dans l'arrière-pays du Tennessee.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 12,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Thorton Mackinaw MTL1",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/thorton-mackinaw.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

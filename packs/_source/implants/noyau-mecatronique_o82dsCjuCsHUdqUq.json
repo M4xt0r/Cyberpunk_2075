@@ -1,0 +1,138 @@
+{
+  "_id": "o82dsCjuCsHUdqUq",
+  "_key": "!items!o82dsCjuCsHUdqUq",
+  "name": "Noyau mécatronique",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/noyau-mecatronique.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Fournit des informations sur les points faibles des machines. Fonctionne à la fois sur des modèles de série et sur des modèles rares.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "nerveux",
+    "coutMin": 5,
+    "coutMax": 5,
+    "coutInstallation": 5,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 3000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Augmente les dégâts sur un robot de 1d4 (ces dégâts ne peuvent être réduits), +1💀 par robot éliminé.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 1,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 4000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Augmente les dégâts sur un robot de 1d4+1 (ces dégâts ne peuvent être réduits), +1💀 par robot éliminé.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 1,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 5000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Augmente les dégâts sur un robot de 1d4+2 (ces dégâts ne peuvent être réduits), +1💀 par robot éliminé.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 1,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "O4hhAjb6s5DYQBgs",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

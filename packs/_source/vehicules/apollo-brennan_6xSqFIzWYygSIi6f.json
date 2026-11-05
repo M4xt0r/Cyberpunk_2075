@@ -1,0 +1,51 @@
+{
+  "_id": "6xSqFIzWYygSIi6f",
+  "_key": "!actors!6xSqFIzWYygSIi6f",
+  "name": "Apollo Brennan",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/apollo-brennan.webp",
+  "system": {
+    "categorie": "moto",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": true,
+    "vitesse": "C",
+    "maniabilite": 4,
+    "vie": {
+      "value": 20,
+      "base": 20
+    },
+    "slots": 1,
+    "places": 2,
+    "placesNote": "",
+    "prix": 18000,
+    "ambiance": "Équipé d'un moteur puissant parfait pour les conditions hors route.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "QQmSCySip72cQcoy",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Apollo Brennan",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/apollo-brennan.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

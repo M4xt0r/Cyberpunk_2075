@@ -1,0 +1,112 @@
+{
+  "_id": "Dc5Jv1VEb3v7LnYv",
+  "_key": "!items!Dc5Jv1VEb3v7LnYv",
+  "name": "Repas pourri",
+  "type": "objet",
+  "img": "icons/svg/tankard.svg",
+  "system": {
+    "description": "<p>Donne −1 en Humanité à partir de Bof et −1 de plus par palier au-dessus.</p>",
+    "ambiance": "",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "categorie": "domestique",
+    "quantite": 1,
+    "sePorte": false,
+    "porte": false,
+    "uneChargeParUtilisation": true,
+    "chargesRestantes": 0,
+    "qualite": "pourrie",
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "animation": {
+      "style": "",
+      "projectile": "",
+      "impact": "",
+      "zone": "",
+      "son": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 15,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Donne −1 en Humanité à partir de Bof et −1 de plus par palier au-dessus.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 15,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Donne −1 en Humanité à partir de Bof et −1 de plus par palier au-dessus.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 15,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Donne −1 en Humanité à partir de Bof et −1 de plus par palier au-dessus.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "9AptE1b0UuqVOTZ5",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

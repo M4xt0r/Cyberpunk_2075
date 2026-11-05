@@ -1,0 +1,46 @@
+{
+  "_id": "NsF7Hkx5CBJ4Th3J",
+  "_key": "!items!NsF7Hkx5CBJ4Th3J",
+  "name": "Détonation involontaire",
+  "type": "hack",
+  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "system": {
+    "description": "<p>Fait exploser une grenade de la cible. +5💀.</p>",
+    "ambiance": "",
+    "prix": 500,
+    "ram": 6,
+    "variable": {
+      "actif": false,
+      "parUnite": 0,
+      "unite": "carré de 1,5 m"
+    },
+    "activation": "action",
+    "defense": "glace",
+    "competence": "piratage",
+    "bonusTouche": 0,
+    "degats": {
+      "organique": "",
+      "robot": "",
+      "type": "electrique"
+    },
+    "humanite": {
+      "cible": 0,
+      "lanceur": 5
+    },
+    "duree": 0,
+    "effet": "Fait exploser une grenade de la cible. +5💀.",
+    "special": "",
+    "animation": {
+      "glitch": true,
+      "impact": "",
+      "son": ""
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

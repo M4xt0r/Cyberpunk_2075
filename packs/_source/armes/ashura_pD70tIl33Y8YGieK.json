@@ -1,0 +1,60 @@
+{
+  "_id": "pD70tIl33Y8YGieK",
+  "_key": "!items!pD70tIl33Y8YGieK",
+  "name": "Ashura",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/ashura.webp",
+  "system": {
+    "description": "<p>Fait toujours un coup critique en cas de réussite.</p>",
+    "ambiance": "Plus qu'un fusil.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "sniper",
+    "carac": "captec",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "sniper",
+    "intelligente": true,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 900,
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 1350,
+        "de": "1d6",
+        "bonusFixe": 2,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 1800,
+        "de": "1d6",
+        "bonusFixe": 4,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "yJTNCQ5AJEjcpcvl",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

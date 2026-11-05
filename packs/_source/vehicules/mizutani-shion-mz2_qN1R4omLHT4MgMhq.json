@@ -1,0 +1,51 @@
+{
+  "_id": "qN1R4omLHT4MgMhq",
+  "_key": "!actors!qN1R4omLHT4MgMhq",
+  "name": "Mizutani Shion MZ2",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/mizutani-shion.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "B",
+    "maniabilite": 1,
+    "vie": {
+      "value": 40,
+      "base": 40
+    },
+    "slots": 2,
+    "places": 2,
+    "placesNote": "",
+    "prix": 18000,
+    "ambiance": "Le Shion MZ2 est doté d'un turbo amélioré, d'une meilleure adhérence des pneus et d'une transmission plus robuste, ce qui en fait le plus rapide de la collection Mizutani.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 7,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Mizutani Shion MZ2",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/mizutani-shion.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

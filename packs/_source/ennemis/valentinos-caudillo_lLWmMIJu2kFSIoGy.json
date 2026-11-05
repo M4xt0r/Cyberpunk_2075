@@ -1,0 +1,1463 @@
+{
+  "_id": "lLWmMIJu2kFSIoGy",
+  "_key": "!actors!lLWmMIJu2kFSIoGy",
+  "name": "Valentinos · Caudillo",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/notion/ennemis/valentinos.webp",
+  "system": {
+    "faction": "Valentinos",
+    "rang": "Caudillo",
+    "rangNiveau": 3,
+    "nature": "organique",
+    "yeuxCyber": "auto",
+    "volant": false,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 1
+      },
+      "ref": {
+        "bonus": 4
+      },
+      "captec": {
+        "bonus": -1
+      },
+      "int": {
+        "bonus": 0
+      },
+      "safr": {
+        "bonus": 3
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "armeDePoing",
+        "valeur": 7
+      },
+      {
+        "competence": "acrobatie",
+        "valeur": 7
+      }
+    ],
+    "vie": {
+      "value": 19,
+      "max": 19,
+      "forcer": null
+    },
+    "ram": {
+      "value": 9,
+      "max": 9,
+      "forcer": null
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": null
+    },
+    "glace": {
+      "forcer": null
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 0,
+    "bm": 2,
+    "couvert": 0,
+    "notes": ""
+  },
+  "items": [
+    {
+      "_id": "wmMBKGeZAJ9VEPnm",
+      "_key": "!actors.items!lLWmMIJu2kFSIoGy.wmMBKGeZAJ9VEPnm",
+      "name": "Liberty",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/liberty.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Ça sent la poudre à canon. Et la liberté.",
+        "sansNiveaux": false,
+        "niveau": 3,
+        "competence": "armeDePoing",
+        "carac": "ref",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pistolet",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 900,
+            "de": "1d10",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 1350,
+            "de": "1d10",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1800,
+            "de": "1d10",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "c0zSrGMAHFqG74jM",
+      "_key": "!actors.items!lLWmMIJu2kFSIoGy.c0zSrGMAHFqG74jM",
+      "name": "Accélérateur synaptique",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/accelerateur-synaptique.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Neuroprocesseur régulant l'équilibre hormonal durant les situations risquées et boostant les réflexes.",
+        "sansNiveaux": false,
+        "niveau": 2,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 10,
+        "coutMax": 10,
+        "coutInstallation": 10,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 4000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +1 aux compétences de Réflexes, +1 en Perception et +2 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 1
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 2
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 5000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +2 aux compétences de Réflexes, +2 en Perception et +2 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 2
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 2
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 6000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +2 aux compétences de Réflexes, +2 en Perception et +3 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 2
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 3
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "59TVpHxZ6efwruFF",
+      "_key": "!actors.items!lLWmMIJu2kFSIoGy.59TVpHxZ6efwruFF",
+      "name": "Optique Kiroshi",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/optique-kiroshi.webp",
+      "system": {
+        "description": "<p>Améliorations (max 2) : 500 €$ et +3💀 par amélioration.</p>",
+        "ambiance": "Le matériel cybernétique optique de Kiroshi est un ensemble très populaire composé d'améliorations électroneurales aux fonctions d'analyse de l'environnement.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "oculaire",
+        "coutMin": 5,
+        "coutMax": 15,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [
+          {
+            "nom": "Vision de l'aigle",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Possibilité de zoomer avec sa vue, +1 Perception.",
+            "cible": "comp.perception",
+            "valeur": 1
+          },
+          {
+            "nom": "Trajectoire balistique",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Voit la trajectoire de visée de son arme et peut faire des ricochets ; ignore les bonus de couvert avec les armes de poing.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Vision thermique",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Possibilité de voir les fluctuations thermiques.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Rayon d'explosion",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Voit la trajectoire et le rayon d'explosion de l'explosif utilisé, +1 en Explosif.",
+            "cible": "comp.explosif",
+            "valeur": 1
+          },
+          {
+            "nom": "Anti-éblouissement",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Immunité contre les flashs et l'aveuglement laser.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Amplificateur de lumière",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Vision en lumière faible, obscurité presque totale.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Pénétration de couvert",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Réduit de moitié le couvert d'une cible.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Analyseur de glace",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Révèle la Glace d'une cible.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Diagnostic médical",
+            "prix": 500,
+            "cout": 3,
+            "effet": "+1 aux jets de Médecine, révèle la sévérité exacte des blessures d'une cible organique et son DD de stabilisation.",
+            "cible": "comp.medecine",
+            "valeur": 1
+          }
+        ],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 2000,
+            "slotsAmelioration": 1,
+            "effet": {
+              "type": "passif",
+              "description": "Scan objet (+1 Investigation)",
+              "modificateurs": [
+                {
+                  "cible": "comp.investigation",
+                  "valeur": 1
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 4000,
+            "slotsAmelioration": 1,
+            "effet": {
+              "type": "passif",
+              "description": "Scan objet (+2 Investigation)",
+              "modificateurs": [
+                {
+                  "cible": "comp.investigation",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 6000,
+            "slotsAmelioration": 2,
+            "effet": {
+              "type": "passif",
+              "description": "Scan objet (+2 Investigation)",
+              "modificateurs": [
+                {
+                  "cible": "comp.investigation",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "hNfkBD60hksePE1H",
+      "name": "Trajectoire balistique",
+      "type": "ameliorationImplant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/optique-kiroshi.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      },
+      "system": {
+        "description": "",
+        "ambiance": "",
+        "prix": 500,
+        "coutInstallation": 3,
+        "implant": "59TVpHxZ6efwruFF",
+        "effet": {
+          "type": "passif",
+          "description": "Voit la trajectoire de visée de son arme et peut faire des ricochets ; ignore les bonus de couvert avec les armes de poing.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "_key": "!actors.items!lLWmMIJu2kFSIoGy.hNfkBD60hksePE1H"
+    },
+    {
+      "_id": "pro8mfUlE7DVRmLm",
+      "_key": "!actors.items!lLWmMIJu2kFSIoGy.pro8mfUlE7DVRmLm",
+      "name": "Tendons renforcés",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/tendons-renforces.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Tissu conjonctif biomécanique soutenant les muscles des jambes.",
+        "sansNiveaux": false,
+        "niveau": 2,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "jambe",
+        "coutMin": 5,
+        "coutMax": 5,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 6500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+2 en Acrobatie.",
+              "modificateurs": [
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 8500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+3 en Acrobatie.",
+              "modificateurs": [
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 3
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 10500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+4 en Acrobatie.",
+              "modificateurs": [
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "9odLeLnSa2ecHTtj",
+      "_key": "!actors.items!lLWmMIJu2kFSIoGy.9odLeLnSa2ecHTtj",
+      "name": "DR-5 Nova",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/dr-5-nova.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Parce que les revolvers ne se démodent jamais.",
+        "sansNiveaux": false,
+        "niveau": 3,
+        "competence": "armeDePoing",
+        "carac": "const",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pistolet",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 1100,
+            "de": "1d12",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 1650,
+            "de": "1d12",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 2200,
+            "de": "1d12",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "QyZ7DWBi0H60vZot",
+      "_key": "!actors.items!lLWmMIJu2kFSIoGy.QyZ7DWBi0H60vZot",
+      "name": "Optique Kiroshi",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/optique-kiroshi.webp",
+      "system": {
+        "description": "<p>Améliorations (max 2) : 500 €$ et +3💀 par amélioration.</p>",
+        "ambiance": "Le matériel cybernétique optique de Kiroshi est un ensemble très populaire composé d'améliorations électroneurales aux fonctions d'analyse de l'environnement.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "oculaire",
+        "coutMin": 5,
+        "coutMax": 15,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [
+          {
+            "nom": "Vision de l'aigle",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Possibilité de zoomer avec sa vue, +1 Perception.",
+            "cible": "comp.perception",
+            "valeur": 1
+          },
+          {
+            "nom": "Trajectoire balistique",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Voit la trajectoire de visée de son arme et peut faire des ricochets ; ignore les bonus de couvert avec les armes de poing.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Vision thermique",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Possibilité de voir les fluctuations thermiques.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Rayon d'explosion",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Voit la trajectoire et le rayon d'explosion de l'explosif utilisé, +1 en Explosif.",
+            "cible": "comp.explosif",
+            "valeur": 1
+          },
+          {
+            "nom": "Anti-éblouissement",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Immunité contre les flashs et l'aveuglement laser.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Amplificateur de lumière",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Vision en lumière faible, obscurité presque totale.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Pénétration de couvert",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Réduit de moitié le couvert d'une cible.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Analyseur de glace",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Révèle la Glace d'une cible.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Diagnostic médical",
+            "prix": 500,
+            "cout": 3,
+            "effet": "+1 aux jets de Médecine, révèle la sévérité exacte des blessures d'une cible organique et son DD de stabilisation.",
+            "cible": "comp.medecine",
+            "valeur": 1
+          }
+        ],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 2000,
+            "slotsAmelioration": 1,
+            "effet": {
+              "type": "passif",
+              "description": "Scan objet (+1 Investigation)",
+              "modificateurs": [
+                {
+                  "cible": "comp.investigation",
+                  "valeur": 1
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 4000,
+            "slotsAmelioration": 1,
+            "effet": {
+              "type": "passif",
+              "description": "Scan objet (+2 Investigation)",
+              "modificateurs": [
+                {
+                  "cible": "comp.investigation",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 6000,
+            "slotsAmelioration": 2,
+            "effet": {
+              "type": "passif",
+              "description": "Scan objet (+2 Investigation)",
+              "modificateurs": [
+                {
+                  "cible": "comp.investigation",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "JbrYj0AHy7wzlieL",
+      "name": "Trajectoire balistique",
+      "type": "ameliorationImplant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/optique-kiroshi.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      },
+      "system": {
+        "description": "",
+        "ambiance": "",
+        "prix": 500,
+        "coutInstallation": 3,
+        "implant": "QyZ7DWBi0H60vZot",
+        "effet": {
+          "type": "passif",
+          "description": "Voit la trajectoire de visée de son arme et peut faire des ricochets ; ignore les bonus de couvert avec les armes de poing.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "_key": "!actors.items!lLWmMIJu2kFSIoGy.JbrYj0AHy7wzlieL"
+    },
+    {
+      "_id": "7gdR7VtjFJ86Fzt3",
+      "_key": "!actors.items!lLWmMIJu2kFSIoGy.7gdR7VtjFJ86Fzt3",
+      "name": "Processeur tactique",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/processeur-tactique.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Analyse les mouvements ennemis et anticipe leurs actions pour vous permettre de frapper avant eux.",
+        "sansNiveaux": false,
+        "niveau": 2,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 5,
+        "coutMax": 5,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 1000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Ajoute +2 au jet d'ordre de jeu au début d'un combat.",
+              "modificateurs": [
+                {
+                  "cible": "initiative",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 2000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Ajoute +4 au jet d'ordre de jeu au début d'un combat.",
+              "modificateurs": [
+                {
+                  "cible": "initiative",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 3000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Ajoute +6 au jet d'ordre de jeu au début d'un combat.",
+              "modificateurs": [
+                {
+                  "cible": "initiative",
+                  "valeur": 6
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "ZbyRXilaSUP2kz1D",
+      "_key": "!actors.items!lLWmMIJu2kFSIoGy.ZbyRXilaSUP2kz1D",
+      "name": "Sandevistan",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/sandevistan.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Cet implant offre des vitesses de connexion fulgurantes, une grande flexibilité en matière de système de combat et une perception optimisée en combat. Idéal pour les spécialistes.",
+        "sansNiveaux": true,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 20,
+        "coutMax": 20,
+        "coutInstallation": 20,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": true,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 15,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 15,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 15,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    }
+  ],
+  "effects": [],
+  "folder": "mc2R29fdbyuDJ5hb",
+  "sort": 3,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Valentinos · Caudillo",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/ennemis/valentinos.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

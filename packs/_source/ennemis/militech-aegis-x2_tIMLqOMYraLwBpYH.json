@@ -1,0 +1,166 @@
+{
+  "_id": "tIMLqOMYraLwBpYH",
+  "_key": "!actors!tIMLqOMYraLwBpYH",
+  "name": "Militech Aegis X2",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/notion/ennemis/militech-aegis.webp",
+  "system": {
+    "faction": "Militech",
+    "rang": "Militech Aegis X2",
+    "rangNiveau": 1,
+    "nature": "robot",
+    "yeuxCyber": "auto",
+    "volant": false,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 0
+      },
+      "ref": {
+        "bonus": 0
+      },
+      "captec": {
+        "bonus": 0
+      },
+      "int": {
+        "bonus": 0
+      },
+      "safr": {
+        "bonus": 0
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "armeDePoing",
+        "valeur": 5
+      },
+      {
+        "competence": "armeLourde",
+        "valeur": 5
+      },
+      {
+        "competence": "sniper",
+        "valeur": 5
+      }
+    ],
+    "vie": {
+      "value": 14,
+      "max": 14,
+      "forcer": 14
+    },
+    "ram": {
+      "value": 0,
+      "max": 0,
+      "forcer": 0
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": 5
+    },
+    "glace": {
+      "forcer": 12
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 0,
+    "bm": 2,
+    "couvert": 0,
+    "notes": ""
+  },
+  "items": [
+    {
+      "_id": "VUa5M4dWkXIFkDRb",
+      "_key": "!actors.items!tIMLqOMYraLwBpYH.VUa5M4dWkXIFkDRb",
+      "name": "Tourelle",
+      "type": "arme",
+      "img": "icons/svg/target.svg",
+      "system": {
+        "description": "",
+        "ambiance": "",
+        "sansNiveaux": true,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pistolet",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 0,
+            "de": "1d6",
+            "bonusFixe": 3,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 0,
+            "de": "1d6",
+            "bonusFixe": 3,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 0,
+            "de": "1d6",
+            "bonusFixe": 3,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    }
+  ],
+  "effects": [],
+  "folder": "jdWyu3GGNxwk01yN",
+  "sort": 4,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Militech Aegis X2",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/ennemis/militech-aegis.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "_id": "r020h33M5s9e7q8G",
+  "_key": "!items!r020h33M5s9e7q8G",
+  "name": "Marteau",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/marteau.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Avec un marteau dans la main, chaque problème ressemble à un clou.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "corpsACorps",
+    "carac": "const",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "corpsACorps",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 400,
+        "de": "1d12",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 600,
+        "de": "1d12",
+        "bonusFixe": 1,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 800,
+        "de": "1d12",
+        "bonusFixe": 2,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "OaPgPIYn09gJTUdY",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

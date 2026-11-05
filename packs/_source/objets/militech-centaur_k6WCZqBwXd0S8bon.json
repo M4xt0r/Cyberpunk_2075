@@ -1,0 +1,151 @@
+{
+  "_id": "k6WCZqBwXd0S8bon",
+  "_key": "!items!k6WCZqBwXd0S8bon",
+  "name": "Militech Centaur",
+  "type": "objet",
+  "img": "systems/cyberpunk2075/assets/notion/objets/militech-centaur.webp",
+  "system": {
+    "description": "<p>Tir de plasma 2d12+Const, +5 Adaptabilité, −10 en Acrobatie et Discrétion.</p>",
+    "ambiance": "Exosquelette militaire bipède qui augmente la protection et la puissance de feu de son pilote grâce à un bouclier lourd et une arme à plasma, au détriment de sa mobilité.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "categorie": "utilitaire",
+    "quantite": 1,
+    "sePorte": true,
+    "porte": false,
+    "uneChargeParUtilisation": true,
+    "chargesRestantes": 0,
+    "qualite": "aucune",
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "animation": {
+      "style": "",
+      "projectile": "",
+      "impact": "",
+      "zone": "",
+      "son": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 85500,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Tir de plasma 2d12+Const, +5 Adaptabilité, −10 en Acrobatie et Discrétion.",
+          "modificateurs": [
+            {
+              "cible": "adaptabilite",
+              "valeur": 5
+            },
+            {
+              "cible": "comp.acrobatie",
+              "valeur": -10
+            },
+            {
+              "cible": "comp.discretion",
+              "valeur": -10
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "2d12 + Const",
+            "type": "degats",
+            "typeDegats": "feu"
+          }
+        }
+      },
+      "n2": {
+        "prix": 85500,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Tir de plasma 2d12+Const, +5 Adaptabilité, −10 en Acrobatie et Discrétion.",
+          "modificateurs": [
+            {
+              "cible": "adaptabilite",
+              "valeur": 5
+            },
+            {
+              "cible": "comp.acrobatie",
+              "valeur": -10
+            },
+            {
+              "cible": "comp.discretion",
+              "valeur": -10
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "2d12 + Const",
+            "type": "degats",
+            "typeDegats": "feu"
+          }
+        }
+      },
+      "n3": {
+        "prix": 85500,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Tir de plasma 2d12+Const, +5 Adaptabilité, −10 en Acrobatie et Discrétion.",
+          "modificateurs": [
+            {
+              "cible": "adaptabilite",
+              "valeur": 5
+            },
+            {
+              "cible": "comp.acrobatie",
+              "valeur": -10
+            },
+            {
+              "cible": "comp.discretion",
+              "valeur": -10
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "2d12 + Const",
+            "type": "degats",
+            "typeDegats": "feu"
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "5zoVjqJvn9BY2wyw",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

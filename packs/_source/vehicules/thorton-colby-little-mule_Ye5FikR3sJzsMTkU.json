@@ -1,0 +1,51 @@
+{
+  "_id": "Ye5FikR3sJzsMTkU",
+  "_key": "!actors!Ye5FikR3sJzsMTkU",
+  "name": "Thorton Colby « Little Mule »",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/thorton-little-mule.webp",
+  "system": {
+    "categorie": "blinde",
+    "pickup": true,
+    "blinde": true,
+    "armesInterdites": false,
+    "vitesse": "C",
+    "maniabilite": 2,
+    "vie": {
+      "value": 100,
+      "base": 100
+    },
+    "slots": 3,
+    "places": 4,
+    "placesNote": "",
+    "prix": 21000,
+    "ambiance": "Équipé d'un système d'holoprojection CrystalDome. Extra-renforcé.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "fpI7yOwQ7nsaP6LZ",
+  "sort": 19,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Thorton Colby « Little Mule »",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/thorton-little-mule.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

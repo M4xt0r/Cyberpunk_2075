@@ -1,0 +1,47 @@
+{
+  "_id": "A6T6APy4uUUI6u0l",
+  "_key": "!items!A6T6APy4uUUI6u0l",
+  "name": "As du volant",
+  "type": "talent",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Vos jets de Pilotage ont avantage.</p>",
+    "ambiance": "",
+    "source": "sousClasse",
+    "niveauObtention": 1,
+    "special": "",
+    "effet": {
+      "type": "passif",
+      "description": "Vos jets de Pilotage ont avantage.",
+      "modificateurs": [],
+      "activation": "action",
+      "coutHumanite": 0,
+      "humaniteKill": 0,
+      "utilisations": {
+        "periode": "illimite",
+        "max": 0
+      },
+      "duree": 0,
+      "ciblesMax": 0,
+      "jet": {
+        "formule": "",
+        "type": "soin",
+        "typeDegats": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    }
+  },
+  "effects": [],
+  "folder": "O2M1F9N1ZRCgyuM2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

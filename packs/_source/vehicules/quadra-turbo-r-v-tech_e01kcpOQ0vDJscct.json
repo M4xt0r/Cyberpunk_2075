@@ -1,0 +1,51 @@
+{
+  "_id": "e01kcpOQ0vDJscct",
+  "_key": "!actors!e01kcpOQ0vDJscct",
+  "name": "Quadra Turbo-R V-Tech",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/quadra-turbo-r.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "A",
+    "maniabilite": 3,
+    "vie": {
+      "value": 40,
+      "base": 40
+    },
+    "slots": 2,
+    "places": 2,
+    "placesNote": "",
+    "prix": 28000,
+    "ambiance": "Apparaît dans la poursuite en voiture emblématique sur le toit d'une usine à Jakarta dans le film à succès Bushidō 7 : Revenge Never Sleeps.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 9,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Quadra Turbo-R V-Tech",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/quadra-turbo-r.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

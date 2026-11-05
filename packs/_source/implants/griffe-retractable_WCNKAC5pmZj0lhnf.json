@@ -1,0 +1,138 @@
+{
+  "_id": "WCNKAC5pmZj0lhnf",
+  "_key": "!items!WCNKAC5pmZj0lhnf",
+  "name": "Griffe rétractable",
+  "type": "implant",
+  "img": "icons/svg/circuit.svg",
+  "system": {
+    "description": "",
+    "ambiance": "Des ongles fondus dans un alliage de titane et de carbone.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "corpsACorps",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 1,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "bras",
+    "coutMin": 5,
+    "coutMax": 5,
+    "coutInstallation": 5,
+    "armeIntegree": true,
+    "capsuleAutorisee": true,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 2500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+1 en Corps à corps lors de l'utilisation, 1d4+Càc de dégâts.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d4 + Corps à corps",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 3500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+2 en Corps à corps lors de l'utilisation, 1d4+Càc de dégâts.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d4 + Corps à corps",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 3500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+2 en Corps à corps lors de l'utilisation, 1d4+Càc de dégâts.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d4 + Corps à corps",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "sK3bjGEvSJFuSWO5",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

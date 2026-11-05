@@ -1,0 +1,116 @@
+{
+  "_id": "7GH4nYDkZO5pRJto",
+  "_key": "!items!7GH4nYDkZO5pRJto",
+  "name": "Pose-mine",
+  "type": "ameliorationVehicule",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "",
+    "ambiance": "Pour une fuite explosive.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "armeLourde",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "armeIntegree": false,
+    "typeArmeIntegree": "autre",
+    "pickupSeulement": false,
+    "niveaux": {
+      "n1": {
+        "prix": 4000,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de stocker 6 C4 sous le véhicule et de les lâcher.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 4000,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de stocker 6 C4 sous le véhicule et de les lâcher.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 4000,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de stocker 6 C4 sous le véhicule et de les lâcher.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

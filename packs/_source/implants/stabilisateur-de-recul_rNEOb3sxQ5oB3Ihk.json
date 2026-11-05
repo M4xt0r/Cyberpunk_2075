@@ -1,0 +1,165 @@
+{
+  "_id": "rNEOb3sxQ5oB3Ihk",
+  "_key": "!items!rNEOb3sxQ5oB3Ihk",
+  "name": "Stabilisateur de recul",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/stabilisateur-de-recul.webp",
+  "system": {
+    "description": "",
+    "ambiance": "D'une mortelle précision.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "squelette",
+    "coutMin": 5,
+    "coutMax": 5,
+    "coutInstallation": 5,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 1500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+2 aux compétences Arme lourde et Sniper.",
+          "modificateurs": [
+            {
+              "cible": "comp.armeLourde",
+              "valeur": 2
+            },
+            {
+              "cible": "comp.sniper",
+              "valeur": 2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 2500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+4 aux compétences Arme lourde et Sniper.",
+          "modificateurs": [
+            {
+              "cible": "comp.armeLourde",
+              "valeur": 4
+            },
+            {
+              "cible": "comp.sniper",
+              "valeur": 4
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 2500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+4 aux compétences Arme lourde et Sniper.",
+          "modificateurs": [
+            {
+              "cible": "comp.armeLourde",
+              "valeur": 4
+            },
+            {
+              "cible": "comp.sniper",
+              "valeur": 4
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "niDWXw1tOiC2wauy",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

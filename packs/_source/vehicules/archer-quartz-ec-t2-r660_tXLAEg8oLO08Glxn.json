@@ -1,0 +1,51 @@
+{
+  "_id": "tXLAEg8oLO08Glxn",
+  "_key": "!actors!tXLAEg8oLO08Glxn",
+  "name": "Archer Quartz EC-T2 r660",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/archer-quartz.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "D",
+    "maniabilite": 0,
+    "vie": {
+      "value": 40,
+      "base": 40
+    },
+    "slots": 1,
+    "places": 2,
+    "placesNote": "",
+    "prix": 11000,
+    "ambiance": "Selon les statistiques du NCPD, ce modèle se retrouve dans jusqu'à 17 % des accidents signalés à Night City, bien qu'il ne représente que 2 % de tous les véhicules immatriculés.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 4,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Archer Quartz EC-T2 r660",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/archer-quartz.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

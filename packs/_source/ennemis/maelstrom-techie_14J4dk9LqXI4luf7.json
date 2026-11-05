@@ -1,0 +1,817 @@
+{
+  "_id": "14J4dk9LqXI4luf7",
+  "_key": "!actors!14J4dk9LqXI4luf7",
+  "name": "Maelstrom · Techie",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/notion/ennemis/maelstrom.webp",
+  "system": {
+    "faction": "Maelstrom",
+    "rang": "Techie",
+    "rangNiveau": 2,
+    "nature": "organique",
+    "yeuxCyber": "auto",
+    "volant": false,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 0
+      },
+      "ref": {
+        "bonus": 0
+      },
+      "captec": {
+        "bonus": 2
+      },
+      "int": {
+        "bonus": 2
+      },
+      "safr": {
+        "bonus": -1
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "piratage",
+        "valeur": 5
+      },
+      {
+        "competence": "tech",
+        "valeur": 5
+      }
+    ],
+    "vie": {
+      "value": 14,
+      "max": 14,
+      "forcer": null
+    },
+    "ram": {
+      "value": 14,
+      "max": 14,
+      "forcer": null
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": null
+    },
+    "glace": {
+      "forcer": null
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 0,
+    "bm": 2,
+    "couvert": 0,
+    "notes": ""
+  },
+  "items": [
+    {
+      "_id": "rp6aivkgoAlqNaAZ",
+      "_key": "!actors.items!14J4dk9LqXI4luf7.rp6aivkgoAlqNaAZ",
+      "name": "M221 Saratoga",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/m221-saratoga.webp",
+      "system": {
+        "description": "<p>Ajoute une attaque bonus à l'arme à feu.</p>",
+        "ambiance": "Ronronne comme un chaton.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeLourde",
+        "carac": "const",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "mitraillette",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 800,
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 1200,
+            "de": "1d6",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1600,
+            "de": "1d6",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    },
+    {
+      "_id": "6MnM0y1hbIjoQ3A7",
+      "_key": "!actors.items!14J4dk9LqXI4luf7.6MnM0y1hbIjoQ3A7",
+      "name": "Puce de piratage",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Même si ce n'est pas entièrement vrai, une chose est sûre : ces cyberconsoles sont puissantes, efficaces et optimisées pour les daemons offensifs.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 10,
+        "coutMax": 10,
+        "coutInstallation": 10,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 8000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Augmente la RAM du possesseur de 4, 4 emplacements de hack.",
+              "modificateurs": [
+                {
+                  "cible": "ram",
+                  "valeur": 4
+                },
+                {
+                  "cible": "slotsHack",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 10000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Augmente la RAM du possesseur de 8, 6 emplacements de hack.",
+              "modificateurs": [
+                {
+                  "cible": "ram",
+                  "valeur": 8
+                },
+                {
+                  "cible": "slotsHack",
+                  "valeur": 6
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 12000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Augmente la RAM du possesseur de 12, 8 emplacements de hack.",
+              "modificateurs": [
+                {
+                  "cible": "ram",
+                  "valeur": 12
+                },
+                {
+                  "cible": "slotsHack",
+                  "valeur": 8
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    },
+    {
+      "_id": "uMyncg6MinCEDYa4",
+      "_key": "!actors.items!14J4dk9LqXI4luf7.uMyncg6MinCEDYa4",
+      "name": "Ex-Disk",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/ex-disk.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Implant améliorant la capacité du cerveau à stocker et traiter les informations.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 5,
+        "coutMax": 5,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 3000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Augmente la RAM du possesseur de 2.",
+              "modificateurs": [
+                {
+                  "cible": "ram",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 4000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Augmente la RAM du possesseur de 4.",
+              "modificateurs": [
+                {
+                  "cible": "ram",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 5000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Augmente la RAM du possesseur de 6.",
+              "modificateurs": [
+                {
+                  "cible": "ram",
+                  "valeur": 6
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    },
+    {
+      "_id": "0dOyeJwybEdNgaQU",
+      "_key": "!actors.items!14J4dk9LqXI4luf7.0dOyeJwybEdNgaQU",
+      "name": "Auto-Glace",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/auto-glace.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Système électronique anti-intrusion protégeant les implants cybernétiques contre d'affreux bugs.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 5,
+        "coutMax": 5,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 3000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Augmente la Glace du possesseur de 2.",
+              "modificateurs": [
+                {
+                  "cible": "glace",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 4000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Augmente la Glace du possesseur de 4.",
+              "modificateurs": [
+                {
+                  "cible": "glace",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 5000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Augmente la Glace du possesseur de 6.",
+              "modificateurs": [
+                {
+                  "cible": "glace",
+                  "valeur": 6
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    },
+    {
+      "_id": "gCbWB7iCZGvkK5dl",
+      "_key": "!actors.items!14J4dk9LqXI4luf7.gCbWB7iCZGvkK5dl",
+      "name": "Court-circuit",
+      "type": "hack",
+      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "system": {
+        "description": "<p>1d6+Piratage de dégâts électriques sur une cible organique, 1d8+Piratage sur un robot.</p>",
+        "ambiance": "",
+        "prix": 800,
+        "ram": 4,
+        "variable": {
+          "actif": false,
+          "parUnite": 0,
+          "unite": "carré de 1,5 m"
+        },
+        "activation": "action",
+        "defense": "glace",
+        "competence": "piratage",
+        "bonusTouche": 0,
+        "degats": {
+          "organique": "1d6 + Piratage",
+          "robot": "1d8 + Piratage",
+          "type": "electrique"
+        },
+        "humanite": {
+          "cible": 0,
+          "lanceur": 0
+        },
+        "duree": 0,
+        "effet": "1d6+Piratage de dégâts électriques sur une cible organique, 1d8+Piratage sur un robot.",
+        "special": "",
+        "animation": {
+          "glitch": true,
+          "impact": "",
+          "son": ""
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    },
+    {
+      "_id": "qCkbABt7ceiZRWQw",
+      "_key": "!actors.items!14J4dk9LqXI4luf7.qCkbABt7ceiZRWQw",
+      "name": "Détonation involontaire",
+      "type": "hack",
+      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "system": {
+        "description": "<p>Fait exploser une grenade de la cible. +5💀.</p>",
+        "ambiance": "",
+        "prix": 500,
+        "ram": 6,
+        "variable": {
+          "actif": false,
+          "parUnite": 0,
+          "unite": "carré de 1,5 m"
+        },
+        "activation": "action",
+        "defense": "glace",
+        "competence": "piratage",
+        "bonusTouche": 0,
+        "degats": {
+          "organique": "",
+          "robot": "",
+          "type": "electrique"
+        },
+        "humanite": {
+          "cible": 0,
+          "lanceur": 5
+        },
+        "duree": 0,
+        "effet": "Fait exploser une grenade de la cible. +5💀.",
+        "special": "",
+        "animation": {
+          "glitch": true,
+          "impact": "",
+          "son": ""
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    },
+    {
+      "_id": "TFUoTZ1DwjLdcHDs",
+      "_key": "!actors.items!14J4dk9LqXI4luf7.TFUoTZ1DwjLdcHDs",
+      "name": "Dysfonctionnement d'implant",
+      "type": "hack",
+      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "system": {
+        "description": "<p>Si la cible a des implants, ils ne fonctionnent plus pendant 1 tour.</p>",
+        "ambiance": "",
+        "prix": 500,
+        "ram": 2,
+        "variable": {
+          "actif": false,
+          "parUnite": 0,
+          "unite": "carré de 1,5 m"
+        },
+        "activation": "action",
+        "defense": "glace",
+        "competence": "piratage",
+        "bonusTouche": 0,
+        "degats": {
+          "organique": "",
+          "robot": "",
+          "type": "electrique"
+        },
+        "humanite": {
+          "cible": 0,
+          "lanceur": 0
+        },
+        "duree": 1,
+        "effet": "Si la cible a des implants, ils ne fonctionnent plus pendant 1 tour.",
+        "special": "",
+        "animation": {
+          "glitch": true,
+          "impact": "",
+          "son": ""
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    },
+    {
+      "_id": "Z02mPvks14TrhgHB",
+      "_key": "!actors.items!14J4dk9LqXI4luf7.Z02mPvks14TrhgHB",
+      "name": "Dysfonctionnement d'arme",
+      "type": "hack",
+      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "system": {
+        "description": "<p>Si la cible a une arme à feu, elle ne fonctionne plus pendant 1 tour.</p>",
+        "ambiance": "",
+        "prix": 500,
+        "ram": 2,
+        "variable": {
+          "actif": false,
+          "parUnite": 0,
+          "unite": "carré de 1,5 m"
+        },
+        "activation": "action",
+        "defense": "glace",
+        "competence": "piratage",
+        "bonusTouche": 0,
+        "degats": {
+          "organique": "",
+          "robot": "",
+          "type": "electrique"
+        },
+        "humanite": {
+          "cible": 0,
+          "lanceur": 0
+        },
+        "duree": 1,
+        "effet": "Si la cible a une arme à feu, elle ne fonctionne plus pendant 1 tour.",
+        "special": "",
+        "animation": {
+          "glitch": true,
+          "impact": "",
+          "son": ""
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    }
+  ],
+  "effects": [],
+  "folder": "W9dyxcYGeQsjd5F0",
+  "sort": 2,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Maelstrom · Techie",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/ennemis/maelstrom.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

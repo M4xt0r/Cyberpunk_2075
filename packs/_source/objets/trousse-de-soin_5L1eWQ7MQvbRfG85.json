@@ -1,0 +1,112 @@
+{
+  "_id": "5L1eWQ7MQvbRfG85",
+  "_key": "!items!5L1eWQ7MQvbRfG85",
+  "name": "Trousse de soin",
+  "type": "objet",
+  "img": "systems/cyberpunk2075/assets/notion/objets/trousse-de-soin.webp",
+  "system": {
+    "description": "<p>Soigne 1d8+Médecine, ne compte pas comme action bonus, 3 utilisations.</p>",
+    "ambiance": "Parce que tout ce que vous avez, c'est votre santé !",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "categorie": "consommable",
+    "quantite": 1,
+    "sePorte": false,
+    "porte": false,
+    "uneChargeParUtilisation": true,
+    "chargesRestantes": 3,
+    "qualite": "aucune",
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "animation": {
+      "style": "",
+      "projectile": "",
+      "impact": "",
+      "zone": "",
+      "son": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 650,
+        "charges": 3,
+        "effet": {
+          "type": "passif",
+          "description": "Soigne 1d8+Médecine, ne compte pas comme action bonus.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "1d8 + Médecine",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 650,
+        "charges": 3,
+        "effet": {
+          "type": "passif",
+          "description": "Soigne 1d8+Médecine, ne compte pas comme action bonus.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "1d8 + Médecine",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 650,
+        "charges": 3,
+        "effet": {
+          "type": "passif",
+          "description": "Soigne 1d8+Médecine, ne compte pas comme action bonus.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "1d8 + Médecine",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "22lAWH6PSHhZfSxJ",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

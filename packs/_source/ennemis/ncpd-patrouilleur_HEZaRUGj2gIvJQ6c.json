@@ -1,0 +1,387 @@
+{
+  "_id": "HEZaRUGj2gIvJQ6c",
+  "_key": "!actors!HEZaRUGj2gIvJQ6c",
+  "name": "NCPD · Patrouilleur",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/notion/ennemis/ncpd.webp",
+  "system": {
+    "faction": "NCPD",
+    "rang": "Patrouilleur",
+    "rangNiveau": 1,
+    "nature": "organique",
+    "yeuxCyber": "auto",
+    "volant": false,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 1
+      },
+      "ref": {
+        "bonus": 1
+      },
+      "captec": {
+        "bonus": -1
+      },
+      "int": {
+        "bonus": 0
+      },
+      "safr": {
+        "bonus": 1
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "armeDePoing",
+        "valeur": 3
+      },
+      {
+        "competence": "perception",
+        "valeur": 3
+      }
+    ],
+    "vie": {
+      "value": 17,
+      "max": 17,
+      "forcer": null
+    },
+    "ram": {
+      "value": 9,
+      "max": 9,
+      "forcer": null
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": null
+    },
+    "glace": {
+      "forcer": 10
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 0,
+    "bm": 2,
+    "couvert": 0,
+    "notes": ""
+  },
+  "items": [
+    {
+      "_id": "wlG2nEoJmn8TL98E",
+      "_key": "!actors.items!HEZaRUGj2gIvJQ6c.wlG2nEoJmn8TL98E",
+      "name": "Liberty",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/liberty.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Ça sent la poudre à canon. Et la liberté.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "ref",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pistolet",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 900,
+            "de": "1d10",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 1350,
+            "de": "1d10",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1800,
+            "de": "1d10",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "KALzVn3be8X5q3nc",
+      "_key": "!actors.items!HEZaRUGj2gIvJQ6c.KALzVn3be8X5q3nc",
+      "name": "M2038 Tactician",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/m2038-tactician.webp",
+      "system": {
+        "description": "<p>Portée de 15 mètres : au-delà, la moitié des dégâts.</p>",
+        "ambiance": "La preuve que vous êtes sérieux.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeLourde",
+        "carac": "const",
+        "portee": 15,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pompe",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 500,
+            "de": "1d6",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 750,
+            "de": "1d6",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1200,
+            "de": "1d6",
+            "bonusFixe": 4,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "CWeTeiyVwSqULUd4",
+      "_key": "!actors.items!HEZaRUGj2gIvJQ6c.CWeTeiyVwSqULUd4",
+      "name": "Processeur tactique",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/processeur-tactique.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Analyse les mouvements ennemis et anticipe leurs actions pour vous permettre de frapper avant eux.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 5,
+        "coutMax": 5,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 1000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Ajoute +2 au jet d'ordre de jeu au début d'un combat.",
+              "modificateurs": [
+                {
+                  "cible": "initiative",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 2000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Ajoute +4 au jet d'ordre de jeu au début d'un combat.",
+              "modificateurs": [
+                {
+                  "cible": "initiative",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 3000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Ajoute +6 au jet d'ordre de jeu au début d'un combat.",
+              "modificateurs": [
+                {
+                  "cible": "initiative",
+                  "valeur": 6
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    }
+  ],
+  "effects": [],
+  "folder": "QAcrSHUT28pbSmO3",
+  "sort": 1,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "NCPD · Patrouilleur",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/ennemis/ncpd.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

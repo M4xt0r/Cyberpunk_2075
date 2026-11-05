@@ -1,0 +1,60 @@
+{
+  "_id": "UJUvNMtcF2i3vviU",
+  "_key": "!items!UJUvNMtcF2i3vviU",
+  "name": "TKI-20 Shingen",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/tki-20-shingen.webp",
+  "system": {
+    "description": "<p>Ajoute une attaque bonus à l'arme à feu.</p>",
+    "ambiance": "Plus rien ne peut vous retenir maintenant.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeLourde",
+    "carac": "captec",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "mitraillette",
+    "intelligente": true,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 1600,
+        "de": "1d10",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 2400,
+        "de": "1d10",
+        "bonusFixe": 1,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 3200,
+        "de": "1d10",
+        "bonusFixe": 2,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "kytfQJgWv7kzYWyu",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

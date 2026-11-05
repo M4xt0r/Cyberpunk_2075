@@ -1,0 +1,116 @@
+{
+  "_id": "BDg5WGMelQSQ5MFb",
+  "_key": "!items!BDg5WGMelQSQ5MFb",
+  "name": "Tourelle sur pivot",
+  "type": "ameliorationVehicule",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Arme intelligente.</p>",
+    "ambiance": "Rien de mieux qu'une tourelle pour se croire dans un petit tank.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "armeLourde",
+    "carac": "ref",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "armeIntegree": true,
+    "typeArmeIntegree": "autre",
+    "pickupSeulement": false,
+    "niveaux": {
+      "n1": {
+        "prix": 8000,
+        "effet": {
+          "type": "passif",
+          "description": "Le copilote contrôle une tourelle (arme lourde) ; si le conducteur possède l'implant Liaison intelligente, il peut la contrôler : 1d8+Réf.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d8",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 8000,
+        "effet": {
+          "type": "passif",
+          "description": "Le copilote contrôle une tourelle (arme lourde) ; si le conducteur possède l'implant Liaison intelligente, il peut la contrôler : 1d8+Réf.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d8",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 8000,
+        "effet": {
+          "type": "passif",
+          "description": "Le copilote contrôle une tourelle (arme lourde) ; si le conducteur possède l'implant Liaison intelligente, il peut la contrôler : 1d8+Réf.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d8",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

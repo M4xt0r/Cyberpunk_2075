@@ -1,0 +1,112 @@
+{
+  "_id": "VHW64nmtYOxO92S6",
+  "_key": "!items!VHW64nmtYOxO92S6",
+  "name": "MaxDoc",
+  "type": "objet",
+  "img": "systems/cyberpunk2075/assets/notion/objets/maxdoc.webp",
+  "system": {
+    "description": "<p>Soigne 1d6.</p>",
+    "ambiance": "Quand « en bonne santé » ne suffira pas.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "categorie": "consommable",
+    "quantite": 1,
+    "sePorte": false,
+    "porte": false,
+    "uneChargeParUtilisation": true,
+    "chargesRestantes": 0,
+    "qualite": "aucune",
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "animation": {
+      "style": "",
+      "projectile": "",
+      "impact": "",
+      "zone": "",
+      "son": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 250,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Soigne 1d6.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "1d6",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 250,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Soigne 1d6.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "1d6",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 250,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Soigne 1d6.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "1d6",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "22lAWH6PSHhZfSxJ",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

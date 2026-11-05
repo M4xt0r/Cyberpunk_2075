@@ -1,0 +1,85 @@
+{
+  "_id": "m5HKLJlpRUXTFPpQ",
+  "_key": "!items!m5HKLJlpRUXTFPpQ",
+  "name": "Nomad",
+  "type": "sousClasse",
+  "img": "systems/cyberpunk2075/assets/notion/classes/anti-corpo.webp",
+  "system": {
+    "description": "",
+    "ambiance": "",
+    "classeParente": "Anti-Corpo",
+    "maitrises": [
+      {
+        "competence": "survie",
+        "choix": ""
+      },
+      {
+        "competence": "pilotage",
+        "choix": ""
+      },
+      {
+        "competence": "negociation",
+        "choix": ""
+      }
+    ],
+    "pack": [
+      {
+        "uuid": "Compendium.cyberpunk2075.implants.Item.rNEOb3sxQ5oB3Ihk",
+        "nom": "Stabilisateur de recul",
+        "resume": "",
+        "mode": "precis",
+        "type": "implant",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.pD70tIl33Y8YGieK",
+        "nom": "Ashura",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "",
+        "nom": "",
+        "resume": "",
+        "mode": "gratuit",
+        "type": "",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "vehicule",
+        "prixMax": 0,
+        "texte": "Thorton Mackinaw MTL1 (compendium Véhicules)"
+      }
+    ],
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.cEy5cpHbjbrsscdz",
+        "nom": "6e sens",
+        "resume": "Vous savez d'un simple regard si quelqu'un vous ment. Utilisable un nombre de fois égal à votre BM.",
+        "niveau": 1
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.xuIIbkhk6LPHuT5B",
+        "nom": "Combat motorisé",
+        "resume": "Lorsque vous êtes pilote ou passager d'un véhicule, vous n'avez aucun désavantage pour utiliser n'importe quel type d…",
+        "niveau": 5
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "DwOYNHXuaseP7Zwn",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

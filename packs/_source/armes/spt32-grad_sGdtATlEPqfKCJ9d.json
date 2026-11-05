@@ -1,0 +1,60 @@
+{
+  "_id": "sGdtATlEPqfKCJ9d",
+  "_key": "!items!sGdtATlEPqfKCJ9d",
+  "name": "SPT32 Grad",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/spt32-grad.webp",
+  "system": {
+    "description": "<p>Fait toujours un coup critique en cas de réussite.</p>",
+    "ambiance": "De cette arme, il n'y a pas de couverture.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "sniper",
+    "carac": "safr",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "sniper",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 1700,
+        "de": "1d12",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 2550,
+        "de": "1d12",
+        "bonusFixe": 2,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 3400,
+        "de": "1d12",
+        "bonusFixe": 4,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "yJTNCQ5AJEjcpcvl",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

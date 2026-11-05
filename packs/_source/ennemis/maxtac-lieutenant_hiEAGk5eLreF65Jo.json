@@ -1,0 +1,2108 @@
+{
+  "_id": "hiEAGk5eLreF65Jo",
+  "_key": "!actors!hiEAGk5eLreF65Jo",
+  "name": "MaxTac · Lieutenant",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/notion/ennemis/maxtac.webp",
+  "system": {
+    "faction": "MaxTac",
+    "rang": "Lieutenant",
+    "rangNiveau": 3,
+    "nature": "organique",
+    "yeuxCyber": "auto",
+    "volant": false,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 3
+      },
+      "ref": {
+        "bonus": 5
+      },
+      "captec": {
+        "bonus": 0
+      },
+      "int": {
+        "bonus": 1
+      },
+      "safr": {
+        "bonus": 3
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "armeDePoing",
+        "valeur": 9
+      },
+      {
+        "competence": "acrobatie",
+        "valeur": 9
+      }
+    ],
+    "vie": {
+      "value": 21,
+      "max": 21,
+      "forcer": null
+    },
+    "ram": {
+      "value": 11,
+      "max": 11,
+      "forcer": null
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": null
+    },
+    "glace": {
+      "forcer": null
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 0,
+    "bm": 2,
+    "couvert": 0,
+    "notes": ""
+  },
+  "items": [
+    {
+      "_id": "WJHtPYRlL8JOzLef",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.WJHtPYRlL8JOzLef",
+      "name": "Liberty",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/liberty.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Ça sent la poudre à canon. Et la liberté.",
+        "sansNiveaux": false,
+        "niveau": 3,
+        "competence": "armeDePoing",
+        "carac": "ref",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pistolet",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 900,
+            "de": "1d10",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 1350,
+            "de": "1d10",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1800,
+            "de": "1d10",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "i5pbLDoP16X8AmHa",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.i5pbLDoP16X8AmHa",
+      "name": "Sandevistan",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/sandevistan.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Cet implant offre des vitesses de connexion fulgurantes, une grande flexibilité en matière de système de combat et une perception optimisée en combat. Idéal pour les spécialistes.",
+        "sansNiveaux": true,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 20,
+        "coutMax": 20,
+        "coutInstallation": 20,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": true,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 15,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 15,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 15,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "YuRQrzMi3KITdFqO",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.YuRQrzMi3KITdFqO",
+      "name": "Accélérateur synaptique",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/accelerateur-synaptique.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Neuroprocesseur régulant l'équilibre hormonal durant les situations risquées et boostant les réflexes.",
+        "sansNiveaux": false,
+        "niveau": 3,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 10,
+        "coutMax": 10,
+        "coutInstallation": 10,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 4000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +1 aux compétences de Réflexes, +1 en Perception et +2 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 1
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 2
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 5000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +2 aux compétences de Réflexes, +2 en Perception et +2 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 2
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 2
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 6000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +2 aux compétences de Réflexes, +2 en Perception et +3 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 2
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 3
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "sOMqJBeafK30E82q",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.sOMqJBeafK30E82q",
+      "name": "Optique Kiroshi",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/optique-kiroshi.webp",
+      "system": {
+        "description": "<p>Améliorations (max 2) : 500 €$ et +3💀 par amélioration.</p>",
+        "ambiance": "Le matériel cybernétique optique de Kiroshi est un ensemble très populaire composé d'améliorations électroneurales aux fonctions d'analyse de l'environnement.",
+        "sansNiveaux": false,
+        "niveau": 3,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "oculaire",
+        "coutMin": 5,
+        "coutMax": 15,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [
+          {
+            "nom": "Vision de l'aigle",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Possibilité de zoomer avec sa vue, +1 Perception.",
+            "cible": "comp.perception",
+            "valeur": 1
+          },
+          {
+            "nom": "Trajectoire balistique",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Voit la trajectoire de visée de son arme et peut faire des ricochets ; ignore les bonus de couvert avec les armes de poing.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Vision thermique",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Possibilité de voir les fluctuations thermiques.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Rayon d'explosion",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Voit la trajectoire et le rayon d'explosion de l'explosif utilisé, +1 en Explosif.",
+            "cible": "comp.explosif",
+            "valeur": 1
+          },
+          {
+            "nom": "Anti-éblouissement",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Immunité contre les flashs et l'aveuglement laser.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Amplificateur de lumière",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Vision en lumière faible, obscurité presque totale.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Pénétration de couvert",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Réduit de moitié le couvert d'une cible.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Analyseur de glace",
+            "prix": 500,
+            "cout": 3,
+            "effet": "Révèle la Glace d'une cible.",
+            "cible": "",
+            "valeur": 0
+          },
+          {
+            "nom": "Diagnostic médical",
+            "prix": 500,
+            "cout": 3,
+            "effet": "+1 aux jets de Médecine, révèle la sévérité exacte des blessures d'une cible organique et son DD de stabilisation.",
+            "cible": "comp.medecine",
+            "valeur": 1
+          }
+        ],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 2000,
+            "slotsAmelioration": 1,
+            "effet": {
+              "type": "passif",
+              "description": "Scan objet (+1 Investigation)",
+              "modificateurs": [
+                {
+                  "cible": "comp.investigation",
+                  "valeur": 1
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 4000,
+            "slotsAmelioration": 1,
+            "effet": {
+              "type": "passif",
+              "description": "Scan objet (+2 Investigation)",
+              "modificateurs": [
+                {
+                  "cible": "comp.investigation",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 6000,
+            "slotsAmelioration": 2,
+            "effet": {
+              "type": "passif",
+              "description": "Scan objet (+2 Investigation)",
+              "modificateurs": [
+                {
+                  "cible": "comp.investigation",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "K4Y5SyrI2hcwWxgh",
+      "name": "Trajectoire balistique",
+      "type": "ameliorationImplant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/optique-kiroshi.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      },
+      "system": {
+        "description": "",
+        "ambiance": "",
+        "prix": 500,
+        "coutInstallation": 3,
+        "implant": "sOMqJBeafK30E82q",
+        "effet": {
+          "type": "passif",
+          "description": "Voit la trajectoire de visée de son arme et peut faire des ricochets ; ignore les bonus de couvert avec les armes de poing.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.K4Y5SyrI2hcwWxgh"
+    },
+    {
+      "_id": "WdUuCIc3qY2aPj5Y",
+      "name": "Pénétration de couvert",
+      "type": "ameliorationImplant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/optique-kiroshi.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      },
+      "system": {
+        "description": "",
+        "ambiance": "",
+        "prix": 500,
+        "coutInstallation": 3,
+        "implant": "sOMqJBeafK30E82q",
+        "effet": {
+          "type": "passif",
+          "description": "Réduit de moitié le couvert d'une cible.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.WdUuCIc3qY2aPj5Y"
+    },
+    {
+      "_id": "KoDsRgltBbs3EQA3",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.KoDsRgltBbs3EQA3",
+      "name": "Armure sous-cutanée",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/armure-sous-cutanee.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Plusieurs décennies de succès sur le marché des armures.",
+        "sansNiveaux": false,
+        "niveau": 3,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "cutane",
+        "coutMin": 10,
+        "coutMax": 10,
+        "coutInstallation": 10,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 8000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Réduit de 2 les dégâts par balle reçus.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 10000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Réduit de 4 les dégâts par balle reçus.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 12000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Réduit de 6 les dégâts par balle reçus.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "549ylF6BCJGk0PRm",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.549ylF6BCJGk0PRm",
+      "name": "Tendons renforcés",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/tendons-renforces.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Tissu conjonctif biomécanique soutenant les muscles des jambes.",
+        "sansNiveaux": false,
+        "niveau": 2,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "jambe",
+        "coutMin": 5,
+        "coutMax": 5,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 6500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+2 en Acrobatie.",
+              "modificateurs": [
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 8500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+3 en Acrobatie.",
+              "modificateurs": [
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 3
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 10500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+4 en Acrobatie.",
+              "modificateurs": [
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "Y7GqILvbO1RQ1WzC",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.Y7GqILvbO1RQ1WzC",
+      "name": "Lame Mantis",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/lame-mantis.webp",
+      "system": {
+        "description": "<p>Bonus au toucher : +2 au niveau 1, +3 au niveau 2 (à ajuster sur la carte au niveau 2).</p>",
+        "ambiance": "Lames implantées dans les bras, conçues pour être aussi discrètes que mortelles. Elles sont aussi efficaces qu'impressionnantes.",
+        "sansNiveaux": false,
+        "niveau": 2,
+        "competence": "corpsACorps",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 2,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "bras",
+        "coutMin": 15,
+        "coutMax": 15,
+        "coutInstallation": 15,
+        "armeIntegree": true,
+        "capsuleAutorisee": true,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": true,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 6500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+2 en Corps à corps lors de l'utilisation, 1d12+Càc de dégâts. +2💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 2,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d12 + Corps à corps",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 8500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+3 en Corps à corps lors de l'utilisation, 1d12+Càc de dégâts. +2💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 2,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d12 + Corps à corps",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 8500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+3 en Corps à corps lors de l'utilisation, 1d12+Càc de dégâts. +2💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 2,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d12 + Corps à corps",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "nGLGAx2kSrTUs9Dv",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.nGLGAx2kSrTUs9Dv",
+      "name": "Sandevistan",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/sandevistan.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Cet implant offre des vitesses de connexion fulgurantes, une grande flexibilité en matière de système de combat et une perception optimisée en combat. Idéal pour les spécialistes.",
+        "sansNiveaux": true,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 20,
+        "coutMax": 20,
+        "coutInstallation": 20,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": true,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 15,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 15,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, qui deviennent tous critiques, tous vos dés avec avantage et 4 actions lors de votre tour. Dure 1 tour, +15💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 15,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "CIKdh0Nxp0c7oAL5",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.CIKdh0Nxp0c7oAL5",
+      "name": "Accélérateur synaptique",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/accelerateur-synaptique.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Neuroprocesseur régulant l'équilibre hormonal durant les situations risquées et boostant les réflexes.",
+        "sansNiveaux": false,
+        "niveau": 3,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 10,
+        "coutMax": 10,
+        "coutInstallation": 10,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 4000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +1 aux compétences de Réflexes, +1 en Perception et +2 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 1
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 1
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 2
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 5000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +2 aux compétences de Réflexes, +2 en Perception et +2 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 2
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 2
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 6000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "S'active par réaction et ne dure qu'un tour. +2 aux compétences de Réflexes, +2 en Perception et +3 en Adaptabilité. +5💀 par utilisation.",
+              "modificateurs": [
+                {
+                  "cible": "comp.discretion",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.larcin",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.armeDePoing",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.perception",
+                  "valeur": 2
+                },
+                {
+                  "cible": "adaptabilite",
+                  "valeur": 3
+                }
+              ],
+              "activation": "reaction",
+              "coutHumanite": 5,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 1,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "VbtC4eitU4EfJZa1",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.VbtC4eitU4EfJZa1",
+      "name": "Armure sous-cutanée",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/armure-sous-cutanee.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Plusieurs décennies de succès sur le marché des armures.",
+        "sansNiveaux": false,
+        "niveau": 3,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "cutane",
+        "coutMin": 10,
+        "coutMax": 10,
+        "coutInstallation": 10,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 8000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Réduit de 2 les dégâts par balle reçus.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 10000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Réduit de 4 les dégâts par balle reçus.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 12000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Réduit de 6 les dégâts par balle reçus.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "LUSy5EhQtoRW3s3Z",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.LUSy5EhQtoRW3s3Z",
+      "name": "Berserk",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/berserk.webp",
+      "system": {
+        "description": "",
+        "ambiance": "L'implant Berserk fera de vous une machine à tuer violente et sanguinaire. Sans oublier, difficile de vous tuer, grâce à ses systèmes révolutionnaires d'absorption des chocs.",
+        "sansNiveaux": true,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "nerveux",
+        "coutMin": 20,
+        "coutMax": 20,
+        "coutInstallation": 20,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": true,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, régénère 1d4 PV par tour, aucun effet à votre désavantage. Dure 3 tours, +10💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 10,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 3,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, régénère 1d4 PV par tour, aucun effet à votre désavantage. Dure 3 tours, +10💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 10,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 3,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 20000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "actif",
+              "description": "Activé par une réaction : +1d6 à tous vos dégâts, régénère 1d4 PV par tour, aucun effet à votre désavantage. Dure 3 tours, +10💀 à l'activation et +5💀 par ennemi tué.",
+              "modificateurs": [],
+              "activation": "reaction",
+              "coutHumanite": 10,
+              "humaniteKill": 5,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 3,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "PK2eDp1yzQEyYAPH",
+      "_key": "!actors.items!hiEAGk5eLreF65Jo.PK2eDp1yzQEyYAPH",
+      "name": "Tendons renforcés",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/tendons-renforces.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Tissu conjonctif biomécanique soutenant les muscles des jambes.",
+        "sansNiveaux": false,
+        "niveau": 2,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "jambe",
+        "coutMin": 5,
+        "coutMax": 5,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 6500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+2 en Acrobatie.",
+              "modificateurs": [
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 8500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+3 en Acrobatie.",
+              "modificateurs": [
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 3
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 10500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+4 en Acrobatie.",
+              "modificateurs": [
+                {
+                  "cible": "comp.acrobatie",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    }
+  ],
+  "effects": [],
+  "folder": "Du8pB2o3WWBvHLr4",
+  "sort": 3,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "MaxTac · Lieutenant",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/ennemis/maxtac.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "_id": "icH5QV9DDFchVyg6",
+  "_key": "!items!icH5QV9DDFchVyg6",
+  "name": "Lance-projectile",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/lance-projectile.webp",
+  "system": {
+    "description": "<p>3 munitions (500 €$ la munition). Bonus au toucher : +2 au niveau 1, +3 au niveau 2.</p>",
+    "ambiance": "Le lance-projectiles vous permet de tirer divers projectiles puissants, qui provoquent des explosions et des effets de statut. Plus important encore, il sème le chaos et la destruction.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "explosif",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 2,
+      "zone": 3,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "bras",
+    "coutMin": 15,
+    "coutMax": 15,
+    "coutInstallation": 15,
+    "armeIntegree": true,
+    "capsuleAutorisee": true,
+    "typeArmeIntegree": "autre",
+    "special": "",
+    "guerre": true,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 6500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+2 en Explosif lors de l'utilisation, 1d10+Explosif de dégâts de zone (3 m), 3 munitions (500 €$). +5💀 par ennemi tué.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 5,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d10 + Explosif",
+        "bonusFixe": 0,
+        "typeDegats": "explosion"
+      },
+      "n2": {
+        "prix": 8500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+3 en Explosif lors de l'utilisation, 1d10+Explosif de dégâts de zone (3 m), 3 munitions (500 €$). +5💀 par ennemi tué.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 5,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d10 + Explosif",
+        "bonusFixe": 0,
+        "typeDegats": "explosion"
+      },
+      "n3": {
+        "prix": 8500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "+3 en Explosif lors de l'utilisation, 1d10+Explosif de dégâts de zone (3 m), 3 munitions (500 €$). +5💀 par ennemi tué.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 5,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d10 + Explosif",
+        "bonusFixe": 0,
+        "typeDegats": "explosion"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "sK3bjGEvSJFuSWO5",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

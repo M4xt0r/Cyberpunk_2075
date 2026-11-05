@@ -1,0 +1,51 @@
+{
+  "_id": "f79jOtICIKD8td9o",
+  "_key": "!actors!f79jOtICIKD8td9o",
+  "name": "Quadra Type-66 Avenger",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/quadra-type-66.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "C",
+    "maniabilite": 2,
+    "vie": {
+      "value": 40,
+      "base": 40
+    },
+    "slots": 2,
+    "places": 2,
+    "placesNote": "",
+    "prix": 15000,
+    "ambiance": "Considérée par les téléspectateurs comme la voiture la plus sexy de l'émission « Guns and Horses ».",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 8,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Quadra Type-66 Avenger",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/quadra-type-66.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

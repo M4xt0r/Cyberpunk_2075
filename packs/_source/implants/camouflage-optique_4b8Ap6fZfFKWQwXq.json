@@ -1,0 +1,138 @@
+{
+  "_id": "4b8Ap6fZfFKWQwXq",
+  "_key": "!items!4b8Ap6fZfFKWQwXq",
+  "name": "Camouflage optique",
+  "type": "implant",
+  "img": "systems/cyberpunk2075/assets/notion/implants/camouflage-optique.webp",
+  "system": {
+    "description": "",
+    "ambiance": "Rend l'utilisateur impossible à localiser dans la lumière du spectre visible.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "armeDePoing",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "cutane",
+    "coutMin": 10,
+    "coutMax": 10,
+    "coutInstallation": 10,
+    "armeIntegree": false,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 20000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "L'utilisateur est caché pendant 2 tours et peut se cacher sans couvert, une utilisation par jour.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "jour",
+            "max": 1
+          },
+          "duree": 2,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 20000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "L'utilisateur est caché pendant 2 tours et peut se cacher sans couvert, une utilisation par jour.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "jour",
+            "max": 1
+          },
+          "duree": 2,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 20000,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "actif",
+          "description": "L'utilisateur est caché pendant 2 tours et peut se cacher sans couvert, une utilisation par jour.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "jour",
+            "max": 1
+          },
+          "duree": 2,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d6",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "ygVYPzYI9pf8FhUi",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

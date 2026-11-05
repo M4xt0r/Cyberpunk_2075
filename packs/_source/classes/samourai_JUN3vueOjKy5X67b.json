@@ -1,0 +1,85 @@
+{
+  "_id": "JUN3vueOjKy5X67b",
+  "_key": "!items!JUN3vueOjKy5X67b",
+  "name": "Samouraï",
+  "type": "sousClasse",
+  "img": "systems/cyberpunk2075/assets/notion/classes/solo.webp",
+  "system": {
+    "description": "",
+    "ambiance": "",
+    "classeParente": "Solo",
+    "maitrises": [
+      {
+        "competence": "acrobatie",
+        "choix": ""
+      },
+      {
+        "competence": "perception",
+        "choix": ""
+      },
+      {
+        "competence": "corpsACorps",
+        "choix": ""
+      }
+    ],
+    "pack": [
+      {
+        "uuid": "Compendium.cyberpunk2075.implants.Item.zitlFi1dqiU9CYl3",
+        "nom": "Microrotore",
+        "resume": "",
+        "mode": "precis",
+        "type": "implant",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.w8gKP8XGP4JnDeP6",
+        "nom": "Katana",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 2,
+        "quantite": 1,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.phym0RYd3Hn5TRW2",
+        "nom": "X-22 Flashbang Grenade",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 1,
+        "quantite": 2,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      }
+    ],
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.dCKRpCHQ90me5w4F",
+        "nom": "Protection d'acier",
+        "resume": "Vous pouvez parer en réaction les balles qui vous sont destinées lorsque vous tenez un Katana ou des Lames Mantis. Op…",
+        "niveau": 1
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.pztLzaDzpepIlh4M",
+        "nom": "Kami Kaze",
+        "resume": "Lorsque vous tenez un Katana à découvert, votre Adaptabilité augmente de 3 et votre vitesse de déplacement de 12 m pa…",
+        "niveau": 5
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "DwOYNHXuaseP7Zwn",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

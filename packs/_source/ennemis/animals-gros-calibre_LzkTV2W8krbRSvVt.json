@@ -1,0 +1,541 @@
+{
+  "_id": "LzkTV2W8krbRSvVt",
+  "_key": "!actors!LzkTV2W8krbRSvVt",
+  "name": "Animals · Gros calibre",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/notion/ennemis/animals.webp",
+  "system": {
+    "faction": "Animals",
+    "rang": "Gros calibre",
+    "rangNiveau": 2,
+    "nature": "organique",
+    "yeuxCyber": "auto",
+    "volant": false,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 2
+      },
+      "ref": {
+        "bonus": 1
+      },
+      "captec": {
+        "bonus": -1
+      },
+      "int": {
+        "bonus": -2
+      },
+      "safr": {
+        "bonus": 0
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "armeLourde",
+        "valeur": 5
+      },
+      {
+        "competence": "intimidation",
+        "valeur": 5
+      }
+    ],
+    "vie": {
+      "value": 17,
+      "max": 17,
+      "forcer": null
+    },
+    "ram": {
+      "value": 7,
+      "max": 7,
+      "forcer": null
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": null
+    },
+    "glace": {
+      "forcer": null
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 0,
+    "bm": 2,
+    "couvert": 0,
+    "notes": ""
+  },
+  "items": [
+    {
+      "_id": "oVXOWEgRj4iN3Yiu",
+      "_key": "!actors.items!LzkTV2W8krbRSvVt.oVXOWEgRj4iN3Yiu",
+      "name": "Crusher",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/crusher.webp",
+      "system": {
+        "description": "<p>Portée de 15 mètres : au-delà, la moitié des dégâts.</p>",
+        "ambiance": "Un incontournable des armes à feu depuis 2020.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeLourde",
+        "carac": "ref",
+        "portee": 15,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pompe",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 700,
+            "de": "1d8",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 1050,
+            "de": "1d8",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1400,
+            "de": "1d8",
+            "bonusFixe": 4,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "sGjHSBtfqsC9NywL",
+      "_key": "!actors.items!LzkTV2W8krbRSvVt.sGjHSBtfqsC9NywL",
+      "name": "Stabilisateur de recul",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/stabilisateur-de-recul.webp",
+      "system": {
+        "description": "",
+        "ambiance": "D'une mortelle précision.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "squelette",
+        "coutMin": 5,
+        "coutMax": 5,
+        "coutInstallation": 5,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 1500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+2 aux compétences Arme lourde et Sniper.",
+              "modificateurs": [
+                {
+                  "cible": "comp.armeLourde",
+                  "valeur": 2
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 2500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+4 aux compétences Arme lourde et Sniper.",
+              "modificateurs": [
+                {
+                  "cible": "comp.armeLourde",
+                  "valeur": 4
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 2500,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "+4 aux compétences Arme lourde et Sniper.",
+              "modificateurs": [
+                {
+                  "cible": "comp.armeLourde",
+                  "valeur": 4
+                },
+                {
+                  "cible": "comp.sniper",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "z6IhDQv9rX9RmFPk",
+      "_key": "!actors.items!LzkTV2W8krbRSvVt.z6IhDQv9rX9RmFPk",
+      "name": "M221 Saratoga",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/m221-saratoga.webp",
+      "system": {
+        "description": "<p>Ajoute une attaque bonus à l'arme à feu.</p>",
+        "ambiance": "Ronronne comme un chaton.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeLourde",
+        "carac": "const",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "mitraillette",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 800,
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 1200,
+            "de": "1d6",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1600,
+            "de": "1d6",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    },
+    {
+      "_id": "UabUaCnXt2D7VasC",
+      "_key": "!actors.items!LzkTV2W8krbRSvVt.UabUaCnXt2D7VasC",
+      "name": "Modificateur de douleur",
+      "type": "implant",
+      "img": "systems/cyberpunk2075/assets/notion/implants/modificateur-de-douleur.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Accélérateur de distribution d'adrénaline après s'être blessé.",
+        "sansNiveaux": true,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "usages": {
+          "utilises": 0
+        },
+        "actif": {
+          "enCours": false,
+          "tours": 0
+        },
+        "emplacement": "immunitaire",
+        "coutMin": 15,
+        "coutMax": 15,
+        "coutInstallation": 15,
+        "armeIntegree": false,
+        "capsuleAutorisee": false,
+        "typeArmeIntegree": "corpsACorps",
+        "special": "",
+        "guerre": false,
+        "ameliorations": [],
+        "animations": [],
+        "sons": {
+          "activation": "",
+          "toucher": ""
+        },
+        "niveaux": {
+          "n1": {
+            "prix": 6000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Bonus de +4 dans tous les styles de combat après que le possesseur a perdu la moitié de ses PV ; ignore les effets du niveau 1 de stress.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 6000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Bonus de +4 dans tous les styles de combat après que le possesseur a perdu la moitié de ses PV ; ignore les effets du niveau 1 de stress.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 6000,
+            "slotsAmelioration": 0,
+            "effet": {
+              "type": "passif",
+              "description": "Bonus de +4 dans tous les styles de combat après que le possesseur a perdu la moitié de ses PV ; ignore les effets du niveau 1 de stress.",
+              "modificateurs": [],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            },
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    }
+  ],
+  "effects": [],
+  "folder": "P8zm5mt7ufly1DXr",
+  "sort": 2,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Animals · Gros calibre",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/ennemis/animals.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

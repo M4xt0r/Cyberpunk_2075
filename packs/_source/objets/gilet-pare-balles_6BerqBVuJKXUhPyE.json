@@ -1,0 +1,127 @@
+{
+  "_id": "6BerqBVuJKXUhPyE",
+  "_key": "!items!6BerqBVuJKXUhPyE",
+  "name": "Gilet pare-balles",
+  "type": "objet",
+  "img": "systems/cyberpunk2075/assets/notion/objets/gilet-par-balle.webp",
+  "system": {
+    "description": "<p>Réduit de 2 les dégâts subis. Finit en lambeaux après 3 attaques subies.</p>",
+    "ambiance": "Testé et approuvé sur le champ de bataille.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "categorie": "utilitaire",
+    "quantite": 1,
+    "sePorte": true,
+    "porte": false,
+    "uneChargeParUtilisation": true,
+    "chargesRestantes": 3,
+    "qualite": "aucune",
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "animation": {
+      "style": "",
+      "projectile": "",
+      "impact": "",
+      "zone": "",
+      "son": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 250,
+        "charges": 3,
+        "effet": {
+          "type": "passif",
+          "description": "Réduit de 2 les dégâts subis. En lambeaux après 3 attaques subies.",
+          "modificateurs": [
+            {
+              "cible": "degatsRecus",
+              "valeur": -2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 250,
+        "charges": 3,
+        "effet": {
+          "type": "passif",
+          "description": "Réduit de 2 les dégâts subis. En lambeaux après 3 attaques subies.",
+          "modificateurs": [
+            {
+              "cible": "degatsRecus",
+              "valeur": -2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 250,
+        "charges": 3,
+        "effet": {
+          "type": "passif",
+          "description": "Réduit de 2 les dégâts subis. En lambeaux après 3 attaques subies.",
+          "modificateurs": [
+            {
+              "cible": "degatsRecus",
+              "valeur": -2
+            }
+          ],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "5zoVjqJvn9BY2wyw",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

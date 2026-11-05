@@ -1,0 +1,97 @@
+{
+  "_id": "9OGBqTTemax3F5K8",
+  "_key": "!items!9OGBqTTemax3F5K8",
+  "name": "Mécano",
+  "type": "sousClasse",
+  "img": "systems/cyberpunk2075/assets/notion/classes/techie.webp",
+  "system": {
+    "description": "",
+    "ambiance": "",
+    "classeParente": "Techie",
+    "maitrises": [
+      {
+        "competence": "perception",
+        "choix": ""
+      },
+      {
+        "competence": "tech",
+        "choix": ""
+      },
+      {
+        "competence": "pilotage",
+        "choix": ""
+      }
+    ],
+    "pack": [
+      {
+        "uuid": "Compendium.cyberpunk2075.implants.Item.STMuK0hDXTt6xByR",
+        "nom": "Optique Kiroshi",
+        "resume": "",
+        "mode": "precis",
+        "type": "implant",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "",
+        "nom": "",
+        "resume": "",
+        "mode": "gratuit",
+        "type": "",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "implant",
+        "prixMax": 0,
+        "texte": "1 amélioration d'Optique Kiroshi gratuite"
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.armes.Item.dRNC64oMKDZQnXIQ",
+        "nom": "M2038 Tactician",
+        "resume": "",
+        "mode": "precis",
+        "type": "arme",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "arme",
+        "prixMax": 0,
+        "texte": ""
+      },
+      {
+        "uuid": "",
+        "nom": "",
+        "resume": "",
+        "mode": "choix",
+        "type": "",
+        "niveau": 1,
+        "quantite": 1,
+        "categorie": "vehicule",
+        "prixMax": 12000,
+        "texte": "Un véhicule au choix (compendium Véhicules)"
+      }
+    ],
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.A6T6APy4uUUI6u0l",
+        "nom": "As du volant",
+        "resume": "Vos jets de Pilotage ont avantage.",
+        "niveau": 1
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.nupKrXm8yXKFYAQs",
+        "nom": "Cyborg",
+        "resume": "Lorsque vous utilisez un implant, votre Humanité n'augmente que de moitié si elle devait augmenter.",
+        "niveau": 5
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "DwOYNHXuaseP7Zwn",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

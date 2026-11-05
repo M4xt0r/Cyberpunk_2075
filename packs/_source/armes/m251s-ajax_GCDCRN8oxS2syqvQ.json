@@ -1,0 +1,60 @@
+{
+  "_id": "GCDCRN8oxS2syqvQ",
+  "_key": "!items!GCDCRN8oxS2syqvQ",
+  "name": "M251s Ajax",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/m251s-ajax.webp",
+  "system": {
+    "description": "<p>Ajoute une attaque bonus à l'arme à feu.</p>",
+    "ambiance": "Qu'il pleuve ou qu'il fasse beau, ça s'arrangera.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "armeLourde",
+    "carac": "safr",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "mitraillette",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 1100,
+        "de": "1d8",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 1650,
+        "de": "1d8",
+        "bonusFixe": 1,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 2200,
+        "de": "1d8",
+        "bonusFixe": 2,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "kytfQJgWv7kzYWyu",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

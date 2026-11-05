@@ -1,0 +1,46 @@
+{
+  "_id": "treFTsgT5xU1EhOP",
+  "_key": "!items!treFTsgT5xU1EhOP",
+  "name": "Dysfonctionnement d'implant",
+  "type": "hack",
+  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "system": {
+    "description": "<p>Si la cible a des implants, ils ne fonctionnent plus pendant 1 tour.</p>",
+    "ambiance": "",
+    "prix": 500,
+    "ram": 2,
+    "variable": {
+      "actif": false,
+      "parUnite": 0,
+      "unite": "carré de 1,5 m"
+    },
+    "activation": "action",
+    "defense": "glace",
+    "competence": "piratage",
+    "bonusTouche": 0,
+    "degats": {
+      "organique": "",
+      "robot": "",
+      "type": "electrique"
+    },
+    "humanite": {
+      "cible": 0,
+      "lanceur": 0
+    },
+    "duree": 1,
+    "effet": "Si la cible a des implants, ils ne fonctionnent plus pendant 1 tour.",
+    "special": "",
+    "animation": {
+      "glitch": true,
+      "impact": "",
+      "son": ""
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

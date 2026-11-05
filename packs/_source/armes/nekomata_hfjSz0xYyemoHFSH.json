@@ -1,0 +1,60 @@
+{
+  "_id": "hfjSz0xYyemoHFSH",
+  "_key": "!items!hfjSz0xYyemoHFSH",
+  "name": "Nekomata",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/nekomata.webp",
+  "system": {
+    "description": "<p>Fait toujours un coup critique en cas de réussite.</p>",
+    "ambiance": "Précision sans compromis.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "competence": "sniper",
+    "carac": "const",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "sniper",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 1400,
+        "de": "1d10",
+        "bonusFixe": 0,
+        "typeDegats": "balle"
+      },
+      "n2": {
+        "prix": 2100,
+        "de": "1d10",
+        "bonusFixe": 2,
+        "typeDegats": "balle"
+      },
+      "n3": {
+        "prix": 2800,
+        "de": "1d10",
+        "bonusFixe": 4,
+        "typeDegats": "balle"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "yJTNCQ5AJEjcpcvl",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

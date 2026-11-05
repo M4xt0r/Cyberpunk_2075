@@ -1,0 +1,63 @@
+{
+  "_id": "78fTWzKVkrOQNbwL",
+  "_key": "!items!78fTWzKVkrOQNbwL",
+  "name": "Anti-Corpo",
+  "type": "classe",
+  "img": "systems/cyberpunk2075/assets/notion/classes/anti-corpo.webp",
+  "system": {
+    "description": "<p>Les Anti-Corpos ne sont pas compliqués à comprendre : la mettre aux corpos, c'est leur dada. Vous avez un lien avec les grands de ce monde qui vous ont laissé un goût amer dans la bouche, et de ce goût vous faites un gros molard qui file droit dans leur visage.</p>",
+    "ambiance": "",
+    "bonus": {
+      "const": 0,
+      "ref": 1,
+      "captec": 0,
+      "int": 0,
+      "safr": 2
+    },
+    "eddies": 3500,
+    "gains": {
+      "vie": "1d2",
+      "ram": "1d2",
+      "humanite": "1d2"
+    },
+    "talents": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.H4OeMEcDYvGfEOKj",
+        "nom": "Provocateur",
+        "resume": "Par une réaction, jusqu'à 3 cibles sont forcées de vous attaquer jusqu'au début de leur prochain tour. Utilisable un …",
+        "niveau": 3
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.5bJ490SBhXZ0MKYg",
+        "nom": "Cohésion de fer",
+        "resume": "Par une réaction, vos alliés ont +2 en Adaptabilité jusqu'à la fin du tour. Utilisable un nombre de fois égal à votre…",
+        "niveau": 8
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.hzLNr3CPeQg4hk3M",
+        "nom": "Ennemi public",
+        "resume": "Au début de chaque combat, les ennemis qui vous voient font un jet de Sang-Froid (DD 10 + bonus). En cas d'échec, ils…",
+        "niveau": 10
+      }
+    ],
+    "sousClasses": [
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.Vb8LkKoekIYLQGS1",
+        "nom": "Rocker Boy",
+        "resume": ""
+      },
+      {
+        "uuid": "Compendium.cyberpunk2075.classes.Item.m5HKLJlpRUXTFPpQ",
+        "nom": "Nomad",
+        "resume": ""
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "eNmo02U3Xb76w2qz",
+  "sort": 3,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -1,0 +1,51 @@
+{
+  "_id": "s2Wes5AYy5AJ4TCp",
+  "_key": "!actors!s2Wes5AYy5AJ4TCp",
+  "name": "Kusanagi CT-3X",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/kusanagi-ct-3x.webp",
+  "system": {
+    "categorie": "moto",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": true,
+    "vitesse": "A",
+    "maniabilite": 6,
+    "vie": {
+      "value": 20,
+      "base": 20
+    },
+    "slots": 1,
+    "places": 1,
+    "placesNote": "",
+    "prix": 23500,
+    "ambiance": "Le cadre élégant et aérodynamique de ce Kusanagi cache un moteur puissant. Il va vous falloir des réflexes surhumains pour y faire face.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "QQmSCySip72cQcoy",
+  "sort": 2,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Kusanagi CT-3X",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/kusanagi-ct-3x.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "_id": "nxmND74wmCL5av5G",
+  "_key": "!items!nxmND74wmCL5av5G",
+  "name": "Premiers secours",
+  "type": "talent",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Une fois par repos long, la première fois que vous relevez un allié à 1 PV, il ne gagne pas de point de stress.</p>",
+    "ambiance": "",
+    "source": "sousClasse",
+    "niveauObtention": 5,
+    "special": "",
+    "effet": {
+      "type": "passif",
+      "description": "Une fois par repos long, la première fois que vous relevez un allié à 1 PV, il ne gagne pas de point de stress.",
+      "modificateurs": [],
+      "activation": "action",
+      "coutHumanite": 0,
+      "humaniteKill": 0,
+      "utilisations": {
+        "periode": "repos",
+        "max": 1
+      },
+      "duree": 0,
+      "ciblesMax": 0,
+      "jet": {
+        "formule": "",
+        "type": "soin",
+        "typeDegats": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    }
+  },
+  "effects": [],
+  "folder": "O2M1F9N1ZRCgyuM2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

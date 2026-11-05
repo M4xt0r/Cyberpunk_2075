@@ -1,0 +1,148 @@
+{
+  "_id": "xNFCST7VclMuHrrV",
+  "_key": "!actors!xNFCST7VclMuHrrV",
+  "name": "Appartement",
+  "type": "planque",
+  "img": "systems/cyberpunk2075/assets/notion/bannieres/planques.webp",
+  "system": {
+    "type": "appartement",
+    "niveau": 1,
+    "qualite": "miteux",
+    "modulesForces": null,
+    "parkingForce": null,
+    "barman": false,
+    "adresse": "",
+    "description": "<p><em>Bon, si on écarte les voisins désagréables, c'est plutôt pas mal.</em></p><p>Le Module de Vie y est présent d'office, ne peut pas être retiré et ne prend pas d'emplacement.</p>"
+  },
+  "items": [
+    {
+      "_id": "k2BXQ2u1o4DMcpyC",
+      "_key": "!actors.items!xNFCST7VclMuHrrV.k2BXQ2u1o4DMcpyC",
+      "name": "Module de Vie",
+      "type": "modulePlanque",
+      "img": "icons/svg/house.svg",
+      "system": {
+        "description": "<p>Présent d'office dans les Appartements, où il ne peut pas être retiré et ne prend pas d'emplacement de module.</p>",
+        "ambiance": "Il faut bien se reposer des fois.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "types": [],
+        "vieOffice": true,
+        "niveaux": {
+          "n1": {
+            "prix": 200,
+            "effet": {
+              "type": "passif",
+              "description": "Peut loger 2 personnes.",
+              "modificateurs": [
+                {
+                  "cible": "hebergement",
+                  "valeur": 2
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            }
+          },
+          "n2": {
+            "prix": 300,
+            "effet": {
+              "type": "passif",
+              "description": "Peut loger 4 personnes.",
+              "modificateurs": [
+                {
+                  "cible": "hebergement",
+                  "valeur": 4
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            }
+          },
+          "n3": {
+            "prix": 400,
+            "effet": {
+              "type": "passif",
+              "description": "Peut loger 6 personnes.",
+              "modificateurs": [
+                {
+                  "cible": "hebergement",
+                  "valeur": 6
+                }
+              ],
+              "activation": "action",
+              "coutHumanite": 0,
+              "humaniteKill": 0,
+              "utilisations": {
+                "periode": "illimite",
+                "max": 0
+              },
+              "duree": 0,
+              "ciblesMax": 0,
+              "jet": {
+                "formule": "",
+                "type": "soin",
+                "typeDegats": ""
+              }
+            }
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {}
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 1,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Appartement",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/bannieres/planques.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": null
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

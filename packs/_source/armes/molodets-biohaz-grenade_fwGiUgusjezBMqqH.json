@@ -1,0 +1,60 @@
+{
+  "_id": "fwGiUgusjezBMqqH",
+  "_key": "!items!fwGiUgusjezBMqqH",
+  "name": "MOLODETS BioHaz Grenade",
+  "type": "arme",
+  "img": "systems/cyberpunk2075/assets/notion/armes/molodets-biohaz.webp",
+  "system": {
+    "description": "<p>Crée un nuage de gaz toxique pendant 1d6 tours, dans un rayon de 5 mètres, qui fait 1d4 de dégâts de poison.</p>",
+    "ambiance": "Crée un nuage toxique qui inflige des dégâts chimiques aux ennemis à portée.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "explosif",
+    "carac": "",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "aucune",
+      "bonusTouche": 0,
+      "zone": 5,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "grenade",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 1000,
+        "de": "1d4",
+        "bonusFixe": 0,
+        "typeDegats": "poison"
+      },
+      "n2": {
+        "prix": 1000,
+        "de": "1d4",
+        "bonusFixe": 0,
+        "typeDegats": "poison"
+      },
+      "n3": {
+        "prix": 1000,
+        "de": "1d4",
+        "bonusFixe": 0,
+        "typeDegats": "poison"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "2cadYKQvQOPXrvhI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

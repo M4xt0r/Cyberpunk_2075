@@ -1,0 +1,46 @@
+{
+  "_id": "uRKf1ZWCovm9QFHH",
+  "_key": "!items!uRKf1ZWCovm9QFHH",
+  "name": "Glitch visuel",
+  "type": "hack",
+  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "system": {
+    "description": "<p>Crée une illusion visible par une cible, de 1,5 m par 1,5 m ; 2 RAM par carré de 1,5 m.</p>",
+    "ambiance": "",
+    "prix": 800,
+    "ram": 0,
+    "variable": {
+      "actif": true,
+      "parUnite": 2,
+      "unite": "carré de 1,5 m"
+    },
+    "activation": "action",
+    "defense": "glace",
+    "competence": "piratage",
+    "bonusTouche": 0,
+    "degats": {
+      "organique": "",
+      "robot": "",
+      "type": "electrique"
+    },
+    "humanite": {
+      "cible": 0,
+      "lanceur": 0
+    },
+    "duree": 0,
+    "effet": "Crée une illusion visible par une cible, de 1,5 m par 1,5 m ; 2 RAM par carré de 1,5 m.",
+    "special": "",
+    "animation": {
+      "glitch": true,
+      "impact": "",
+      "son": ""
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

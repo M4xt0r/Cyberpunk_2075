@@ -1,0 +1,51 @@
+{
+  "_id": "FqgBuUTLiJwy1wQD",
+  "_key": "!actors!FqgBuUTLiJwy1wQD",
+  "name": "Villefort Columbus V340-F Freight",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/notion/vehicules/villefort-columbus.webp",
+  "system": {
+    "categorie": "utilitaire",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "E",
+    "maniabilite": 0,
+    "vie": {
+      "value": 60,
+      "base": 60
+    },
+    "slots": 4,
+    "places": 4,
+    "placesNote": "",
+    "prix": 11000,
+    "ambiance": "Le Columbus est le modèle le plus jeune, le moins cher et le plus populaire de la gamme Villefort. Un favori parmi les compagnies maritimes et les familles nombreuses.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "nJNCCNfwxrroX8vN",
+  "sort": 16,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Villefort Columbus V340-F Freight",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/vehicules/villefort-columbus.webp"
+    },
+    "width": 2,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

@@ -1,14 +1,16 @@
 {
   "id": "cyberpunk2075",
   "title": "Cyberpunk 2075",
-  "description": "Système de jeu Cyberpunk 2075 en d20 : fiches, jets, implants, Humanité et hacks, dans la charte « Nuit de Dogtown ».",
-  "version": "0.7.1",
+  "description": "Système de jeu Cyberpunk 2075 en d20 : fiches, jets, implants, Humanité, hacks, ennemis, véhicules et planques, avec les compendiums du contenu Notion, dans la charte « Nuit de Dogtown ».",
+  "version": "0.8.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13.350"
   },
   "authors": [
-    { "name": "M4xt0r" }
+    {
+      "name": "M4xt0r"
+    }
   ],
   "esmodules": [
     "module/cyberpunk2075.mjs"
@@ -17,29 +19,275 @@
     "styles/cyberpunk2075.css"
   ],
   "languages": [
-    { "lang": "fr", "name": "Français", "path": "lang/fr.json" }
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
   ],
   "documentTypes": {
     "Actor": {
-      "personnage": { "htmlFields": ["bio.histoire", "bio.apparence", "bio.notes"] },
-      "ennemi": { "htmlFields": ["description"] },
-      "vehicule": { "htmlFields": ["description"] },
-      "planque": { "htmlFields": ["description"] }
+      "personnage": {
+        "htmlFields": [
+          "bio.histoire",
+          "bio.apparence",
+          "bio.notes"
+        ]
+      },
+      "ennemi": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "vehicule": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "planque": {
+        "htmlFields": [
+          "description"
+        ]
+      }
     },
     "Item": {
-      "arme": { "htmlFields": ["description"] },
-      "implant": { "htmlFields": ["description"] },
-      "ameliorationImplant": { "htmlFields": ["description"] },
-      "capsule": { "htmlFields": ["description"] },
-      "objet": { "htmlFields": ["description"] },
-      "hack": { "htmlFields": ["description"] },
-      "talent": { "htmlFields": ["description"] },
-      "classe": { "htmlFields": ["description"] },
-      "sousClasse": { "htmlFields": ["description"] },
-      "ameliorationVehicule": { "htmlFields": ["description"] },
-      "modulePlanque": { "htmlFields": ["description"] }
+      "arme": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "implant": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "ameliorationImplant": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "capsule": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "objet": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "hack": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "talent": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "classe": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "sousClasse": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "ameliorationVehicule": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "modulePlanque": {
+        "htmlFields": [
+          "description"
+        ]
+      }
     }
   },
+  "packs": [
+    {
+      "name": "armes",
+      "label": "Armes",
+      "path": "packs/armes",
+      "type": "Item",
+      "system": "cyberpunk2075",
+      "banner": "systems/cyberpunk2075/assets/notion/bannieres/objets.webp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "objets",
+      "label": "Objets",
+      "path": "packs/objets",
+      "type": "Item",
+      "system": "cyberpunk2075",
+      "banner": "systems/cyberpunk2075/assets/notion/bannieres/objets.webp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "implants",
+      "label": "Implants",
+      "path": "packs/implants",
+      "type": "Item",
+      "system": "cyberpunk2075",
+      "banner": "systems/cyberpunk2075/assets/notion/bannieres/implants.webp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "hacks",
+      "label": "Hacks",
+      "path": "packs/hacks",
+      "type": "Item",
+      "system": "cyberpunk2075",
+      "banner": "systems/cyberpunk2075/assets/notion/bannieres/implants.webp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "classes",
+      "label": "Classes et talents",
+      "path": "packs/classes",
+      "type": "Item",
+      "system": "cyberpunk2075",
+      "banner": "systems/cyberpunk2075/assets/notion/bannieres/classes.webp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "vehicules",
+      "label": "Véhicules",
+      "path": "packs/vehicules",
+      "type": "Actor",
+      "system": "cyberpunk2075",
+      "banner": "systems/cyberpunk2075/assets/notion/bannieres/vehicules.webp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "ameliorations-vehicule",
+      "label": "Améliorations de véhicule",
+      "path": "packs/ameliorations-vehicule",
+      "type": "Item",
+      "system": "cyberpunk2075",
+      "banner": "systems/cyberpunk2075/assets/notion/bannieres/vehicules.webp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "planques",
+      "label": "Planques",
+      "path": "packs/planques",
+      "type": "Actor",
+      "system": "cyberpunk2075",
+      "banner": "systems/cyberpunk2075/assets/notion/bannieres/planques.webp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "modules-planque",
+      "label": "Modules de planque",
+      "path": "packs/modules-planque",
+      "type": "Item",
+      "system": "cyberpunk2075",
+      "banner": "systems/cyberpunk2075/assets/notion/bannieres/planques.webp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "ennemis",
+      "label": "Ennemis",
+      "path": "packs/ennemis",
+      "type": "Actor",
+      "system": "cyberpunk2075",
+      "banner": "systems/cyberpunk2075/assets/notion/bannieres/racine.webp",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Cyberpunk 2075",
+      "sorting": "m",
+      "color": "#3a0d12",
+      "packs": [],
+      "folders": [
+        {
+          "name": "Équipement",
+          "sorting": "m",
+          "color": "#1b2a33",
+          "packs": [
+            "armes",
+            "objets",
+            "implants",
+            "hacks"
+          ]
+        },
+        {
+          "name": "Personnages",
+          "sorting": "m",
+          "color": "#2a1b33",
+          "packs": [
+            "classes"
+          ]
+        },
+        {
+          "name": "Biens",
+          "sorting": "m",
+          "color": "#1b3324",
+          "packs": [
+            "vehicules",
+            "ameliorations-vehicule",
+            "planques",
+            "modules-planque"
+          ]
+        },
+        {
+          "name": "Meneur de jeu",
+          "sorting": "m",
+          "color": "#33201b",
+          "packs": [
+            "ennemis"
+          ]
+        }
+      ]
+    }
+  ],
   "grid": {
     "type": 1,
     "distance": 1.5,

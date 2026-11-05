@@ -1,0 +1,112 @@
+{
+  "_id": "qkGJ2jpSwFgHNYd7",
+  "_key": "!items!qkGJ2jpSwFgHNYd7",
+  "name": "Couronne de DS",
+  "type": "objet",
+  "img": "systems/cyberpunk2075/assets/notion/objets/couronne-de-ds.webp",
+  "system": {
+    "description": "<p>Permet de lire des DS.</p>",
+    "ambiance": "Cette couronne a vu défiler bien des perversions.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "categorie": "utilitaire",
+    "quantite": 1,
+    "sePorte": false,
+    "porte": false,
+    "uneChargeParUtilisation": true,
+    "chargesRestantes": 0,
+    "qualite": "aucune",
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "animation": {
+      "style": "",
+      "projectile": "",
+      "impact": "",
+      "zone": "",
+      "son": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 100,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de lire des DS.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 100,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de lire des DS.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 100,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de lire des DS.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "5zoVjqJvn9BY2wyw",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

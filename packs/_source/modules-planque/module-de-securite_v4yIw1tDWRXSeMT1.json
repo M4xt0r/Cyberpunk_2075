@@ -1,0 +1,90 @@
+{
+  "_id": "v4yIw1tDWRXSeMT1",
+  "_key": "!items!v4yIw1tDWRXSeMT1",
+  "name": "Module de Sécurité",
+  "type": "modulePlanque",
+  "img": "icons/svg/house.svg",
+  "system": {
+    "description": "",
+    "ambiance": "S'il y a un intrus, autant l'accueillir comme il se doit.",
+    "sansNiveaux": false,
+    "niveau": 1,
+    "types": [],
+    "vieOffice": false,
+    "niveaux": {
+      "n1": {
+        "prix": 5000,
+        "effet": {
+          "type": "passif",
+          "description": "Équipe votre planque de 2 tourelles automatiques (1d6 de dégâts), d'un système d'alarme et d'une caméra de surveillance.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 7000,
+        "effet": {
+          "type": "passif",
+          "description": "Équipe votre planque de 4 tourelles automatiques (1d6 de dégâts), d'un système d'alarme et d'une caméra de surveillance.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 7000,
+        "effet": {
+          "type": "passif",
+          "description": "Équipe votre planque de 4 tourelles automatiques (1d6 de dégâts), d'un système d'alarme et d'une caméra de surveillance.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

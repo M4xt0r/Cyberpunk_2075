@@ -1,0 +1,112 @@
+{
+  "_id": "Ym6MGjsyxYk2Q7Ya",
+  "_key": "!items!Ym6MGjsyxYk2Q7Ya",
+  "name": "Militech MT0D12 « Flathead »",
+  "type": "objet",
+  "img": "systems/cyberpunk2075/assets/notion/objets/flathead.webp",
+  "system": {
+    "description": "<p>Permet de se déplacer et de pirater depuis cette unité si un hacker a à sa disposition un module de NetRunner dans une planque. +10 RAM. Déplacement d'araignée.</p>",
+    "ambiance": "Drone militaire expérimental en forme d'araignée, spécialisé dans l'infiltration, la reconnaissance et la surveillance, capable d'escalader murs et plafonds.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "categorie": "utilitaire",
+    "quantite": 1,
+    "sePorte": false,
+    "porte": false,
+    "uneChargeParUtilisation": true,
+    "chargesRestantes": 0,
+    "qualite": "aucune",
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "animation": {
+      "style": "",
+      "projectile": "",
+      "impact": "",
+      "zone": "",
+      "son": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 12000,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de se déplacer et de pirater depuis cette unité si un hacker a à sa disposition un module de NetRunner dans une planque. +10 RAM. Déplacement d'araignée.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n2": {
+        "prix": 12000,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de se déplacer et de pirater depuis cette unité si un hacker a à sa disposition un module de NetRunner dans une planque. +10 RAM. Déplacement d'araignée.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      },
+      "n3": {
+        "prix": 12000,
+        "charges": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de se déplacer et de pirater depuis cette unité si un hacker a à sa disposition un module de NetRunner dans une planque. +10 RAM. Déplacement d'araignée.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "5zoVjqJvn9BY2wyw",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

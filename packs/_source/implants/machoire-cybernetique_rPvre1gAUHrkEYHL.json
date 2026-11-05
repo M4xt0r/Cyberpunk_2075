@@ -1,0 +1,138 @@
+{
+  "_id": "rPvre1gAUHrkEYHL",
+  "_key": "!items!rPvre1gAUHrkEYHL",
+  "name": "Mâchoire cybernétique",
+  "type": "implant",
+  "img": "icons/svg/circuit.svg",
+  "system": {
+    "description": "<p>La morsure ajoute 1d4+1 de dégâts de poison.</p>",
+    "ambiance": "Un sourire de fer !",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "corpsACorps",
+    "carac": "const",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    },
+    "emplacement": "facial",
+    "coutMin": 10,
+    "coutMax": 10,
+    "coutInstallation": 10,
+    "armeIntegree": true,
+    "capsuleAutorisee": false,
+    "typeArmeIntegree": "corpsACorps",
+    "special": "",
+    "guerre": false,
+    "ameliorations": [],
+    "animations": [],
+    "sons": {
+      "activation": "",
+      "toucher": ""
+    },
+    "niveaux": {
+      "n1": {
+        "prix": 1500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de mordre une cible sur un jet de corps à corps : 1d4+Const de dégâts plus 1d4+1 de poison.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d4",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 1500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de mordre une cible sur un jet de corps à corps : 1d4+Const de dégâts plus 1d4+1 de poison.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d4",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 1500,
+        "slotsAmelioration": 0,
+        "effet": {
+          "type": "passif",
+          "description": "Permet de mordre une cible sur un jet de corps à corps : 1d4+Const de dégâts plus 1d4+1 de poison.",
+          "modificateurs": [],
+          "activation": "action",
+          "coutHumanite": 0,
+          "humaniteKill": 0,
+          "utilisations": {
+            "periode": "illimite",
+            "max": 0
+          },
+          "duree": 0,
+          "ciblesMax": 0,
+          "jet": {
+            "formule": "",
+            "type": "soin",
+            "typeDegats": ""
+          }
+        },
+        "de": "1d4",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "FWDG7iMCf7LtKQq2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

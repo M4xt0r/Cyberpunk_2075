@@ -1,0 +1,47 @@
+{
+  "_id": "6mVvtb8cZp925cI7",
+  "_key": "!items!6mVvtb8cZp925cI7",
+  "name": "Retour de flamme",
+  "type": "talent",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Si un piratage échoue contre vous, vous pouvez utiliser votre réaction pour infliger 1d8 de dégâts électriques.</p>",
+    "ambiance": "",
+    "source": "classe",
+    "niveauObtention": 8,
+    "special": "",
+    "effet": {
+      "type": "actif",
+      "description": "Si un piratage échoue contre vous, vous pouvez utiliser votre réaction pour infliger 1d8 de dégâts électriques.",
+      "modificateurs": [],
+      "activation": "reaction",
+      "coutHumanite": 0,
+      "humaniteKill": 0,
+      "utilisations": {
+        "periode": "illimite",
+        "max": 0
+      },
+      "duree": 0,
+      "ciblesMax": 0,
+      "jet": {
+        "formule": "1d8",
+        "type": "degats",
+        "typeDegats": "electrique"
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    }
+  },
+  "effects": [],
+  "folder": "O2M1F9N1ZRCgyuM2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

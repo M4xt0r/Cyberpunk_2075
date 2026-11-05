@@ -1,0 +1,42 @@
+{
+  "_id": "w6w2BugWVrJqrOxr",
+  "_key": "!actors!w6w2BugWVrJqrOxr",
+  "name": "Garage",
+  "type": "planque",
+  "img": "systems/cyberpunk2075/assets/notion/bannieres/planques.webp",
+  "system": {
+    "type": "garage",
+    "niveau": 1,
+    "qualite": "miteux",
+    "modulesForces": null,
+    "parkingForce": null,
+    "barman": false,
+    "adresse": "",
+    "description": "<p><em>Il faut bien pouvoir les bichonner, nos amis au V12.</em></p>"
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 2,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Garage",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/notion/bannieres/planques.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": null
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

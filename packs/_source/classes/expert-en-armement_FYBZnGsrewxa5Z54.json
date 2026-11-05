@@ -1,0 +1,52 @@
+{
+  "_id": "FYBZnGsrewxa5Z54",
+  "_key": "!items!FYBZnGsrewxa5Z54",
+  "name": "Expert en armement",
+  "type": "talent",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Vous gagnez un bonus de +1 aux dégâts des armes à feu ou de mêlée que vous tenez.</p>",
+    "ambiance": "",
+    "source": "classe",
+    "niveauObtention": 3,
+    "special": "",
+    "effet": {
+      "type": "passif",
+      "description": "Vous gagnez un bonus de +1 aux dégâts des armes à feu ou de mêlée que vous tenez.",
+      "modificateurs": [
+        {
+          "cible": "degats",
+          "valeur": 1
+        }
+      ],
+      "activation": "action",
+      "coutHumanite": 0,
+      "humaniteKill": 0,
+      "utilisations": {
+        "periode": "illimite",
+        "max": 0
+      },
+      "duree": 0,
+      "ciblesMax": 0,
+      "jet": {
+        "formule": "",
+        "type": "soin",
+        "typeDegats": ""
+      }
+    },
+    "usages": {
+      "utilises": 0
+    },
+    "actif": {
+      "enCours": false,
+      "tours": 0
+    }
+  },
+  "effects": [],
+  "folder": "O2M1F9N1ZRCgyuM2",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}
