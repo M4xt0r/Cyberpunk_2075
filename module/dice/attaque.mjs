@@ -4,6 +4,7 @@
 import { CHEMIN, CARACS, COMPETENCES, COUVERTS, DEFENSES, NIVEAUX, REGLES_ARME, TYPES_DEGATS } from "../config.mjs";
 import { signe } from "./jets.mjs";
 import { traduireFormule } from "./formules.mjs";
+import { choisirPoint, estPosee } from "../hud/viser.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 const DE_PAR_MODE = { avantage: "2d20kh", normal: "1d20", desavantage: "2d20kl" };
@@ -48,6 +49,15 @@ function ajouterZone(sys, touchees, tokensCibles) {
   }
 }
 
+/** Tokens visibles (non cachés) dont le centre est dans le rayon (m) autour d'un point. */
+function tokensAutour(point, rayon) {
+  if ( !canvas?.ready ) return [];
+  return canvas.tokens.placeables.filter(t => {
+    if ( !t.actor || t.document.hidden ) return false;
+    try { return canvas.grid.measurePath([point, t.center]).distance <= rayon; } catch { return false; }
+  });
+}
+
 /** Point dans la direction du regard du token, à une distance en mètres. */
 function pointDevant(token, metres = 10) {
   const px = (metres / canvas.dimensions.distance) * canvas.dimensions.size;
@@ -56,7 +66,7 @@ function pointDevant(token, metres = 10) {
 }
 
 /** Données d'animation à poser sur le message (jouées par tous les clients). */
-function donneesAnimation(item, source, cibles, touches) {
+function donneesAnimation(item, source, cibles, touches, pointImpact = null) {
   const anim = item.system.animationEffective;
   if ( !source || !anim || (anim.style === "aucune") ) return null;
   const rayon = item.system.attaque?.zone ?? 0;
@@ -66,7 +76,7 @@ function donneesAnimation(item, source, cibles, touches) {
     source: source.id,
     cibles: cibles.map(t => t.id),
     touches: touches.map(t => t.id),
-    point: cibles.length ? null : pointDevant(source, Math.min(portee, 20)),
+    point: pointImpact ?? (cibles.length ? null : pointDevant(source, Math.min(portee, 20))),
     rayon,
     ...anim
   };
@@ -131,7 +141,15 @@ export async function attaquer(item, { rapide = false, supplementaire = false } 
   if ( sys.stock <= 0 ) return ui.notifications.warn(`${item.name} : plus aucune en stock.`);
 
   // Dégâts automatiques (grenades, défense « aucune ») : pas de jet de touche
-  if ( sys.attaque.defense === "aucune" ) return lancerDegats(item, { avecAnimation: true });
+  if ( sys.attaque.defense === "aucune" ) {
+    // Grenade lancée sans cible : le joueur choisit le point de chute (le C4 se pose, il ne se lance pas)
+    if ( (sys.typeArme === "grenade") && !estPosee(item) && !game.user.targets.size && canvas?.ready ) {
+      const point = await choisirPoint(item);
+      if ( !point ) return null;
+      return lancerDegats(item, { avecAnimation: true, point });
+    }
+    return lancerDegats(item, { avecAnimation: true });
+  }
 
   const source = tokenDe(acteur);
   const cibles = Array.from(game.user.targets);
@@ -234,7 +252,7 @@ export async function attaquer(item, { rapide = false, supplementaire = false } 
  * @param {boolean}  [options.critique]   Ajoute le dé de critique du niveau.
  * @param {boolean}  [options.avecAnimation]  Dégâts directs avec animation (grenades).
  */
-export async function lancerDegats(item, { cibles = null, critique = false, avecAnimation = false } = {}) {
+export async function lancerDegats(item, { cibles = null, critique = false, avecAnimation = false, point = null } = {}) {
   const acteur = item.actor;
   if ( !acteur ) return ui.notifications.warn("L'arme doit être portée par un personnage.");
   const sys = item.system;
@@ -248,7 +266,8 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   const source = tokenDe(acteur);
   let tokensCibles = [];
   if ( !cibles ) {
-    tokensCibles = Array.from(game.user.targets);
+    // Point de chute choisi : tous les tokens dans le rayon autour du point
+    tokensCibles = point ? tokensAutour(point, sys.attaque?.zone || 0) : Array.from(game.user.targets);
     cibles = tokensCibles.map(t => {
       const d = distance(source, t);
       return { token: t.document.uuid, nom: t.name, touche: true, critique, horsPortee: !!(sys.portee && (d !== null) && (d > sys.portee)) };
@@ -256,7 +275,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   }
   const touchees = cibles.filter(c => c.touche !== false);
   const avecCritique = critique || touchees.some(c => c.critique);
-  ajouterZone(sys, touchees, tokensCibles);
+  if ( !point ) ajouterZone(sys, touchees, tokensCibles);
 
   // Le dé peut contenir une compétence (« 1d12 + Corps à corps », « 1d6 + Pilotage »)
   const termes = [traduireFormule(n.de || "0")];
@@ -287,8 +306,8 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
 
   let animation = null;
   if ( avecAnimation ) {
-    const tokens = tokensCibles.length ? tokensCibles : Array.from(game.user.targets);
-    animation = donneesAnimation(item, source, tokens, tokens);
+    const tokens = point ? [] : (tokensCibles.length ? tokensCibles : Array.from(game.user.targets));
+    animation = donneesAnimation(item, source, tokens, tokens, point);
   }
 
   const typeDegats = TYPES_DEGATS[n.typeDegats] ?? n.typeDegats;
