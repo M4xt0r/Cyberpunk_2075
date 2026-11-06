@@ -1,7 +1,19 @@
 /**
- * Choix du point de chute d'une grenade sur la scène : le curseur devient la grenade,
- * avec le cercle de son rayon d'explosion. Clic gauche pour lancer, clic droit ou Échap pour annuler.
+ * Choix du point de chute d'une grenade sur la scène : le curseur devient la grenade.
+ * Le cercle du rayon d'explosion n'est montré qu'avec l'amélioration Kiroshi « Rayon d'explosion ».
+ * Clic gauche pour lancer, clic droit ou Échap pour annuler.
  */
+import { dansBuild } from "../data/ennemi.mjs";
+
+const normaliser = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[’']/g, "'").toLowerCase().trim();
+
+/** L'acteur voit-il le rayon d'explosion (amélioration d'Optique Kiroshi posée sur un implant) ? */
+export function voitRayon(acteur) {
+  if ( !acteur ) return false;
+  return acteur.items.some(i => (i.type === "ameliorationImplant") && (normaliser(i.name) === "rayon d'explosion")
+    && acteur.items.get(i.system.implant)
+    && ((acteur.type !== "ennemi") || dansBuild(i, acteur.system.build)));
+}
 
 /**
  * @param {Item} item  La grenade.
@@ -10,7 +22,7 @@
 export async function choisirPoint(item) {
   if ( !canvas?.ready ) return null;
   const dims = canvas.dimensions;
-  const rayonPx = ((item.system.attaque?.zone || 0) / dims.distance) * dims.size;
+  const rayonPx = voitRayon(item.actor) ? ((item.system.attaque?.zone || 0) / dims.distance) * dims.size : 0;
   const image = item.system.animationEffective?.projectile || item.img;
 
   const calque = new PIXI.Container();
