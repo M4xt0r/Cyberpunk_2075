@@ -50,10 +50,10 @@ def effet(desc="", type="passif", mods=None, activation="action", cout=0, kill=0
 def animation():
     return {"style": "", "projectile": "", "impact": "", "zone": "", "son": ""}
 
-def attaque(competence="armeDePoing", carac="", portee=None, defense="adaptabilite", zone=None, faitDegats=True, bonusTouche=0):
+def attaque(competence="armeDePoing", carac="", portee=None, defense="adaptabilite", zone=None, faitDegats=True, bonusTouche=0, dureeZone=""):
     return {
         "competence": competence, "carac": carac, "portee": portee,
-        "attaque": {"faitDegats": faitDegats, "defense": defense, "bonusTouche": bonusTouche, "zone": zone, "animation": animation()}
+        "attaque": {"faitDegats": faitDegats, "defense": defense, "bonusTouche": bonusTouche, "zone": zone, "dureeZone": dureeZone, "animation": animation()}
     }
 
 def trois(liste):

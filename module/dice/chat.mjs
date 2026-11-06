@@ -4,6 +4,7 @@
 import { appliquer } from "./attaque.mjs";
 import { forcerHack } from "./hack.mjs";
 import { jouerAnimation } from "../animations.mjs";
+import { creerZonePersistante, estMJActif } from "../hud/tours.mjs";
 
 const drapeaux = message => message.flags?.cyberpunk2075 ?? {};
 
@@ -68,8 +69,17 @@ async function surAction(message, bouton) {
 export async function surCreationMessage(message) {
   const d = drapeaux(message);
   const liste = [d.animation, ...(d.animations ?? [])].filter(a => a);
-  if ( !liste.length || !canvas?.ready ) return;
+  const zone = d.zonePersistante;
+  if ( (!liste.length || !canvas?.ready) && !zone ) return;
   await attendreDes(message);
+  // Zone persistante (nuage toxique…) : posée par le MJ actif après l'animation
+  if ( zone && estMJActif() ) {
+    if ( canvas?.ready && liste.length && (canvas.scene?.id === zone.scene) ) {
+      await Promise.all(liste.filter(a => canvas.scene?.id === a.scene).map(a => jouerAnimation(a).catch(() => null)));
+    }
+    return creerZonePersistante(zone).catch(err => console.warn("Cyberpunk 2075 | Zone impossible :", err));
+  }
+  if ( !liste.length || !canvas?.ready ) return;
   for ( const anim of liste ) {
     if ( canvas.scene?.id !== anim.scene ) continue;
     try {

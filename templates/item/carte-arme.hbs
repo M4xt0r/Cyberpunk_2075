@@ -73,6 +73,7 @@
       <label class="cp-c-f">Bonus au toucher<input class="cp-c-inp" type="number" name="system.attaque.bonusTouche" value="{{system.attaque.bonusTouche}}"></label>
       <label class="cp-c-f">Défense visée<select class="cp-c-sel" name="system.attaque.defense">{{selectOptions choixDefenses selected=system.attaque.defense}}</select></label>
       <label class="cp-c-f">Zone (rayon m)<input class="cp-c-inp" type="number" name="system.attaque.zone" value="{{system.attaque.zone}}" placeholder="—" step="any"></label>
+      <label class="cp-c-f">Durée de la zone (tours)<input class="cp-c-inp" type="text" name="system.attaque.dureeZone" value="{{system.attaque.dureeZone}}" placeholder="— (ex. 1d6)"></label>
       <label class="cp-c-f">Animation<select class="cp-c-sel" name="system.attaque.animation.style">{{selectOptions choixStyles selected=system.attaque.animation.style}}</select></label>
       {{#each champsFichiers}}
       <div class="cp-c-f">{{label}}

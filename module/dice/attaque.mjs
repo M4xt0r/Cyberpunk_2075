@@ -310,6 +310,26 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     animation = donneesAnimation(item, source, tokens, tokens, point);
   }
 
+  // Zone persistante (nuage toxique…) : durée tirée maintenant, la tuile est posée par le MJ
+  let zonePersistante = null;
+  let texteZone = sys.attaque.zone ? `Zone : ${sys.attaque.zone} m de rayon` : null;
+  const duree = sys.dureeZoneEffective;
+  if ( duree && canvas?.ready ) {
+    const centre = point ?? tokensCibles[0]?.center ?? fromUuidSync(touchees[0]?.token ?? "", { strict: false })?.object?.center ?? null;
+    if ( centre ) {
+      const jetDuree = await new Roll(duree, acteur.getRollData()).evaluate();
+      const tours = Math.max(0, jetDuree.total);
+      if ( tours > 0 ) {
+        zonePersistante = {
+          scene: canvas.scene.id, x: Math.round(centre.x), y: Math.round(centre.y), rayon: sys.attaque.zone, tours,
+          texture: sys.animationEffective.zone, nom: item.name, typeDegats: n.typeDegats, faitDegats: sys.attaque.faitDegats,
+          degats: [n.de, n.bonusFixe || null].filter(Boolean).join(" + ")
+        };
+        texteZone = `Zone : ${sys.attaque.zone} m de rayon · reste ${tours} tour(s) (${duree})`;
+      }
+    }
+  }
+
   const typeDegats = TYPES_DEGATS[n.typeDegats] ?? n.typeDegats;
   const contexte = {
     acteur: acteur.name,
@@ -322,7 +342,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     cibles: lignes,
     sansCible: !lignes.length,
     plusieurs: lignes.length > 1,
-    zone: sys.attaque.zone ? `Zone : ${sys.attaque.zone} m de rayon` : null,
+    zone: texteZone,
     reglePompe: lignes.some(l => l.horsPortee) ? "Hors portée (15 m) : moitié des dégâts" : null
   };
   const contenu = await renderTemplate(`${CHEMIN}/templates/chat/degats.hbs`, contexte);
@@ -330,7 +350,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     speaker: ChatMessage.getSpeaker({ actor: acteur, token: source?.document }),
     content: contenu,
     rolls: [jet],
-    flags: { cyberpunk2075: { type: "degats", acteur: acteur.uuid, item: item.uuid, total: jet.total, animation } }
+    flags: { cyberpunk2075: { type: "degats", acteur: acteur.uuid, item: item.uuid, total: jet.total, animation, zonePersistante } }
   });
 }
 

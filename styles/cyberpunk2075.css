@@ -922,3 +922,15 @@
 }
 #cp-barre-actions .cp-b-agir-bleu { background: var(--cp-niv2); }
 #cp-barre-actions .cp-b-agir:disabled { background: var(--cp-bordure); color: var(--cp-doux); cursor: default; }
+
+/* Bouton « Tour suivant » du MJ (en haut à gauche) */
+#cp-tour-suivant {
+  pointer-events: auto; align-self: flex-start; flex: none; display: inline-flex; align-items: center; gap: 6px;
+  width: auto; height: auto; min-height: 0; line-height: 1.2; margin: 8px 8px 0 0; padding: 7px 14px;
+  font-family: var(--cp-f-titre); font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  background: var(--cp-jaune); color: #121116; border: 0; cursor: pointer; box-shadow: 0 4px 14px rgba(0, 0, 0, .5);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+#cp-tour-suivant:hover { background: var(--cp-texte); }
+#cp-tour-suivant:disabled { background: var(--cp-bordure); color: var(--cp-doux); cursor: wait; }
+#cp-tour-suivant.cp-tour-fixe { position: fixed; top: 8px; left: 64px; z-index: 100; margin: 0; }

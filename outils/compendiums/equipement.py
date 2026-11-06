@@ -27,6 +27,8 @@ def arme(cle, nom, type, carac, de, prix, bonus=(0, 1, 2), ambiance="", intellig
         "type": type, "intelligente": intelligente, "munitions": None, "quantite": 1,
         "niveaux": trois(niv)
     }
+    if typeDeg == "poison" and type == "grenade":
+        sys["attaque"]["dureeZone"] = "1d6"
     doc = item("armes", cle, nom, "arme", image or img("armes", cle), sys, dossier)
     REG[cle] = doc
     return doc

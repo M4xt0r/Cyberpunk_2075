@@ -93,6 +93,7 @@
           "defense": "adaptabilite",
           "bonusTouche": 0,
           "zone": null,
+          "dureeZone": "",
           "animation": {
             "style": "",
             "projectile": "",
@@ -157,6 +158,7 @@
           "defense": "adaptabilite",
           "bonusTouche": 0,
           "zone": null,
+          "dureeZone": "",
           "animation": {
             "style": "",
             "projectile": "",
@@ -326,6 +328,7 @@
           "defense": "adaptabilite",
           "bonusTouche": 0,
           "zone": null,
+          "dureeZone": "",
           "animation": {
             "style": "",
             "projectile": "",
@@ -555,6 +558,7 @@
           "defense": "adaptabilite",
           "bonusTouche": 0,
           "zone": null,
+          "dureeZone": "",
           "animation": {
             "style": "",
             "projectile": "",
@@ -619,6 +623,7 @@
           "defense": "adaptabilite",
           "bonusTouche": 0,
           "zone": null,
+          "dureeZone": "",
           "animation": {
             "style": "",
             "projectile": "",
@@ -776,6 +781,7 @@
           "defense": "adaptabilite",
           "bonusTouche": 0,
           "zone": null,
+          "dureeZone": "",
           "animation": {
             "style": "",
             "projectile": "",

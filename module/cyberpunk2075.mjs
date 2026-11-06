@@ -22,6 +22,7 @@ import { signe } from "./dice/jets.mjs";
 import { surRenduMessage, surCreationMessage } from "./dice/chat.mjs";
 import { jouerAnimation } from "./animations.mjs";
 import BarreActions from "./hud/barre.mjs";
+import { ajouterBoutonTour, decompterEffets } from "./hud/tours.mjs";
 import { chargerIndicateurs, dessinerIndicateurs, redessinerActeur } from "./hud/indicateurs.mjs";
 
 const { ID_SYSTEME, CHEMIN } = CONFIG_CP;
@@ -157,15 +158,7 @@ Hooks.on("updateCombat", async (combat, changements) => {
   const acteur = combat.combatant?.actor;
   if ( !acteur ) return;
   if ( acteur.type === "personnage" ) await tourDeCombat(acteur);
-  const majs = [];
-  for ( const item of acteur.items ) {
-    const a = item.system.actif;
-    if ( !a?.enCours ) continue;
-    const tours = Math.max(0, a.tours - 1);
-    majs.push({ _id: item.id, "system.actif.tours": tours, "system.actif.enCours": tours > 0 });
-    if ( tours === 0 ) ChatMessage.create({ content: `<div class="cp-msg"><div class="cp-msg-note">${acteur.name} : fin de l'effet de ${item.name}.</div></div>`, speaker: ChatMessage.getSpeaker({ actor: acteur }) });
-  }
-  if ( majs.length ) await acteur.updateEmbeddedDocuments("Item", majs);
+  await decompterEffets(acteur);
 });
 
 /** Nouveau personnage : le token est lié à la fiche et voit la scène. */
@@ -229,6 +222,7 @@ Hooks.once("ready", async () => {
   barre = new BarreActions();
   globalThis.cyberpunk2075.barre = barre;
   barre.render({ force: true });
+  ajouterBoutonTour();
   await chargerIndicateurs();
   if ( canvas?.ready ) canvas.tokens.placeables.forEach(dessinerIndicateurs);
 });

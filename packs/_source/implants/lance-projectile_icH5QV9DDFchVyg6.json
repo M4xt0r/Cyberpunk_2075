@@ -17,6 +17,7 @@
       "defense": "adaptabilite",
       "bonusTouche": 2,
       "zone": 3,
+      "dureeZone": "",
       "animation": {
         "style": "",
         "projectile": "",

@@ -1,0 +1,126 @@
+/**
+ * Tours hors combat (bouton du MJ en haut à gauche) et zones persistantes (nuage toxique…).
+ * Passer un tour : −1 au compte à rebours de cyberpsychose, aux effets actifs des items
+ * et aux zones de la scène (qui infligent leurs dégâts à chaque tour).
+ */
+import { CHEMIN, TYPES_DEGATS } from "../config.mjs";
+import { tourDeCombat } from "../documents/humanite.mjs";
+
+const renderTemplate = (...args) => foundry.applications.handlebars.renderTemplate(...args);
+const heure = () => new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+const note = texte => ChatMessage.create({ content: `<div class="cp-msg"><div class="cp-msg-note">${texte}</div></div>` });
+
+/** Le client qui fait les modifications (un seul MJ actif). */
+export const estMJActif = () => game.users.activeGM?.id === game.user.id;
+
+/* -------------------------------------------- */
+/*  Effets actifs des items                     */
+/* -------------------------------------------- */
+
+/** Un tour de moins sur les effets actifs des items d'un acteur. */
+export async function decompterEffets(acteur) {
+  const majs = [];
+  for ( const item of acteur.items ) {
+    const a = item.system.actif;
+    if ( !a?.enCours ) continue;
+    const tours = Math.max(0, a.tours - 1);
+    majs.push({ _id: item.id, "system.actif.tours": tours, "system.actif.enCours": tours > 0 });
+    if ( tours === 0 ) ChatMessage.create({ content: `<div class="cp-msg"><div class="cp-msg-note">${acteur.name} : fin de l'effet de ${item.name}.</div></div>`, speaker: ChatMessage.getSpeaker({ actor: acteur }) });
+  }
+  if ( majs.length ) await acteur.updateEmbeddedDocuments("Item", majs);
+}
+
+/* -------------------------------------------- */
+/*  Zones persistantes                          */
+/* -------------------------------------------- */
+
+/** Crée la tuile animée d'une zone persistante (MJ). */
+export async function creerZonePersistante(z) {
+  const scene = game.scenes.get(z.scene);
+  if ( !scene || !z.texture ) return;
+  const dims = scene.dimensions;
+  const r = (z.rayon / dims.distance) * dims.size;
+  await scene.createEmbeddedDocuments("Tile", [{
+    texture: { src: z.texture },
+    x: Math.round(z.x - r), y: Math.round(z.y - r), width: Math.round(2 * r), height: Math.round(2 * r),
+    alpha: 0.85, locked: true,
+    video: { loop: true, autoplay: true, volume: 0 },
+    flags: { cyberpunk2075: { zone: { nom: z.nom, tours: z.tours, rayon: z.rayon, degats: z.degats, typeDegats: z.typeDegats, faitDegats: z.faitDegats } } }
+  }]);
+}
+
+/** Tokens visibles dont le centre est dans le rayon (m) autour d'un point. */
+function tokensDans(centre, rayon) {
+  return canvas.tokens.placeables.filter(t => {
+    if ( !t.actor || t.document.hidden ) return false;
+    try { return canvas.grid.measurePath([centre, t.center]).distance <= rayon; } catch { return false; }
+  });
+}
+
+/** Dégâts de la zone pour ce tour, puis un tour de moins (la tuile disparaît à 0). */
+async function tourDeZone(tuile) {
+  const z = tuile.flags.cyberpunk2075.zone;
+  const centre = { x: tuile.x + tuile.width / 2, y: tuile.y + tuile.height / 2 };
+  if ( z.faitDegats !== false && z.degats ) {
+    const jet = await new Roll(z.degats).evaluate();
+    const tokens = tokensDans(centre, z.rayon);
+    const contenu = await renderTemplate(`${CHEMIN}/templates/chat/degats.hbs`, {
+      acteur: z.nom, heure: heure(), titre: z.nom, typeDegats: TYPES_DEGATS[z.typeDegats] ?? z.typeDegats ?? "",
+      total: jet.total, detail: `${z.degats} (${jet.dice[0]?.results.map(r => r.result).join(", ") ?? "—"})`,
+      zone: `Zone · encore ${Math.max(0, z.tours - 1)} tour(s)`,
+      cibles: tokens.map(t => ({ token: t.document.uuid, nom: t.name, montant: jet.total })),
+      sansCible: !tokens.length, plusieurs: tokens.length > 1
+    });
+    await ChatMessage.create({ content: contenu, rolls: [jet], flags: { cyberpunk2075: { type: "degats", total: jet.total } } });
+  }
+  const tours = z.tours - 1;
+  if ( tours <= 0 ) {
+    await tuile.delete();
+    return note(`${z.nom} : la zone se dissipe.`);
+  }
+  await tuile.update({ "flags.cyberpunk2075.zone.tours": tours });
+}
+
+/* -------------------------------------------- */
+/*  Passer un tour                              */
+/* -------------------------------------------- */
+
+export async function passerTour() {
+  if ( !game.user.isGM ) return;
+  await note("<b>Tour suivant</b>");
+
+  // Acteurs : personnages du monde et acteurs des tokens de la scène affichée (ennemis non liés)
+  const acteurs = new Map();
+  for ( const a of game.actors ) if ( ["personnage", "ennemi"].includes(a.type) ) acteurs.set(a.uuid, a);
+  for ( const t of canvas?.tokens?.placeables ?? [] ) if ( t.actor && !t.document.actorLink ) acteurs.set(t.actor.uuid, t.actor);
+  for ( const a of acteurs.values() ) {
+    if ( a.type === "personnage" ) await tourDeCombat(a);
+    await decompterEffets(a);
+  }
+
+  // Zones persistantes de la scène affichée
+  for ( const tuile of canvas?.scene?.tiles.filter(t => t.flags?.cyberpunk2075?.zone) ?? [] ) await tourDeZone(tuile);
+}
+
+/** Bouton « Tour suivant » du MJ, en haut à gauche de l'écran. */
+export function ajouterBoutonTour() {
+  if ( !game.user.isGM || document.getElementById("cp-tour-suivant") ) return;
+  const bouton = document.createElement("button");
+  bouton.id = "cp-tour-suivant";
+  bouton.type = "button";
+  bouton.className = "cp2075";
+  bouton.title = "Passer un tour : compte à rebours de cyberpsychose, effets actifs et zones persistantes";
+  bouton.innerHTML = `<span aria-hidden="true">⏭</span> Tour suivant`;
+  bouton.addEventListener("click", async () => {
+    bouton.disabled = true;
+    try { await passerTour(); } catch (err) { console.error("Cyberpunk 2075 |", err); ui.notifications.error(`Tour suivant impossible : ${err.message}`); }
+    bouton.disabled = false;
+  });
+  // Dans la zone du haut, avant la navigation des scènes ; sinon en position fixe
+  const haut = document.getElementById("ui-top");
+  if ( haut ) haut.prepend(bouton);
+  else {
+    bouton.classList.add("cp-tour-fixe");
+    document.body.append(bouton);
+  }
+}

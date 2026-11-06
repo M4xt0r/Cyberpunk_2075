@@ -17,6 +17,8 @@ export function champsAttaque() {
       defense: new f.StringField({ required: true, initial: "adaptabilite", choices: ["adaptabilite", "glace", "aucune"] }),
       bonusTouche: entier(0),
       zone: new f.NumberField({ required: false, nullable: true, integer: false, min: 0, initial: null }),
+      /** Durée de la zone en tours (formule, ex. « 1d6 ») : la zone reste sur la scène (nuage toxique…). */
+      dureeZone: texte(""),
       animation: blocAnimation()
     })
   };
@@ -90,12 +92,30 @@ export const MixinAttaque = Base => class extends Base {
     const impactDefaut = def.impact ?? (this.typeArme === "corpsACorps" ? null : IMPACT_PAR_DEGATS[typeDegats]);
     // Arme à tir explosif avec zone (Lance-projectile, missiles) : roquette puis explosion
     const explosive = (def.style === "projectile") && (this.attaque.zone > 0) && (typeDegats === "explosion");
+    // Grenades : projectile et zone selon l'effet (gaz, IEM, flash, explosion)
+    const grenade = (this.typeArme === "grenade") ? this.varianteGrenade : null;
     return {
       style: a.style || (explosive ? "projectileZone" : def.style),
-      projectile: chemin(a.projectile, explosive ? "projectiles/roquette.png" : def.projectile),
-      impact: chemin(a.impact, explosive ? null : impactDefaut),
-      zone: chemin(a.zone, explosive ? "zones/explosion.webm" : def.zone),
+      projectile: chemin(a.projectile, explosive ? "projectiles/roquette.png" : (grenade?.projectile ?? def.projectile)),
+      impact: chemin(a.impact, (explosive || grenade) ? null : impactDefaut),
+      zone: chemin(a.zone, explosive ? "zones/explosion.webm" : (grenade?.zone ?? def.zone)),
       son: a.son
     };
+  }
+
+  /** Variante visuelle d'une grenade. */
+  get varianteGrenade() {
+    const t = this.n?.typeDegats;
+    if ( t === "poison" ) return { projectile: "projectiles/grenade_gaz.png", zone: "zones/nuage_toxique.webm" };
+    if ( t === "iem" ) return { projectile: "projectiles/grenade_iem.png", zone: "zones/iem.webm" };
+    if ( !this.attaque.faitDegats ) return { projectile: "projectiles/grenade_flash.png", zone: "zones/flash.webm" };
+    return { projectile: "projectiles/grenade.png", zone: "zones/explosion.webm" };
+  }
+
+  /** Durée de la zone persistante (formule) : celle de la carte, sinon 1d6 tours pour une grenade toxique. */
+  get dureeZoneEffective() {
+    if ( !this.attaque.zone ) return "";
+    if ( this.attaque.dureeZone ) return this.attaque.dureeZone;
+    return ((this.typeArme === "grenade") && (this.n?.typeDegats === "poison")) ? "1d6" : "";
   }
 };

@@ -2,7 +2,7 @@
   "id": "cyberpunk2075",
   "title": "Cyberpunk 2075",
   "description": "Système de jeu Cyberpunk 2075 en d20 : fiches, jets, implants, Humanité, hacks, ennemis, véhicules et planques, avec les compendiums du contenu Notion, dans la charte « Nuit de Dogtown ».",
-  "version": "0.9.4",
+  "version": "0.10.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13.350"
