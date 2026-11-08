@@ -46,7 +46,7 @@ export async function creerZonePersistante(z) {
     x: Math.round(z.x - r), y: Math.round(z.y - r), width: Math.round(2 * r), height: Math.round(2 * r),
     alpha: 0.85, locked: true,
     video: { loop: true, autoplay: true, volume: 0 },
-    flags: { cyberpunk2075: { zone: { nom: z.nom, tours: z.tours, rayon: z.rayon, degats: z.degats, typeDegats: z.typeDegats, faitDegats: z.faitDegats, lanceur: z.lanceur ?? null, lanceurToken: z.lanceurToken ?? null } } }
+    flags: { cyberpunk2075: { zone: { nom: z.nom, tours: z.tours, rayon: z.rayon, degats: z.degats, typeDegats: z.typeDegats, faitDegats: z.faitDegats, lanceur: z.lanceur ?? null, lanceurToken: z.lanceurToken ?? null, effetFin: z.effetFin ?? null } } }
   }]);
 }
 

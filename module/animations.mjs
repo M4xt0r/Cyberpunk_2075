@@ -10,11 +10,15 @@ const DUREE_MIN = 120;
 
 let conteneur = null;
 
+/** Calque des animations, au premier plan (au-dessus des tokens). */
 function calque() {
   if ( !conteneur || conteneur.destroyed || !conteneur.parent ) {
     conteneur = new PIXI.Container();
     conteneur.eventMode = "none";
-    canvas.interface.addChild(conteneur);
+    conteneur.zIndex = 10000;
+    const parent = canvas.overlay ?? canvas.interface;
+    parent.sortableChildren = true;
+    parent.addChild(conteneur);
   }
   return conteneur;
 }
@@ -123,7 +127,12 @@ export async function jouerAnimation(a) {
 
   if ( a.son ) foundry.audio.AudioHelper.play({ src: a.son, volume: 0.8, autoplay: true, loop: false }, false);
 
-  const impact = d => (a.impact && (!d.token || touches.has(d.token.id))) ? effet(a.impact, d.centre, tailleImpact(d.token)) : null;
+  // Impact de l'arme puis, à la suite, ceux des capsules (poison, électrique, feu)
+  const impact = async d => {
+    if ( d.token && !touches.has(d.token.id) ) return;
+    if ( a.impact ) await effet(a.impact, d.centre, tailleImpact(d.token));
+    for ( const sup of a.impactsSup ?? [] ) await effet(sup, d.centre, tailleImpact(d.token));
+  };
 
   switch ( a.style ) {
     case "projectile":
@@ -150,4 +159,10 @@ export async function jouerAnimation(a) {
       if ( a.impact ) await effet(a.impact, source.center, tailleImpact(source));
       break;
   }
+}
+
+/** Joue une fois un effet à un endroit (ex. dissipation d'un nuage). */
+export async function jouerEffet(src, centre, taille) {
+  if ( !canvas?.ready || !src ) return;
+  return effet(src, centre, taille);
 }

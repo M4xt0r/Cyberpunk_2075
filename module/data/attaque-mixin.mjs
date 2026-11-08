@@ -111,6 +111,12 @@ export const MixinAttaque = Base => class extends Base {
     };
   }
 
+  /** Animation en boucle d'une zone persistante (le nuage qui reste sur la scène). */
+  get zoneBoucle() {
+    if ( this.attaque.animation?.zone ) return "";
+    return (this.n?.typeDegats === "poison") ? `${ANIM}/zones/nuage_toxique_boucle.webm` : "";
+  }
+
   /** Variante visuelle d'une grenade. */
   get varianteGrenade() {
     const t = this.n?.typeDegats;

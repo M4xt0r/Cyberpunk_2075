@@ -20,7 +20,7 @@ import { CarteArme, CarteObjet, CarteImplant, CarteSousImplant, CarteTalent, Car
 import { TalentData, ClasseData, SousClasseData } from "./data/progression.mjs";
 import { signe } from "./dice/jets.mjs";
 import { surRenduMessage, surCreationMessage } from "./dice/chat.mjs";
-import { jouerAnimation } from "./animations.mjs";
+import { jouerAnimation, jouerEffet } from "./animations.mjs";
 import BarreActions from "./hud/barre.mjs";
 import { ajouterBoutonTour, decompterEffets, majBoutonCombat, zonesAuTourDe } from "./hud/tours.mjs";
 import FriseCombat from "./hud/frise.mjs";
@@ -276,4 +276,12 @@ Hooks.on("deleteCombat", () => {
       t._refreshTurnMarker?.();
     } catch (err) { console.warn("Cyberpunk 2075 | Marqueur de tour :", err); }
   }
+});
+
+// Zone persistante qui disparaît : l'animation de la zone est rejouée à sa place
+Hooks.on("deleteTile", tuile => {
+  const z = tuile.flags?.cyberpunk2075?.zone;
+  if ( !z || (canvas?.scene?.id !== tuile.parent?.id) ) return;
+  const src = z.effetFin || tuile.texture?.src;
+  jouerEffet(src, { x: tuile.x + tuile.width / 2, y: tuile.y + tuile.height / 2 }, Math.max(tuile.width, tuile.height)).catch(() => null);
 });

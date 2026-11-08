@@ -1,7 +1,7 @@
 /**
  * Attaques, dégâts et application des dégâts.
  */
-import { CHEMIN, CARACS, COMPETENCES, COUVERTS, DEFENSES, NIVEAUX, REGLES_ARME, TYPES_DEGATS } from "../config.mjs";
+import { ANIM, CHEMIN, CARACS, COMPETENCES, COUVERTS, DEFENSES, IMPACT_PAR_DEGATS, NIVEAUX, REGLES_ARME, TYPES_DEGATS } from "../config.mjs";
 import { signe } from "./jets.mjs";
 import { traduireFormule } from "./formules.mjs";
 import { choisirPoint, estPosee } from "../hud/viser.mjs";
@@ -78,7 +78,9 @@ function donneesAnimation(item, source, cibles, touches, pointImpact = null) {
     touches: touches.map(t => t.id),
     point: pointImpact ?? (cibles.length ? null : pointDevant(source, Math.min(portee, 20))),
     rayon,
-    ...anim
+    ...anim,
+    // Capsules (Neurotox…) : impact de leur type de dégâts après celui de l'arme
+    impactsSup: (item.system.degatsSupplementaires ?? []).map(d => IMPACT_PAR_DEGATS[d.typeDegats]).filter(Boolean).map(p => `${ANIM}/${p}`)
   };
 }
 
@@ -343,7 +345,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
       if ( tours > 0 ) {
         zonePersistante = {
           scene: canvas.scene.id, x: Math.round(centre.x), y: Math.round(centre.y), rayon: sys.attaque.zone, tours,
-          texture: sys.animationEffective.zone, nom: item.name, typeDegats: n.typeDegats, faitDegats: sys.attaque.faitDegats,
+          texture: sys.zoneBoucle || sys.animationEffective.zone, effetFin: sys.animationEffective.zone, nom: item.name, typeDegats: n.typeDegats, faitDegats: sys.attaque.faitDegats,
           degats: [n.de, n.bonusFixe || null].filter(Boolean).join(" + "),
           // Lanceur : la zone perd un tour au début de son tour de combat
           lanceur: acteur.uuid, lanceurToken: source?.document?.uuid ?? null
