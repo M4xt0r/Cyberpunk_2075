@@ -5,6 +5,7 @@ import { appliquer } from "./attaque.mjs";
 import { forcerHack } from "./hack.mjs";
 import { jouerAnimation } from "../animations.mjs";
 import { creerZonePersistante, estMJActif } from "../hud/tours.mjs";
+import { combatEnCours, lancerInitiative, lancerInitiativeGroupe } from "../hud/combat.mjs";
 
 const drapeaux = message => message.flags?.cyberpunk2075 ?? {};
 
@@ -30,6 +31,15 @@ export function surRenduMessage(message, html) {
 async function surAction(message, bouton) {
   const d = drapeaux(message);
   const { cpAction: action } = bouton.dataset;
+
+  if ( action === "initiative" ) {
+    const combat = game.combats.get(d.combat) ?? combatEnCours();
+    const c = combat?.combatants.get(bouton.dataset.combattant);
+    if ( !c ) return ui.notifications.warn("Ce combat est terminé.");
+    return lancerInitiative(c);
+  }
+
+  if ( action === "initiativeGroupe" ) return lancerInitiativeGroupe(bouton.dataset.groupe);
 
   if ( action === "lancerDegats" ) {
     const item = await fromUuid(d.item);

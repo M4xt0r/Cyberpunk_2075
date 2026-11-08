@@ -943,14 +943,60 @@
 #cp-barre-actions .cp-b-agir-bleu { background: var(--cp-niv2); }
 #cp-barre-actions .cp-b-agir:disabled { background: var(--cp-bordure); color: var(--cp-doux); cursor: default; }
 
-/* Bouton « Tour suivant » du MJ (en haut à gauche) */
-#cp-tour-suivant {
-  pointer-events: auto; align-self: flex-start; flex: none; display: inline-flex; align-items: center; gap: 6px;
-  width: auto; height: auto; min-height: 0; line-height: 1.2; margin: 8px 8px 0 0; padding: 7px 14px;
+/* Boutons du MJ (en haut à gauche) : combat puis tour suivant */
+#cp-mj-combat { pointer-events: auto; align-self: flex-start; flex: none; display: flex; flex-direction: column; align-items: stretch; gap: 6px; margin: 8px 8px 0 0; }
+#cp-mj-combat.cp-tour-fixe { position: fixed; top: 8px; left: 64px; z-index: 100; margin: 0; }
+#cp-mj-combat button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  width: auto; height: auto; min-height: 0; line-height: 1.2; margin: 0; padding: 7px 14px;
   font-family: var(--cp-f-titre); font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
-  background: var(--cp-jaune); color: #121116; border: 0; cursor: pointer; box-shadow: 0 4px 14px rgba(0, 0, 0, .5);
+  border: 0; cursor: pointer; box-shadow: 0 4px 14px rgba(0, 0, 0, .5);
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
-#cp-tour-suivant:hover { background: var(--cp-texte); }
-#cp-tour-suivant:disabled { background: var(--cp-bordure); color: var(--cp-doux); cursor: wait; }
-#cp-tour-suivant.cp-tour-fixe { position: fixed; top: 8px; left: 64px; z-index: 100; margin: 0; }
+#cp-bouton-combat { background: var(--cp-rouge, #FF4D5E); color: #121116; }
+#cp-bouton-combat.cp-combat-en-cours { background: var(--cp-sol); color: var(--cp-rouge-txt); outline: 1px solid var(--cp-rouge-txt); outline-offset: -1px; }
+#cp-tour-suivant { background: var(--cp-jaune); color: #121116; }
+#cp-mj-combat button:hover:not(:disabled) { filter: brightness(1.15); }
+#cp-mj-combat button:disabled { background: var(--cp-bordure); color: var(--cp-doux); cursor: wait; }
+
+/* ============================================ */
+/*  Frise d'ordre de jeu (combat)               */
+/* ============================================ */
+#cp-frise-combat { position: fixed; top: 8px; left: 50%; transform: translateX(-50%); z-index: 70; pointer-events: none; max-width: 70vw; }
+#cp-frise-combat .cp-cache { display: none; }
+#cp-frise-combat .cp-fr-cadre {
+  display: flex; align-items: center; gap: 10px; padding: 6px 10px; pointer-events: auto;
+  background: rgba(11, 10, 14, .88); border: 1px solid var(--cp-bordure); box-shadow: 0 6px 20px rgba(0, 0, 0, .55);
+}
+#cp-frise-combat button { width: auto; height: auto; min-height: 0; margin: 0; line-height: 1; box-shadow: none; }
+#cp-frise-combat .cp-fr-nav { display: flex; gap: 4px; }
+#cp-frise-combat .cp-fr-bt {
+  width: 30px; height: 30px; padding: 0; font-size: 13px; background: transparent; color: var(--cp-jaune);
+  border: 1px solid var(--cp-jaune); cursor: pointer;
+}
+#cp-frise-combat .cp-fr-bt:hover:not(:disabled) { background: var(--cp-jaune); color: #121116; }
+#cp-frise-combat .cp-fr-bt:disabled { border-color: var(--cp-bordure); color: var(--cp-tres-doux); cursor: default; }
+#cp-frise-combat .cp-fr-tour { display: flex; flex-direction: column; align-items: center; padding: 0 6px; border-right: 1px solid var(--cp-bordure); }
+#cp-frise-combat .cp-fr-tour .cp-num { font-size: 20px; font-weight: 700; color: var(--cp-jaune); }
+#cp-frise-combat .cp-fr-cartes { display: flex; align-items: flex-start; gap: 8px; overflow-x: auto; padding: 8px 8px 6px 2px; }
+#cp-frise-combat .cp-fr-carte {
+  position: relative; flex: none; width: 46px; height: 62px; padding: 0; overflow: visible; cursor: pointer;
+  background: #1C1B23; border: 2px solid var(--cp-niv1); transition: transform .15s, width .15s, height .15s;
+}
+#cp-frise-combat .cp-fr-carte img { width: 100%; height: 100%; object-fit: cover; border: 0; display: block; }
+#cp-frise-combat .cp-fr-ennemi { border-color: var(--cp-rouge-txt); }
+#cp-frise-combat .cp-fr-actif { width: 60px; height: 80px; border-color: var(--cp-jaune); box-shadow: 0 0 0 2px #0B0A0E, 0 0 12px var(--cp-jaune); }
+#cp-frise-combat .cp-fr-mort img { filter: grayscale(1) brightness(.45); }
+#cp-frise-combat .cp-fr-init {
+  position: absolute; top: -6px; right: -6px; min-width: 18px; padding: 1px 3px; font-size: 10px; font-weight: 700;
+  background: #0B0A0E; color: var(--cp-texte); border: 1px solid var(--cp-bordure);
+}
+#cp-frise-combat .cp-fr-actif .cp-fr-init { background: var(--cp-jaune); color: #121116; border-color: var(--cp-jaune); }
+#cp-frise-combat .cp-fr-vie { position: absolute; left: 2px; right: 2px; bottom: 2px; height: 4px; background: rgba(0, 0, 0, .7); }
+#cp-frise-combat .cp-fr-vie span { display: block; height: 100%; background: var(--cp-rouge-txt); }
+#cp-frise-combat .cp-fr-nom {
+  display: flex; flex-direction: column; white-space: nowrap; max-width: 160px; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--cp-f-titre); font-weight: 700; font-size: 13px; color: var(--cp-jaune); padding-left: 6px; border-left: 1px solid var(--cp-bordure);
+}
+#cp-frise-combat .cp-fr-vide { font-size: 12px; color: var(--cp-doux); padding: 0 8px; }
+#cp-frise-combat .cp-fr-attente { white-space: nowrap; }

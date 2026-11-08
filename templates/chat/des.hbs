@@ -1,7 +1,7 @@
 <div class="cp-msg">
   <div class="cp-msg-qui"><span>{{acteur}}</span><span>{{heure}}</span></div>
   <div class="cp-msg-etiquette">
-    <span class="cp-msg-type">Jet libre</span>
+    <span class="cp-msg-type">{{#if type}}{{type}}{{else}}Jet libre{{/if}}</span>
     <span class="cp-msg-titre">{{formule}}</span>
   </div>
   <div class="cp-msg-puce">

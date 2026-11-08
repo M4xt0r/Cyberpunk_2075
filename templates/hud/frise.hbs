@@ -1,0 +1,24 @@
+<div class="cp-fr-cadre {{#unless actif}}cp-cache{{/unless}}">
+  {{#if actif}}
+  {{#if mj}}
+  <div class="cp-fr-nav">
+    <button type="button" class="cp-fr-bt" data-action="precedent" {{#if premier}}disabled{{/if}} title="Acteur précédent" aria-label="Acteur précédent">◀</button>
+    <button type="button" class="cp-fr-bt" data-action="suivant" {{#if dernier}}disabled{{/if}} title="Acteur suivant" aria-label="Acteur suivant">▶</button>
+  </div>
+  {{/if}}
+  <div class="cp-fr-tour"><span class="cp-lbl cp-doux">Tour</span><span class="cp-num">{{tour}}</span></div>
+  <div class="cp-fr-cartes">
+    {{#each cartes}}
+    <button type="button" class="cp-fr-carte {{#if actif}}cp-fr-actif{{/if}} {{#if ennemi}}cp-fr-ennemi{{else}}cp-fr-allie{{/if}} {{#if mort}}cp-fr-mort{{/if}}" data-action="centrer" data-id="{{id}}" title="{{nom}} · initiative {{initiative}}" aria-label="{{nom}}, initiative {{initiative}}{{#if actif}}, joue maintenant{{/if}}">
+      <img src="{{img}}" alt="">
+      <span class="cp-num cp-fr-init">{{initiative}}</span>
+      {{#if aVie}}<span class="cp-fr-vie"><span style="width: {{vie}}%"></span></span>{{/if}}
+    </button>
+    {{else}}
+    <span class="cp-fr-vide">En attente des jets d'initiative…</span>
+    {{/each}}
+  </div>
+  {{#if joueur}}<span class="cp-fr-nom"><span class="cp-lbl cp-doux">Joue</span> {{joueur}}</span>{{/if}}
+  {{#if attente}}<span class="cp-fr-attente cp-lbl cp-doux" title="Combattants qui n'ont pas encore lancé leur initiative">+{{attente}} ?</span>{{/if}}
+  {{/if}}
+</div>

@@ -5,6 +5,7 @@
  */
 import { CHEMIN, TYPES_DEGATS } from "../config.mjs";
 import { tourDeCombat } from "../documents/humanite.mjs";
+import { combatEnCours, lancerCombat, finirCombat, tourSuivantCombat } from "./combat.mjs";
 
 const renderTemplate = (...args) => foundry.applications.handlebars.renderTemplate(...args);
 const heure = () => new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
@@ -88,6 +89,15 @@ async function tourDeZone(tuile) {
 
 export async function passerTour() {
   if ( !game.user.isGM ) return;
+
+  // En combat : compteur +1, retour au premier de l'ordre (les effets se décomptent au tour de chacun)
+  const combat = combatEnCours();
+  if ( combat ) {
+    await tourSuivantCombat(combat);
+    for ( const tuile of canvas?.scene?.tiles.filter(t => t.flags?.cyberpunk2075?.zone) ?? [] ) await tourDeZone(tuile);
+    return;
+  }
+
   await note("<b>Tour suivant</b>");
 
   // Acteurs : personnages du monde et acteurs des tokens de la scène affichée (ennemis non liés)
@@ -103,13 +113,27 @@ export async function passerTour() {
   for ( const tuile of canvas?.scene?.tiles.filter(t => t.flags?.cyberpunk2075?.zone) ?? [] ) await tourDeZone(tuile);
 }
 
-/** Bouton « Tour suivant » du MJ, en haut à gauche de l'écran. */
+/** Boutons du MJ en haut à gauche : « Lancer le combat » / « Mettre fin au combat », puis « Tour suivant ». */
 export function ajouterBoutonTour() {
-  if ( !game.user.isGM || document.getElementById("cp-tour-suivant") ) return;
+  if ( !game.user.isGM || document.getElementById("cp-mj-combat") ) return;
+  const boite = document.createElement("div");
+  boite.id = "cp-mj-combat";
+  boite.className = "cp2075";
+
+  const combat = document.createElement("button");
+  combat.type = "button";
+  combat.id = "cp-bouton-combat";
+  combat.addEventListener("click", async () => {
+    combat.disabled = true;
+    try { await (combatEnCours() ? finirCombat() : lancerCombat()); }
+    catch (err) { console.error("Cyberpunk 2075 |", err); ui.notifications.error(`Combat : ${err.message}`); }
+    combat.disabled = false;
+    majBoutonCombat();
+  });
+
   const bouton = document.createElement("button");
   bouton.id = "cp-tour-suivant";
   bouton.type = "button";
-  bouton.className = "cp2075";
   bouton.title = "Passer un tour : compte à rebours de cyberpsychose, effets actifs et zones persistantes";
   bouton.innerHTML = `<span aria-hidden="true">⏭</span> Tour suivant`;
   bouton.addEventListener("click", async () => {
@@ -117,11 +141,24 @@ export function ajouterBoutonTour() {
     try { await passerTour(); } catch (err) { console.error("Cyberpunk 2075 |", err); ui.notifications.error(`Tour suivant impossible : ${err.message}`); }
     bouton.disabled = false;
   });
+
+  boite.append(combat, bouton);
   // Dans la zone du haut, avant la navigation des scènes ; sinon en position fixe
   const haut = document.getElementById("ui-top");
-  if ( haut ) haut.prepend(bouton);
+  if ( haut ) haut.prepend(boite);
   else {
-    bouton.classList.add("cp-tour-fixe");
-    document.body.append(bouton);
+    boite.classList.add("cp-tour-fixe");
+    document.body.append(boite);
   }
+  majBoutonCombat();
+}
+
+/** Libellé du bouton de combat selon l'état. */
+export function majBoutonCombat() {
+  const b = document.getElementById("cp-bouton-combat");
+  if ( !b ) return;
+  const enCours = !!combatEnCours();
+  b.classList.toggle("cp-combat-en-cours", enCours);
+  b.innerHTML = enCours ? `<span aria-hidden="true">■</span> Mettre fin au combat` : `<span aria-hidden="true">⚔</span> Lancer le combat`;
+  b.title = enCours ? "Terminer le combat (confirmation demandée)" : "Lancer le combat avec tous les personnages et ennemis visibles de la scène";
 }

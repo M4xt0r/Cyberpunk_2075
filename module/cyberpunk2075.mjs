@@ -22,7 +22,9 @@ import { signe } from "./dice/jets.mjs";
 import { surRenduMessage, surCreationMessage } from "./dice/chat.mjs";
 import { jouerAnimation } from "./animations.mjs";
 import BarreActions from "./hud/barre.mjs";
-import { ajouterBoutonTour, decompterEffets } from "./hud/tours.mjs";
+import { ajouterBoutonTour, decompterEffets, majBoutonCombat } from "./hud/tours.mjs";
+import FriseCombat from "./hud/frise.mjs";
+import { brancherDeplacements } from "./hud/combat.mjs";
 import { chargerIndicateurs, dessinerIndicateurs, redessinerActeur } from "./hud/indicateurs.mjs";
 
 const { ID_SYSTEME, CHEMIN } = CONFIG_CP;
@@ -137,7 +139,8 @@ Hooks.once("init", () => {
     `${CHEMIN}/templates/item/partials/haut.hbs`,
     `${CHEMIN}/templates/item/partials/plaques.hbs`,
     `${CHEMIN}/templates/item/partials/bas.hbs`,
-    `${CHEMIN}/templates/hud/barre.hbs`
+    `${CHEMIN}/templates/hud/barre.hbs`,
+    `${CHEMIN}/templates/hud/frise.hbs`
   ]);
 });
 
@@ -153,10 +156,18 @@ Hooks.on("createChatMessage", surCreationMessage);
  * Effets actifs des objets : un tour de moins au début du tour du porteur.
  * Exécuté par un seul MJ pour éviter les doublons.
  */
-Hooks.on("updateCombat", async (combat, changements) => {
+let dernierTourTraite = null;
+Hooks.on("updateCombat", async (combat, changements, options) => {
   if ( !("turn" in changements) && !("round" in changements) ) return;
   if ( game.users.activeGM?.id !== game.user.id ) return;
-  const acteur = combat.combatant?.actor;
+  // Pas au lancement, ni en revenant à l'acteur précédent, ni deux fois pour le même tour
+  if ( options?.cpDemarrage || (options?.direction === -1) ) return;
+  const combattant = combat.combatant;
+  if ( (combattant?.initiative === null) || (combattant?.initiative === undefined) ) return;
+  const cle = `${combat.id}:${combat.round}:${combattant.id}`;
+  if ( cle === dernierTourTraite ) return;
+  dernierTourTraite = cle;
+  const acteur = combattant.actor;
   if ( !acteur ) return;
   if ( acteur.type === "personnage" ) await tourDeCombat(acteur);
   await decompterEffets(acteur);
@@ -217,6 +228,7 @@ Hooks.once("ready", () => {
 /* -------------------------------------------- */
 
 let barre = null;
+let frise = null;
 const rafraichirBarre = acteur => { if ( barre?.concerne(acteur) ) barre.rafraichir(); };
 
 Hooks.once("ready", async () => {
@@ -224,6 +236,8 @@ Hooks.once("ready", async () => {
   globalThis.cyberpunk2075.barre = barre;
   barre.render({ force: true });
   ajouterBoutonTour();
+  frise = new FriseCombat();
+  frise.render({ force: true });
   await chargerIndicateurs();
   if ( canvas?.ready ) canvas.tokens.placeables.forEach(dessinerIndicateurs);
 });
@@ -240,3 +254,12 @@ for ( const crochet of ["createItem", "updateItem", "deleteItem"] ) {
 for ( const crochet of ["canvasReady", "createToken", "deleteToken", "updateToken"] ) Hooks.on(crochet, () => barre?.rafraichir());
 Hooks.on("updateUser", (user, changements) => { if ( (user.id === game.user.id) && ("character" in changements) ) barre?.rafraichir(); });
 Hooks.on("controlToken", (token, controle) => barre?.suivreToken(token, controle));
+
+// Combat : frise d'ordre de jeu, bouton du MJ, déplacements limités au tour de chacun
+brancherDeplacements();
+const rafraichirCombat = () => { frise?.rafraichir(); majBoutonCombat(); };
+for ( const crochet of ["createCombat", "updateCombat", "deleteCombat", "createCombatant", "updateCombatant", "deleteCombatant", "canvasReady"] ) {
+  Hooks.on(crochet, rafraichirCombat);
+}
+Hooks.on("updateActor", () => frise?.rafraichir());
+Hooks.on("updateToken", () => frise?.rafraichir());
