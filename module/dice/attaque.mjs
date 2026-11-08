@@ -371,7 +371,8 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   return ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor: acteur, token: source?.document }),
     content: contenu,
-    rolls: jetEffet ? [jet, jetEffet] : [jet],
+    // Sans dégâts (flashbang) : seul le jet d'effet est montré (Dice So Nice ignore un jet sans dé)
+    rolls: a.faitDegats ? (jetEffet ? [jet, jetEffet] : [jet]) : (jetEffet ? [jetEffet] : []),
     flags: { cyberpunk2075: { type: "degats", acteur: acteur.uuid, item: item.uuid, total: jet.total, animation, zonePersistante } }
   });
 }
