@@ -878,7 +878,27 @@
 #cp-barre-actions .cp-b-vide { color: var(--cp-tres-doux); font-size: 12px; padding: 4px 0; }
 
 /* Menu déroulant des jets */
-#cp-barre-actions .cp-b-jets { position: relative; margin-left: auto; }
+#cp-barre-actions .cp-b-outils { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+#cp-barre-actions .cp-b-jets { position: relative; }
+#cp-barre-actions .cp-b-bouton-des {
+  display: flex; align-items: center; justify-content: center; width: 32px; height: 28px; padding: 0;
+  background: transparent; color: var(--cp-jaune); border: 1px solid var(--cp-jaune); cursor: pointer;
+}
+#cp-barre-actions .cp-b-bouton-des:hover, #cp-barre-actions .cp-b-bouton-des.cp-ouvert { background: var(--cp-jaune); color: #121116; }
+#cp-barre-actions .cp-b-menu-des { width: 200px; }
+#cp-barre-actions .cp-b-grille-des { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+#cp-barre-actions .cp-b-de {
+  padding: 8px 4px; background: #0E0D12; border: 1px solid var(--cp-separateur); color: var(--cp-texte); font-size: 14px; cursor: pointer;
+}
+#cp-barre-actions .cp-b-de:hover, #cp-barre-actions .cp-b-de:focus-visible { border-color: var(--cp-jaune); background: var(--cp-jaune-fond); }
+#cp-barre-actions .cp-b-compteur { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--cp-bordure); }
+#cp-barre-actions .cp-b-plusmoins {
+  width: 36px; height: 32px; padding: 0; font-size: 18px; font-weight: 700; background: transparent; color: var(--cp-jaune);
+  border: 1px solid var(--cp-jaune); cursor: pointer;
+}
+#cp-barre-actions .cp-b-plusmoins:hover:not(:disabled) { background: var(--cp-jaune); color: #121116; }
+#cp-barre-actions .cp-b-plusmoins:disabled { border-color: var(--cp-bordure); color: var(--cp-tres-doux); cursor: default; }
+#cp-barre-actions .cp-b-nb { font-size: 20px; font-weight: 700; min-width: 2ch; text-align: center; }
 #cp-barre-actions .cp-b-bouton-jets {
   font-weight: 600; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 12px;
   background: var(--cp-jaune); color: #121116; border: 0; cursor: pointer;

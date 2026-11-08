@@ -17,6 +17,28 @@
     <span class="cp-b-nom">{{acteur.nom}}</span>
     {{#each jauges}}<span class="cp-num cp-b-jauge {{classe}}">{{label}} {{valeur}}</span>{{/each}}
 
+    <div class="cp-b-outils">
+    <div class="cp-b-jets">
+      <button type="button" class="cp-b-bouton-des {{#if desOuverts}}cp-ouvert{{/if}}" data-action="basculerDes" aria-expanded="{{#if desOuverts}}true{{else}}false{{/if}}" aria-label="Lancer des dés" title="Lancer des dés">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 21 7v10l-9 5-9-5V7z"/><path d="M12 2 7.5 9.5h9zM3 7l4.5 2.5L12 22l4.5-12.5L21 7M7.5 9.5 3 17M16.5 9.5 21 17"/></svg>
+      </button>
+      {{#if desOuverts}}
+      <div class="cp-b-menu cp-b-menu-des" role="menu">
+        <span class="cp-lbl cp-jaune">Lancer {{nbDes}} dé{{#if desPluriel}}s{{/if}}</span>
+        <div class="cp-b-grille-des">
+          {{#each des}}
+          <button type="button" class="cp-b-de" role="menuitem" data-action="lancerDes" data-faces="{{faces}}"><span class="cp-num">{{../nbDes}}d{{faces}}</span></button>
+          {{/each}}
+        </div>
+        <div class="cp-b-compteur">
+          <button type="button" class="cp-b-plusmoins" data-action="changerNbDes" data-delta="-1" aria-label="Un dé de moins" {{#if nbMin}}disabled{{/if}}>−</button>
+          <span class="cp-num cp-b-nb" aria-live="polite">{{nbDes}}</span>
+          <button type="button" class="cp-b-plusmoins" data-action="changerNbDes" data-delta="1" aria-label="Un dé de plus" {{#if nbMax}}disabled{{/if}}>+</button>
+        </div>
+        <span class="cp-b-astuce">Clic sur un dé : le jet part dans le chat</span>
+      </div>
+      {{/if}}
+    </div>
     <div class="cp-b-jets">
       <button type="button" class="cp-b-bouton-jets {{#if ouvert}}cp-ouvert{{/if}}" data-action="basculerJets" aria-expanded="{{#if ouvert}}true{{else}}false{{/if}}">
         Compétences <span aria-hidden="true">{{#if ouvert}}▾{{else}}▴{{/if}}</span>
@@ -36,6 +58,7 @@
         <span class="cp-b-astuce">Maj + clic : jet sans fenêtre</span>
       </div>
       {{/if}}
+    </div>
     </div>
     {{else}}
     {{#unless mj}}<span class="cp-b-vide">Aucun personnage assigné : demande au MJ de t'en attribuer un.</span>{{/unless}}

@@ -22,6 +22,9 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
       infos: BarreActions.#infos,
       jet: BarreActions.#jet,
       basculerJets: BarreActions.#basculerJets,
+      basculerDes: BarreActions.#basculerDes,
+      changerNbDes: BarreActions.#changerNbDes,
+      lancerDes: BarreActions.#lancerDes,
       ouvrirFiche: BarreActions.#ouvrirFiche
     }
   };
@@ -33,6 +36,8 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
   /** Token choisi par le MJ (id), menu des jets ouvert. */
   _tokenId = null;
   _jetsOuverts = false;
+  _desOuverts = false;
+  _nbDes = 1;
 
   /** Rendu groupé : plusieurs changements d'affilée ne redessinent qu'une fois. */
   rafraichir = foundry.utils.debounce(() => this.render(), 100);
@@ -97,7 +102,12 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
 
   async _prepareContext(options) {
     const acteur = this.acteur;
-    const c = { mj: game.user.isGM, acteur: null, ouvert: this._jetsOuverts };
+    const c = {
+      mj: game.user.isGM, acteur: null, ouvert: this._jetsOuverts,
+      desOuverts: this._desOuverts, nbDes: this._nbDes, desPluriel: this._nbDes > 1,
+      nbMin: this._nbDes <= 1, nbMax: this._nbDes >= 20,
+      des: [2, 4, 6, 8, 10, 12, 20, 100].map(faces => ({ faces }))
+    };
     if ( game.user.isGM ) {
       c.choixTokens = this.tokensScene.map(t => ({ id: t.id, nom: t.name, ennemi: t.actor.type === "ennemi", actif: t.id === this._tokenId }));
       c.aucunToken = !c.choixTokens.length;
@@ -223,7 +233,31 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
 
   static async #basculerJets() {
     this._jetsOuverts = !this._jetsOuverts;
+    if ( this._jetsOuverts ) this._desOuverts = false;
     return this.render();
+  }
+
+  static async #basculerDes() {
+    this._desOuverts = !this._desOuverts;
+    if ( this._desOuverts ) this._jetsOuverts = false;
+    return this.render();
+  }
+
+  static async #changerNbDes(event, cible) {
+    this._nbDes = Math.clamp(this._nbDes + Number(cible.dataset.delta), 1, 20);
+    return this.render();
+  }
+
+  /** Jet libre : N dés du type choisi, envoyé dans le chat (Dice So Nice compris). */
+  static async #lancerDes(event, cible) {
+    const faces = Number(cible.dataset.faces);
+    if ( !faces ) return;
+    const acteur = this.acteur;
+    const jet = await new Roll(`${this._nbDes}d${faces}`).evaluate();
+    return jet.toMessage({
+      speaker: acteur ? ChatMessage.getSpeaker({ actor: acteur }) : ChatMessage.getSpeaker(),
+      flavor: "Jet libre"
+    }, { rollMode: game.settings.get("core", "rollMode") });
   }
 
   static async #ouvrirFiche() {
