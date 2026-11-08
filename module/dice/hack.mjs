@@ -136,7 +136,7 @@ export async function lancerHack(item, { rapide = false } = {}) {
     const r = { token: t.document.uuid, nom: t.name, glace, inconnue: jet && (glace === null), pirate, rate: pirate === false, nature, robot: nature === "robot" };
     if ( (pirate !== false) && s.faitDegats ) {
       const d = await degatsPour(item, acteur, nature, cache);
-      if ( d ) Object.assign(r, { montant: d.jet.total, formule: d.formule, detail: d.jet.result });
+      if ( d ) Object.assign(r, { montant: Math.max(1, d.jet.total), formule: d.formule, detail: d.jet.result });
     }
     if ( jet && (pirate === false) && a.violation ) r.forcer = Math.max(1, (glace ?? 0) - jet.total + 1);
     resultats.push(r);
@@ -145,7 +145,7 @@ export async function lancerHack(item, { rapide = false } = {}) {
   let sansCible = null;
   if ( !cibles.length && s.faitDegats ) {
     const d = await degatsPour(item, acteur, "organique", cache);
-    sansCible = d ? { montant: d.jet.total, formule: d.formule, detail: d.jet.result } : null;
+    sansCible = d ? { montant: Math.max(1, d.jet.total), formule: d.formule, detail: d.jet.result } : null;
   }
 
   // Animations : glitch sur toutes les cibles, puis l'effet propre sur les cibles piratées
@@ -208,7 +208,7 @@ export async function forcerHack(message, index) {
   const r = { ...cible, pirate: true, rate: false, force: true, forcer: null };
   if ( item.system.faitDegats ) {
     const dg = await degatsPour(item, acteur, cible.nature, {});
-    if ( dg ) Object.assign(r, { montant: dg.jet.total, formule: dg.formule, detail: dg.jet.result, jet: dg.jet });
+    if ( dg ) Object.assign(r, { montant: Math.max(1, dg.jet.total), formule: dg.formule, detail: dg.jet.result, jet: dg.jet });
   }
   const contenu = await renderTemplate(`${CHEMIN}/templates/chat/hack.hbs`, {
     acteur: acteur.name,

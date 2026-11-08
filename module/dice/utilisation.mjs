@@ -59,7 +59,7 @@ export async function utiliserObjet(item) {
     titre: item.name,
     description: effet?.type === "actif" && effet.duree ? `Actif pendant ${effet.duree} tour${effet.duree > 1 ? "s" : ""}` : null,
     jet: jet ? {
-      total: jet.total,
+      total: nature === "degats" ? Math.max(1, jet.total) : jet.total,
       formule,
       detail: jet.result,
       soin: nature === "soin",
@@ -80,7 +80,7 @@ export async function utiliserObjet(item) {
     speaker: ChatMessage.getSpeaker({ actor: acteur, token: source?.document }),
     content: contenu,
     rolls: jet ? [jet] : [],
-    flags: { cyberpunk2075: { type: "utilisation", acteur: acteur.uuid, item: item.uuid, total: jet?.total ?? 0, nature } }
+    flags: { cyberpunk2075: { type: "utilisation", acteur: acteur.uuid, item: item.uuid, total: jet ? ((nature === "degats") ? Math.max(1, jet.total) : jet.total) : 0, nature } }
   });
 }
 
@@ -146,7 +146,7 @@ export async function activerImplant(item) {
     titre: item.name,
     description: [effet.description, effet.duree ? `${effet.duree} tour${effet.duree > 1 ? "s" : ""}` : null].filter(Boolean).join(" · ") || null,
     jet: jet ? {
-      total: jet.total,
+      total: nature === "degats" ? Math.max(1, jet.total) : jet.total,
       formule: effet.jet.formule,
       detail: jet.result,
       soin: nature === "soin",
@@ -163,6 +163,6 @@ export async function activerImplant(item) {
     speaker: ChatMessage.getSpeaker({ actor: acteur, token: source?.document }),
     content: contenu,
     rolls: jet ? [jet] : [],
-    flags: { cyberpunk2075: { type: "utilisation", acteur: acteur.uuid, item: item.uuid, total: jet?.total ?? 0, nature, animations: animationsActivation(item, source) } }
+    flags: { cyberpunk2075: { type: "utilisation", acteur: acteur.uuid, item: item.uuid, total: jet ? ((nature === "degats") ? Math.max(1, jet.total) : jet.total) : 0, nature, animations: animationsActivation(item, source) } }
   });
 }

@@ -63,15 +63,16 @@ async function tourDeZone(tuile) {
   const centre = { x: tuile.x + tuile.width / 2, y: tuile.y + tuile.height / 2 };
   if ( z.faitDegats !== false && z.degats ) {
     const jet = await new Roll(z.degats).evaluate();
+    const total = Math.max(1, jet.total);
     const tokens = tokensDans(centre, z.rayon);
     const contenu = await renderTemplate(`${CHEMIN}/templates/chat/degats.hbs`, {
       acteur: z.nom, heure: heure(), titre: z.nom, typeDegats: TYPES_DEGATS[z.typeDegats] ?? z.typeDegats ?? "", typeCle: z.typeDegats,
-      total: jet.total, detail: `${z.degats} (${jet.dice[0]?.results.map(r => r.result).join(", ") ?? "—"})`,
+      total, detail: `${z.degats} (${jet.dice[0]?.results.map(r => r.result).join(", ") ?? "—"})`,
       zone: `Zone · encore ${Math.max(0, z.tours - 1)} tour(s)`,
-      cibles: tokens.map(t => ({ token: t.document.uuid, nom: t.name, montant: jet.total })),
+      cibles: tokens.map(t => ({ token: t.document.uuid, nom: t.name, montant: total })),
       sansCible: !tokens.length, plusieurs: tokens.length > 1
     });
-    await ChatMessage.create({ content: contenu, rolls: [jet], flags: { cyberpunk2075: { type: "degats", total: jet.total } } });
+    await ChatMessage.create({ content: contenu, rolls: [jet], flags: { cyberpunk2075: { type: "degats", total } } });
   }
   const tours = z.tours - 1;
   if ( tours <= 0 ) {

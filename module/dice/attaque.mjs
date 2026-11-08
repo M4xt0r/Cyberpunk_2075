@@ -286,6 +286,8 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   for ( const sup of supplements ) termes.push(sup.de);
   if ( avecCritique ) termes.push(sys.deCritique);
   const jet = await new Roll(termes.join(" + "), acteur.getRollData()).evaluate();
+  // Un jet de dégâts fait toujours au moins 1
+  const totalDegats = Math.max(1, jet.total);
 
   // Détail lisible : « 1d6 (4) + 1 + SaFr 1 + crit 1d8 (6) »
   const des = jet.dice;
@@ -295,6 +297,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   if ( modDegats ) detail.push(`${signe(modDegats)} implants et objets`);
   supplements.forEach((sup, i) => detail.push(`+ ${sup.label} ${sup.de} (${des[1 + i]?.results.map(r => r.result).join(", ") ?? "—"})`));
   if ( avecCritique ) detail.push(`+ crit ${sys.deCritique} (${des.at(-1)?.results.map(r => r.result).join(", ")})`);
+  if ( jet.total < 1 ) detail.push(`= ${jet.total} · minimum 1`);
 
   // Jet d'effet (flashbang : 1d20 + Explosif contre l'Attention de chaque cible)
   const a = sys.attaque;
@@ -305,7 +308,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     const cible = fromUuidSync(c.token, { strict: false });
     const ca = cible?.actor ?? ((cible instanceof Actor) ? cible : null);
     const robot = (ca?.type === "vehicule") || (ca?.system?.nature === "robot");
-    let montant = c.horsPortee ? Math.floor(jet.total / 2) : jet.total;
+    let montant = c.horsPortee ? Math.max(1, Math.floor(totalDegats / 2)) : totalDegats;
     const notes = [];
     let sansDegats = !a.faitDegats;
     if ( a.robotsSeulement && !robot ) sansDegats = true;
@@ -357,7 +360,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     typeCle: n.typeDegats,
     titreType: a.faitDegats ? null : "Effet",
     critique: avecCritique,
-    total: a.faitDegats ? jet.total : (jetEffet?.total ?? "—"),
+    total: a.faitDegats ? totalDegats : (jetEffet?.total ?? "—"),
     detail: a.faitDegats ? detail.join(" ") : (jetEffet ? `${a.jetEffet} (${jetEffet.dice[0]?.results.map(r => r.result).join(", ") ?? "—"}) contre l'Attention` : ""),
     effetGeneral: !lignes.length ? (a.effetTexte || null) : null,
     regleRobots: a.robotsSeulement && a.faitDegats ? "Dégâts seulement sur les robots et véhicules" : null,
@@ -373,7 +376,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     content: contenu,
     // Sans dégâts (flashbang) : seul le jet d'effet est montré (Dice So Nice ignore un jet sans dé)
     rolls: a.faitDegats ? (jetEffet ? [jet, jetEffet] : [jet]) : (jetEffet ? [jetEffet] : []),
-    flags: { cyberpunk2075: { type: "degats", acteur: acteur.uuid, item: item.uuid, total: jet.total, animation, zonePersistante } }
+    flags: { cyberpunk2075: { type: "degats", acteur: acteur.uuid, item: item.uuid, total: totalDegats, animation, zonePersistante } }
   });
 }
 
