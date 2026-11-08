@@ -3,7 +3,7 @@
   "_key": "!items!uRKf1ZWCovm9QFHH",
   "name": "Glitch visuel",
   "type": "hack",
-  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "img": "systems/cyberpunk2075/assets/hacks/glitch-visuel.webp",
   "system": {
     "description": "<p>Crée une illusion visible par une cible, de 1,5 m par 1,5 m ; 2 RAM par carré de 1,5 m.</p>",
     "ambiance": "",

@@ -3,7 +3,7 @@
   "_key": "!items!wTvVTGnvwuowKGfu",
   "name": "Ping",
   "type": "hack",
-  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "img": "systems/cyberpunk2075/assets/hacks/ping.webp",
   "system": {
     "description": "<p>Localise et détecte le nombre d'ennemis connectés au réseau local.</p>",
     "ambiance": "",

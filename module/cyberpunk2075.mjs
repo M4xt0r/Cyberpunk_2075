@@ -312,3 +312,25 @@ Hooks.once("ready", async () => {
     if ( majs.length ) await acteur.updateEmbeddedDocuments("Item", majs).catch(() => null);
   }
 });
+
+// Hacks déjà dans le monde avec l'ancienne image (puce de piratage) : image propre à chaque hack
+Hooks.once("ready", async () => {
+  if ( game.users.activeGM?.id !== game.user.id ) return;
+  const ancienne = `${CHEMIN}/assets/notion/implants/puce-de-piratage.webp`;
+  const cle = nom => nom.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const connus = new Set(["court-circuit", "cyberpsychose", "detonation-involontaire", "dysfonctionnement-d-arme", "dysfonctionnement-d-implant",
+    "ping", "protocole-de-violation-rapide", "redemarrage-optique", "suicide", "surchauffe", "pare-feu-reactif", "glitch-visuel", "liberateur-d-ocytocine"]);
+  const nouvelle = item => {
+    if ( (item.type !== "hack") || (item.img !== ancienne) ) return null;
+    const c = cle(item.name);
+    return connus.has(c) ? `${CHEMIN}/assets/hacks/${c}.webp` : null;
+  };
+  for ( const item of game.items ) {
+    const img = nouvelle(item);
+    if ( img ) await item.update({ img }).catch(() => null);
+  }
+  for ( const acteur of game.actors ) {
+    const majs = acteur.items.map(i => ({ _id: i.id, img: nouvelle(i) })).filter(m => m.img);
+    if ( majs.length ) await acteur.updateEmbeddedDocuments("Item", majs).catch(() => null);
+  }
+});

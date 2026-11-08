@@ -251,7 +251,7 @@
       "_key": "!actors.items!ilSTkBAtc9wQohTz.5wKf8853k3Ghsmed",
       "name": "Court-circuit",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/court-circuit.webp",
       "system": {
         "description": "<p>1d6+Piratage de dégâts électriques sur une cible organique, 1d8+Piratage sur un robot.</p>",
         "ambiance": "",
@@ -301,7 +301,7 @@
       "_key": "!actors.items!ilSTkBAtc9wQohTz.UBFH7R6i3SWucDO8",
       "name": "Dysfonctionnement d'arme",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/dysfonctionnement-d-arme.webp",
       "system": {
         "description": "<p>Si la cible a une arme à feu, elle ne fonctionne plus pendant 1 tour.</p>",
         "ambiance": "",
@@ -351,7 +351,7 @@
       "_key": "!actors.items!ilSTkBAtc9wQohTz.0APr95t0WgZzL1TV",
       "name": "Dysfonctionnement d'implant",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/dysfonctionnement-d-implant.webp",
       "system": {
         "description": "<p>Si la cible a des implants, ils ne fonctionnent plus pendant 1 tour.</p>",
         "ambiance": "",
@@ -401,7 +401,7 @@
       "_key": "!actors.items!ilSTkBAtc9wQohTz.Rw5RRNn3CewlwZVN",
       "name": "Redémarrage optique",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/redemarrage-optique.webp",
       "system": {
         "description": "<p>Rend la cible aveugle durant 1 tour si elle n'a pas d'yeux organiques.</p>",
         "ambiance": "",
@@ -451,7 +451,7 @@
       "_key": "!actors.items!ilSTkBAtc9wQohTz.h89qTpWByVpzPG8D",
       "name": "Ping",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/ping.webp",
       "system": {
         "description": "<p>Localise et détecte le nombre d'ennemis connectés au réseau local.</p>",
         "ambiance": "",
@@ -501,7 +501,7 @@
       "_key": "!actors.items!ilSTkBAtc9wQohTz.lld2xsDKjB4aHqwk",
       "name": "Pare-feu réactif",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/pare-feu-reactif.webp",
       "system": {
         "description": "<p>En réaction, augmente de +4 la Glace de vous ou d'une cible jusqu'à la fin du tour.</p>",
         "ambiance": "",
@@ -551,7 +551,7 @@
       "_key": "!actors.items!ilSTkBAtc9wQohTz.quupaXgIP71Vg9QM",
       "name": "Dysfonctionnement d'arme",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/dysfonctionnement-d-arme.webp",
       "system": {
         "description": "<p>Si la cible a une arme à feu, elle ne fonctionne plus pendant 1 tour.</p>",
         "ambiance": "",
@@ -601,7 +601,7 @@
       "_key": "!actors.items!ilSTkBAtc9wQohTz.k79aini61BZ4bbJ2",
       "name": "Redémarrage optique",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/redemarrage-optique.webp",
       "system": {
         "description": "<p>Rend la cible aveugle durant 1 tour si elle n'a pas d'yeux organiques.</p>",
         "ambiance": "",

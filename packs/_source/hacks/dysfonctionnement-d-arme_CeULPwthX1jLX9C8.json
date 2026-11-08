@@ -3,7 +3,7 @@
   "_key": "!items!CeULPwthX1jLX9C8",
   "name": "Dysfonctionnement d'arme",
   "type": "hack",
-  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "img": "systems/cyberpunk2075/assets/hacks/dysfonctionnement-d-arme.webp",
   "system": {
     "description": "<p>Si la cible a une arme à feu, elle ne fonctionne plus pendant 1 tour.</p>",
     "ambiance": "",

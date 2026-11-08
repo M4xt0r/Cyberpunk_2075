@@ -3,7 +3,7 @@
   "_key": "!items!TCXZ8e73l9iEdvz0",
   "name": "Court-circuit",
   "type": "hack",
-  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "img": "systems/cyberpunk2075/assets/hacks/court-circuit.webp",
   "system": {
     "description": "<p>1d6+Piratage de dégâts électriques sur une cible organique, 1d8+Piratage sur un robot.</p>",
     "ambiance": "",

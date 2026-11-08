@@ -3,7 +3,7 @@
   "_key": "!items!NsF7Hkx5CBJ4Th3J",
   "name": "Détonation involontaire",
   "type": "hack",
-  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "img": "systems/cyberpunk2075/assets/hacks/detonation-involontaire.webp",
   "system": {
     "description": "<p>Fait exploser une grenade de la cible. +5💀.</p>",
     "ambiance": "",

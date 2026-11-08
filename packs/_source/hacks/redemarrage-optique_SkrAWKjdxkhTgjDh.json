@@ -3,7 +3,7 @@
   "_key": "!items!SkrAWKjdxkhTgjDh",
   "name": "Redémarrage optique",
   "type": "hack",
-  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "img": "systems/cyberpunk2075/assets/hacks/redemarrage-optique.webp",
   "system": {
     "description": "<p>Rend la cible aveugle durant 1 tour si elle n'a pas d'yeux organiques.</p>",
     "ambiance": "",

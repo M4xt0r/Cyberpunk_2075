@@ -401,7 +401,8 @@ def hack(cle, nom, prix, ram, effet_txt="", org="", robot="", type="electrique",
         "humanite": {"cible": humCible, "lanceur": humLanceur}, "duree": duree, "effet": effet_txt, "special": special,
         "animation": {"glitch": True, "impact": "", "son": ""}
     }
-    d = item("hacks", cle, nom, "hack", img("implants", "puce-de-piratage"), sys)
+    image = f"systems/cyberpunk2075/assets/hacks/{cle}.webp" if os.path.exists(os.path.join(RACINE, "assets", "hacks", f"{cle}.webp")) else img("implants", "puce-de-piratage")
+    d = item("hacks", cle, nom, "hack", image, sys)
     REG[cle] = d
     return d
 

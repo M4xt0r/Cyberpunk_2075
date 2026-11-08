@@ -1046,7 +1046,7 @@
       "_key": "!actors.items!CuBXxq0RmnovFxhD.3JhRI3SlBCPV9II9",
       "name": "Court-circuit",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/court-circuit.webp",
       "system": {
         "description": "<p>1d6+Piratage de dégâts électriques sur une cible organique, 1d8+Piratage sur un robot.</p>",
         "ambiance": "",
@@ -1092,7 +1092,7 @@
       "_key": "!actors.items!CuBXxq0RmnovFxhD.vVaWz0RK43FE8eRt",
       "name": "Surchauffe",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/surchauffe.webp",
       "system": {
         "description": "<p>Les implants de la cible surchauffent : 1d4 de dégâts de feu par implant de la cible, sur 3 tours. Si la cible en meurt, +5💀. Détruit les puces de la cible.</p>",
         "ambiance": "",
@@ -1138,7 +1138,7 @@
       "_key": "!actors.items!CuBXxq0RmnovFxhD.rpxc6PTLCqeu2LGr",
       "name": "Dysfonctionnement d'implant",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/dysfonctionnement-d-implant.webp",
       "system": {
         "description": "<p>Si la cible a des implants, ils ne fonctionnent plus pendant 1 tour.</p>",
         "ambiance": "",
@@ -1184,7 +1184,7 @@
       "_key": "!actors.items!CuBXxq0RmnovFxhD.mDEg0dvMwVBWtfsg",
       "name": "Dysfonctionnement d'arme",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/dysfonctionnement-d-arme.webp",
       "system": {
         "description": "<p>Si la cible a une arme à feu, elle ne fonctionne plus pendant 1 tour.</p>",
         "ambiance": "",
@@ -1230,7 +1230,7 @@
       "_key": "!actors.items!CuBXxq0RmnovFxhD.8cohXN8JCqyfImUT",
       "name": "Redémarrage optique",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/redemarrage-optique.webp",
       "system": {
         "description": "<p>Rend la cible aveugle durant 1 tour si elle n'a pas d'yeux organiques.</p>",
         "ambiance": "",
@@ -1276,7 +1276,7 @@
       "_key": "!actors.items!CuBXxq0RmnovFxhD.Oisfn66AWOPopb7r",
       "name": "Pare-feu réactif",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/pare-feu-reactif.webp",
       "system": {
         "description": "<p>En réaction, augmente de +4 la Glace de vous ou d'une cible jusqu'à la fin du tour.</p>",
         "ambiance": "",

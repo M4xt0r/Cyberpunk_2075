@@ -3,7 +3,7 @@
   "_key": "!items!yreT14SiCwRoQQqu",
   "name": "Pare-feu réactif",
   "type": "hack",
-  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "img": "systems/cyberpunk2075/assets/hacks/pare-feu-reactif.webp",
   "system": {
     "description": "<p>En réaction, augmente de +4 la Glace de vous ou d'une cible jusqu'à la fin du tour.</p>",
     "ambiance": "",

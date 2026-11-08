@@ -632,7 +632,7 @@
       "_key": "!actors.items!14J4dk9LqXI4luf7.gCbWB7iCZGvkK5dl",
       "name": "Court-circuit",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/court-circuit.webp",
       "system": {
         "description": "<p>1d6+Piratage de dégâts électriques sur une cible organique, 1d8+Piratage sur un robot.</p>",
         "ambiance": "",
@@ -678,7 +678,7 @@
       "_key": "!actors.items!14J4dk9LqXI4luf7.qCkbABt7ceiZRWQw",
       "name": "Détonation involontaire",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/detonation-involontaire.webp",
       "system": {
         "description": "<p>Fait exploser une grenade de la cible. +5💀.</p>",
         "ambiance": "",
@@ -724,7 +724,7 @@
       "_key": "!actors.items!14J4dk9LqXI4luf7.TFUoTZ1DwjLdcHDs",
       "name": "Dysfonctionnement d'implant",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/dysfonctionnement-d-implant.webp",
       "system": {
         "description": "<p>Si la cible a des implants, ils ne fonctionnent plus pendant 1 tour.</p>",
         "ambiance": "",
@@ -770,7 +770,7 @@
       "_key": "!actors.items!14J4dk9LqXI4luf7.Z02mPvks14TrhgHB",
       "name": "Dysfonctionnement d'arme",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/dysfonctionnement-d-arme.webp",
       "system": {
         "description": "<p>Si la cible a une arme à feu, elle ne fonctionne plus pendant 1 tour.</p>",
         "ambiance": "",

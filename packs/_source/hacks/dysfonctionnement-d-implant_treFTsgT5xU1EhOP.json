@@ -3,7 +3,7 @@
   "_key": "!items!treFTsgT5xU1EhOP",
   "name": "Dysfonctionnement d'implant",
   "type": "hack",
-  "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+  "img": "systems/cyberpunk2075/assets/hacks/dysfonctionnement-d-implant.webp",
   "system": {
     "description": "<p>Si la cible a des implants, ils ne fonctionnent plus pendant 1 tour.</p>",
     "ambiance": "",

@@ -259,7 +259,7 @@
       "_key": "!actors.items!YiOsG5e95rXnSwOh.zgHZS5beP8VMRaEp",
       "name": "Dysfonctionnement d'arme",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/dysfonctionnement-d-arme.webp",
       "system": {
         "description": "<p>Si la cible a une arme à feu, elle ne fonctionne plus pendant 1 tour.</p>",
         "ambiance": "",
@@ -305,7 +305,7 @@
       "_key": "!actors.items!YiOsG5e95rXnSwOh.HeSAjd0A41s3IZF9",
       "name": "Redémarrage optique",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/redemarrage-optique.webp",
       "system": {
         "description": "<p>Rend la cible aveugle durant 1 tour si elle n'a pas d'yeux organiques.</p>",
         "ambiance": "",
@@ -351,7 +351,7 @@
       "_key": "!actors.items!YiOsG5e95rXnSwOh.q32m5SG7hW2kCnB0",
       "name": "Court-circuit",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/court-circuit.webp",
       "system": {
         "description": "<p>1d6+Piratage de dégâts électriques sur une cible organique, 1d8+Piratage sur un robot.</p>",
         "ambiance": "",
@@ -397,7 +397,7 @@
       "_key": "!actors.items!YiOsG5e95rXnSwOh.op6AtCVYhdGlHQzf",
       "name": "Pare-feu réactif",
       "type": "hack",
-      "img": "systems/cyberpunk2075/assets/notion/implants/puce-de-piratage.webp",
+      "img": "systems/cyberpunk2075/assets/hacks/pare-feu-reactif.webp",
       "system": {
         "description": "<p>En réaction, augmente de +4 la Glace de vous ou d'une cible jusqu'à la fin du tour.</p>",
         "ambiance": "",
