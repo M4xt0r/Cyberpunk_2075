@@ -46,7 +46,7 @@ export async function creerZonePersistante(z) {
     x: Math.round(z.x - r), y: Math.round(z.y - r), width: Math.round(2 * r), height: Math.round(2 * r),
     alpha: 0.85, locked: true,
     video: { loop: true, autoplay: true, volume: 0 },
-    flags: { cyberpunk2075: { zone: { nom: z.nom, tours: z.tours, rayon: z.rayon, degats: z.degats, typeDegats: z.typeDegats, faitDegats: z.faitDegats } } }
+    flags: { cyberpunk2075: { zone: { nom: z.nom, tours: z.tours, rayon: z.rayon, degats: z.degats, typeDegats: z.typeDegats, faitDegats: z.faitDegats, lanceur: z.lanceur ?? null, lanceurToken: z.lanceurToken ?? null } } }
   }]);
 }
 
@@ -58,29 +58,64 @@ function tokensDans(centre, rayon) {
   });
 }
 
-/** Dégâts de la zone pour ce tour, puis un tour de moins (la tuile disparaît à 0). */
-async function tourDeZone(tuile) {
+const centreDe = tuile => ({ x: tuile.x + tuile.width / 2, y: tuile.y + tuile.height / 2 });
+
+/** Dégâts de la zone sur des tokens (tous ceux dedans par défaut). */
+async function degatsZone(tuile, tokens = null) {
   const z = tuile.flags.cyberpunk2075.zone;
-  const centre = { x: tuile.x + tuile.width / 2, y: tuile.y + tuile.height / 2 };
-  if ( z.faitDegats !== false && z.degats ) {
-    const jet = await new Roll(z.degats).evaluate();
-    const total = Math.max(1, jet.total);
-    const tokens = tokensDans(centre, z.rayon);
-    const contenu = await renderTemplate(`${CHEMIN}/templates/chat/degats.hbs`, {
-      acteur: z.nom, heure: heure(), titre: z.nom, typeDegats: TYPES_DEGATS[z.typeDegats] ?? z.typeDegats ?? "", typeCle: z.typeDegats,
-      total, detail: `${z.degats} (${jet.dice[0]?.results.map(r => r.result).join(", ") ?? "—"})`,
-      zone: `Zone · encore ${Math.max(0, z.tours - 1)} tour(s)`,
-      cibles: tokens.map(t => ({ token: t.document.uuid, nom: t.name, montant: total })),
-      sansCible: !tokens.length, plusieurs: tokens.length > 1
-    });
-    await ChatMessage.create({ content: contenu, rolls: [jet], flags: { cyberpunk2075: { type: "degats", total } } });
-  }
+  if ( (z.faitDegats === false) || !z.degats ) return;
+  tokens ??= tokensDans(centreDe(tuile), z.rayon);
+  const jet = await new Roll(z.degats).evaluate();
+  const total = Math.max(1, jet.total);
+  const contenu = await renderTemplate(`${CHEMIN}/templates/chat/degats.hbs`, {
+    acteur: z.nom, heure: heure(), titre: z.nom, typeDegats: TYPES_DEGATS[z.typeDegats] ?? z.typeDegats ?? "", typeCle: z.typeDegats,
+    total, detail: `${z.degats} (${jet.dice[0]?.results.map(r => r.result).join(", ") ?? "—"})`,
+    zone: `Zone · encore ${z.tours} tour(s)`,
+    cibles: tokens.map(t => ({ token: t.document.uuid, nom: t.name, montant: total })),
+    sansCible: !tokens.length, plusieurs: tokens.length > 1
+  });
+  await ChatMessage.create({ content: contenu, rolls: [jet], flags: { cyberpunk2075: { type: "degats", total } } });
+}
+
+/** Un tour de moins pour la zone (la tuile disparaît à 0). Renvoie true si elle a disparu. */
+async function decompterZone(tuile) {
+  const z = tuile.flags.cyberpunk2075.zone;
   const tours = z.tours - 1;
   if ( tours <= 0 ) {
     await tuile.delete();
-    return note(`${z.nom} : la zone se dissipe.`);
+    await note(`${z.nom} : la zone se dissipe.`);
+    return true;
   }
   await tuile.update({ "flags.cyberpunk2075.zone.tours": tours });
+  return false;
+}
+
+/** Hors combat : dégâts à tous ceux dans la zone, puis un tour de moins. */
+async function tourDeZone(tuile) {
+  await degatsZone(tuile);
+  await decompterZone(tuile);
+}
+
+/**
+ * En combat, au début du tour d'un combattant :
+ * - les zones qu'il a lancées perdent un tour (elles disparaissent au début de son tour) ;
+ * - s'il se trouve dans une zone encore active, il en subit les dégâts.
+ */
+export async function zonesAuTourDe(combattant) {
+  const scene = combattant.combat?.scene ?? canvas?.scene;
+  if ( !scene ) return;
+  const tuiles = scene.tiles.filter(t => t.flags?.cyberpunk2075?.zone);
+  const tokenUuid = combattant.token?.uuid;
+  const acteurUuid = combattant.actor?.uuid;
+  for ( const tuile of tuiles ) {
+    const z = tuile.flags.cyberpunk2075.zone;
+    const sienne = (z.lanceurToken && (z.lanceurToken === tokenUuid)) || (!z.lanceurToken && z.lanceur && (z.lanceur === acteurUuid));
+    if ( sienne && await decompterZone(tuile) ) continue;
+    const token = combattant.token?.object;
+    if ( !token || (canvas?.scene?.id !== scene.id) ) continue;
+    const dedans = tokensDans(centreDe(tuile), z.rayon).includes(token);
+    if ( dedans ) await degatsZone(tuile, [token]);
+  }
 }
 
 /* -------------------------------------------- */
@@ -92,11 +127,7 @@ export async function passerTour() {
 
   // En combat : compteur +1, retour au premier de l'ordre (les effets se décomptent au tour de chacun)
   const combat = combatEnCours();
-  if ( combat ) {
-    await tourSuivantCombat(combat);
-    for ( const tuile of canvas?.scene?.tiles.filter(t => t.flags?.cyberpunk2075?.zone) ?? [] ) await tourDeZone(tuile);
-    return;
-  }
+  if ( combat ) return tourSuivantCombat(combat);
 
   await note("<b>Tour suivant</b>");
 

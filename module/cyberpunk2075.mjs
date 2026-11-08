@@ -22,7 +22,7 @@ import { signe } from "./dice/jets.mjs";
 import { surRenduMessage, surCreationMessage } from "./dice/chat.mjs";
 import { jouerAnimation } from "./animations.mjs";
 import BarreActions from "./hud/barre.mjs";
-import { ajouterBoutonTour, decompterEffets, majBoutonCombat } from "./hud/tours.mjs";
+import { ajouterBoutonTour, decompterEffets, majBoutonCombat, zonesAuTourDe } from "./hud/tours.mjs";
 import FriseCombat from "./hud/frise.mjs";
 import { brancherDeplacements } from "./hud/combat.mjs";
 import { chargerIndicateurs, dessinerIndicateurs, redessinerActeur } from "./hud/indicateurs.mjs";
@@ -171,6 +171,7 @@ Hooks.on("updateCombat", async (combat, changements, options) => {
   if ( !acteur ) return;
   if ( acteur.type === "personnage" ) await tourDeCombat(acteur);
   await decompterEffets(acteur);
+  await zonesAuTourDe(combattant);
 });
 
 /** Nouveau personnage : le token est lié à la fiche et voit la scène. */

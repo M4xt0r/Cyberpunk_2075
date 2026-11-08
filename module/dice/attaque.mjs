@@ -344,7 +344,9 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
         zonePersistante = {
           scene: canvas.scene.id, x: Math.round(centre.x), y: Math.round(centre.y), rayon: sys.attaque.zone, tours,
           texture: sys.animationEffective.zone, nom: item.name, typeDegats: n.typeDegats, faitDegats: sys.attaque.faitDegats,
-          degats: [n.de, n.bonusFixe || null].filter(Boolean).join(" + ")
+          degats: [n.de, n.bonusFixe || null].filter(Boolean).join(" + "),
+          // Lanceur : la zone perd un tour au début de son tour de combat
+          lanceur: acteur.uuid, lanceurToken: source?.document?.uuid ?? null
         };
         texteZone = `Zone : ${sys.attaque.zone} m de rayon · reste ${tours} tour(s) (${duree})`;
       }
