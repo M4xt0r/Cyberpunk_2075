@@ -79,9 +79,15 @@ async function surAction(message, bouton) {
 /** Nouveau message : chaque client joue l'animation sur sa scène affichée. */
 export async function surCreationMessage(message) {
   const d = drapeaux(message);
-  // Ping : le MJ actif enregistre les marques sur la scène
-  if ( (d.type === "ping") && d.ping && estMJActif() ) ajouterPings(d.ping).catch(err => console.warn("Cyberpunk 2075 | Ping :", err));
   const liste = [d.animation, ...(d.animations ?? [])].filter(a => a);
+  // Ping : le MJ actif pose les marques sur la scène une fois l'onde terminée
+  if ( (d.type === "ping") && d.ping && estMJActif() ) {
+    await attendreDes(message);
+    if ( canvas?.ready && (canvas.scene?.id === d.ping.scene) && liste.length ) {
+      await Promise.all(liste.map(a => jouerAnimation(a).catch(() => null)));
+    } else await new Promise(r => setTimeout(r, 1600));
+    return ajouterPings(d.ping).catch(err => console.warn("Cyberpunk 2075 | Ping :", err));
+  }
   const zone = d.zonePersistante;
   if ( (!liste.length || !canvas?.ready) && !zone ) return;
   await attendreDes(message);
