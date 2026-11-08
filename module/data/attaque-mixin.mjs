@@ -77,7 +77,9 @@ export const MixinAttaque = Base => class extends Base {
     const fixe = n.bonusFixe ? `${n.bonusFixe > 0 ? "+" : "−"}${Math.abs(n.bonusFixe)}` : "";
     const carac = CARACS[this.carac] ? `+${CARACS[this.carac].abrev}` : "";
     const plus = this.degatsSupplementaires.map(d => `+${d.de}`).join("");
-    return `${n.de}${fixe}${carac}${plus}`;
+    // Sans dé (coup de poing) : seulement la caractéristique
+    const de = (n.de && (n.de !== "0")) ? n.de : "";
+    return `${de}${fixe}${carac}${plus}`.replace(/^\+/, "") || "—";
   }
 
   /** Score au toucher chez le porteur (compétence + bonus de l'arme + modificateurs « touche »). */

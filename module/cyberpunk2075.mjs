@@ -285,3 +285,24 @@ Hooks.on("deleteTile", tuile => {
   const src = z.effetFin || tuile.texture?.src;
   jouerEffet(src, { x: tuile.x + tuile.width / 2, y: tuile.y + tuile.height / 2 }, Math.max(tuile.width, tuile.height)).catch(() => null);
 });
+
+/* -------------------------------------------- */
+/*  Coup de poing : arme de base de tout le monde */
+/* -------------------------------------------- */
+
+const aCoupDePoing = acteur => acteur.items.some(i => i.flags?.cyberpunk2075?.base === "poing");
+
+async function donnerCoupDePoing(acteur) {
+  if ( !["personnage", "ennemi"].includes(acteur?.type) || aCoupDePoing(acteur) ) return;
+  await acteur.createEmbeddedDocuments("Item", [CONFIG_CP.donneesCoupDePoing()]);
+}
+
+Hooks.on("createActor", (acteur, options, userId) => {
+  if ( userId === game.user.id ) donnerCoupDePoing(acteur).catch(err => console.warn("Cyberpunk 2075 | Coup de poing :", err));
+});
+
+// Acteurs déjà présents dans le monde : le MJ actif leur donne le coup de poing une fois
+Hooks.once("ready", async () => {
+  if ( game.users.activeGM?.id !== game.user.id ) return;
+  for ( const acteur of game.actors ) await donnerCoupDePoing(acteur).catch(() => null);
+});

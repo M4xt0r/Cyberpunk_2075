@@ -42,6 +42,9 @@ def armes():
     regle_pompe = "Portée de 15 mètres : au-delà, la moitié des dégâts."
     regle_sniper = "Fait toujours un coup critique en cas de réussite."
     docs += [
+        arme("coup-de-poing", "Coup de poing", "corpsACorps", "const", "0", (0,), bonus=(0,), sansNiveaux=True,
+             image="icons/skills/melee/unarmed-punch-fist.webp", ambiance="Quand il ne reste plus que les phalanges.",
+             desc=html("Arme de base de tout le monde (donnée automatiquement aux personnages et ennemis). Toucher : 1d20 + Corps à corps. Dégâts : bonus de Constitution, minimum 1."), dossier=f("cac")),
         arme("couteau", "Couteau", "corpsACorps", "ref", "1d6", (100, 200, 300), ambiance="Pratique quand les choses deviennent risquées.", dossier=f("cac")),
         arme("katana", "Katana", "corpsACorps", "safr", "1d10", (300, 500, 700), ambiance="Pointu et mortel. Faites attention à ne pas vous couper.", dossier=f("cac")),
         arme("marteau", "Marteau", "corpsACorps", "const", "1d12", (400, 600, 800), ambiance="Avec un marteau dans la main, chaque problème ressemble à un clou.", dossier=f("cac")),

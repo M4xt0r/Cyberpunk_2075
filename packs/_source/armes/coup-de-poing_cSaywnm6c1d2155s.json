@@ -1,0 +1,65 @@
+{
+  "_id": "cSaywnm6c1d2155s",
+  "_key": "!items!cSaywnm6c1d2155s",
+  "name": "Coup de poing",
+  "type": "arme",
+  "img": "icons/skills/melee/unarmed-punch-fist.webp",
+  "system": {
+    "description": "<p>Arme de base de tout le monde (donnée automatiquement aux personnages et ennemis). Toucher : 1d20 + Corps à corps. Dégâts : bonus de Constitution, minimum 1.</p>",
+    "ambiance": "Quand il ne reste plus que les phalanges.",
+    "sansNiveaux": true,
+    "niveau": 1,
+    "competence": "corpsACorps",
+    "carac": "const",
+    "portee": null,
+    "attaque": {
+      "faitDegats": true,
+      "defense": "adaptabilite",
+      "bonusTouche": 0,
+      "zone": null,
+      "dureeZone": "",
+      "doubleVehicules": false,
+      "robotsSeulement": false,
+      "jetEffet": "",
+      "effetTexte": "",
+      "animation": {
+        "style": "",
+        "projectile": "",
+        "impact": "",
+        "zone": "",
+        "son": ""
+      }
+    },
+    "type": "corpsACorps",
+    "intelligente": false,
+    "munitions": null,
+    "quantite": 1,
+    "niveaux": {
+      "n1": {
+        "prix": 0,
+        "de": "0",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n2": {
+        "prix": 0,
+        "de": "0",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      },
+      "n3": {
+        "prix": 0,
+        "de": "0",
+        "bonusFixe": 0,
+        "typeDegats": "corpsACorps"
+      }
+    }
+  },
+  "effects": [],
+  "folder": "OaPgPIYn09gJTUdY",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

@@ -272,3 +272,20 @@ export const QUALITES_PLANQUE = {
   correcte: { label: "Correcte", prix: 1000 },
   luxueux: { label: "Luxueux", prix: 2500 }
 };
+
+/** Arme de base de tous les personnages et ennemis : coup de poing (Càc au toucher, Const aux dégâts, minimum 1). */
+export function donneesCoupDePoing() {
+  return {
+    name: "Coup de poing",
+    type: "arme",
+    img: "icons/skills/melee/unarmed-punch-fist.webp",
+    flags: { cyberpunk2075: { base: "poing" } },
+    system: {
+      description: "<p>Arme de base de tout le monde. Toucher : 1d20 + Corps à corps. Dégâts : bonus de Constitution, minimum 1.</p>",
+      ambiance: "Quand il ne reste plus que les phalanges.",
+      sansNiveaux: true, niveau: 1, type: "corpsACorps", competence: "corpsACorps", carac: "const",
+      quantite: 1, intelligente: false,
+      niveaux: { n1: { prix: 0, de: "0", bonusFixe: 0, typeDegats: "corpsACorps" } }
+    }
+  };
+}

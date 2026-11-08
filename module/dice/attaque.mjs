@@ -293,11 +293,12 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
 
   // Détail lisible : « 1d6 (4) + 1 + SaFr 1 + crit 1d8 (6) »
   const des = jet.dice;
-  detail.push(`${n.de} (${des[0]?.results.map(r => r.result).join(", ") ?? "—"})`);
+  const sansDe = !n.de || (n.de === "0");
+  if ( !sansDe ) detail.push(`${n.de} (${des[0]?.results.map(r => r.result).join(", ") ?? "—"})`);
   if ( n.bonusFixe ) detail.push(signe(n.bonusFixe));
   if ( bonusCarac ) detail.push(`${signe(bonusCarac)} ${CARACS[caracCle].abrev}`);
   if ( modDegats ) detail.push(`${signe(modDegats)} implants et objets`);
-  supplements.forEach((sup, i) => detail.push(`+ ${sup.label} ${sup.de} (${des[1 + i]?.results.map(r => r.result).join(", ") ?? "—"})`));
+  supplements.forEach((sup, i) => detail.push(`+ ${sup.label} ${sup.de} (${des[(sansDe ? 0 : 1) + i]?.results.map(r => r.result).join(", ") ?? "—"})`));
   if ( avecCritique ) detail.push(`+ crit ${sys.deCritique} (${des.at(-1)?.results.map(r => r.result).join(", ")})`);
   if ( jet.total < 1 ) detail.push(`= ${jet.total} · minimum 1`);
 
