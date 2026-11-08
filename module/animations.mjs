@@ -16,7 +16,8 @@ function calque() {
     conteneur = new PIXI.Container();
     conteneur.eventMode = "none";
     conteneur.zIndex = 10000;
-    const parent = canvas.overlay ?? canvas.interface;
+    // Dans le groupe d'interface (avec la couche des tokens), au-dessus de tout le reste
+    const parent = canvas.interface;
     parent.sortableChildren = true;
     parent.addChild(conteneur);
   }
