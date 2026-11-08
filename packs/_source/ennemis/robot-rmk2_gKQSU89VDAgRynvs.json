@@ -180,7 +180,7 @@
           "animation": {
             "style": "",
             "projectile": "",
-            "impact": "",
+            "impact": "systems/cyberpunk2075/assets/animations/impacts/coup_contondant.webm",
             "zone": "",
             "son": ""
           }

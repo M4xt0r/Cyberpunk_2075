@@ -273,6 +273,9 @@ export const QUALITES_PLANQUE = {
   luxueux: { label: "Luxueux", prix: 2500 }
 };
 
+/** Impact d'un coup physique (poing, marteau). */
+export const IMPACT_CONTONDANT = `${ANIM}/impacts/coup_contondant.webm`;
+
 /** Arme de base de tous les personnages et ennemis : coup de poing (Càc au toucher, Const aux dégâts, minimum 1). */
 export function donneesCoupDePoing() {
   return {
@@ -284,6 +287,8 @@ export function donneesCoupDePoing() {
       description: "<p>Arme de base de tout le monde. Toucher : 1d20 + Corps à corps. Dégâts : bonus de Constitution, minimum 1.</p>",
       ambiance: "Quand il ne reste plus que les phalanges.",
       sansNiveaux: true, niveau: 1, type: "corpsACorps", competence: "corpsACorps", carac: "const",
+      attaque: { faitDegats: true, defense: "adaptabilite", bonusTouche: 0, zone: null,
+        animation: { style: "", projectile: "", impact: IMPACT_CONTONDANT, zone: "", son: "" } },
       quantite: 1, intelligente: false,
       niveaux: { n1: { prix: 0, de: "0", bonusFixe: 0, typeDegats: "corpsACorps" } }
     }

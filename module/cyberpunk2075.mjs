@@ -304,5 +304,11 @@ Hooks.on("createActor", (acteur, options, userId) => {
 // Acteurs déjà présents dans le monde : le MJ actif leur donne le coup de poing une fois
 Hooks.once("ready", async () => {
   if ( game.users.activeGM?.id !== game.user.id ) return;
-  for ( const acteur of game.actors ) await donnerCoupDePoing(acteur).catch(() => null);
+  for ( const acteur of game.actors ) {
+    await donnerCoupDePoing(acteur).catch(() => null);
+    // Coups de poing donnés avant la v0.12.6 : impact de coup physique
+    const majs = acteur.items.filter(i => (i.flags?.cyberpunk2075?.base === "poing") && !i.system.attaque?.animation?.impact)
+      .map(i => ({ _id: i.id, "system.attaque.animation.impact": CONFIG_CP.IMPACT_CONTONDANT }));
+    if ( majs.length ) await acteur.updateEmbeddedDocuments("Item", majs).catch(() => null);
+  }
 });

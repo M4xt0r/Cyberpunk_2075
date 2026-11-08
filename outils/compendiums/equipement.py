@@ -16,7 +16,7 @@ def communs(desc="", ambiance="", sansNiveaux=False):
 # =========================================================================
 
 def arme(cle, nom, type, carac, de, prix, bonus=(0, 1, 2), ambiance="", intelligente=False,
-         desc="", sansNiveaux=False, zone=None, defense=None, faitDegats=True, typeDeg=None, dossier=None, image=None, **extra):
+         desc="", sansNiveaux=False, zone=None, defense=None, faitDegats=True, typeDeg=None, dossier=None, image=None, impact="", **extra):
     td = typeDeg or TYPES_DEG[type]
     niv = [{"prix": p, "de": de, "bonusFixe": b, "typeDegats": td} for p, b in zip(prix, bonus)]
     sys = {
@@ -28,6 +28,8 @@ def arme(cle, nom, type, carac, de, prix, bonus=(0, 1, 2), ambiance="", intellig
         "niveaux": trois(niv)
     }
     sys["attaque"].update(extra)
+    if impact:
+        sys["attaque"]["animation"]["impact"] = f"{IMG.rsplit('/notion', 1)[0]}/animations/{impact}"
     doc = item("armes", cle, nom, "arme", image or img("armes", cle), sys, dossier)
     REG[cle] = doc
     return doc
@@ -42,12 +44,12 @@ def armes():
     regle_pompe = "Portée de 15 mètres : au-delà, la moitié des dégâts."
     regle_sniper = "Fait toujours un coup critique en cas de réussite."
     docs += [
-        arme("coup-de-poing", "Coup de poing", "corpsACorps", "const", "0", (0,), bonus=(0,), sansNiveaux=True,
+        arme("coup-de-poing", "Coup de poing", "corpsACorps", "const", "0", (0,), bonus=(0,), sansNiveaux=True, impact="impacts/coup_contondant.webm",
              image="icons/skills/melee/unarmed-punch-fist.webp", ambiance="Quand il ne reste plus que les phalanges.",
              desc=html("Arme de base de tout le monde (donnée automatiquement aux personnages et ennemis). Toucher : 1d20 + Corps à corps. Dégâts : bonus de Constitution, minimum 1."), dossier=f("cac")),
         arme("couteau", "Couteau", "corpsACorps", "ref", "1d6", (100, 200, 300), ambiance="Pratique quand les choses deviennent risquées.", dossier=f("cac")),
         arme("katana", "Katana", "corpsACorps", "safr", "1d10", (300, 500, 700), ambiance="Pointu et mortel. Faites attention à ne pas vous couper.", dossier=f("cac")),
-        arme("marteau", "Marteau", "corpsACorps", "const", "1d12", (400, 600, 800), ambiance="Avec un marteau dans la main, chaque problème ressemble à un clou.", dossier=f("cac")),
+        arme("marteau", "Marteau", "corpsACorps", "const", "1d12", (400, 600, 800), impact="impacts/coup_contondant.webm", ambiance="Avec un marteau dans la main, chaque problème ressemble à un clou.", dossier=f("cac")),
 
         arme("nue", "Nue", "pistolet", "safr", "1d6", (500, 750, 1000), ambiance="Conçu pour s'adapter à n'importe quelle main.", dossier=f("poing")),
         arme("a-22b-chao", "A-22B Chao", "pistolet", "captec", "1d8", (800, 1200, 1600), ambiance="Kang Tao réfléchit pour vous.", intelligente=True, dossier=f("poing")),

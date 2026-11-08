@@ -27,10 +27,10 @@ def embarque(acteur_cle, cle, niveau=1, build="", n=0, amel=None):
                                "effet": effet(ligne["effet"], mods=[(ligne["cible"], ligne["valeur"])] if ligne["cible"] else [])}})
     return out
 
-def arme_propre(acteur_cle, nom, type, de, bonus, competence=None, zone=None, munitions=None, typeDeg=None, image=None):
+def arme_propre(acteur_cle, nom, type, de, bonus, competence=None, zone=None, munitions=None, typeDeg=None, image=None, impact=""):
     """Arme intégrée d'un robot ou d'un drone (pas dans le compendium d'armes)."""
     d = arme(f"{acteur_cle}-{slug(nom)}", nom, type, "", de, (0,), bonus=(bonus,), sansNiveaux=True, zone=zone,
-             defense="adaptabilite", typeDeg=typeDeg, image=image or "icons/svg/target.svg")
+             defense="adaptabilite", typeDeg=typeDeg, image=image or "icons/svg/target.svg", impact=impact)
     REG.pop(f"{acteur_cle}-{slug(nom)}", None)
     d["_id"] = ident("ennemi", acteur_cle, nom)
     d["folder"] = None
@@ -112,7 +112,7 @@ def ennemis():
       nature="robot", reduction=4, reductionSauf=["electrique"], immunites=["poison"],
       notes="Peau de métal : −4 aux dégâts reçus, sauf électriques. Immunité aux dégâts de poison.",
       extra=[lambda c: arme_propre(c, "Mitrailleuse intégrée", "mitraillette", "1d8", 3),
-             lambda c: arme_propre(c, "Poings hydrauliques", "corpsACorps", "1d10", 3)])
+             lambda c: arme_propre(c, "Poings hydrauliques", "corpsACorps", "1d10", 3, impact="impacts/coup_contondant.webm")])
 
     courant = F("NCPD", "ncpd")
     E("NCPD", "Patrouilleur", 1, [1, 1, -1, 0, 1], V(17, 12, 10, 9), {"poing": 3, "perc": 3}, A=["liberty"], B=["m2038-tactician", "processeur-tactique"])
