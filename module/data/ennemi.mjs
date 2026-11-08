@@ -60,6 +60,10 @@ export default class EnnemiData extends foundry.abstract.TypeDataModel {
       initiative: new f.SchemaField({ bonus: entier(0) }),
       deplacement: new f.SchemaField({ bonus: entier(0) }),
       reduction: entier(0, { min: 0 }),
+      /** Types de dégâts que la réduction ne diminue pas (ex. Peau de métal : sauf électrique). */
+      reductionSauf: new f.ArrayField(texte(""), { initial: [] }),
+      /** Types de dégâts sans effet (ex. robot : poison). */
+      immunites: new f.ArrayField(texte(""), { initial: [] }),
       bm: entier(2, { min: 0, max: 6 }),
       couvert: entier(0, { min: 0, max: 3 }),
 

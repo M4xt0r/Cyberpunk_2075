@@ -148,11 +148,14 @@ export default class ActeurCP extends Actor {
    * @param {number} montant
    * @returns {Promise<{avant: number, apres: number, reduit: number}>}
    */
-  async subirDegats(montant) {
+  async subirDegats(montant, { typeDegats = "" } = {}) {
     const s = this.system;
-    const reduction = (this.type === "ennemi") ? s.reductionTotale : Math.max(0, -(s.modificateurs?.degatsRecus ?? 0));
+    let reduction = (this.type === "ennemi") ? s.reductionTotale : Math.max(0, -(s.modificateurs?.degatsRecus ?? 0));
     if ( !s.vie ) return { avant: 0, apres: 0, reduit: 0 };
-    const reel = Math.max(0, montant - reduction);
+    // Ennemis : immunités et types que la réduction ne diminue pas
+    const immunise = !!typeDegats && (s.immunites ?? []).includes(typeDegats);
+    if ( typeDegats && (s.reductionSauf ?? []).includes(typeDegats) ) reduction = 0;
+    const reel = immunise ? 0 : Math.max(0, montant - reduction);
     const avant = s.vie?.value ?? 0;
     const apres = Math.max(0, avant - reel);
     await this.update({ "system.vie.value": apres });
@@ -176,7 +179,7 @@ export default class ActeurCP extends Actor {
       }
       if ( usures.length ) await this.updateEmbeddedDocuments("Item", usures);
     }
-    return { avant, apres, reduit: montant - reel };
+    return { avant, apres, reduit: montant - reel, immunise };
   }
 
   /** Véhicule : alerte à la moitié des PV (−1 cran de vitesse) et à la destruction. */

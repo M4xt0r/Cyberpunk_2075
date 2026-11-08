@@ -5,12 +5,12 @@
   "type": "arme",
   "img": "icons/svg/explosion.svg",
   "system": {
-    "description": "<p>Se colle sur une surface et explose au bout du temps choisi : 1d12+CapTech de dégâts.</p>",
+    "description": "<p>Se colle sur une surface et explose au bout du temps choisi : 1d12+1+Explosif de dégâts. Fait le double des dégâts sur les véhicules et bâtiments.</p>",
     "ambiance": "Simple, efficace, on n'en demande pas plus.",
     "sansNiveaux": true,
     "niveau": 1,
     "competence": "explosif",
-    "carac": "captec",
+    "carac": "",
     "portee": null,
     "attaque": {
       "faitDegats": true,
@@ -18,6 +18,10 @@
       "bonusTouche": 0,
       "zone": 5,
       "dureeZone": "",
+      "doubleVehicules": true,
+      "robotsSeulement": false,
+      "jetEffet": "",
+      "effetTexte": "",
       "animation": {
         "style": "",
         "projectile": "",
@@ -33,20 +37,20 @@
     "niveaux": {
       "n1": {
         "prix": 1000,
-        "de": "1d12",
-        "bonusFixe": 0,
+        "de": "1d12 + Explosif",
+        "bonusFixe": 1,
         "typeDegats": "explosion"
       },
       "n2": {
         "prix": 1000,
-        "de": "1d12",
-        "bonusFixe": 0,
+        "de": "1d12 + Explosif",
+        "bonusFixe": 1,
         "typeDegats": "explosion"
       },
       "n3": {
         "prix": 1000,
-        "de": "1d12",
-        "bonusFixe": 0,
+        "de": "1d12 + Explosif",
+        "bonusFixe": 1,
         "typeDegats": "explosion"
       }
     }

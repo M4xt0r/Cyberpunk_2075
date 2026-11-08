@@ -77,9 +77,15 @@
       "bonus": 0
     },
     "reduction": 4,
+    "reductionSauf": [
+      "electrique"
+    ],
+    "immunites": [
+      "poison"
+    ],
     "bm": 2,
     "couvert": 0,
-    "notes": "<p>Peau de métal : −4 aux dégâts reçus.</p>"
+    "notes": "<p>Peau de métal : −4 aux dégâts reçus, sauf électriques. Immunité aux dégâts de poison.</p>"
   },
   "items": [
     {
@@ -102,6 +108,10 @@
           "bonusTouche": 0,
           "zone": null,
           "dureeZone": "",
+          "doubleVehicules": false,
+          "robotsSeulement": false,
+          "jetEffet": "",
+          "effetTexte": "",
           "animation": {
             "style": "",
             "projectile": "",
@@ -163,6 +173,10 @@
           "bonusTouche": 0,
           "zone": null,
           "dureeZone": "",
+          "doubleVehicules": false,
+          "robotsSeulement": false,
+          "jetEffet": "",
+          "effetTexte": "",
           "animation": {
             "style": "",
             "projectile": "",

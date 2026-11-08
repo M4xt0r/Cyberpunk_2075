@@ -73,6 +73,8 @@
       "bonus": 0
     },
     "reduction": 5,
+    "reductionSauf": [],
+    "immunites": [],
     "bm": 2,
     "couvert": 0,
     "notes": "<p>−5 à tous les dégâts reçus.</p>"
@@ -98,6 +100,10 @@
           "bonusTouche": 0,
           "zone": null,
           "dureeZone": "",
+          "doubleVehicules": false,
+          "robotsSeulement": false,
+          "jetEffet": "",
+          "effetTexte": "",
           "animation": {
             "style": "",
             "projectile": "",
@@ -159,6 +165,10 @@
           "bonusTouche": 0,
           "zone": 3,
           "dureeZone": "",
+          "doubleVehicules": false,
+          "robotsSeulement": false,
+          "jetEffet": "",
+          "effetTexte": "",
           "animation": {
             "style": "",
             "projectile": "",

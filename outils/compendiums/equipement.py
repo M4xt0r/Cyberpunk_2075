@@ -16,7 +16,7 @@ def communs(desc="", ambiance="", sansNiveaux=False):
 # =========================================================================
 
 def arme(cle, nom, type, carac, de, prix, bonus=(0, 1, 2), ambiance="", intelligente=False,
-         desc="", sansNiveaux=False, zone=None, defense=None, faitDegats=True, typeDeg=None, dossier=None, image=None):
+         desc="", sansNiveaux=False, zone=None, defense=None, faitDegats=True, typeDeg=None, dossier=None, image=None, **extra):
     td = typeDeg or TYPES_DEG[type]
     niv = [{"prix": p, "de": de, "bonusFixe": b, "typeDegats": td} for p, b in zip(prix, bonus)]
     sys = {
@@ -27,8 +27,7 @@ def arme(cle, nom, type, carac, de, prix, bonus=(0, 1, 2), ambiance="", intellig
         "type": type, "intelligente": intelligente, "munitions": None, "quantite": 1,
         "niveaux": trois(niv)
     }
-    if typeDeg == "poison" and type == "grenade":
-        sys["attaque"]["dureeZone"] = "1d6"
+    sys["attaque"].update(extra)
     doc = item("armes", cle, nom, "arme", image or img("armes", cle), sys, dossier)
     REG[cle] = doc
     return doc
@@ -66,17 +65,22 @@ def armes():
         arme("nekomata", "Nekomata", "sniper", "const", "1d10", (1400, 2100, 2800), bonus=(0, 2, 4), ambiance="Précision sans compromis.", desc=html(regle_sniper), dossier=f("sniper")),
         arme("spt32-grad", "SPT32 Grad", "sniper", "safr", "1d12", (1700, 2550, 3400), bonus=(0, 2, 4), ambiance="De cette arme, il n'y a pas de couverture.", desc=html(regle_sniper), dossier=f("sniper")),
 
-        arme("f-gx-frag", "F-GX Frag Grenade", "grenade", "captec", "1d10", (500,), bonus=(3,), sansNiveaux=True,
-             ambiance="Grenade à main avec charge explosive conventionnelle.", desc=html("1d10+3+Capacité Technique, 5 mètres de rayon."), dossier=f("grenade")),
+        arme("f-gx-frag", "F-GX Frag Grenade", "grenade", "", "1d10 + Explosif", (500,), bonus=(0,), sansNiveaux=True,
+             ambiance="Grenade à main avec charge explosive conventionnelle.", desc=html("1d10+Explosif, 5 mètres de rayon."), dossier=f("grenade")),
         arme("molodets-biohaz", "MOLODETS BioHaz Grenade", "grenade", "", "1d4", (1000,), bonus=(0,), sansNiveaux=True, typeDeg="poison",
-             ambiance="Crée un nuage toxique qui inflige des dégâts chimiques aux ennemis à portée.",
-             desc=html("Crée un nuage de gaz toxique pendant 1d6 tours, dans un rayon de 5 mètres, qui fait 1d4 de dégâts de poison."), dossier=f("grenade")),
+             ambiance="Crée un nuage toxique qui inflige des dégâts chimiques aux ennemis à portée.", dureeZone="Explosif",
+             desc=html("Crée un nuage de gaz toxique dans un rayon de 5 mètres, qui fait 1d4 de dégâts de poison par tour. La compétence Explosif du lanceur définit le nombre de tours."), dossier=f("grenade")),
         arme("x-22-flashbang", "X-22 Flashbang Grenade", "grenade", "", "0", (500,), bonus=(0,), sansNiveaux=True, faitDegats=False,
-             ambiance="Une grenade qui aveugle temporairement les ennemis.", desc=html("Aveugle durant un tour les personnes dans le rayon d'action (5 mètres)."), dossier=f("grenade")),
-        arme("emp", "EMP Grenade", "grenade", "", "0", (1000,), bonus=(0,), sansNiveaux=True, faitDegats=False, typeDeg="iem",
-             ambiance="Émet des ondes électromagnétiques qui infligent des dégâts.", desc=html("Désactive les implants ou les robots dans le rayon d'action (5 mètres) durant 3 tours."), dossier=f("grenade")),
-        arme("c4", "C4", "grenade", "captec", "1d12", (1000,), bonus=(0,), sansNiveaux=True, image="icons/svg/explosion.svg",
-             ambiance="Simple, efficace, on n'en demande pas plus.", desc=html("Se colle sur une surface et explose au bout du temps choisi : 1d12+CapTech de dégâts."), dossier=f("grenade")),
+             jetEffet="1d20 + Explosif", effetTexte="Aveuglé 1 tour",
+             ambiance="Une grenade qui aveugle temporairement les ennemis.",
+             desc=html("Aveugle durant un tour les personnes dans le rayon d'action (5 mètres). Le lanceur lance 1d20+Explosif : toutes les cibles dont l'Attention est supérieure au résultat ne sont pas aveuglées."), dossier=f("grenade")),
+        arme("emp", "EMP Grenade", "grenade", "", "1d4 + Explosif", (1000,), bonus=(0,), sansNiveaux=True, typeDeg="electrique",
+             robotsSeulement=True, effetTexte="Implants ou robot désactivés 3 tours",
+             ambiance="Émet des ondes électromagnétiques qui infligent des dégâts.",
+             desc=html("Désactive les implants ou les robots dans le rayon d'action (5 mètres) durant 3 tours ; les robots dans la zone subissent 1d4+Explosif de dégâts électriques."), dossier=f("grenade")),
+        arme("c4", "C4", "grenade", "", "1d12 + Explosif", (1000,), bonus=(1,), sansNiveaux=True, image="icons/svg/explosion.svg", doubleVehicules=True,
+             ambiance="Simple, efficace, on n'en demande pas plus.",
+             desc=html("Se colle sur une surface et explose au bout du temps choisi : 1d12+1+Explosif de dégâts. Fait le double des dégâts sur les véhicules et bâtiments."), dossier=f("grenade")),
     ]
     return docs
 

@@ -19,6 +19,14 @@ export function champsAttaque() {
       zone: new f.NumberField({ required: false, nullable: true, integer: false, min: 0, initial: null }),
       /** Durée de la zone en tours (formule, ex. « 1d6 ») : la zone reste sur la scène (nuage toxique…). */
       dureeZone: texte(""),
+      /** Dégâts doublés contre les véhicules (et bâtiments) : C4. */
+      doubleVehicules: booleen(false),
+      /** Dégâts seulement sur les robots (et véhicules) : grenade IEM. */
+      robotsSeulement: booleen(false),
+      /** Jet d'effet comparé à l'Attention de chaque cible (ex. « 1d20 + Explosif » : flashbang). */
+      jetEffet: texte(""),
+      /** Effet subi par les cibles (ex. « Aveuglé 1 tour »). */
+      effetTexte: texte(""),
       animation: blocAnimation()
     })
   };
@@ -107,7 +115,7 @@ export const MixinAttaque = Base => class extends Base {
   get varianteGrenade() {
     const t = this.n?.typeDegats;
     if ( t === "poison" ) return { projectile: "projectiles/grenade_gaz.png", zone: "zones/nuage_toxique.webm" };
-    if ( t === "iem" ) return { projectile: "projectiles/grenade_iem.png", zone: "zones/iem.webm" };
+    if ( (t === "iem") || (t === "electrique") ) return { projectile: "projectiles/grenade_iem.png", zone: "zones/iem.webm" };
     if ( !this.attaque.faitDegats ) return { projectile: "projectiles/grenade_flash.png", zone: "zones/flash.webm" };
     return { projectile: "projectiles/grenade.png", zone: "zones/explosion.webm" };
   }
@@ -116,6 +124,6 @@ export const MixinAttaque = Base => class extends Base {
   get dureeZoneEffective() {
     if ( !this.attaque.zone ) return "";
     if ( this.attaque.dureeZone ) return this.attaque.dureeZone;
-    return ((this.typeArme === "grenade") && (this.n?.typeDegats === "poison")) ? "1d6" : "";
+    return ((this.typeArme === "grenade") && (this.n?.typeDegats === "poison")) ? "Explosif" : "";
   }
 };

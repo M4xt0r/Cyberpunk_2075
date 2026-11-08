@@ -5,7 +5,7 @@
   "type": "arme",
   "img": "systems/cyberpunk2075/assets/notion/armes/x-22-flashbang.webp",
   "system": {
-    "description": "<p>Aveugle durant un tour les personnes dans le rayon d'action (5 mètres).</p>",
+    "description": "<p>Aveugle durant un tour les personnes dans le rayon d'action (5 mètres). Le lanceur lance 1d20+Explosif : toutes les cibles dont l'Attention est supérieure au résultat ne sont pas aveuglées.</p>",
     "ambiance": "Une grenade qui aveugle temporairement les ennemis.",
     "sansNiveaux": true,
     "niveau": 1,
@@ -18,6 +18,10 @@
       "bonusTouche": 0,
       "zone": 5,
       "dureeZone": "",
+      "doubleVehicules": false,
+      "robotsSeulement": false,
+      "jetEffet": "1d20 + Explosif",
+      "effetTexte": "Aveuglé 1 tour",
       "animation": {
         "style": "",
         "projectile": "",

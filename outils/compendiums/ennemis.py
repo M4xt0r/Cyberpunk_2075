@@ -40,7 +40,7 @@ def arme_propre(acteur_cle, nom, type, de, bonus, competence=None, zone=None, mu
     return [d]
 
 def ennemi(faction, image, rang, niv, caracs, stats, comps, A=(), B=(), commun=(), nature="organique", volant=False,
-           reduction=0, extra=(), dossier=None, sort=0, notes=""):
+           reduction=0, extra=(), dossier=None, sort=0, notes="", reductionSauf=(), immunites=()):
     cle = slug(f"{faction}-{rang}")
     bonus = dict(zip(CARACS, caracs))
     tot = {k: v + 5 for k, v in bonus.items()}
@@ -64,7 +64,7 @@ def ennemi(faction, image, rang, niv, caracs, stats, comps, A=(), B=(), commun=(
         "ram": {"value": ram, "max": ram, "forcer": force("ram")},
         "humanite": {"value": 0, "max": 100},
         "adaptabilite": {"forcer": force("adapt")}, "glace": {"forcer": force("glace")}, "attention": {"forcer": None},
-        "initiative": {"bonus": 0}, "deplacement": {"bonus": 0}, "reduction": reduction, "bm": 2, "couvert": 0,
+        "initiative": {"bonus": 0}, "deplacement": {"bonus": 0}, "reduction": reduction, "reductionSauf": list(reductionSauf), "immunites": list(immunites), "bm": 2, "couvert": 0,
         "notes": html(notes) if notes else ""
     }
     nom = rang if rang.startswith(faction) else f"{faction} · {rang}"
@@ -109,7 +109,8 @@ def ennemis():
 
     courant = F("Robot RMK2", "robot-rmk2")
     E("Robot RMK2", "Robot RMK2", 2, [3, 3, 0, -2, -2], V(30, 12, 12, 8), {"poing": 4, "lourde": 4, "sniper": 4, "cac": 4},
-      nature="robot", reduction=4, notes="Peau de métal : −4 aux dégâts reçus.",
+      nature="robot", reduction=4, reductionSauf=["electrique"], immunites=["poison"],
+      notes="Peau de métal : −4 aux dégâts reçus, sauf électriques. Immunité aux dégâts de poison.",
       extra=[lambda c: arme_propre(c, "Mitrailleuse intégrée", "mitraillette", "1d8", 3),
              lambda c: arme_propre(c, "Poings hydrauliques", "corpsACorps", "1d10", 3)])
 

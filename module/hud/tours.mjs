@@ -65,7 +65,7 @@ async function tourDeZone(tuile) {
     const jet = await new Roll(z.degats).evaluate();
     const tokens = tokensDans(centre, z.rayon);
     const contenu = await renderTemplate(`${CHEMIN}/templates/chat/degats.hbs`, {
-      acteur: z.nom, heure: heure(), titre: z.nom, typeDegats: TYPES_DEGATS[z.typeDegats] ?? z.typeDegats ?? "",
+      acteur: z.nom, heure: heure(), titre: z.nom, typeDegats: TYPES_DEGATS[z.typeDegats] ?? z.typeDegats ?? "", typeCle: z.typeDegats,
       total: jet.total, detail: `${z.degats} (${jet.dice[0]?.results.map(r => r.result).join(", ") ?? "—"})`,
       zone: `Zone · encore ${Math.max(0, z.tours - 1)} tour(s)`,
       cibles: tokens.map(t => ({ token: t.document.uuid, nom: t.name, montant: jet.total })),

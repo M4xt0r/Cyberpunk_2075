@@ -87,6 +87,8 @@
   <div class="cp-ligne cp-gap8 cp-en-ligne">
     {{#if edition}}
     <label class="cp-c-f">Réduction des dégâts<input class="cp-inp cp-num" type="number" name="system.reduction" value="{{system.reduction}}" min="0"></label>
+    <label class="cp-c-f">Réduction sauf<select class="cp-c-sel cp-c-multiple" name="system.reductionSauf" multiple size="3">{{selectOptions choixDegats selected=system.reductionSauf}}</select></label>
+    <label class="cp-c-f">Immunités<select class="cp-c-sel cp-c-multiple" name="system.immunites" multiple size="3">{{selectOptions choixDegats selected=system.immunites}}</select></label>
     <label class="cp-c-f">Initiative (bonus)<input class="cp-inp cp-num" type="number" name="system.initiative.bonus" value="{{system.initiative.bonus}}"></label>
     <label class="cp-c-f">BM (formules @bm)<input class="cp-inp cp-num" type="number" name="system.bm" value="{{system.bm}}" min="0"></label>
     <label class="cp-c-f">Humanité<input class="cp-inp cp-num" type="number" name="system.humanite.value" value="{{system.humanite.value}}" min="0"></label>
@@ -94,7 +96,8 @@
     <button type="button" class="cp-en-mini cp-jetable" data-action="jetInitiative" title="Jet d'initiative"><span class="cp-lbl cp-doux">Init.</span><span class="cp-num">{{initiative}}</span></button>
     <span class="cp-en-mini"><span class="cp-lbl cp-doux">Attention</span><span class="cp-num">{{attention}}</span></span>
     <span class="cp-en-mini"><span class="cp-lbl cp-doux">Dépl.</span><span class="cp-num">{{system.deplacement.valeur}} m</span></span>
-    <span class="cp-en-mini {{#if system.reductionTotale}}cp-en-mini-fort{{/if}}"><span class="cp-lbl cp-doux">Réduction</span><span class="cp-num">{{#if system.reductionTotale}}−{{system.reductionTotale}}{{else}}—{{/if}}</span></span>
+    <span class="cp-en-mini {{#if system.reductionTotale}}cp-en-mini-fort{{/if}}" {{#if reductionSaufTexte}}title="Sauf {{reductionSaufTexte}}"{{/if}}><span class="cp-lbl cp-doux">Réduction</span><span class="cp-num">{{#if system.reductionTotale}}−{{system.reductionTotale}}{{#if reductionSaufTexte}} <small>sauf {{reductionSaufTexte}}</small>{{/if}}{{else}}—{{/if}}</span></span>
+    {{#if immunitesTexte}}<span class="cp-en-mini cp-en-mini-fort"><span class="cp-lbl cp-doux">Immunité</span><span class="cp-num">{{immunitesTexte}}</span></span>{{/if}}
     <span class="cp-en-mini"><span class="cp-lbl cp-doux">Hum.</span><span class="cp-num"><input class="cp-mini-inp cp-num" type="number" name="system.humanite.value" value="{{system.humanite.value}}" aria-label="Humanité" {{#unless peutModifier}}disabled{{/unless}}>💀</span></span>
     <label class="cp-en-mini"><span class="cp-lbl cp-doux">Couvert</span><select class="cp-en-sel" name="system.couvert" {{#unless peutModifier}}disabled{{/unless}}>{{selectOptions couverts selected=system.couvert}}</select></label>
     {{/if}}

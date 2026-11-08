@@ -1,7 +1,7 @@
 <div class="cp-msg {{#if critique}}cp-msg-critique{{/if}}">
   <div class="cp-msg-qui"><span>{{acteur}}</span><span>{{heure}}</span></div>
   <div class="cp-msg-etiquette">
-    <span class="cp-msg-type">Dégâts · {{typeDegats}}</span>
+    <span class="cp-msg-type">{{#if titreType}}{{titreType}}{{else}}Dégâts · {{typeDegats}}{{/if}}</span>
     <span class="cp-msg-titre">{{titre}}</span>
     {{#if critique}}<span class="cp-msg-type">Critique</span>{{/if}}
   </div>
@@ -11,18 +11,22 @@
       <span class="cp-num cp-msg-detail">{{detail}}</span>
       {{#if zone}}<span>{{zone}}</span>{{/if}}
       {{#if reglePompe}}<span class="cp-msg-nat">{{reglePompe}}</span>{{/if}}
+      {{#if regleRobots}}<span class="cp-msg-nat">{{regleRobots}}</span>{{/if}}
+      {{#if effetGeneral}}<span>{{effetGeneral}}</span>{{/if}}
     </div>
   </div>
 
   {{#each cibles}}
   <div class="cp-msg-cible">
-    <span class="cp-pousse">{{nom}}{{#if zone}} <span class="cp-msg-source">· dans la zone</span>{{/if}}{{#if horsPortee}} <span class="cp-msg-source">· ½ hors portée</span>{{/if}}</span>
+    <span class="cp-pousse">{{nom}}{{#if zone}} <span class="cp-msg-source">· dans la zone</span>{{/if}}{{#if horsPortee}} <span class="cp-msg-source">· ½ hors portée</span>{{/if}}{{#if notes}} <span class="cp-msg-source">· {{notes}}</span>{{/if}}{{#if effet}}<br><span class="cp-msg-source cp-jaune">{{effet}}</span>{{/if}}</span>
+    {{#unless sansDegats}}
     <span class="cp-num">{{montant}}</span>
     <span class="cp-msg-mini cp-mj-seul">
-      <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-montant="{{montant}}" data-cible="{{token}}" title="Appliquer les dégâts">Appliquer</button>
-      <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-montant="{{montant}}" data-facteur="0.5" data-cible="{{token}}" title="Moitié des dégâts">½</button>
-      <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-montant="{{montant}}" data-facteur="2" data-cible="{{token}}" title="Double des dégâts">×2</button>
+      <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-type-degats="{{@root.typeCle}}" data-montant="{{montant}}" data-cible="{{token}}" title="Appliquer les dégâts">Appliquer</button>
+      <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-type-degats="{{@root.typeCle}}" data-montant="{{montant}}" data-facteur="0.5" data-cible="{{token}}" title="Moitié des dégâts">½</button>
+      <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-type-degats="{{@root.typeCle}}" data-montant="{{montant}}" data-facteur="2" data-cible="{{token}}" title="Double des dégâts">×2</button>
     </span>
+    {{/unless}}
   </div>
   {{/each}}
 
@@ -34,9 +38,9 @@
 
   {{#if sansCible}}
   <div class="cp-msg-boutons cp-mj-seul">
-    <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-montant="{{total}}" title="Aux tokens sélectionnés">Appliquer</button>
-    <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-montant="{{total}}" data-facteur="0.5">½</button>
-    <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-montant="{{total}}" data-facteur="2">×2</button>
+    <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-type-degats="{{@root.typeCle}}" data-montant="{{total}}" title="Aux tokens sélectionnés">Appliquer</button>
+    <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-type-degats="{{@root.typeCle}}" data-montant="{{total}}" data-facteur="0.5">½</button>
+    <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-type-degats="{{@root.typeCle}}" data-montant="{{total}}" data-facteur="2">×2</button>
     <span class="cp-msg-source cp-pousse">aux tokens sélectionnés · MJ</span>
   </div>
   {{/if}}

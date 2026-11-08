@@ -18,6 +18,10 @@
       "bonusTouche": 1,
       "zone": null,
       "dureeZone": "",
+      "doubleVehicules": false,
+      "robotsSeulement": false,
+      "jetEffet": "",
+      "effetTexte": "",
       "animation": {
         "style": "",
         "projectile": "",

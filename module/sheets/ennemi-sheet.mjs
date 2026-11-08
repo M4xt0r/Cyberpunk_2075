@@ -1,4 +1,4 @@
-import { CHEMIN, CARACS, COMPETENCES, COUVERTS, NIVEAUX, TYPES_ARME, EMPLACEMENTS } from "../config.mjs";
+import { TYPES_DEGATS, CHEMIN, CARACS, COMPETENCES, COUVERTS, NIVEAUX, TYPES_ARME, EMPLACEMENTS } from "../config.mjs";
 import { RANGS, buildDe, dansBuild } from "../data/ennemi.mjs";
 import { signe } from "../dice/jets.mjs";
 
@@ -122,6 +122,9 @@ export default class FicheEnnemi extends HandlebarsApplicationMixin(ActorSheetV2
       toutesCompetences: Object.fromEntries(Object.entries(COMPETENCES).map(([k, v]) => [k, v.label])),
       choixRangs: Object.fromEntries(Object.entries(RANGS).map(([k, v]) => [k, `${NIVEAUX[k].label} · ${v.label}`])),
       choixNatures: { organique: "Organique", robot: "Robot" },
+      choixDegats: { ...TYPES_DEGATS },
+      reductionSaufTexte: (s.reductionSauf ?? []).map(t => TYPES_DEGATS[t] ?? t).join(", ").toLowerCase(),
+      immunitesTexte: (s.immunites ?? []).map(t => TYPES_DEGATS[t] ?? t).join(", "),
       choixYeux: { auto: `Auto (${s.yeuxCyberEffectif ? "oui" : "non"})`, oui: "Oui", non: "Non" },
       choixBuilds: { "": "Commun", A: "Build A", B: "Build B" },
       items,

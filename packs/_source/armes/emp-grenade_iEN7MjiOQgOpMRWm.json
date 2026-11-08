@@ -5,7 +5,7 @@
   "type": "arme",
   "img": "systems/cyberpunk2075/assets/notion/armes/emp.webp",
   "system": {
-    "description": "<p>Désactive les implants ou les robots dans le rayon d'action (5 mètres) durant 3 tours.</p>",
+    "description": "<p>Désactive les implants ou les robots dans le rayon d'action (5 mètres) durant 3 tours ; les robots dans la zone subissent 1d4+Explosif de dégâts électriques.</p>",
     "ambiance": "Émet des ondes électromagnétiques qui infligent des dégâts.",
     "sansNiveaux": true,
     "niveau": 1,
@@ -13,11 +13,15 @@
     "carac": "",
     "portee": null,
     "attaque": {
-      "faitDegats": false,
+      "faitDegats": true,
       "defense": "aucune",
       "bonusTouche": 0,
       "zone": 5,
       "dureeZone": "",
+      "doubleVehicules": false,
+      "robotsSeulement": true,
+      "jetEffet": "",
+      "effetTexte": "Implants ou robot désactivés 3 tours",
       "animation": {
         "style": "",
         "projectile": "",
@@ -33,21 +37,21 @@
     "niveaux": {
       "n1": {
         "prix": 1000,
-        "de": "0",
+        "de": "1d4 + Explosif",
         "bonusFixe": 0,
-        "typeDegats": "iem"
+        "typeDegats": "electrique"
       },
       "n2": {
         "prix": 1000,
-        "de": "0",
+        "de": "1d4 + Explosif",
         "bonusFixe": 0,
-        "typeDegats": "iem"
+        "typeDegats": "electrique"
       },
       "n3": {
         "prix": 1000,
-        "de": "0",
+        "de": "1d4 + Explosif",
         "bonusFixe": 0,
-        "typeDegats": "iem"
+        "typeDegats": "electrique"
       }
     }
   },

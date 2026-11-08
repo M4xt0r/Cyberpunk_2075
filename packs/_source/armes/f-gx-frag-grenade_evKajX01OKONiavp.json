@@ -5,12 +5,12 @@
   "type": "arme",
   "img": "systems/cyberpunk2075/assets/notion/armes/f-gx-frag.webp",
   "system": {
-    "description": "<p>1d10+3+Capacité Technique, 5 mètres de rayon.</p>",
+    "description": "<p>1d10+Explosif, 5 mètres de rayon.</p>",
     "ambiance": "Grenade à main avec charge explosive conventionnelle.",
     "sansNiveaux": true,
     "niveau": 1,
     "competence": "explosif",
-    "carac": "captec",
+    "carac": "",
     "portee": null,
     "attaque": {
       "faitDegats": true,
@@ -18,6 +18,10 @@
       "bonusTouche": 0,
       "zone": 5,
       "dureeZone": "",
+      "doubleVehicules": false,
+      "robotsSeulement": false,
+      "jetEffet": "",
+      "effetTexte": "",
       "animation": {
         "style": "",
         "projectile": "",
@@ -33,20 +37,20 @@
     "niveaux": {
       "n1": {
         "prix": 500,
-        "de": "1d10",
-        "bonusFixe": 3,
+        "de": "1d10 + Explosif",
+        "bonusFixe": 0,
         "typeDegats": "explosion"
       },
       "n2": {
         "prix": 500,
-        "de": "1d10",
-        "bonusFixe": 3,
+        "de": "1d10 + Explosif",
+        "bonusFixe": 0,
         "typeDegats": "explosion"
       },
       "n3": {
         "prix": 500,
-        "de": "1d10",
-        "bonusFixe": 3,
+        "de": "1d10 + Explosif",
+        "bonusFixe": 0,
         "typeDegats": "explosion"
       }
     }

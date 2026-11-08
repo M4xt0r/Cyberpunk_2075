@@ -51,7 +51,7 @@ async function surAction(message, bouton) {
   if ( action === "appliquerTous" ) {
     bouton.disabled = true;
     const lignes = bouton.closest(".cp-msg")?.querySelectorAll("[data-cp-action='appliquer'][data-cible]:not([data-facteur])") ?? [];
-    for ( const b of lignes ) await appliquer("degats", Number(b.dataset.montant), [b.dataset.cible], { attaquant: d.acteur, arme: d.item });
+    for ( const b of lignes ) await appliquer("degats", Number(b.dataset.montant), [b.dataset.cible], { attaquant: d.acteur, arme: d.item, typeDegats: b.dataset.typeDegats ?? "" });
     return;
   }
 
@@ -61,7 +61,7 @@ async function surAction(message, bouton) {
     const montant = Math.floor(Number(bouton.dataset.montant ?? d.total ?? 0) * facteur);
     let cible = bouton.dataset.cible ?? "";
     if ( cible === "soi" ) cible = d.acteur;
-    return appliquer(nature, montant, cible ? [cible] : [], { attaquant: (d.type === "degats") ? d.acteur : null, arme: d.item });
+    return appliquer(nature, montant, cible ? [cible] : [], { attaquant: (d.type === "degats") ? d.acteur : null, arme: d.item, typeDegats: bouton.dataset.typeDegats ?? "" });
   }
 }
 

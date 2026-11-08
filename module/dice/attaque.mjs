@@ -296,9 +296,27 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   supplements.forEach((sup, i) => detail.push(`+ ${sup.label} ${sup.de} (${des[1 + i]?.results.map(r => r.result).join(", ") ?? "—"})`));
   if ( avecCritique ) detail.push(`+ crit ${sys.deCritique} (${des.at(-1)?.results.map(r => r.result).join(", ")})`);
 
+  // Jet d'effet (flashbang : 1d20 + Explosif contre l'Attention de chaque cible)
+  const a = sys.attaque;
+  let jetEffet = null;
+  if ( a.jetEffet ) jetEffet = await new Roll(traduireFormule(a.jetEffet), acteur.getRollData()).evaluate();
+
   const lignes = touchees.map(c => {
-    const montant = c.horsPortee ? Math.floor(jet.total / 2) : jet.total;
-    return { ...c, montant };
+    const cible = fromUuidSync(c.token, { strict: false });
+    const ca = cible?.actor ?? ((cible instanceof Actor) ? cible : null);
+    const robot = (ca?.type === "vehicule") || (ca?.system?.nature === "robot");
+    let montant = c.horsPortee ? Math.floor(jet.total / 2) : jet.total;
+    const notes = [];
+    let sansDegats = !a.faitDegats;
+    if ( a.robotsSeulement && !robot ) sansDegats = true;
+    if ( a.doubleVehicules && (ca?.type === "vehicule") ) { montant *= 2; notes.push("×2 véhicule"); }
+    let effet = a.effetTexte || null;
+    if ( jetEffet ) {
+      const attention = ca?.system?.attention?.valeur;
+      if ( Number.isFinite(attention) && (attention > jetEffet.total) ) effet = `Résiste (Attention ${attention})`;
+      else if ( effet && Number.isFinite(attention) ) effet = `${effet} (Attention ${attention})`;
+    }
+    return { ...c, montant: sansDegats ? 0 : montant, sansDegats, effet, notes: notes.join(" · ") };
   });
 
   // Grenades : consommées au lancer
@@ -317,7 +335,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   if ( duree && canvas?.ready ) {
     const centre = point ?? tokensCibles[0]?.center ?? fromUuidSync(touchees[0]?.token ?? "", { strict: false })?.object?.center ?? null;
     if ( centre ) {
-      const jetDuree = await new Roll(duree, acteur.getRollData()).evaluate();
+      const jetDuree = await new Roll(traduireFormule(duree), acteur.getRollData()).evaluate();
       const tours = Math.max(0, jetDuree.total);
       if ( tours > 0 ) {
         zonePersistante = {
@@ -336,12 +354,16 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     heure: new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }),
     titre: item.name,
     typeDegats,
+    typeCle: n.typeDegats,
+    titreType: a.faitDegats ? null : "Effet",
     critique: avecCritique,
-    total: jet.total,
-    detail: detail.join(" "),
+    total: a.faitDegats ? jet.total : (jetEffet?.total ?? "—"),
+    detail: a.faitDegats ? detail.join(" ") : (jetEffet ? `${a.jetEffet} (${jetEffet.dice[0]?.results.map(r => r.result).join(", ") ?? "—"}) contre l'Attention` : ""),
+    effetGeneral: !lignes.length ? (a.effetTexte || null) : null,
+    regleRobots: a.robotsSeulement && a.faitDegats ? "Dégâts seulement sur les robots et véhicules" : null,
     cibles: lignes,
-    sansCible: !lignes.length,
-    plusieurs: lignes.length > 1,
+    sansCible: !lignes.length && a.faitDegats,
+    plusieurs: lignes.filter(l => !l.sansDegats).length > 1,
     zone: texteZone,
     reglePompe: lignes.some(l => l.horsPortee) ? "Hors portée (15 m) : moitié des dégâts" : null
   };
@@ -349,7 +371,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   return ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor: acteur, token: source?.document }),
     content: contenu,
-    rolls: [jet],
+    rolls: jetEffet ? [jet, jetEffet] : [jet],
     flags: { cyberpunk2075: { type: "degats", acteur: acteur.uuid, item: item.uuid, total: jet.total, animation, zonePersistante } }
   });
 }
@@ -370,7 +392,7 @@ async function acteurDepuis(uuid) {
  * @param {number} montant
  * @param {string[]} uuids  Tokens ou acteurs ; vide = tokens sélectionnés.
  */
-export async function appliquer(nature, montant, uuids = [], { attaquant = null, arme = null } = {}) {
+export async function appliquer(nature, montant, uuids = [], { attaquant = null, arme = null, typeDegats = "" } = {}) {
   let acteurs = [];
   if ( uuids.length ) acteurs = (await Promise.all(uuids.map(acteurDepuis))).filter(a => a);
   else acteurs = canvas.tokens.controlled.map(t => t.actor).filter(a => a);
@@ -385,8 +407,8 @@ export async function appliquer(nature, montant, uuids = [], { attaquant = null,
       const r = await a.recevoirSoin(montant);
       ui.notifications.info(`${a.name} : +${r.apres - r.avant} PV (${r.avant} → ${r.apres})${r.releve ? " · +1 stress" : ""}`);
     } else {
-      const r = await a.subirDegats(montant);
-      const reduit = r.reduit ? ` · ${r.reduit} absorbés` : "";
+      const r = await a.subirDegats(montant, { typeDegats });
+      const reduit = r.immunise ? ` · immunisé (${TYPES_DEGATS[typeDegats] ?? typeDegats})` : (r.reduit ? ` · ${r.reduit} absorbés` : "");
       ui.notifications.info(`${a.name} : −${r.avant - r.apres} PV (${r.avant} → ${r.apres})${reduit}`);
       if ( (r.avant > 0) && (r.apres === 0) && attaquant ) await humaniteParKill(attaquant, a, arme);
     }

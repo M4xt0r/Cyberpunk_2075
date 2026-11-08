@@ -69,6 +69,8 @@
       "bonus": 0
     },
     "reduction": 0,
+    "reductionSauf": [],
+    "immunites": [],
     "bm": 2,
     "couvert": 0,
     "notes": ""
@@ -94,6 +96,10 @@
           "bonusTouche": 0,
           "zone": null,
           "dureeZone": "",
+          "doubleVehicules": false,
+          "robotsSeulement": false,
+          "jetEffet": "",
+          "effetTexte": "",
           "animation": {
             "style": "",
             "projectile": "",
@@ -155,6 +161,10 @@
           "bonusTouche": 0,
           "zone": null,
           "dureeZone": "",
+          "doubleVehicules": false,
+          "robotsSeulement": false,
+          "jetEffet": "",
+          "effetTexte": "",
           "animation": {
             "style": "",
             "projectile": "",
@@ -220,6 +230,10 @@
           "bonusTouche": 0,
           "zone": null,
           "dureeZone": "",
+          "doubleVehicules": false,
+          "robotsSeulement": false,
+          "jetEffet": "",
+          "effetTexte": "",
           "animation": {
             "style": "",
             "projectile": "",
@@ -450,6 +464,10 @@
           "bonusTouche": 2,
           "zone": null,
           "dureeZone": "",
+          "doubleVehicules": false,
+          "robotsSeulement": false,
+          "jetEffet": "",
+          "effetTexte": "",
           "animation": {
             "style": "",
             "projectile": "",

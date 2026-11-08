@@ -5,7 +5,7 @@
   "type": "arme",
   "img": "systems/cyberpunk2075/assets/notion/armes/molodets-biohaz.webp",
   "system": {
-    "description": "<p>Crée un nuage de gaz toxique pendant 1d6 tours, dans un rayon de 5 mètres, qui fait 1d4 de dégâts de poison.</p>",
+    "description": "<p>Crée un nuage de gaz toxique dans un rayon de 5 mètres, qui fait 1d4 de dégâts de poison par tour. La compétence Explosif du lanceur définit le nombre de tours.</p>",
     "ambiance": "Crée un nuage toxique qui inflige des dégâts chimiques aux ennemis à portée.",
     "sansNiveaux": true,
     "niveau": 1,
@@ -17,7 +17,11 @@
       "defense": "aucune",
       "bonusTouche": 0,
       "zone": 5,
-      "dureeZone": "1d6",
+      "dureeZone": "Explosif",
+      "doubleVehicules": false,
+      "robotsSeulement": false,
+      "jetEffet": "",
+      "effetTexte": "",
       "animation": {
         "style": "",
         "projectile": "",
