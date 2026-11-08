@@ -1,0 +1,14 @@
+<div class="cp-msg">
+  <div class="cp-msg-qui"><span>{{acteur}}</span><span>{{heure}}</span></div>
+  <div class="cp-msg-etiquette">
+    <span class="cp-msg-type">Jet libre</span>
+    <span class="cp-msg-titre">{{formule}}</span>
+  </div>
+  <div class="cp-msg-puce">
+    <span class="cp-msg-total">{{total}}</span>
+    <div class="cp-msg-des">
+      <span class="cp-num cp-msg-detail">{{formule}} ({{#each resultats}}{{this}}{{#unless @last}}, {{/unless}}{{/each}})</span>
+    </div>
+  </div>
+  <div class="cp-msg-broches"></div>
+</div>

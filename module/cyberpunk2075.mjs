@@ -122,6 +122,7 @@ Hooks.once("init", () => {
     `${CHEMIN}/templates/actor/personnage/bio.hbs`,
     `${CHEMIN}/templates/actor/personnage/partials/emplacement.hbs`,
     `${CHEMIN}/templates/chat/jet.hbs`,
+    `${CHEMIN}/templates/chat/des.hbs`,
     `${CHEMIN}/templates/chat/attaque.hbs`,
     `${CHEMIN}/templates/chat/degats.hbs`,
     `${CHEMIN}/templates/chat/hack.hbs`,

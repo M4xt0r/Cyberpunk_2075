@@ -253,11 +253,19 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
     const faces = Number(cible.dataset.faces);
     if ( !faces ) return;
     const acteur = this.acteur;
-    const jet = await new Roll(`${this._nbDes}d${faces}`).evaluate();
-    return jet.toMessage({
+    const formule = `${this._nbDes}d${faces}`;
+    const jet = await new Roll(formule).evaluate();
+    const content = await foundry.applications.handlebars.renderTemplate(`${CHEMIN}/templates/chat/des.hbs`, {
+      acteur: acteur?.name ?? game.user.name,
+      heure: new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }),
+      formule, total: jet.total, resultats: jet.dice[0]?.results.map(r => r.result) ?? []
+    });
+    const donnees = {
       speaker: acteur ? ChatMessage.getSpeaker({ actor: acteur }) : ChatMessage.getSpeaker(),
-      flavor: "Jet libre"
-    }, { rollMode: game.settings.get("core", "rollMode") });
+      content, rolls: [jet], flags: { cyberpunk2075: { type: "jet" } }
+    };
+    ChatMessage.applyRollMode(donnees, game.settings.get("core", "rollMode"));
+    return ChatMessage.create(donnees);
   }
 
   static async #ouvrirFiche() {
