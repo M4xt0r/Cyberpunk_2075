@@ -32,11 +32,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - name: Mettre le lien de téléchargement dans system.json
+      # L'archive est aussi servie depuis la branche « dist » (raw.githubusercontent.com),
+      # plus fiable que les téléchargements de publication quand ceux-ci expirent (504).
+      - name: Mettre les liens dans system.json
         if: steps.version.outputs.existe == 'non'
         run: |
-          URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/v${{ steps.version.outputs.version }}/cyberpunk2075.zip"
-          jq --arg d "$URL" '.download = $d' system.json > system.tmp
+          RAW="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/dist"
+          jq --arg d "$RAW/v${{ steps.version.outputs.version }}/cyberpunk2075.zip" --arg m "$RAW/system.json" \
+            '.download = $d | .manifest = $m' system.json > system.tmp
           mv system.tmp system.json
 
       - uses: actions/setup-node@v4
@@ -53,6 +56,31 @@ jobs:
       - name: Créer l'archive
         if: steps.version.outputs.existe == 'non'
         run: zip -r cyberpunk2075.zip system.json module templates styles lang assets packs README.md -x "packs/_source/*"
+
+      - name: Déposer l'archive sur la branche dist
+        if: steps.version.outputs.existe == 'non'
+        run: |
+          V="v${{ steps.version.outputs.version }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin dist > /dev/null; then
+            git clone --quiet --depth 1 --branch dist "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" dist
+          else
+            mkdir dist && git -C dist init --quiet -b dist
+            git -C dist remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          fi
+          git -C dist config user.name "github-actions[bot]"
+          git -C dist config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p "dist/$V"
+          cp cyberpunk2075.zip "dist/$V/cyberpunk2075.zip"
+          cp system.json dist/system.json
+          # Garde les 5 dernières versions
+          ls -1d dist/v*/ | sort -V | head -n -5 | xargs -r rm -rf
+          git -C dist add -A
+          git -C dist commit --quiet -m "Archive $V"
+          git -C dist push --quiet origin dist
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Publier
         if: steps.version.outputs.existe == 'non'
