@@ -95,6 +95,12 @@ export default class HackData extends ItemBase {
     return defaut ? `${ANIM}/${defaut}` : "";
   }
 
+  /** Ping : jet contre la Glace de tous les ennemis de la scène, marqueurs sur ceux détectés. */
+  get estPing() {
+    const nom = (this.parent?.name ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+    return (this.special === "ping") || (nom === "ping");
+  }
+
   get glitch() {
     return this.animation.glitch ? `${ANIM}/impacts/glitch.webm` : "";
   }

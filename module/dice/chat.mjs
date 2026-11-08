@@ -6,6 +6,7 @@ import { forcerHack } from "./hack.mjs";
 import { jouerAnimation } from "../animations.mjs";
 import { creerZonePersistante, estMJActif } from "../hud/tours.mjs";
 import { combatEnCours, lancerInitiative, lancerInitiativeGroupe } from "../hud/combat.mjs";
+import { ajouterPings } from "../hud/pings.mjs";
 
 const drapeaux = message => message.flags?.cyberpunk2075 ?? {};
 
@@ -78,6 +79,8 @@ async function surAction(message, bouton) {
 /** Nouveau message : chaque client joue l'animation sur sa scène affichée. */
 export async function surCreationMessage(message) {
   const d = drapeaux(message);
+  // Ping : le MJ actif enregistre les marques sur la scène
+  if ( (d.type === "ping") && d.ping && estMJActif() ) ajouterPings(d.ping).catch(err => console.warn("Cyberpunk 2075 | Ping :", err));
   const liste = [d.animation, ...(d.animations ?? [])].filter(a => a);
   const zone = d.zonePersistante;
   if ( (!liste.length || !canvas?.ready) && !zone ) return;

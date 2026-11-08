@@ -5,7 +5,7 @@
   "type": "hack",
   "img": "systems/cyberpunk2075/assets/hacks/ping.webp",
   "system": {
-    "description": "<p>Localise et détecte le nombre d'ennemis connectés au réseau local.</p>",
+    "description": "<p>Localise et détecte le nombre d'ennemis connectés au réseau local. Lancer 1d20+Piratage : tous les ennemis avec une Glace supérieure restent cachés.</p>",
     "ambiance": "",
     "prix": 1000,
     "ram": 8,
@@ -28,8 +28,8 @@
       "lanceur": 0
     },
     "duree": 0,
-    "effet": "Localise et détecte le nombre d'ennemis connectés au réseau local.",
-    "special": "",
+    "effet": "Localise et détecte le nombre d'ennemis connectés au réseau local. Lancer 1d20+Piratage : tous les ennemis avec une Glace supérieure restent cachés.",
+    "special": "ping",
     "animation": {
       "glitch": true,
       "impact": "",

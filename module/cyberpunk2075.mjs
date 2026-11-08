@@ -25,6 +25,7 @@ import BarreActions from "./hud/barre.mjs";
 import { ajouterBoutonTour, decompterEffets, majBoutonCombat, zonesAuTourDe } from "./hud/tours.mjs";
 import FriseCombat from "./hud/frise.mjs";
 import { brancherDeplacements } from "./hud/combat.mjs";
+import { dessinerPings, retirerPingsDe } from "./hud/pings.mjs";
 import { chargerIndicateurs, dessinerIndicateurs, redessinerActeur } from "./hud/indicateurs.mjs";
 
 const { ID_SYSTEME, CHEMIN } = CONFIG_CP;
@@ -174,6 +175,7 @@ Hooks.on("updateCombat", async (combat, changements, options) => {
   if ( acteur.type === "personnage" ) await tourDeCombat(acteur);
   await decompterEffets(acteur);
   await zonesAuTourDe(combattant);
+  await retirerPingsDe(combattant);
 });
 
 /** Nouveau personnage : le token est lié à la fiche et voit la scène. */
@@ -334,3 +336,15 @@ Hooks.once("ready", async () => {
     if ( majs.length ) await acteur.updateEmbeddedDocuments("Item", majs).catch(() => null);
   }
 });
+
+// Marques du hack Ping : redessinées quand la scène, ses drapeaux ou les tokens marqués changent
+const redessinerPings = foundry.utils.debounce(() => dessinerPings().catch(() => null), 100);
+Hooks.on("canvasReady", redessinerPings);
+Hooks.on("updateScene", (scene, changements) => {
+  if ( (scene.id === canvas?.scene?.id) && foundry.utils.hasProperty(changements, "flags.cyberpunk2075") ) redessinerPings();
+});
+for ( const crochet of ["updateToken", "deleteToken"] ) {
+  Hooks.on(crochet, doc => {
+    if ( (doc.parent?.id === canvas?.scene?.id) && (canvas.scene.flags?.cyberpunk2075?.pings ?? []).some(x => x.cible === doc.id) ) redessinerPings();
+  });
+}

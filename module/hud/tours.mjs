@@ -6,6 +6,7 @@
 import { CHEMIN, TYPES_DEGATS } from "../config.mjs";
 import { tourDeCombat } from "../documents/humanite.mjs";
 import { combatEnCours, lancerCombat, finirCombat, tourSuivantCombat } from "./combat.mjs";
+import { retirerTousLesPings } from "./pings.mjs";
 
 const renderTemplate = (...args) => foundry.applications.handlebars.renderTemplate(...args);
 const heure = () => new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
@@ -130,6 +131,7 @@ export async function passerTour() {
   if ( combat ) return tourSuivantCombat(combat);
 
   await note("<b>Tour suivant</b>");
+  await retirerTousLesPings();
 
   // Acteurs : personnages du monde et acteurs des tokens de la scène affichée (ennemis non liés)
   const acteurs = new Map();
