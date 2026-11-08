@@ -67,6 +67,8 @@ Hooks.once("init", () => {
 
   // Initiative : 1d20 + bonus (Processeur tactique…)
   CONFIG.Combat.initiative = { formula: "1d20 + @initiative", decimals: 0 };
+  // Marqueur du token qui joue : réticule jaune (au lieu du logo Foundry)
+  CONFIG.Combat.fallbackTurnMarker = `${CHEMIN}/assets/icones/reticule.svg`;
 
   // Fiches
   const { DocumentSheetConfig } = foundry.applications.apps;
@@ -264,3 +266,14 @@ for ( const crochet of ["createCombat", "updateCombat", "deleteCombat", "createC
 }
 Hooks.on("updateActor", () => frise?.rafraichir());
 Hooks.on("updateToken", () => frise?.rafraichir());
+
+// Fin du combat : retire le marqueur de tour resté sur les tokens
+Hooks.on("deleteCombat", () => {
+  if ( !canvas?.ready ) return;
+  for ( const t of canvas.tokens.placeables ) {
+    try {
+      t.renderFlags?.set({ refreshTurnMarker: true });
+      t._refreshTurnMarker?.();
+    } catch (err) { console.warn("Cyberpunk 2075 | Marqueur de tour :", err); }
+  }
+});
