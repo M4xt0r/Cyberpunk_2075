@@ -3,7 +3,7 @@
   "_key": "!actors!14J4dk9LqXI4luf7",
   "name": "Maelstrom · Techie",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/maelstrom.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/maelstrom_techie.webp",
   "system": {
     "faction": "Maelstrom",
     "rang": "Techie",
@@ -822,7 +822,7 @@
   "prototypeToken": {
     "name": "Maelstrom · Techie",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/maelstrom.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/maelstrom_techie.webp"
     },
     "width": 1,
     "height": 1,

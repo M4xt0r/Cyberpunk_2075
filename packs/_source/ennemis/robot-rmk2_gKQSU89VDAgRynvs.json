@@ -3,7 +3,7 @@
   "_key": "!actors!gKQSU89VDAgRynvs",
   "name": "Robot RMK2",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/robot-rmk2.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/robot_rmk2.webp",
   "system": {
     "faction": "Robot RMK2",
     "rang": "Robot RMK2",
@@ -229,7 +229,7 @@
   "prototypeToken": {
     "name": "Robot RMK2",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/robot-rmk2.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/robot_rmk2.webp"
     },
     "width": 1,
     "height": 1,

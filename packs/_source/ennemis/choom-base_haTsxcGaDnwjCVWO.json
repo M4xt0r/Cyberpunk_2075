@@ -3,7 +3,7 @@
   "_key": "!actors!haTsxcGaDnwjCVWO",
   "name": "Choom · Base",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/choom.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/choom_base.webp",
   "system": {
     "faction": "Choom",
     "rang": "Base",
@@ -225,7 +225,7 @@
   "prototypeToken": {
     "name": "Choom · Base",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/choom.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/choom_base.webp"
     },
     "width": 1,
     "height": 1,

@@ -3,7 +3,7 @@
   "_key": "!actors!RuQh9nhgqtskWBli",
   "name": "Maelstrom · Borg",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/maelstrom.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/maelstrom_borg.webp",
   "system": {
     "faction": "Maelstrom",
     "rang": "Borg",
@@ -1038,7 +1038,7 @@
   "prototypeToken": {
     "name": "Maelstrom · Borg",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/maelstrom.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/maelstrom_borg.webp"
     },
     "width": 1,
     "height": 1,

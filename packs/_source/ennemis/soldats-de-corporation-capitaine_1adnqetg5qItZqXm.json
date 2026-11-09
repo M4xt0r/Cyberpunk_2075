@@ -3,7 +3,7 @@
   "_key": "!actors!1adnqetg5qItZqXm",
   "name": "Soldats de corporation · Capitaine",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/corpo.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/corpo_generique_noir_capitaine.webp",
   "system": {
     "faction": "Soldats de corporation",
     "rang": "Capitaine",
@@ -1251,7 +1251,7 @@
   "prototypeToken": {
     "name": "Soldats de corporation · Capitaine",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/corpo.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/corpo_generique_noir_capitaine.webp"
     },
     "width": 1,
     "height": 1,

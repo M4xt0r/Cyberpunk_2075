@@ -3,7 +3,7 @@
   "_key": "!actors!giywT58U59oVVz0S",
   "name": "Choom · Garde du corps",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/choom.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/choom_garde_du_corps.webp",
   "system": {
     "faction": "Choom",
     "rang": "Garde du corps",
@@ -383,7 +383,7 @@
   "prototypeToken": {
     "name": "Choom · Garde du corps",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/choom.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/choom_garde_du_corps.webp"
     },
     "width": 1,
     "height": 1,

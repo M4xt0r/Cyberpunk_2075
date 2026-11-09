@@ -3,7 +3,7 @@
   "_key": "!actors!SLPlIVwoWYwpcP9A",
   "name": "Wyvern · Assaut",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/wyvern.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/drone_wyvern.webp",
   "system": {
     "faction": "Wyvern",
     "rang": "Wyvern · Assaut",
@@ -221,7 +221,7 @@
   "prototypeToken": {
     "name": "Wyvern · Assaut",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/wyvern.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/drone_wyvern.webp"
     },
     "width": 1,
     "height": 1,

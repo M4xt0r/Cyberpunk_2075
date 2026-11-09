@@ -3,7 +3,7 @@
   "_key": "!actors!tIMLqOMYraLwBpYH",
   "name": "Militech Aegis X2",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/militech-aegis.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/drone_militech_aegis_x2.webp",
   "system": {
     "faction": "Militech",
     "rang": "Militech Aegis X2",
@@ -156,7 +156,7 @@
   "prototypeToken": {
     "name": "Militech Aegis X2",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/militech-aegis.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/drone_militech_aegis_x2.webp"
     },
     "width": 1,
     "height": 1,

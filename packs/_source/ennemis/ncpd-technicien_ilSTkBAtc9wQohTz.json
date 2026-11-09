@@ -3,7 +3,7 @@
   "_key": "!actors!ilSTkBAtc9wQohTz",
   "name": "NCPD · Technicien",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/ncpd.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/ncpd_technicien.webp",
   "system": {
     "faction": "NCPD",
     "rang": "Technicien",
@@ -657,7 +657,7 @@
   "prototypeToken": {
     "name": "NCPD · Technicien",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/ncpd.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/ncpd_technicien.webp"
     },
     "width": 1,
     "height": 1,

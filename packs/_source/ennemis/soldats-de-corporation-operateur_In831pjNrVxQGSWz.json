@@ -3,7 +3,7 @@
   "_key": "!actors!In831pjNrVxQGSWz",
   "name": "Soldats de corporation · Opérateur",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/corpo.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/corpo_generique_noir_operateur.webp",
   "system": {
     "faction": "Soldats de corporation",
     "rang": "Opérateur",
@@ -807,7 +807,7 @@
   "prototypeToken": {
     "name": "Soldats de corporation · Opérateur",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/corpo.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/corpo_generique_noir_operateur.webp"
     },
     "width": 1,
     "height": 1,

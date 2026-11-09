@@ -3,7 +3,7 @@
   "_key": "!actors!qFlm1wX2Ey5np08G",
   "name": "Tiger Claws · Griffe numérique",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/tiger-claws.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/tygerclaws_griffe_numerique.webp",
   "system": {
     "faction": "Tiger Claws",
     "rang": "Griffe numérique",
@@ -980,7 +980,7 @@
   "prototypeToken": {
     "name": "Tiger Claws · Griffe numérique",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/tiger-claws.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/tygerclaws_griffe_numerique.webp"
     },
     "width": 1,
     "height": 1,

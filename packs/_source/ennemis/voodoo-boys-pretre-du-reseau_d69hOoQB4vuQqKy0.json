@@ -3,7 +3,7 @@
   "_key": "!actors!d69hOoQB4vuQqKy0",
   "name": "Voodoo Boys · Prêtre du réseau",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/voodoo-boys.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/voodooboys_pretre_du_reseau.webp",
   "system": {
     "faction": "Voodoo Boys",
     "rang": "Prêtre du réseau",
@@ -941,7 +941,7 @@
   "prototypeToken": {
     "name": "Voodoo Boys · Prêtre du réseau",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/voodoo-boys.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/voodooboys_pretre_du_reseau.webp"
     },
     "width": 1,
     "height": 1,

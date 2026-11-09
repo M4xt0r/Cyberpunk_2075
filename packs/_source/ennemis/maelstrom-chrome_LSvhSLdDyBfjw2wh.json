@@ -3,7 +3,7 @@
   "_key": "!actors!LSvhSLdDyBfjw2wh",
   "name": "Maelstrom · Chromé",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/maelstrom.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/maelstrom_chrome.webp",
   "system": {
     "faction": "Maelstrom",
     "rang": "Chromé",
@@ -822,7 +822,7 @@
   "prototypeToken": {
     "name": "Maelstrom · Chromé",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/maelstrom.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/maelstrom_chrome.webp"
     },
     "width": 1,
     "height": 1,

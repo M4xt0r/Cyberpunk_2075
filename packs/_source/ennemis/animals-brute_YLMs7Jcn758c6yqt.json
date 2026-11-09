@@ -3,7 +3,7 @@
   "_key": "!actors!YLMs7Jcn758c6yqt",
   "name": "Animals · Brute",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/animals.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/animals_brute.webp",
   "system": {
     "faction": "Animals",
     "rang": "Brute",
@@ -593,7 +593,7 @@
   "prototypeToken": {
     "name": "Animals · Brute",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/animals.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/animals_brute.webp"
     },
     "width": 1,
     "height": 1,

@@ -3,7 +3,7 @@
   "_key": "!actors!6cDAOlAdpVtdwdzL",
   "name": "Animals · Colosse",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/animals.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/animals_colosse.webp",
   "system": {
     "faction": "Animals",
     "rang": "Colosse",
@@ -1034,7 +1034,7 @@
   "prototypeToken": {
     "name": "Animals · Colosse",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/animals.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/animals_colosse.webp"
     },
     "width": 1,
     "height": 1,

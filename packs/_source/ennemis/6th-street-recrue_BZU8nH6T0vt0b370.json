@@ -3,7 +3,7 @@
   "_key": "!actors!BZU8nH6T0vt0b370",
   "name": "6th Street · Recrue",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/6th-street.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/6thstreet_recrue.webp",
   "system": {
     "faction": "6th Street",
     "rang": "Recrue",
@@ -561,7 +561,7 @@
   "prototypeToken": {
     "name": "6th Street · Recrue",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/6th-street.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/6thstreet_recrue.webp"
     },
     "width": 1,
     "height": 1,

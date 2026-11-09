@@ -3,7 +3,7 @@
   "_key": "!actors!l17HMzuXMSLsKe9b",
   "name": "6th Street · Vétéran",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/6th-street.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/6thstreet_veteran.webp",
   "system": {
     "faction": "6th Street",
     "rang": "Vétéran",
@@ -723,7 +723,7 @@
   "prototypeToken": {
     "name": "6th Street · Vétéran",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/6th-street.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/6thstreet_veteran.webp"
     },
     "width": 1,
     "height": 1,

@@ -3,7 +3,7 @@
   "_key": "!actors!iSazDmWycuhNNucP",
   "name": "Voodoo Boys · NetRunner",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/voodoo-boys.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/voodooboys_netrunner.webp",
   "system": {
     "faction": "Voodoo Boys",
     "rang": "NetRunner",
@@ -1188,7 +1188,7 @@
   "prototypeToken": {
     "name": "Voodoo Boys · NetRunner",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/voodoo-boys.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/voodooboys_netrunner.webp"
     },
     "width": 1,
     "height": 1,

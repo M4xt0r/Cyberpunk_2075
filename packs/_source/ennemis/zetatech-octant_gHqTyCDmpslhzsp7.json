@@ -3,7 +3,7 @@
   "_key": "!actors!gHqTyCDmpslhzsp7",
   "name": "Zetatech Octant",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/zetatech-octant.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/drone_zetatech_octant.webp",
   "system": {
     "faction": "Zetatech",
     "rang": "Zetatech Octant",
@@ -221,7 +221,7 @@
   "prototypeToken": {
     "name": "Zetatech Octant",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/zetatech-octant.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/drone_zetatech_octant.webp"
     },
     "width": 1,
     "height": 1,

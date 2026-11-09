@@ -3,7 +3,7 @@
   "_key": "!actors!a1eq5Qzllw1YTkIj",
   "name": "Valentinos · Pistolero",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/valentinos.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/valentinos_pistolero.webp",
   "system": {
     "faction": "Valentinos",
     "rang": "Pistolero",
@@ -900,7 +900,7 @@
   "prototypeToken": {
     "name": "Valentinos · Pistolero",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/valentinos.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/valentinos_pistolero.webp"
     },
     "width": 1,
     "height": 1,

@@ -3,7 +3,7 @@
   "_key": "!actors!jK9bl18v4iZspHo0",
   "name": "Valentinos · Membre",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/valentinos.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/valentinos_membre.webp",
   "system": {
     "faction": "Valentinos",
     "rang": "Membre",
@@ -602,7 +602,7 @@
   "prototypeToken": {
     "name": "Valentinos · Membre",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/valentinos.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/valentinos_membre.webp"
     },
     "width": 1,
     "height": 1,

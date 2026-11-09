@@ -3,7 +3,7 @@
   "_key": "!actors!YiOsG5e95rXnSwOh",
   "name": "Wyvern · Brouilleur",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/wyvern.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/drone_wyvern.webp",
   "system": {
     "faction": "Wyvern",
     "rang": "Wyvern · Brouilleur",
@@ -514,7 +514,7 @@
   "prototypeToken": {
     "name": "Wyvern · Brouilleur",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/wyvern.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/drone_wyvern.webp"
     },
     "width": 1,
     "height": 1,

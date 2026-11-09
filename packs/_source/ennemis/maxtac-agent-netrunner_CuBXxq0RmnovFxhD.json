@@ -3,7 +3,7 @@
   "_key": "!actors!CuBXxq0RmnovFxhD",
   "name": "MaxTac · Agent NetRunner",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/maxtac.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/maxtac_agent_netrunner.webp",
   "system": {
     "faction": "MaxTac",
     "rang": "Agent NetRunner",
@@ -1328,7 +1328,7 @@
   "prototypeToken": {
     "name": "MaxTac · Agent NetRunner",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/maxtac.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/maxtac_agent_netrunner.webp"
     },
     "width": 1,
     "height": 1,

@@ -3,7 +3,7 @@
   "_key": "!actors!szlpW8FFpuyK989m",
   "name": "Tiger Claws · Maître de lame",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/tiger-claws.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/tygerclaws_maitre_de_lame.webp",
   "system": {
     "faction": "Tiger Claws",
     "rang": "Maître de lame",
@@ -1008,7 +1008,7 @@
   "prototypeToken": {
     "name": "Tiger Claws · Maître de lame",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/tiger-claws.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/tygerclaws_maitre_de_lame.webp"
     },
     "width": 1,
     "height": 1,

@@ -1,5 +1,6 @@
 """Ennemis (Notion : page Ennemies). Un acteur par rang, items des builds A et B embarqués."""
 from base import *
+import os
 from equipement import REG, arme
 from biens import acteur, json_copie
 
@@ -39,6 +40,17 @@ def arme_propre(acteur_cle, nom, type, de, bonus, competence=None, zone=None, mu
     d["system"]["munitions"] = munitions
     return [d]
 
+FACTIONS_TOKEN = {"6th Street": "6thstreet", "Tiger Claws": "tygerclaws", "Voodoo Boys": "voodooboys", "Soldats de corporation": "corpo_generique_noir",
+                  "Arasaka": "corpo_arasaka", "Biotechnica": "corpo_biotechnica", "Kang Tao": "corpo_kangtao", "Militech": "corpo_militech", "Trauma Team": "corpo_traumateam"}
+TOKENS_DIRECTS = {"Robot RMK2": "robot_rmk2", "Wyvern · Assaut": "drone_wyvern", "Wyvern · Brouilleur": "drone_wyvern",
+                  "Zetatech Octant": "drone_zetatech_octant", "Militech Aegis X2": "drone_militech_aegis_x2", "Sergent d'assaut": "ncpd_sergent_assaut"}
+
+def token_pour(faction, rang):
+    """Image de token fournie (assets/tokens) pour cet ennemi, ou None."""
+    nom = TOKENS_DIRECTS.get(rang) or f"{FACTIONS_TOKEN.get(faction, slug(faction).replace('-', ''))}_{slug(rang).replace('-', '_')}"
+    chemin = os.path.join(RACINE, "assets", "tokens", f"{nom}.webp")
+    return f"systems/cyberpunk2075/assets/tokens/{nom}.webp" if os.path.exists(chemin) else None
+
 def ennemi(faction, image, rang, niv, caracs, stats, comps, A=(), B=(), commun=(), nature="organique", volant=False,
            reduction=0, extra=(), dossier=None, sort=0, notes="", reductionSauf=(), immunites=()):
     cle = slug(f"{faction}-{rang}")
@@ -68,6 +80,7 @@ def ennemi(faction, image, rang, niv, caracs, stats, comps, A=(), B=(), commun=(
         "notes": html(notes) if notes else ""
     }
     nom = rang if rang.startswith(faction) else f"{faction} · {rang}"
+    image = token_pour(faction, rang) or image
     return acteur("ennemis", cle, nom, "ennemi", image, sys, dossier, sort, items=items,
                   token={"actorLink": False, "disposition": -1, "bar1": {"attribute": "vie"}, "displayBars": 20})
 
@@ -146,14 +159,23 @@ def ennemis():
     E("Maelstrom", "Borg", 3, [3, 2, -1, -2, 1], V(19, 13, 9, 7), {"cac": 6, "lourde": 6},
       A=[("lame-mantis", 2), "berserk", ("os-en-titane", 2)], B=[("carnage", 3), ("lance-projectile", 2), "berserk", ("armure-sous-cutanee", 2)])
 
-    courant = F("Soldats de corporation", "corpo")
-    E("Soldats de corporation", "Fusilier", 1, [2, 2, 0, 0, 1], V(18, 13, 11, 10), {"lourde": 5, "poing": 5},
-      A=[("m251s-ajax", 2), "stabilisateur-de-recul", "armure-sous-cutanee"], B=[("tki-20-shingen", 2), "liaison-intelligente", "accelerateur-synaptique"])
-    E("Soldats de corporation", "Opérateur", 2, [-1, 1, 2, 3, 0], V(14, 11, 13, 15), {"pirat": 6, "tech": 6},
-      commun=["a-22b-chao", "puce-de-piratage", "auto-glace", "liaison-intelligente", "court-circuit", "pare-feu-reactif", "dysfonctionnement-d-arme", "surchauffe"])
-    E("Soldats de corporation", "Capitaine", 3, [2, 2, 0, 1, 3], V(20, 15, 14, 11), {"lourde": 5, "pers": 6},
-      A=[("m251s-ajax", 3), ("stabilisateur-de-recul", 2), ("armure-sous-cutanee", 2), ("processeur-tactique", 2)],
-      B=[("l-69-zhuo", 3), "liaison-intelligente", ("accelerateur-synaptique", 2), ("biomoniteur", 2)])
+    # Soldats de corporation : la version de base (token noir générique) et une copie par corpo
+    parent = dossier("ennemis", "Soldats de corporation", "Actor", sort=len(dossiers))
+    dossiers["Soldats de corporation"] = parent
+    docs.append(parent)
+    for i, corpo in enumerate(["Soldats de corporation", "Arasaka", "Biotechnica", "Kang Tao", "Militech", "Trauma Team"]):
+        sous = dossier("ennemis", f"Corpo · {corpo}", "Actor", sort=i, parent=parent["_id"]) if i else None
+        if sous:
+            sous["name"] = corpo
+            docs.append(sous)
+        courant = ((sous or parent)["_id"], img("ennemis", "corpo"))
+        E(corpo, "Fusilier", 1, [2, 2, 0, 0, 1], V(18, 13, 11, 10), {"lourde": 5, "poing": 5},
+          A=[("m251s-ajax", 2), "stabilisateur-de-recul", "armure-sous-cutanee"], B=[("tki-20-shingen", 2), "liaison-intelligente", "accelerateur-synaptique"])
+        E(corpo, "Opérateur", 2, [-1, 1, 2, 3, 0], V(14, 11, 13, 15), {"pirat": 6, "tech": 6},
+          commun=["a-22b-chao", "puce-de-piratage", "auto-glace", "liaison-intelligente", "court-circuit", "pare-feu-reactif", "dysfonctionnement-d-arme", "surchauffe"])
+        E(corpo, "Capitaine", 3, [2, 2, 0, 1, 3], V(20, 15, 14, 11), {"lourde": 5, "pers": 6},
+          A=[("m251s-ajax", 3), ("stabilisateur-de-recul", 2), ("armure-sous-cutanee", 2), ("processeur-tactique", 2)],
+          B=[("l-69-zhuo", 3), "liaison-intelligente", ("accelerateur-synaptique", 2), ("biomoniteur", 2)])
 
     courant = F("Voodoo Boys", "voodoo-boys")
     E("Voodoo Boys", "Garde", 1, [1, 1, -1, 0, 1], V(17, 12, 11, 10), {"poing": 4, "intim": 4}, commun=["auto-glace"], A=["liberty"], B=["m221-saratoga"])

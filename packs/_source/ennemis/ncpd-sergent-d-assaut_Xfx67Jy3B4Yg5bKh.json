@@ -3,7 +3,7 @@
   "_key": "!actors!Xfx67Jy3B4Yg5bKh",
   "name": "NCPD · Sergent d'assaut",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/ncpd.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/ncpd_sergent_assaut.webp",
   "system": {
     "faction": "NCPD",
     "rang": "Sergent d'assaut",
@@ -870,7 +870,7 @@
   "prototypeToken": {
     "name": "NCPD · Sergent d'assaut",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/ncpd.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/ncpd_sergent_assaut.webp"
     },
     "width": 1,
     "height": 1,

@@ -3,7 +3,7 @@
   "_key": "!actors!gtrn87gVBMV3BXrS",
   "name": "Voodoo Boys · Garde",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/voodoo-boys.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/voodooboys_garde.webp",
   "system": {
     "faction": "Voodoo Boys",
     "rang": "Garde",
@@ -383,7 +383,7 @@
   "prototypeToken": {
     "name": "Voodoo Boys · Garde",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/voodoo-boys.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/voodooboys_garde.webp"
     },
     "width": 1,
     "height": 1,

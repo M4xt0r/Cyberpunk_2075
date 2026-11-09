@@ -3,7 +3,7 @@
   "_key": "!actors!hiEAGk5eLreF65Jo",
   "name": "MaxTac · Lieutenant",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/maxtac.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/maxtac_lieutenant.webp",
   "system": {
     "faction": "MaxTac",
     "rang": "Lieutenant",
@@ -2153,7 +2153,7 @@
   "prototypeToken": {
     "name": "MaxTac · Lieutenant",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/maxtac.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/maxtac_lieutenant.webp"
     },
     "width": 1,
     "height": 1,

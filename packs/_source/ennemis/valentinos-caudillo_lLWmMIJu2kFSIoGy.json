@@ -3,7 +3,7 @@
   "_key": "!actors!lLWmMIJu2kFSIoGy",
   "name": "Valentinos · Caudillo",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/valentinos.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/valentinos_caudillo.webp",
   "system": {
     "faction": "Valentinos",
     "rang": "Caudillo",
@@ -1488,7 +1488,7 @@
   "prototypeToken": {
     "name": "Valentinos · Caudillo",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/valentinos.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/valentinos_caudillo.webp"
     },
     "width": 1,
     "height": 1,

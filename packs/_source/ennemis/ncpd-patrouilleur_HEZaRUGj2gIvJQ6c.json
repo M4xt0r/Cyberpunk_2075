@@ -3,7 +3,7 @@
   "_key": "!actors!HEZaRUGj2gIvJQ6c",
   "name": "NCPD · Patrouilleur",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/ncpd.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/ncpd_patrouilleur.webp",
   "system": {
     "faction": "NCPD",
     "rang": "Patrouilleur",
@@ -387,7 +387,7 @@
   "prototypeToken": {
     "name": "NCPD · Patrouilleur",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/ncpd.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/ncpd_patrouilleur.webp"
     },
     "width": 1,
     "height": 1,

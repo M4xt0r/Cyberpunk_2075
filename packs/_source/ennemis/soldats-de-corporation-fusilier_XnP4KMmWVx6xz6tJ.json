@@ -3,7 +3,7 @@
   "_key": "!actors!XnP4KMmWVx6xz6tJ",
   "name": "Soldats de corporation · Fusilier",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/corpo.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/corpo_generique_noir_fusilier.webp",
   "system": {
     "faction": "Soldats de corporation",
     "rang": "Fusilier",
@@ -927,7 +927,7 @@
   "prototypeToken": {
     "name": "Soldats de corporation · Fusilier",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/corpo.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/corpo_generique_noir_fusilier.webp"
     },
     "width": 1,
     "height": 1,

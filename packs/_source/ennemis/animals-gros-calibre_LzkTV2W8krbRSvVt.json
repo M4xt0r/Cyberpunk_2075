@@ -3,7 +3,7 @@
   "_key": "!actors!LzkTV2W8krbRSvVt",
   "name": "Animals · Gros calibre",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/animals.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/animals_gros_calibre.webp",
   "system": {
     "faction": "Animals",
     "rang": "Gros calibre",
@@ -546,7 +546,7 @@
   "prototypeToken": {
     "name": "Animals · Gros calibre",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/animals.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/animals_gros_calibre.webp"
     },
     "width": 1,
     "height": 1,

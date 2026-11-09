@@ -3,7 +3,7 @@
   "_key": "!actors!qeP1jhUhVs8JX01K",
   "name": "MaxTac · Agent",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/maxtac.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/maxtac_agent.webp",
   "system": {
     "faction": "MaxTac",
     "rang": "Agent",
@@ -1911,7 +1911,7 @@
   "prototypeToken": {
     "name": "MaxTac · Agent",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/maxtac.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/maxtac_agent.webp"
     },
     "width": 1,
     "height": 1,

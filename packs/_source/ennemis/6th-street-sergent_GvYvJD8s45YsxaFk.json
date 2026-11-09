@@ -3,7 +3,7 @@
   "_key": "!actors!GvYvJD8s45YsxaFk",
   "name": "6th Street · Sergent",
   "type": "ennemi",
-  "img": "systems/cyberpunk2075/assets/notion/ennemis/6th-street.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/6thstreet_sergent.webp",
   "system": {
     "faction": "6th Street",
     "rang": "Sergent",
@@ -957,7 +957,7 @@
   "prototypeToken": {
     "name": "6th Street · Sergent",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/ennemis/6th-street.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/6thstreet_sergent.webp"
     },
     "width": 1,
     "height": 1,
