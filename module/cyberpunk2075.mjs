@@ -322,7 +322,14 @@ Hooks.once("ready", async () => {
   const cle = nom => nom.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const connus = new Set(["court-circuit", "cyberpsychose", "detonation-involontaire", "dysfonctionnement-d-arme", "dysfonctionnement-d-implant",
     "ping", "protocole-de-violation-rapide", "redemarrage-optique", "suicide", "surchauffe", "pare-feu-reactif", "glitch-visuel", "liberateur-d-ocytocine"]);
+  const anciennesCapsules = [`${CHEMIN}/assets/notion/implants/lame-mantis.webp`, "icons/svg/item-bag.svg"];
+  const capsules = { neurotox: "capsule-neurotox", electrostatique: "capsule-electrostatique", surchauffante: "capsule-surchauffante" };
   const nouvelle = item => {
+    // Capsules de bras : image propre à chaque capsule
+    if ( (item.type === "capsule") && anciennesCapsules.includes(item.img) ) {
+      const c = Object.entries(capsules).find(([k]) => cle(item.name).includes(k));
+      return c ? `${CHEMIN}/assets/notion/implants/${c[1]}.webp` : null;
+    }
     if ( (item.type !== "hack") || (item.img !== ancienne) ) return null;
     const c = cle(item.name);
     return connus.has(c) ? `${CHEMIN}/assets/hacks/${c}.webp` : null;

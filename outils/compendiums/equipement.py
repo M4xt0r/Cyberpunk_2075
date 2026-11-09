@@ -382,7 +382,7 @@ def implants():
         sys = {"description": html(f"1d4 de dégâts {label} supplémentaires. Une seule capsule par implant de bras."),
                "ambiance": "Capsule améliorative qui modifie la technologie implantée dans les bras afin d'en augmenter la létalité.",
                "typeDegats": t, "de": "1d4", "prix": 1000, "coutInstallation": 10, "implant": ""}
-        d = item("implants", cle, nom, "capsule", img("implants", "lame-mantis"), sys, cap["_id"])
+        d = item("implants", cle, nom, "capsule", img("implants", cle) or img("implants", "lame-mantis"), sys, cap["_id"])
         REG[cle] = d
         docs.append(d)
     return docs
