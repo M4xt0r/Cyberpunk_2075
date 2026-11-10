@@ -36,8 +36,8 @@
     "texture": {
       "src": "systems/cyberpunk2075/assets/tokens/vehicules/moto_kusanagi-ct-3x.webp"
     },
-    "width": 0.78,
-    "height": 1.68,
+    "width": 0.96,
+    "height": 2.08,
     "actorLink": true,
     "disposition": 0,
     "displayBars": 20,
