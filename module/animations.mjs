@@ -4,6 +4,8 @@
  * impact (WebM sur la cible), zone (WebM à la taille du rayon), sur soi.
  */
 
+import { jouerSon, sonDeLEffet } from "./sons.mjs";
+
 const VITESSE_CASES = 30;   // cases par seconde : au-delà de 30 cases, le trajet dure 1 s
 const DUREE_MAX = 1000;
 const DUREE_MIN = 120;
@@ -84,8 +86,23 @@ async function projectile(src, de, vers) {
   s.detruire();
 }
 
-/** Effet joué une fois à un endroit, à la taille donnée en pixels. */
-async function effet(src, centre, taille) {
+/** Rafale : plusieurs projectiles l'un après l'autre, légèrement décalés (mitraillette). */
+async function rafale(src, de, vers, nombre) {
+  const angle = Math.atan2(vers.y - de.y, vers.x - de.x) + (Math.PI / 2);
+  const ecart = canvas.dimensions.size * 0.08;
+  const tirs = [];
+  for ( let i = 0; i < nombre; i++ ) {
+    const dec = (i - (nombre - 1) / 2) * ecart;
+    const ox = Math.cos(angle) * dec;
+    const oy = Math.sin(angle) * dec;
+    tirs.push(attendre(i * 130).then(() => projectile(src, { x: de.x + ox, y: de.y + oy }, { x: vers.x + ox, y: vers.y + oy })));
+  }
+  await Promise.all(tirs);
+}
+
+/** Effet joué une fois à un endroit, à la taille donnée en pixels (avec son son, sauf avecSon: false). */
+async function effet(src, centre, taille, { avecSon = true } = {}) {
+  if ( avecSon ) jouerSon(sonDeLEffet(src));
   const s = await creerSprite(src);
   if ( !s ) return;
   const tex = s.sprite.texture;
@@ -117,16 +134,16 @@ export async function jouerAnimation(a) {
   const source = canvas.tokens.get(a.source);
   if ( !source ) return;
   const cibles = (a.cibles ?? []).map(id => canvas.tokens.get(id)).filter(t => t);
-  if ( a.style === "aucune" ) {
-    if ( a.son ) foundry.audio.AudioHelper.play({ src: a.son, volume: 0.8, autoplay: true, loop: false }, false);
-    return;
-  }
+  if ( a.style === "aucune" ) return jouerSon(a.son || a.tir);
   const touches = new Set(a.touches ?? []);
   const destinations = cibles.length ? cibles.map(t => ({ centre: t.center, token: t })) : (a.point ? [{ centre: a.point, token: null }] : []);
   const tailleImpact = t => Math.max(t?.w ?? canvas.dimensions.size, t?.h ?? canvas.dimensions.size) * 1.4;
   const rayonPx = Math.max(a.rayon || 1.5, 0.5) / canvas.dimensions.distance * canvas.dimensions.size;
 
-  if ( a.son ) foundry.audio.AudioHelper.play({ src: a.son, volume: 0.8, autoplay: true, loop: false }, false);
+  // Son de départ : celui choisi sur la carte, sinon le son du tir de l'arme
+  const tirer = (de, vers) => (a.rafale > 1) ? rafale(a.projectile, de, vers, a.rafale) : projectile(a.projectile, de, vers);
+  const sonDepart = a.son || (a.projectile ? a.tir : "");
+  if ( sonDepart ) jouerSon(sonDepart);
 
   // Impact de l'arme puis, à la suite, ceux des capsules (poison, électrique, feu)
   const impact = async d => {
@@ -137,14 +154,14 @@ export async function jouerAnimation(a) {
 
   switch ( a.style ) {
     case "projectile":
-      if ( a.projectile ) await Promise.all(destinations.map(d => projectile(a.projectile, source.center, d.centre)));
+      if ( a.projectile ) await Promise.all(destinations.map(d => tirer(source.center, d.centre)));
       break;
     case "impact":
       await Promise.all(destinations.map(impact));
       break;
     case "projectileImpact":
       await Promise.all(destinations.map(async d => {
-        if ( a.projectile ) await projectile(a.projectile, source.center, d.centre);
+        if ( a.projectile ) await tirer(source.center, d.centre);
         await impact(d);
       }));
       break;
@@ -152,7 +169,7 @@ export async function jouerAnimation(a) {
     case "projectileZone": {
       const d = destinations[0];
       if ( !d ) break;
-      if ( (a.style === "projectileZone") && a.projectile ) await projectile(a.projectile, source.center, d.centre);
+      if ( (a.style === "projectileZone") && a.projectile ) await tirer(source.center, d.centre);
       if ( a.zone ) await effet(a.zone, d.centre, rayonPx * 2);
       break;
     }
@@ -163,7 +180,7 @@ export async function jouerAnimation(a) {
 }
 
 /** Joue une fois un effet à un endroit (ex. dissipation d'un nuage). */
-export async function jouerEffet(src, centre, taille) {
+export async function jouerEffet(src, centre, taille, options = {}) {
   if ( !canvas?.ready || !src ) return;
-  return effet(src, centre, taille);
+  return effet(src, centre, taille, options);
 }

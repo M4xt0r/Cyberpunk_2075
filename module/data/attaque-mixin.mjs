@@ -1,4 +1,4 @@
-import { CARACS, COMPETENCES, TYPES_ARME, NIVEAUX, ANIM, IMPACT_PAR_DEGATS } from "../config.mjs";
+import { CARACS, COMPETENCES, TYPES_ARME, NIVEAUX, ANIM, IMPACT_PAR_DEGATS, SON, SONS_TIR } from "../config.mjs";
 import { blocAnimation, entier, texte, booleen } from "./champs.mjs";
 
 const f = foundry.data.fields;
@@ -109,7 +109,10 @@ export const MixinAttaque = Base => class extends Base {
       projectile: chemin(a.projectile, explosive ? "projectiles/roquette.png" : (grenade?.projectile ?? def.projectile)),
       impact: chemin(a.impact, (explosive || grenade) ? null : impactDefaut),
       zone: chemin(a.zone, explosive ? "zones/explosion.webm" : (grenade?.zone ?? def.zone)),
-      son: a.son
+      son: a.son,
+      // Son du tir (le son choisi sur la carte le remplace) et rafale de 2 balles pour les mitraillettes
+      tir: SONS_TIR[explosive ? "roquette" : this.typeArme] ? `${SON}/${SONS_TIR[explosive ? "roquette" : this.typeArme]}` : "",
+      rafale: (this.typeArme === "mitraillette") ? 2 : 1
     };
   }
 

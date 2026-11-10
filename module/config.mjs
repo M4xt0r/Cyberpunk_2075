@@ -294,3 +294,34 @@ export function donneesCoupDePoing() {
     }
   };
 }
+
+/* -------------------------------------------- */
+/*  Sons                                        */
+/* -------------------------------------------- */
+
+export const SON = `${CHEMIN}/assets/sons`;
+
+/** Son du tir selon le type d'arme (« roquette » : arme à tir explosif). */
+export const SONS_TIR = {
+  pistolet: "tir.ogg",
+  autre: "tir.ogg",
+  mitraillette: "mitraillette.ogg",
+  pompe: "fusil_pompe.ogg",
+  sniper: "sniper.ogg",
+  roquette: "roquette.ogg"
+};
+
+/** Son joué avec chaque animation d'impact ou de zone (nom du fichier d'animation → son). */
+export const SONS_EFFET = {
+  coup_tranchant: "coup_lame.ogg",
+  coup_contondant: "impact.ogg",
+  electricite: "degat_electrique.ogg",
+  flammes: "degat_feu.ogg",
+  poison: "degat_poison.ogg",
+  glitch: "hack.ogg",
+  explosion: "explosion.ogg",
+  nuage_toxique: "gaz_diffusion.ogg",
+  iem: "iem.ogg",
+  flash: "flashbang.ogg",
+  ping_onde: "ping.ogg"
+};

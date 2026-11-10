@@ -285,7 +285,7 @@ Hooks.on("deleteTile", tuile => {
   const z = tuile.flags?.cyberpunk2075?.zone;
   if ( !z || (canvas?.scene?.id !== tuile.parent?.id) ) return;
   const src = z.effetFin || tuile.texture?.src;
-  jouerEffet(src, { x: tuile.x + tuile.width / 2, y: tuile.y + tuile.height / 2 }, Math.max(tuile.width, tuile.height)).catch(() => null);
+  jouerEffet(src, { x: tuile.x + tuile.width / 2, y: tuile.y + tuile.height / 2 }, Math.max(tuile.width, tuile.height), { avecSon: false }).catch(() => null);
 });
 
 /* -------------------------------------------- */
