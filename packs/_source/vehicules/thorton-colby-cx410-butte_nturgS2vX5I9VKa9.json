@@ -3,7 +3,7 @@
   "_key": "!actors!nturgS2vX5I9VKa9",
   "name": "Thorton Colby CX410 Butte",
   "type": "vehicule",
-  "img": "systems/cyberpunk2075/assets/notion/vehicules/thorton-colby.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/vehicules/voiture_thorton-colby-cx410-butte.webp",
   "system": {
     "categorie": "voiture",
     "pickup": true,
@@ -34,10 +34,10 @@
   "prototypeToken": {
     "name": "Thorton Colby CX410 Butte",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/vehicules/thorton-colby.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/vehicules/voiture_thorton-colby-cx410-butte.webp"
     },
-    "width": 2,
-    "height": 1,
+    "width": 1.82,
+    "height": 3.85,
     "actorLink": true,
     "disposition": 0,
     "displayBars": 20,

@@ -3,7 +3,7 @@
   "_key": "!actors!s7hqgZybVxifdeWG",
   "name": "Villefort Alvarado V4F 570 Delegate",
   "type": "vehicule",
-  "img": "systems/cyberpunk2075/assets/notion/vehicules/villefort-alvarado.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/vehicules/voiture_villefort-alvarado-v4f-570-delegate.webp",
   "system": {
     "categorie": "voiture",
     "pickup": false,
@@ -34,10 +34,10 @@
   "prototypeToken": {
     "name": "Villefort Alvarado V4F 570 Delegate",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/vehicules/villefort-alvarado.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/vehicules/voiture_villefort-alvarado-v4f-570-delegate.webp"
     },
-    "width": 2,
-    "height": 1,
+    "width": 1.85,
+    "height": 4.46,
     "actorLink": true,
     "disposition": 0,
     "displayBars": 20,

@@ -1,5 +1,6 @@
 """Véhicules, planques, améliorations de véhicule et modules de planque (Notion : pages Véhicule et Planque)."""
 from base import *
+import json, os
 from equipement import REG, communs
 
 def acteur(pack, cle, nom, type, image, system, dossier=None, sort=0, items=None, token=None):
@@ -53,6 +54,8 @@ VEHICULES = [
     ("thorton-warhorse", "Thorton Mackinaw « Warhorse »", "blinde", 19500, "D", 1, 100, 3, 6, "La seule chose que cette voiture a en commun avec votre Thorton Mackinaw de base est sa carrosserie en acier. Chef-d'œuvre du bricolage automobile, ce bébé a été conçu pour le grand désert.", True),
 ]
 
+TOKENS = json.load(open(os.path.join(os.path.dirname(__file__), "tokens_vehicules.json"), encoding="utf-8"))
+
 def vehicules():
     noms = {"moto": "Motos", "voiture": "Voitures", "utilitaire": "Utilitaires", "blinde": "Blindés"}
     D = {k: dossier("vehicules", n, "Actor", sort=i) for i, (k, n) in enumerate(noms.items())}
@@ -64,8 +67,12 @@ def vehicules():
         sys = {"categorie": cat, "pickup": pickup, "blinde": cat == "blinde", "armesInterdites": cat == "moto",
                "vitesse": vit, "maniabilite": man, "vie": {"value": vie, "base": vie}, "slots": slots, "places": places,
                "placesNote": note, "prix": prix, "ambiance": amb, "pilote": "", "description": ""}
-        docs.append(acteur("vehicules", cle, nom, "vehicule", img("vehicules", cle), sys, D[cat]["_id"], i,
-                           token={"bar1": {"attribute": "vie"}, "width": 2, "height": 1}))
+        # Token fourni (vu de dessus, orienté vers le haut) à sa taille réelle, au moins une case par place
+        t = TOKENS.get(cle)
+        image = f"systems/cyberpunk2075/assets/tokens/vehicules/{t['fichier']}.webp" if t else img("vehicules", cle)
+        taille = {"width": t["w"], "height": t["h"]} if t else {"width": 2, "height": 1}
+        docs.append(acteur("vehicules", cle, nom, "vehicule", image, sys, D[cat]["_id"], i,
+                           token={"bar1": {"attribute": "vie"}, **taille}))
     return docs
 
 def ameliorations():

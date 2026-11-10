@@ -3,7 +3,7 @@
   "_key": "!actors!qN1R4omLHT4MgMhq",
   "name": "Mizutani Shion MZ2",
   "type": "vehicule",
-  "img": "systems/cyberpunk2075/assets/notion/vehicules/mizutani-shion.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/vehicules/voiture_mizutani-shion-mz2.webp",
   "system": {
     "categorie": "voiture",
     "pickup": false,
@@ -34,10 +34,10 @@
   "prototypeToken": {
     "name": "Mizutani Shion MZ2",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/vehicules/mizutani-shion.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/vehicules/voiture_mizutani-shion-mz2.webp"
     },
-    "width": 2,
-    "height": 1,
+    "width": 1.75,
+    "height": 3.52,
     "actorLink": true,
     "disposition": 0,
     "displayBars": 20,

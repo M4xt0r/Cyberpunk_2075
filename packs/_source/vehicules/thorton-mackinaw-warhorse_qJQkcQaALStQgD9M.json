@@ -3,7 +3,7 @@
   "_key": "!actors!qJQkcQaALStQgD9M",
   "name": "Thorton Mackinaw « Warhorse »",
   "type": "vehicule",
-  "img": "systems/cyberpunk2075/assets/notion/vehicules/thorton-warhorse.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/vehicules/blinde_thorton-mackinaw-warhorse.webp",
   "system": {
     "categorie": "blinde",
     "pickup": true,
@@ -34,10 +34,10 @@
   "prototypeToken": {
     "name": "Thorton Mackinaw « Warhorse »",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/vehicules/thorton-warhorse.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/vehicules/blinde_thorton-mackinaw-warhorse.webp"
     },
-    "width": 2,
-    "height": 1,
+    "width": 2.18,
+    "height": 4.62,
     "actorLink": true,
     "disposition": 0,
     "displayBars": 20,

@@ -1,0 +1,112 @@
+{
+ "apollo-brennan": {
+  "fichier": "moto_apollo-brennan",
+  "w": 1.01,
+  "h": 1.98
+ },
+ "arch-nazare": {
+  "fichier": "moto_arch-nazare",
+  "w": 0.96,
+  "h": 2.09
+ },
+ "kusanagi-ct-3x": {
+  "fichier": "moto_kusanagi-ct-3x",
+  "w": 0.78,
+  "h": 1.68
+ },
+ "archer-hella": {
+  "fichier": "voiture_archer-hella-ec-d-i360",
+  "w": 1.72,
+  "h": 3.85
+ },
+ "archer-quartz": {
+  "fichier": "voiture_archer-quartz-ec-t2-r660",
+  "w": 1.66,
+  "h": 3.38
+ },
+ "herrera-outlaw": {
+  "fichier": "voiture_herrera-outlaw-gts",
+  "w": 1.78,
+  "h": 3.92
+ },
+ "makigai-maimai": {
+  "fichier": "voiture_makigai-maimai-p126",
+  "w": 1.46,
+  "h": 2.19
+ },
+ "mizutani-shion": {
+  "fichier": "voiture_mizutani-shion-mz2",
+  "w": 1.75,
+  "h": 3.52
+ },
+ "quadra-type-66": {
+  "fichier": "voiture_quadra-type-66-avenger",
+  "w": 1.82,
+  "h": 3.72
+ },
+ "quadra-turbo-r": {
+  "fichier": "voiture_quadra-turbo-r-v-tech",
+  "w": 1.85,
+  "h": 3.52
+ },
+ "thorton-galena": {
+  "fichier": "voiture_thorton-galena-g240",
+  "w": 1.62,
+  "h": 3.25
+ },
+ "thorton-colby": {
+  "fichier": "voiture_thorton-colby-cx410-butte",
+  "w": 1.82,
+  "h": 3.85
+ },
+ "thorton-mackinaw": {
+  "fichier": "voiture_thorton-mackinaw-mtl1",
+  "w": 2.46,
+  "h": 4.92
+ },
+ "villefort-alvarado": {
+  "fichier": "voiture_villefort-alvarado-v4f-570-delegate",
+  "w": 1.85,
+  "h": 4.46
+ },
+ "chevillon-emperor": {
+  "fichier": "utilitaire_chevillon-emperor-620-ragnar",
+  "w": 1.85,
+  "h": 4.05
+ },
+ "kaukaz-bratsk": {
+  "fichier": "utilitaire_kaukaz-bratsk-u4020",
+  "w": 2.33,
+  "h": 6.36
+ },
+ "villefort-columbus": {
+  "fichier": "utilitaire_villefort-columbus-v340-f-freight",
+  "w": 1.82,
+  "h": 3.98
+ },
+ "mizutani-coyote": {
+  "fichier": "blinde_mizutani-shion-coyote",
+  "w": 1.98,
+  "h": 3.75
+ },
+ "quadra-javelina": {
+  "fichier": "blinde_quadra-type-66-javelina",
+  "w": 2.04,
+  "h": 3.94
+ },
+ "thorton-little-mule": {
+  "fichier": "blinde_thorton-colby-little-mule",
+  "w": 2.08,
+  "h": 4.14
+ },
+ "thorton-gecko": {
+  "fichier": "blinde_thorton-galena-gecko",
+  "w": 1.92,
+  "h": 3.48
+ },
+ "thorton-warhorse": {
+  "fichier": "blinde_thorton-mackinaw-warhorse",
+  "w": 2.18,
+  "h": 4.62
+ }
+}

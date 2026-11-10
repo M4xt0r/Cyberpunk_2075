@@ -3,7 +3,7 @@
   "_key": "!actors!7ieDRxVhu5h1HwSJ",
   "name": "Makigai MaiMai P126",
   "type": "vehicule",
-  "img": "systems/cyberpunk2075/assets/notion/vehicules/makigai-maimai.webp",
+  "img": "systems/cyberpunk2075/assets/tokens/vehicules/voiture_makigai-maimai-p126.webp",
   "system": {
     "categorie": "voiture",
     "pickup": false,
@@ -34,10 +34,10 @@
   "prototypeToken": {
     "name": "Makigai MaiMai P126",
     "texture": {
-      "src": "systems/cyberpunk2075/assets/notion/vehicules/makigai-maimai.webp"
+      "src": "systems/cyberpunk2075/assets/tokens/vehicules/voiture_makigai-maimai-p126.webp"
     },
-    "width": 2,
-    "height": 1,
+    "width": 1.46,
+    "height": 2.19,
     "actorLink": true,
     "disposition": 0,
     "displayBars": 20,
