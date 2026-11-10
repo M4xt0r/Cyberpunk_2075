@@ -296,7 +296,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
   const sansDe = !n.de || (n.de === "0");
   if ( !sansDe ) detail.push(`${n.de} (${des[0]?.results.map(r => r.result).join(", ") ?? "—"})`);
   if ( n.bonusFixe ) detail.push(signe(n.bonusFixe));
-  if ( bonusCarac ) detail.push(`${signe(bonusCarac)} ${CARACS[caracCle].abrev}`);
+  if ( bonusCarac || (sansDe && caracCle) ) detail.push(`${signe(bonusCarac)} ${CARACS[caracCle].abrev}`);
   if ( modDegats ) detail.push(`${signe(modDegats)} implants et objets`);
   supplements.forEach((sup, i) => detail.push(`+ ${sup.label} ${sup.de} (${des[(sansDe ? 0 : 1) + i]?.results.map(r => r.result).join(", ") ?? "—"})`));
   if ( avecCritique ) detail.push(`+ crit ${sys.deCritique} (${des.at(-1)?.results.map(r => r.result).join(", ")})`);
@@ -373,6 +373,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     sansCible: !lignes.length && a.faitDegats,
     plusieurs: lignes.filter(l => !l.sansDegats).length > 1,
     zone: texteZone,
+    arretZone: zonePersistante ? "message" : null,
     reglePompe: lignes.some(l => l.horsPortee) ? "Hors portée (15 m) : moitié des dégâts" : null
   };
   const contenu = await renderTemplate(`${CHEMIN}/templates/chat/degats.hbs`, contexte);

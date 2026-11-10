@@ -30,6 +30,12 @@
   </div>
   {{/each}}
 
+  {{#if arretZone}}
+  <div class="cp-msg-boutons cp-mj-seul">
+    <button type="button" class="cp-msg-bt2" data-cp-action="arreterZone" data-tuile="{{arretZone}}" title="Retirer la zone de la scène maintenant">Arrêter la zone</button>
+  </div>
+  {{/if}}
+
   {{#if plusieurs}}
   <div class="cp-msg-boutons cp-mj-seul">
     <button type="button" class="cp-msg-bt" data-cp-action="appliquerTous" title="Appliquer les dégâts à toutes les cibles listées">Appliquer à tous</button>

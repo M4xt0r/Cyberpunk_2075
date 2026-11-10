@@ -357,10 +357,10 @@
 }
 .cp-msg.cp-msg-critique { outline: 2px solid var(--cp-jaune); outline-offset: -2px; }
 .cp-msg .cp-msg-qui { display: flex; justify-content: space-between; padding: 6px 10px 4px; font-family: var(--cp-f-num); font-size: 9px; letter-spacing: .1em; color: var(--cp-tres-doux); text-transform: uppercase; }
-.cp-msg .cp-msg-etiquette { background: #E8E6E1; color: var(--cp-sol); margin: 0 10px; padding: 6px 8px; display: flex; align-items: center; gap: 8px; }
+.cp-msg .cp-msg-etiquette { background: #E8E6E1; color: var(--cp-sol); margin: 0 10px; padding: 6px 8px; display: flex; align-items: center; gap: 4px 8px; flex-wrap: wrap; }
 .cp-msg.cp-msg-critique .cp-msg-etiquette { background: var(--cp-jaune); }
 .cp-msg .cp-msg-type { font-family: var(--cp-f-titre); font-weight: 600; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: #55535E; }
-.cp-msg .cp-msg-titre { font-family: var(--cp-f-titre); font-weight: 700; font-size: 16px; flex: 1; }
+.cp-msg .cp-msg-titre { font-family: var(--cp-f-titre); font-weight: 700; font-size: 16px; flex: 1 1 auto; min-width: 9ch; word-break: normal; overflow-wrap: normal; hyphens: none; }
 .cp-msg .cp-msg-puce { background: #0E0D12; border: 1px solid var(--cp-separateur); margin: 8px 10px 0; padding: 8px 10px; display: flex; align-items: center; gap: 10px; }
 .cp-msg .cp-msg-total { font-family: var(--cp-f-num); font-size: 28px; font-weight: 700; line-height: 1; min-width: 44px; text-align: center; }
 .cp-msg.cp-msg-critique .cp-msg-total { color: var(--cp-jaune); }

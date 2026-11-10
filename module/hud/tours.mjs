@@ -47,7 +47,7 @@ export async function creerZonePersistante(z) {
     x: Math.round(z.x - r), y: Math.round(z.y - r), width: Math.round(2 * r), height: Math.round(2 * r),
     alpha: 0.85, locked: true,
     video: { loop: true, autoplay: true, volume: 0 },
-    flags: { cyberpunk2075: { zone: { nom: z.nom, tours: z.tours, rayon: z.rayon, degats: z.degats, typeDegats: z.typeDegats, faitDegats: z.faitDegats, lanceur: z.lanceur ?? null, lanceurToken: z.lanceurToken ?? null, effetFin: z.effetFin ?? null } } }
+    flags: { cyberpunk2075: { zone: { nom: z.nom, tours: z.tours, rayon: z.rayon, degats: z.degats, typeDegats: z.typeDegats, faitDegats: z.faitDegats, lanceur: z.lanceur ?? null, lanceurToken: z.lanceurToken ?? null, effetFin: z.effetFin ?? null, message: z.message ?? null } } }
   }]);
 }
 
@@ -73,7 +73,8 @@ async function degatsZone(tuile, tokens = null) {
     total, detail: `${z.degats} (${jet.dice[0]?.results.map(r => r.result).join(", ") ?? "—"})`,
     zone: `Zone · encore ${z.tours} tour(s)`,
     cibles: tokens.map(t => ({ token: t.document.uuid, nom: t.name, montant: total })),
-    sansCible: !tokens.length, plusieurs: tokens.length > 1
+    sansCible: !tokens.length, plusieurs: tokens.length > 1,
+    arretZone: tuile.uuid
   });
   await ChatMessage.create({ content: contenu, rolls: [jet], flags: { cyberpunk2075: { type: "degats", total } } });
 }

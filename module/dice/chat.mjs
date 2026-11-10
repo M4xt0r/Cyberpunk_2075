@@ -40,6 +40,19 @@ async function surAction(message, bouton) {
     return lancerInitiative(c);
   }
 
+  if ( action === "arreterZone" ) {
+    if ( !game.user.isGM ) return;
+    const uuid = bouton.dataset.tuile;
+    const tuile = (uuid && (uuid !== "message"))
+      ? await fromUuid(uuid).catch(() => null)
+      : game.scenes.map(s => s.tiles.find(t => t.flags?.cyberpunk2075?.zone?.message === message.id)).find(Boolean);
+    if ( !tuile ) return ui.notifications.info("Cette zone a déjà disparu.");
+    const nom = tuile.flags?.cyberpunk2075?.zone?.nom ?? "La zone";
+    await tuile.delete();
+    bouton.disabled = true;
+    return ChatMessage.create({ content: `<div class="cp-msg"><div class="cp-msg-note">${nom} : zone arrêtée par le MJ.</div></div>` });
+  }
+
   if ( action === "initiativeGroupe" ) return lancerInitiativeGroupe(bouton.dataset.groupe);
 
   if ( action === "lancerDegats" ) {
@@ -96,7 +109,7 @@ export async function surCreationMessage(message) {
     if ( canvas?.ready && liste.length && (canvas.scene?.id === zone.scene) ) {
       await Promise.all(liste.filter(a => canvas.scene?.id === a.scene).map(a => jouerAnimation(a).catch(() => null)));
     }
-    return creerZonePersistante(zone).catch(err => console.warn("Cyberpunk 2075 | Zone impossible :", err));
+    return creerZonePersistante({ ...zone, message: message.id }).catch(err => console.warn("Cyberpunk 2075 | Zone impossible :", err));
   }
   if ( !liste.length || !canvas?.ready ) return;
   for ( const anim of liste ) {
