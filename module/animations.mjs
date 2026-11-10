@@ -46,6 +46,66 @@ function animer(duree, pas) {
   });
 }
 
+/* -------------------------------------------- */
+/*  Éclairs de lumière (tir, explosion)         */
+/* -------------------------------------------- */
+
+let numeroEclair = 0;
+
+/**
+ * Brève source de lumière locale (sans document) : éclaire les zones sombres autour d'un tir
+ * ou d'une explosion, en respectant les murs, puis s'éteint en se resserrant.
+ * @param {{x:number, y:number}} centre
+ * @param {object} o  rayon (m), couleur, duree (ms), intensite (coloration 0-1)
+ */
+async function eclair(centre, { rayon = 6, couleur = "#ffd27a", duree = 250, intensite = 0.35 } = {}) {
+  const Source = foundry.canvas?.sources?.PointLightSource;
+  if ( !Source || !canvas?.ready || !centre ) return;
+  const pxParM = canvas.dimensions.size / canvas.dimensions.distance;
+  const rafraichir = () => canvas.perception.update({ refreshLighting: true, refreshVision: true });
+  let source;
+  try {
+    source = new Source({ sourceId: `cp2075.eclair.${++numeroEclair}` });
+    const donnees = f => {
+      const dim = Math.max(1, rayon * pxParM * f);
+      return { x: centre.x, y: centre.y, elevation: 0, dim, bright: dim / 2, radius: dim,
+        color: foundry.utils.Color.from(couleur), alpha: intensite * f, attenuation: 0.6, luminosity: 0.5,
+        walls: true, vision: false, priority: 100 };
+    };
+    source.initialize(donnees(1));
+    source.add();
+    rafraichir();
+    // Pleine lumière un instant, puis extinction en quelques paliers (chaque palier recalcule l'ombre des murs)
+    const tenue = Math.round(duree * 0.4);
+    await attendre(tenue);
+    const paliers = 4;
+    for ( let i = paliers - 1; i > 0; i-- ) {
+      await attendre((duree - tenue) / paliers);
+      source.initialize(donnees(i / paliers));
+      rafraichir();
+    }
+    await attendre((duree - tenue) / paliers);
+  } catch (err) {
+    console.warn("Cyberpunk 2075 | Éclair de lumière :", err);
+  } finally {
+    try { source?.destroy(); rafraichir(); } catch {}
+  }
+}
+
+/** Lumière d'une zone selon son animation (explosion, flash, IEM) ; rien pour les nuages. */
+function eclairDeZone(src, centre, rayonM) {
+  const nom = (src ?? "").split("/").pop();
+  if ( nom.startsWith("explosion") ) return eclair(centre, { rayon: Math.max(8, rayonM * 3), couleur: "#ff9a3c", duree: 800, intensite: 0.45 });
+  if ( nom.startsWith("flash") ) return eclair(centre, { rayon: Math.max(12, rayonM * 4), couleur: "#ffffff", duree: 650, intensite: 0.5 });
+  if ( nom.startsWith("iem") ) return eclair(centre, { rayon: Math.max(6, rayonM * 2), couleur: "#7fd8ff", duree: 450, intensite: 0.4 });
+  return null;
+}
+
+/** Lueur de bouche du canon au départ d'un tir. */
+const eclairDeTir = (source, rafale = 1) => eclair(source.center, { rayon: 6, couleur: "#ffd27a", duree: rafale > 1 ? 380 : 220, intensite: 0.3 });
+
+/* -------------------------------------------- */
+
 /** Sprite prêt à jouer ; les vidéos sont clonées pour jouer plusieurs fois en même temps. */
 async function creerSprite(src) {
   let texture = await charger(src);
@@ -144,6 +204,8 @@ export async function jouerAnimation(a) {
   const tirer = (de, vers) => (a.rafale > 1) ? rafale(a.projectile, de, vers, a.rafale) : projectile(a.projectile, de, vers);
   const sonDepart = a.son || (a.projectile ? a.tir : "");
   if ( sonDepart ) jouerSon(sonDepart);
+  // Lueur du tir (armes à feu seulement : pas pour une grenade lancée)
+  if ( a.tir && a.projectile && ["projectile", "projectileImpact", "projectileZone"].includes(a.style) ) eclairDeTir(source, a.rafale);
 
   // Impact de l'arme puis, à la suite, ceux des capsules (poison, électrique, feu)
   const impact = async d => {
@@ -170,7 +232,10 @@ export async function jouerAnimation(a) {
       const d = destinations[0];
       if ( !d ) break;
       if ( (a.style === "projectileZone") && a.projectile ) await tirer(source.center, d.centre);
-      if ( a.zone ) await effet(a.zone, d.centre, rayonPx * 2);
+      if ( a.zone ) {
+        eclairDeZone(a.zone, d.centre, a.rayon || 1.5);
+        await effet(a.zone, d.centre, rayonPx * 2);
+      }
       break;
     }
     case "soi":
