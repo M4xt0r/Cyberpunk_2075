@@ -118,13 +118,10 @@ function conteneurChaud() {
   if ( !calqueChaud || calqueChaud.destroyed || !calqueChaud.parent ) {
     calqueChaud = new PIXI.Container();
     calqueChaud.eventMode = "none";
-    // Juste sous la couche des tokens (barres et noms restent lisibles), sinon tout en haut de l'interface
-    const tokens = canvas.tokens;
-    const parent = (tokens?.parent && !tokens.parent.destroyed) ? tokens.parent : canvas.interface;
-    calqueChaud.zIndex = (parent === tokens?.parent) ? (tokens.zIndex ?? 0) - 0.5 : 9000;
-    parent.sortableChildren = true;
-    if ( parent === tokens?.parent ) parent.addChildAt(calqueChaud, Math.max(0, parent.getChildIndex(tokens)));
-    else parent.addChild(calqueChaud);
+    // Tout en bas de l'interface : au-dessus du décor, sous les barres et les noms des tokens
+    calqueChaud.zIndex = -10;
+    canvas.interface.sortableChildren = true;
+    canvas.interface.addChildAt(calqueChaud, 0);
   }
   return calqueChaud;
 }
