@@ -3,17 +3,10 @@
  * Le cercle du rayon d'explosion n'est montré qu'avec l'amélioration Kiroshi « Rayon d'explosion ».
  * Clic gauche pour lancer, clic droit ou Échap pour annuler.
  */
-import { dansBuild } from "../data/ennemi.mjs";
-
-const normaliser = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[’']/g, "'").toLowerCase().trim();
+import { aAmelioration } from "./vision.mjs";
 
 /** L'acteur voit-il le rayon d'explosion (amélioration d'Optique Kiroshi posée sur un implant) ? */
-export function voitRayon(acteur) {
-  if ( !acteur ) return false;
-  return acteur.items.some(i => (i.type === "ameliorationImplant") && (normaliser(i.name) === "rayon d'explosion")
-    && acteur.items.get(i.system.implant)
-    && ((acteur.type !== "ennemi") || dansBuild(i, acteur.system.build)));
-}
+export const voitRayon = acteur => aAmelioration(acteur, "Rayon d'explosion");
 
 /**
  * @param {Item} item  La grenade.

@@ -350,6 +350,19 @@
 
 /* ---------- Messages du chat : barrettes ---------- */
 
+/* Sans le cadre clair de Foundry : la barrette seule ; l'heure et la corbeille apparaissent au survol */
+.chat-message:has(> .message-content > .cp-msg) { background: none !important; border: none !important; box-shadow: none !important; padding: 0 !important; position: relative; }
+.chat-message:has(> .message-content > .cp-msg)::before, .chat-message:has(> .message-content > .cp-msg)::after { display: none !important; }
+.chat-message:has(> .message-content > .cp-msg) > .message-content { padding: 0; margin: 0; }
+.chat-message:has(> .message-content > .cp-msg) > .message-content > .cp-msg { margin: 0; }
+.chat-message:has(> .message-content > .cp-msg) > .message-header { position: absolute; top: 3px; right: 6px; z-index: 2; width: auto; margin: 0; padding: 1px 6px; background: #16151Ce6; color: #C9C6D0; border-radius: 2px; font-size: 10px; opacity: 0; transition: opacity .15s; }
+.chat-message:has(> .message-content > .cp-msg):hover > .message-header { opacity: 1; }
+.chat-message:has(> .message-content > .cp-msg) > .message-header .message-sender,
+.chat-message:has(> .message-content > .cp-msg) > .message-header .avatar { display: none; }
+.chat-message:has(> .message-content > .cp-msg) > .message-header .message-metadata { display: flex; align-items: center; gap: 6px; }
+.chat-message:has(> .message-content > .cp-msg) > .message-header a { color: inherit; }
+.chat-message:has(> .message-content > .cp-msg) .whisper-to { font-size: 9px; }
+
 .cp-msg {
   color: var(--cp-texte); font-family: var(--cp-f-texte); display: flex; flex-direction: column; margin: -4px -2px 0;
   background-color: #16151C;
@@ -611,6 +624,7 @@
 .cp2075 .cp-tres-doux { color: var(--cp-tres-doux); }
 .cp2075 .cp-pousse-gauche { margin-left: auto; }
 .cp2075 .cp-actions-vie { margin-top: 2px; }
+.cp2075 .cp-btn.cp-thermique-on { background: #FF4D5E; border-color: #FF4D5E; color: #16151C; }
 .cp2075 .cp-btn-mini { min-height: 24px; font-size: 10px; padding: 0 8px; letter-spacing: .08em; }
 .cp2075 .cp-ib-rond { width: 20px; height: 20px; border-radius: 50%; background: transparent; font-family: var(--cp-f-titre); font-size: 11px; }
 

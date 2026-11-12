@@ -3,6 +3,9 @@ import { CHEMIN, CARACS, COMPETENCES, ETATS, NATURES, STRESS, COUVERTS, NIVEAUX,
 import { CapsuleData } from "../data/implant.mjs";
 import { ligneAmelioration, ligneModule } from "./vehicule-sheet.mjs";
 import { signe } from "../dice/jets.mjs";
+import { basculerThermique } from "../hud/vision.mjs";
+
+const estThermique = nom => nom.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() === "vision thermique";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -38,6 +41,7 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
       ajusterItem: FichePersonnage.#ajusterItem,
       basculerPorte: FichePersonnage.#basculerPorte,
       arreterEffet: FichePersonnage.#arreterEffet,
+      basculerThermique: FichePersonnage.#basculerThermique,
       activer: FichePersonnage.#activer,
       lancerHack: FichePersonnage.#lancerHack,
       ajouterAmelioration: FichePersonnage.#ajouterAmelioration,
@@ -372,7 +376,8 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
           titreActiver: s.estActif ? `${s.effet.activation === "reaction" ? "Réaction" : s.effet.activation === "bonus" ? "Action bonus" : "Action"}${s.effet.coutHumanite ? ` · +${s.effet.coutHumanite}💀` : ""}${restantes === null ? "" : ` · ${restantes}/${s.utilisationsMax}`}` : "",
           bloque: restantes === 0,
           arme: s.armeIntegree,
-          ameliorations: posees.map(a => ({ id: a.id, nom: a.name, cout: a.system.coutInstallation })),
+          ameliorations: posees.map(a => ({ id: a.id, nom: a.name, cout: a.system.coutInstallation,
+            thermique: estThermique(a.name), thermiqueOn: !!acteur.flags?.cyberpunk2075?.visionThermique })),
           acceptCapsule: s.acceptCapsule,
           capsule: capsule ? { id: capsule.id, nom: capsule.name, cout: capsule.system.coutInstallation } : null,
           amel: s.slotsAmelioration ? `${posees.length}/${s.slotsAmelioration}` : null,
@@ -839,6 +844,12 @@ export default class FichePersonnage extends HandlebarsApplicationMixin(ActorShe
     const modele = CapsuleData.modele(cle);
     foundry.utils.setProperty(modele, "system.implant", implant.id);
     return this.actor.createEmbeddedDocuments("Item", [modele]);
+  }
+
+  static async #basculerThermique() {
+    if ( !this.isEditable ) return;
+    await basculerThermique(this.actor);
+    this.render();
   }
 
   static async #arreterEffet(event, cible) {

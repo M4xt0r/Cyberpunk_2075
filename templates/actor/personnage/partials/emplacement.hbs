@@ -25,6 +25,7 @@
     <span class="cp-doux">↳</span>
     <span class="cp-implant-nom">{{nom}}</span>
     <span class="cp-num cp-petit cp-doux">+{{cout}}💀</span>
+    {{#if thermique}}{{#unless @root.edition}}<button type="button" class="cp-btn {{#if thermiqueOn}}cp-btn-principal cp-thermique-on{{else}}cp-btn-secondaire{{/if}} cp-btn-mini" data-action="basculerThermique" title="Passer en vision thermique ou revenir à la vision normale">{{#if thermiqueOn}}Thermique : ON{{else}}Thermique{{/if}}</button>{{/unless}}{{/if}}
     <button type="button" class="cp-ib cp-ib-rond" data-action="ouvrirItem" aria-label="Infos {{nom}}">i</button>
     {{#if @root.edition}}<button type="button" class="cp-x" data-action="supprimerItem" aria-label="Retirer {{nom}}">×</button>{{/if}}
   </div>

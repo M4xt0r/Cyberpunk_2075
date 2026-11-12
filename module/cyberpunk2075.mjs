@@ -26,6 +26,7 @@ import { ajouterBoutonTour, decompterEffets, majBoutonCombat, zonesAuTourDe } fr
 import FriseCombat from "./hud/frise.mjs";
 import { brancherDeplacements } from "./hud/combat.mjs";
 import { dessinerPings, retirerPingsDe } from "./hud/pings.mjs";
+import { enregistrerVision, brancherVision } from "./hud/vision.mjs";
 import { chargerIndicateurs, dessinerIndicateurs, redessinerActeur } from "./hud/indicateurs.mjs";
 
 const { ID_SYSTEME, CHEMIN } = CONFIG_CP;
@@ -39,6 +40,9 @@ Hooks.once("init", () => {
   // Documents et modèles de données
   CONFIG.Actor.documentClass = ActeurCP;
   CONFIG.Item.documentClass = ItemCP;
+  // Vision des Optiques Kiroshi (dans le noir, thermique) et sources thermiques
+  enregistrerVision();
+  brancherVision();
   Object.assign(CONFIG.Actor.dataModels, {
     personnage: PersonnageData,
     ennemi: EnnemiData,
