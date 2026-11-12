@@ -33,7 +33,7 @@ export const thermiqueAllumee = a => !!a?.flags?.cyberpunk2075?.visionThermique 
 
 const DEFAUTS = {
   darkvision: { attenuation: 0, contrast: 0, saturation: -1, brightness: 0 },
-  thermique: { attenuation: 0, contrast: 0.1, saturation: 0, brightness: 0 }
+  thermique: { attenuation: 0, contrast: 0, saturation: 0, brightness: 0 }
 };
 
 /** Repart des données du token puis ajoute la vision des implants. */
@@ -118,9 +118,13 @@ function conteneurChaud() {
   if ( !calqueChaud || calqueChaud.destroyed || !calqueChaud.parent ) {
     calqueChaud = new PIXI.Container();
     calqueChaud.eventMode = "none";
-    calqueChaud.zIndex = -10;
-    canvas.interface.sortableChildren = true;
-    canvas.interface.addChildAt(calqueChaud, 0);
+    // Juste sous la couche des tokens (barres et noms restent lisibles), sinon tout en haut de l'interface
+    const tokens = canvas.tokens;
+    const parent = (tokens?.parent && !tokens.parent.destroyed) ? tokens.parent : canvas.interface;
+    calqueChaud.zIndex = (parent === tokens?.parent) ? (tokens.zIndex ?? 0) - 0.5 : 9000;
+    parent.sortableChildren = true;
+    if ( parent === tokens?.parent ) parent.addChildAt(calqueChaud, Math.max(0, parent.getChildIndex(tokens)));
+    else parent.addChild(calqueChaud);
   }
   return calqueChaud;
 }
@@ -172,6 +176,7 @@ function filtrerTout() {
     lumieres = true;
   }
   if ( lumieres ) canvas.perception.update({ refreshLighting: true });
+  console.info(`Cyberpunk 2075 | Vue thermique ${vue ? "ON" : "OFF"} · rendu principal : ${rendu ? "ok" : "absent"} · silhouettes : ${[...silhouettes.values()].filter(x => x.visible).length}`);
 }
 
 /** Après chaque calcul de la vision : la vue passe-t-elle en thermique pour ce client ? */
@@ -206,6 +211,24 @@ function classeColoration() {
       finalColor = chaud * colorationAlpha * smoothstep(1.0, 0.75, d);
       ${this.FRAGMENT_END}
     }`;
+  };
+}
+
+/** Fond de la vision thermique : le décor vu par le token, en bleu nuit à bleu moyen. */
+function classeFondThermique() {
+  const Base = foundry.canvas?.rendering?.shaders?.BackgroundVisionShader ?? globalThis.BackgroundVisionShader;
+  if ( !Base ) return null;
+  return class FondThermique extends Base {
+    static fragmentShader = `
+    ${this.SHADER_HEADER}
+    void main() {
+      ${this.FRAGMENT_BEGIN}
+      float lum = dot(finalColor, vec3(0.3, 0.59, 0.11));
+      finalColor = vec3(0.0, 0.03, 0.10) + lum * vec3(0.06, 0.2, 0.45);
+      ${this.FRAGMENT_END}
+    }`;
+
+    get isRequired() { return true; }
   };
 }
 
@@ -244,15 +267,21 @@ export function enregistrerVision() {
     const NIV = VisionMode.LIGHTING_LEVELS;
     const VIS = VisionMode.LIGHTING_VISIBILITY;
     const dv = CONFIG.Canvas.visionModes.darkvision;
+    const FondThermique = classeFondThermique();
     CONFIG.Canvas.visionModes.thermique = new VisionMode({
       id: "thermique",
       label: "Vision thermique",
       canvas: { shader: dv.canvas.shader, uniforms: { contrast: 0, saturation: 0, brightness: 0 } },
+      // Le fond des lumières (qui redessine le décor en couleurs) n'est pas rendu : le décor reste bleu
       lighting: {
         levels: { [NIV.DIM]: NIV.BRIGHT },
-        background: { visibility: VIS.REQUIRED }
+        background: { visibility: VIS.DISABLED }
       },
-      vision: { darkness: { adaptive: false }, defaults: { ...DEFAUTS.thermique } }
+      vision: {
+        darkness: { adaptive: false },
+        defaults: { ...DEFAUTS.thermique },
+        ...(FondThermique ? { background: { shader: FondThermique, uniforms: {} } } : {})
+      }
     });
 
     // Détection thermique : repère tous les personnages à portée et en ligne de vue, même invisibles
