@@ -3,18 +3,18 @@ from base import ident
 
 SCN = "systems/cyberpunk2075/assets/scenes"
 
-def scenes():
-    _id = ident("scene", "route-badlands")
-    return [{
+def route(cle, nom, nav, fichier, fond):
+    _id = ident("scene", cle)
+    return {
         "_id": _id,
         "_key": f"!scenes!{_id}",
-        "name": "Course-poursuite · Route des Badlands",
+        "name": nom,
         "navigation": False,
-        "navName": "Route des Badlands",
-        "background": {"src": f"{SCN}/route_badlands.webm"},
-        "thumb": f"{SCN}/route_badlands_vignette.webp",
+        "navName": nav,
+        "background": {"src": f"{SCN}/{fichier}.webm"},
+        "thumb": f"{SCN}/{fichier}_vignette.webp",
         "width": 1600, "height": 2200, "padding": 0,
-        "backgroundColor": "#2a1f16",
+        "backgroundColor": fond,
         "initial": {"x": 800, "y": 1100, "scale": 0.45},
         "grid": {"type": 1, "size": 100, "distance": 1.5, "units": "m", "color": "#000000", "alpha": 0.12},
         "tokenVision": True,
@@ -24,4 +24,10 @@ def scenes():
         "tokens": [], "walls": [], "lights": [], "notes": [], "sounds": [], "tiles": [], "drawings": [], "templates": [], "regions": [],
         "ownership": {"default": 0},
         "folder": None, "sort": 0
-    }]
+    }
+
+def scenes():
+    return [
+        route("route-badlands", "Course-poursuite · Route des Badlands", "Route des Badlands", "route_badlands", "#2a1f16"),
+        route("route-ville", "Course-poursuite · Rue de Night City", "Rue de Night City", "route_ville", "#1c1c24"),
+    ]

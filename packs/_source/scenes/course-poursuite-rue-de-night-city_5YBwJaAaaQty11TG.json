@@ -1,0 +1,60 @@
+{
+  "_id": "5YBwJaAaaQty11TG",
+  "_key": "!scenes!5YBwJaAaaQty11TG",
+  "name": "Course-poursuite · Rue de Night City",
+  "navigation": false,
+  "navName": "Rue de Night City",
+  "background": {
+    "src": "systems/cyberpunk2075/assets/scenes/route_ville.webm"
+  },
+  "thumb": "systems/cyberpunk2075/assets/scenes/route_ville_vignette.webp",
+  "width": 1600,
+  "height": 2200,
+  "padding": 0,
+  "backgroundColor": "#1c1c24",
+  "initial": {
+    "x": 800,
+    "y": 1100,
+    "scale": 0.45
+  },
+  "grid": {
+    "type": 1,
+    "size": 100,
+    "distance": 1.5,
+    "units": "m",
+    "color": "#000000",
+    "alpha": 0.12
+  },
+  "tokenVision": true,
+  "fog": {
+    "exploration": false
+  },
+  "environment": {
+    "globalLight": {
+      "enabled": true
+    },
+    "darknessLevel": 0
+  },
+  "flags": {
+    "cyberpunk2075": {
+      "defilement": {
+        "actif": false,
+        "vitesse": 1
+      }
+    }
+  },
+  "tokens": [],
+  "walls": [],
+  "lights": [],
+  "notes": [],
+  "sounds": [],
+  "tiles": [],
+  "drawings": [],
+  "templates": [],
+  "regions": [],
+  "ownership": {
+    "default": 0
+  },
+  "folder": null,
+  "sort": 0
+}
