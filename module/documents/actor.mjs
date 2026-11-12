@@ -6,6 +6,9 @@ import { monterNiveau } from "./progression.mjs";
 /**
  * Acteur Cyberpunk 2075 : données de jet, jets en un clic, dégâts et soins reçus.
  */
+/** Types de dégâts que le gilet pare-balles n'arrête pas. */
+const TYPES_NON_ARRETES = ["feu", "poison", "electrique"];
+
 export default class ActeurCP extends Actor {
 
   /** @override */
@@ -155,6 +158,14 @@ export default class ActeurCP extends Actor {
     // Ennemis : immunités et types que la réduction ne diminue pas
     const immunise = !!typeDegats && (s.immunites ?? []).includes(typeDegats);
     if ( typeDegats && (s.reductionSauf ?? []).includes(typeDegats) ) reduction = 0;
+    // Protections qui s'usent (gilet pare-balles) : sans effet contre le feu, le poison et l'électricité
+    const protections = this.items.filter(i => i.system.effetActifMaintenant && (i.system.chargesMax > 0)
+      && i.system.modificateursActifs?.some(m => m.cible === "degatsRecus"));
+    const elementaire = TYPES_NON_ARRETES.includes(typeDegats);
+    if ( elementaire ) {
+      const parGilet = protections.reduce((t, i) => t + i.system.modificateursActifs.filter(m => m.cible === "degatsRecus").reduce((u, m) => u - (Number(m.valeur) || 0), 0), 0);
+      reduction = Math.max(0, reduction - Math.max(0, parGilet));
+    }
     const reel = immunise ? 0 : Math.max(0, montant - reduction);
     const avant = s.vie?.value ?? 0;
     const apres = Math.max(0, avant - reel);
@@ -166,12 +177,10 @@ export default class ActeurCP extends Actor {
     }
 
     // Gilet pare-balles : une charge de moins par attaque subie
-    if ( montant > 0 ) {
+    if ( (montant > 0) && !elementaire ) {
       const usures = [];
-      for ( const item of this.items ) {
+      for ( const item of protections ) {
         const sys = item.system;
-        if ( !sys.effetActifMaintenant || !(sys.chargesMax > 0) ) continue;
-        if ( !sys.modificateursActifs.some(m => m.cible === "degatsRecus") ) continue;
         const reste = Math.max(0, sys.chargesRestantes - 1);
         if ( reste > 0 ) usures.push({ _id: item.id, "system.chargesRestantes": reste });
         else usures.push({ _id: item.id, "system.chargesRestantes": 0, "system.quantite": Math.max(0, sys.quantite - 1), "system.porte": false });
