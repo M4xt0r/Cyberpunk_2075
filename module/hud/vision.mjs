@@ -97,7 +97,7 @@ let BLEU = null;
 let ROUGE = null;
 const filtres = () => {
   // Luminance → bleu nuit à bleu moyen (tout le décor)
-  BLEU ??= matrice([...L(0.06, 0.0), ...L(0.2, 0.03), ...L(0.45, 0.1), 0, 0, 0, 1, 0]);
+  BLEU ??= matrice([...L(0.04, 0.0), ...L(0.12, 0.02), ...L(0.3, 0.06), 0, 0, 0, 1, 0]);
   // Luminance → rouge à jaune (corps chauds)
   ROUGE ??= matrice([...L(0.35, 0.65), ...L(0.6, 0.05), ...L(0.06, 0.0), 0, 0, 0, 1, 0]);
 };
@@ -118,10 +118,10 @@ function conteneurChaud() {
   if ( !calqueChaud || calqueChaud.destroyed || !calqueChaud.parent ) {
     calqueChaud = new PIXI.Container();
     calqueChaud.eventMode = "none";
-    // Tout en bas de l'interface : au-dessus du décor, sous les barres et les noms des tokens
-    calqueChaud.zIndex = -10;
+    // Au-dessus des tokens (Foundry redessine les tokens visibles dans l'interface), sous les animations
+    calqueChaud.zIndex = 9000;
     canvas.interface.sortableChildren = true;
-    canvas.interface.addChildAt(calqueChaud, 0);
+    canvas.interface.addChild(calqueChaud);
   }
   return calqueChaud;
 }
@@ -205,7 +205,7 @@ function classeColoration() {
       else if ( d < 0.42 ) chaud = mix(vec3(1.0, 0.45, 0.0), vec3(1.0, 1.0, 0.0), (d - 0.22) / 0.2);
       else if ( d < 0.68 ) chaud = mix(vec3(1.0, 1.0, 0.0), vec3(0.0, 1.0, 0.25), (d - 0.42) / 0.26);
       else chaud = mix(vec3(0.0, 1.0, 0.25), vec3(0.0, 0.12, 0.55), (d - 0.68) / 0.32);
-      finalColor = chaud * colorationAlpha * smoothstep(1.0, 0.75, d);
+      finalColor = chaud * 0.6 * colorationAlpha * smoothstep(1.0, 0.75, d);
       ${this.FRAGMENT_END}
     }`;
   };
@@ -221,7 +221,7 @@ function classeFondThermique() {
     void main() {
       ${this.FRAGMENT_BEGIN}
       float lum = dot(finalColor, vec3(0.3, 0.59, 0.11));
-      finalColor = vec3(0.0, 0.03, 0.10) + lum * vec3(0.06, 0.2, 0.45);
+      finalColor = vec3(0.0, 0.02, 0.06) + lum * vec3(0.04, 0.12, 0.3);
       ${this.FRAGMENT_END}
     }`;
 
