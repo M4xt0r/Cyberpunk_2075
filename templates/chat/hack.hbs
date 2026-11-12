@@ -30,8 +30,8 @@
     <span class="cp-msg-total cp-jaune">{{montant}}</span>
     <div class="cp-msg-des"><span class="cp-num cp-msg-detail">{{formule}} : {{detail}}</span><span>{{../typeDegats}} · cible {{#if robot}}robot{{else}}organique{{/if}}</span></div>
     <span class="cp-msg-mini cp-mj-seul">
-      <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-montant="{{montant}}" data-cible="{{token}}">Appliquer</button>
-      <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-montant="{{montant}}" data-facteur="0.5" data-cible="{{token}}">½</button>
+      <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-type-degats="{{@root.typeCle}}" data-montant="{{montant}}" data-cible="{{token}}">Appliquer</button>
+      <button type="button" class="cp-msg-bt2" data-cp-action="appliquer" data-nature="degats" data-type-degats="{{@root.typeCle}}" data-montant="{{montant}}" data-facteur="0.5" data-cible="{{token}}">½</button>
     </span>
   </div>
   {{/if}}
@@ -53,7 +53,7 @@
     <div class="cp-msg-des"><span class="cp-num cp-msg-detail">{{sansCible.formule}} : {{sansCible.detail}}</span><span>{{typeDegats}} · aucune cible</span></div>
   </div>
   <div class="cp-msg-boutons cp-mj-seul">
-    <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-montant="{{sansCible.montant}}">Appliquer</button>
+    <button type="button" class="cp-msg-bt" data-cp-action="appliquer" data-nature="degats" data-type-degats="{{@root.typeCle}}" data-montant="{{sansCible.montant}}">Appliquer</button>
     <span class="cp-msg-source cp-pousse">aux tokens sélectionnés · MJ</span>
   </div>
   {{else if aucuneCible}}<div class="cp-msg-note">Aucune cible : le MJ applique l'effet.</div>{{/if}}

@@ -176,6 +176,7 @@ export async function lancerHack(item, { rapide = false } = {}) {
     } : null,
     effet: s.effet,
     typeDegats: TYPES_DEGATS[s.degats.type] ?? s.degats.type,
+    typeCle: s.degats.type,
     cibles: resultats,
     sansCible,
     aucuneCible: !cibles.length,
@@ -221,6 +222,7 @@ export async function forcerHack(message, index) {
     cout: `−${prixRam} RAM`,
     effet: `Glace de ${cible.nom} forcée.`,
     typeDegats: TYPES_DEGATS[item.system.degats.type] ?? item.system.degats.type,
+    typeCle: item.system.degats.type,
     cibles: [r],
     humaniteCible: item.system.humanite.cible,
     reste: `RAM ${acteur.system.ram.value} / ${acteur.system.ram.max}`
