@@ -27,6 +27,7 @@ import FriseCombat from "./hud/frise.mjs";
 import { brancherDeplacements } from "./hud/combat.mjs";
 import { dessinerPings, retirerPingsDe } from "./hud/pings.mjs";
 import { enregistrerVision, brancherVision } from "./hud/vision.mjs";
+import { brancherDefilement, majBoutonDefilement } from "./hud/defilement.mjs";
 import { chargerIndicateurs, dessinerIndicateurs, redessinerActeur } from "./hud/indicateurs.mjs";
 
 const { ID_SYSTEME, CHEMIN } = CONFIG_CP;
@@ -43,6 +44,7 @@ Hooks.once("init", () => {
   // Vision des Optiques Kiroshi (dans le noir, thermique) et sources thermiques
   enregistrerVision();
   brancherVision();
+  brancherDefilement();
   Object.assign(CONFIG.Actor.dataModels, {
     personnage: PersonnageData,
     ennemi: EnnemiData,
@@ -245,6 +247,7 @@ Hooks.once("ready", async () => {
   globalThis.cyberpunk2075.barre = barre;
   barre.render({ force: true });
   ajouterBoutonTour();
+  majBoutonDefilement();
   frise = new FriseCombat();
   frise.render({ force: true });
   await chargerIndicateurs();

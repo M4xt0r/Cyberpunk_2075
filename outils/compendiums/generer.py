@@ -5,7 +5,7 @@ Usage : python3 outils/compendiums/generer.py   puis   node outils/compendiums/c
 import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
 from base import ecrire
-import equipement, biens, progression, ennemis
+import equipement, biens, progression, ennemis, scenes
 
 def marquer(pack, docs):
     for d in docs:
@@ -24,6 +24,7 @@ packs["classes"] = progression.classes()
 packs["vehicules"] = biens.vehicules()
 packs["planques"] = biens.planques()
 packs["ennemis"] = ennemis.ennemis()
+packs["scenes"] = scenes.scenes()
 
 for pack, docs in packs.items():
     for d in docs:

@@ -2,7 +2,7 @@
   "id": "cyberpunk2075",
   "title": "Cyberpunk 2075",
   "description": "Système de jeu Cyberpunk 2075 en d20 : fiches, jets, implants, Humanité, hacks, ennemis, véhicules et planques, avec les compendiums du contenu Notion, dans la charte « Nuit de Dogtown ».",
-  "version": "0.17.7",
+  "version": "0.18.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13.350"
@@ -238,6 +238,18 @@
         "ASSISTANT": "OWNER"
       },
       "flags": {}
+    },
+    {
+      "name": "scenes",
+      "label": "Scènes",
+      "path": "packs/scenes",
+      "type": "Scene",
+      "system": "cyberpunk2075",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
     }
   ],
   "packFolders": [
@@ -282,7 +294,8 @@
           "sorting": "m",
           "color": "#33201b",
           "packs": [
-            "ennemis"
+            "ennemis",
+            "scenes"
           ]
         }
       ]

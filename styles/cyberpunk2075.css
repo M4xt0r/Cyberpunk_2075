@@ -970,6 +970,8 @@
 #cp-bouton-combat { background: var(--cp-rouge, #FF4D5E); color: #121116; }
 #cp-bouton-combat.cp-combat-en-cours { background: var(--cp-sol); color: var(--cp-rouge-txt); outline: 1px solid var(--cp-rouge-txt); outline-offset: -1px; }
 #cp-tour-suivant { background: var(--cp-jaune); color: #121116; }
+#cp-defilement { background: var(--cp-cyan, #3FE0F0); color: #121116; }
+#cp-defilement.cp-defilement-actif { background: var(--cp-sol); color: var(--cp-cyan, #3FE0F0); outline: 1px solid var(--cp-cyan, #3FE0F0); outline-offset: -1px; }
 #cp-mj-combat button:hover:not(:disabled) { filter: brightness(1.15); }
 #cp-mj-combat button:disabled { background: var(--cp-bordure); color: var(--cp-doux); cursor: wait; }
 
