@@ -7,7 +7,7 @@ import { monterNiveau } from "./progression.mjs";
  * Acteur Cyberpunk 2075 : données de jet, jets en un clic, dégâts et soins reçus.
  */
 /** Types de dégâts que le gilet pare-balles n'arrête pas. */
-const TYPES_NON_ARRETES = ["feu", "poison", "electrique"];
+const TYPES_NON_ARRETES = ["feu", "poison", "electrique", "iem"];
 
 export default class ActeurCP extends Actor {
 
@@ -158,7 +158,7 @@ export default class ActeurCP extends Actor {
     // Ennemis : immunités et types que la réduction ne diminue pas
     const immunise = !!typeDegats && (s.immunites ?? []).includes(typeDegats);
     if ( typeDegats && (s.reductionSauf ?? []).includes(typeDegats) ) reduction = 0;
-    // Protections qui s'usent (gilet pare-balles) : sans effet contre le feu, le poison et l'électricité
+    // Protections qui s'usent (gilet pare-balles) : sans effet contre le feu, le poison, l'électricité et l'IEM
     const protections = this.items.filter(i => i.system.effetActifMaintenant && (i.system.chargesMax > 0)
       && i.system.modificateursActifs?.some(m => m.cible === "degatsRecus"));
     const elementaire = TYPES_NON_ARRETES.includes(typeDegats);
