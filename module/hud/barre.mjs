@@ -6,6 +6,7 @@
 import { CHEMIN, CARACS, COMPETENCES, TYPES_ARME } from "../config.mjs";
 import { signe } from "../dice/jets.mjs";
 import { dansBuild } from "../data/ennemi.mjs";
+import { aVisionThermique, basculerThermique } from "./vision.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const ACTIVATIONS = { action: "action", bonus: "action bonus", reaction: "réaction" };
@@ -152,6 +153,12 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
       };
     });
 
+    // Vision thermique (Optique Kiroshi) : interrupteur
+    if ( aVisionThermique(acteur) ) {
+      const on = !!acteur.flags?.cyberpunk2075?.visionThermique;
+      c.implants.push({ id: "", thermique: true, nom: "Vision thermique", infos: on ? "Active" : "Inactive", label: on ? "Couper" : "Activer", rouge: on });
+    }
+
     // Hacks
     const ram = s.ram.value;
     c.hacks = items.filter(i => i.type === "hack").sort((a, b) => (a.system.ram - b.system.ram) || a.name.localeCompare(b.name)).map(i => {
@@ -209,6 +216,7 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
   }
 
   static async #action(event, cible) {
+    if ( cible.closest("[data-thermique]") ) return basculerThermique(this.acteur);
     const item = this._item(cible);
     if ( !item?.isOwner ) return;
     const rapide = event.shiftKey;

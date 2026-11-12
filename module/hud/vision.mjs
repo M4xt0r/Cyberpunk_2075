@@ -2,10 +2,12 @@
  * Vision des Optiques Kiroshi.
  * - « Amplificateur de lumière » : vision dans le noir automatique (mode Vision dans le noir).
  * - « Vision thermique » : bouton sur la fiche ; le joueur voit la scène en bleu, les personnages
- *   en rouge (même invisibles) et les sources thermiques (type de lumière « Source thermique »).
+ *   en rouge (même invisibles, copies rouges posées au-dessus du décor) et les sources thermiques (type de lumière « Source thermique »).
  * Tout est calculé à la volée (rien n'est écrit sur les tokens) et l'affichage est propre à chaque client.
  */
 import { dansBuild } from "../data/ennemi.mjs";
+import { SON } from "../config.mjs";
+import { jouerSon } from "../sons.mjs";
 
 /** Portée de la vision dans le noir et de la vision thermique (m). */
 export const PORTEE_VISION = 20;
@@ -90,14 +92,14 @@ const matrice = m => {
   f.cpVision = true;
   return f;
 };
-// Luminance → bleu sombre à bleu clair (décor)
 const L = (k, o) => [0.3 * k, 0.59 * k, 0.11 * k, 0, o];
 let BLEU = null;
 let ROUGE = null;
 const filtres = () => {
-  BLEU ??= matrice([...L(0.12, 0.0), ...L(0.38, 0.04), ...L(0.85, 0.16), 0, 0, 0, 1, 0]);
-  // Luminance → rouge à orange (corps chauds)
-  ROUGE ??= matrice([...L(0.5, 0.5), ...L(0.45, 0.03), ...L(0.08, 0.02), 0, 0, 0, 1, 0]);
+  // Luminance → bleu nuit à bleu moyen (tout le décor)
+  BLEU ??= matrice([...L(0.06, 0.0), ...L(0.2, 0.03), ...L(0.45, 0.1), 0, 0, 0, 1, 0]);
+  // Luminance → rouge à jaune (corps chauds)
+  ROUGE ??= matrice([...L(0.35, 0.65), ...L(0.6, 0.05), ...L(0.06, 0.0), 0, 0, 0, 1, 0]);
 };
 
 function poser(obj, filtre) {
@@ -108,22 +110,59 @@ function poser(obj, filtre) {
   obj.filters = liste.length ? liste : null;
 }
 
-export function filtrerToken(token) {
-  filtres();
-  poser(token?.mesh, vue ? ROUGE : null);
+/* Silhouettes chaudes : copies rouges des tokens visibles, au-dessus du décor teinté en bleu */
+let calqueChaud = null;
+const silhouettes = new Map();
+
+function conteneurChaud() {
+  if ( !calqueChaud || calqueChaud.destroyed || !calqueChaud.parent ) {
+    calqueChaud = new PIXI.Container();
+    calqueChaud.eventMode = "none";
+    calqueChaud.zIndex = -10;
+    canvas.interface.sortableChildren = true;
+    canvas.interface.addChildAt(calqueChaud, 0);
+  }
+  return calqueChaud;
 }
 
-export function filtrerTuile(tuile) {
+function oublierSilhouette(id) {
+  const s = silhouettes.get(id);
+  if ( s && !s.destroyed ) s.destroy();
+  silhouettes.delete(id);
+}
+
+export function filtrerToken(token) {
+  if ( !token ) return;
   filtres();
-  poser(tuile?.mesh, vue ? BLEU : null);
+  const mesh = token.mesh;
+  let s = silhouettes.get(token.id);
+  const montrer = vue && mesh && !mesh.destroyed && mesh.texture && token.visible && !token.destroyed;
+  if ( !montrer ) {
+    if ( s && !s.destroyed ) s.visible = false;
+    return;
+  }
+  if ( !s || s.destroyed ) {
+    s = new PIXI.Sprite();
+    s.eventMode = "none";
+    s.filters = [ROUGE];
+    conteneurChaud().addChild(s);
+    silhouettes.set(token.id, s);
+  }
+  s.texture = mesh.texture;
+  s.anchor.copyFrom(mesh.anchor);
+  s.position.copyFrom(mesh.position);
+  s.scale.copyFrom(mesh.scale);
+  s.rotation = mesh.rotation;
+  s.visible = true;
 }
 
 function filtrerTout() {
   if ( !canvas?.ready ) return;
   filtres();
-  poser(canvas.primary?.background, vue ? BLEU : null);
-  poser(canvas.primary?.foreground, vue ? BLEU : null);
-  for ( const t of canvas.tiles?.placeables ?? [] ) filtrerTuile(t);
+  // Tout le rendu principal (décor, tuiles, tokens) passe en bleu
+  const rendu = canvas.primary?.sprite ?? null;
+  if ( !rendu && vue ) console.warn("Cyberpunk 2075 | Vision thermique : rendu principal introuvable (canvas.primary.sprite)");
+  poser(rendu, vue ? BLEU : null);
   for ( const t of canvas.tokens?.placeables ?? [] ) filtrerToken(t);
   // Les sources thermiques s'allument ou s'éteignent
   let lumieres = false;
@@ -163,8 +202,8 @@ function classeColoration() {
       if ( d < 0.22 ) chaud = mix(vec3(1.0, 0.0, 0.0), vec3(1.0, 0.45, 0.0), d / 0.22);
       else if ( d < 0.42 ) chaud = mix(vec3(1.0, 0.45, 0.0), vec3(1.0, 1.0, 0.0), (d - 0.22) / 0.2);
       else if ( d < 0.68 ) chaud = mix(vec3(1.0, 1.0, 0.0), vec3(0.0, 1.0, 0.25), (d - 0.42) / 0.26);
-      else chaud = mix(vec3(0.0, 1.0, 0.25), vec3(0.0, 0.3, 1.0), (d - 0.68) / 0.32);
-      finalColor = chaud * colorationAlpha * smoothstep(1.0, 0.82, d);
+      else chaud = mix(vec3(0.0, 1.0, 0.25), vec3(0.0, 0.12, 0.55), (d - 0.68) / 0.32);
+      finalColor = chaud * colorationAlpha * smoothstep(1.0, 0.75, d);
       ${this.FRAGMENT_END}
     }`;
   };
@@ -265,6 +304,8 @@ export function brancherVision() {
   Hooks.on("updateActor", (acteur, changes) => {
     if ( foundry.utils.hasProperty(changes, "flags.cyberpunk2075.visionThermique") || ("system" in changes && acteur.type === "ennemi") ) rafraichirVisionActeur(acteur);
   });
+  Hooks.on("canvasTearDown", () => { silhouettes.clear(); calqueChaud = null; vue = false; });
+  Hooks.on("deleteToken", doc => oublierSilhouette(doc.id));
   Hooks.on("canvasReady", () => {
     vue = false;
     for ( const t of canvas.tokens.placeables ) {
@@ -275,8 +316,7 @@ export function brancherVision() {
     canvas.perception.update({ initializeVision: true, initializeLighting: true });
   });
   Hooks.on("sightRefresh", surRafraichissementVue);
-  Hooks.on("refreshToken", t => { if ( vue || t.mesh?.filters?.some(f => f.cpVision) ) filtrerToken(t); });
-  Hooks.on("refreshTile", t => { if ( vue || t.mesh?.filters?.some(f => f.cpVision) ) filtrerTuile(t); });
+  Hooks.on("refreshToken", t => { if ( vue || silhouettes.has(t.id) ) filtrerToken(t); });
 }
 
 /** Allume ou éteint la vision thermique d'un personnage (bouton de la fiche). */
@@ -285,6 +325,7 @@ export async function basculerThermique(acteur) {
   if ( !aVisionThermique(acteur) ) return ui.notifications.warn("Il faut l'amélioration Vision thermique sur l'Optique Kiroshi.");
   const allumee = !acteur.flags?.cyberpunk2075?.visionThermique;
   await acteur.setFlag("cyberpunk2075", "visionThermique", allumee);
+  if ( allumee ) jouerSon(`${SON}/vision_thermique.ogg`);
   const tokens = acteur.getActiveTokens();
   if ( allumee && tokens.length && tokens.every(t => !t.document.sight.enabled) ) {
     ui.notifications.warn("Ce token n'a pas la vision activée : la vision thermique n'aura pas d'effet.");

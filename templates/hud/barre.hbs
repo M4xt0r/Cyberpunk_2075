@@ -72,8 +72,8 @@
       <span class="cp-lbl {{#if bleu}}cp-b-bleu{{else}}cp-jaune{{/if}} cp-b-titre">{{titre}}</span>
       <div class="cp-b-liste">
         {{#each lignes}}
-        <div class="cp-b-tuile {{#if bloque}}cp-b-bloque{{/if}}" data-item-id="{{id}}">
-          <button type="button" class="cp-b-i" data-action="infos" aria-label="Infos {{nom}}">i</button>
+        <div class="cp-b-tuile {{#if bloque}}cp-b-bloque{{/if}}" data-item-id="{{id}}" {{#if thermique}}data-thermique{{/if}}>
+          {{#unless thermique}}<button type="button" class="cp-b-i" data-action="infos" aria-label="Infos {{nom}}">i</button>{{/unless}}
           <div class="cp-b-texte">
             <span class="cp-b-item">{{nom}}</span>
             <span class="cp-num cp-b-infos {{#if rouge}}cp-b-rouge{{/if}} {{#if ../bleu}}cp-b-bleu{{/if}}">{{infos}}</span>
