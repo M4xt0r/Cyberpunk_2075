@@ -5,7 +5,7 @@
   "navigation": false,
   "navName": "Avenue de Night City",
   "background": {
-    "src": "systems/cyberpunk2075/assets/scenes/route_ville_double.webm"
+    "src": "systems/cyberpunk2075/assets/scenes/route_ville_double_defil.webp"
   },
   "thumb": "systems/cyberpunk2075/assets/scenes/route_ville_double_vignette.webp",
   "width": 2200,

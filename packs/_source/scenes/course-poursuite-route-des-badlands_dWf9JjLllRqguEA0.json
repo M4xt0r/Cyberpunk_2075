@@ -5,7 +5,7 @@
   "navigation": false,
   "navName": "Route des Badlands",
   "background": {
-    "src": "systems/cyberpunk2075/assets/scenes/route_badlands.webm"
+    "src": "systems/cyberpunk2075/assets/scenes/route_badlands_defil.webp"
   },
   "thumb": "systems/cyberpunk2075/assets/scenes/route_badlands_vignette.webp",
   "width": 1600,

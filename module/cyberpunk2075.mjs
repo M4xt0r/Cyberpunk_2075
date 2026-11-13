@@ -27,7 +27,7 @@ import FriseCombat from "./hud/frise.mjs";
 import { brancherDeplacements } from "./hud/combat.mjs";
 import { dessinerPings, retirerPingsDe } from "./hud/pings.mjs";
 import { enregistrerVision, brancherVision } from "./hud/vision.mjs";
-import { brancherDefilement, majBoutonDefilement } from "./hud/defilement.mjs";
+import { brancherDefilement, majBoutonDefilement, migrerFondsDefilement } from "./hud/defilement.mjs";
 import { chargerIndicateurs, dessinerIndicateurs, redessinerActeur } from "./hud/indicateurs.mjs";
 
 const { ID_SYSTEME, CHEMIN } = CONFIG_CP;
@@ -248,6 +248,7 @@ Hooks.once("ready", async () => {
   barre.render({ force: true });
   ajouterBoutonTour();
   majBoutonDefilement();
+  migrerFondsDefilement().catch(err => console.warn("Cyberpunk 2075 | Fonds de poursuite :", err));
   frise = new FriseCombat();
   frise.render({ force: true });
   await chargerIndicateurs();

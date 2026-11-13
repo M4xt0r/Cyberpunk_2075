@@ -11,7 +11,7 @@ def route(cle, nom, nav, fichier, fond, largeur=1600):
         "name": nom,
         "navigation": False,
         "navName": nav,
-        "background": {"src": f"{SCN}/{fichier}.webm"},
+        "background": {"src": f"{SCN}/{fichier}_defil.webp"},
         "thumb": f"{SCN}/{fichier}_vignette.webp",
         "width": largeur, "height": 2200, "padding": 0,
         "backgroundColor": fond,
@@ -32,3 +32,6 @@ def scenes():
         route("route-ville", "Course-poursuite · Rue de Night City", "Rue de Night City", "route_ville", "#1c1c24"),
         route("route-ville-double", "Course-poursuite · Avenue de Night City (2×2 voies)", "Avenue de Night City", "route_ville_double", "#1c1c24", 2200),
     ]
+
+# Les fonds « _defil.webp » contiennent deux fois la route l'une sous l'autre :
+# module/hud/defilement.mjs fait glisser une fenêtre dessus (outils/route_poursuite*.py pour les dessiner).
