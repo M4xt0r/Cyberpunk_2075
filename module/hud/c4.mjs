@@ -4,12 +4,13 @@
  * que pour le poseur et le MJ ; le message de pose a aussi un bouton.
  * La charge est une tuile posée par le MJ actif (les joueurs ne peuvent pas créer de tuiles).
  */
-import { CHEMIN } from "../config.mjs";
+import { ANIM } from "../config.mjs";
 import { choisirPoint } from "./viser.mjs";
 import { lancerDegats, tokenDe } from "../dice/attaque.mjs";
 
-/** Image de la charge posée. */
-export const IMAGE_C4 = `${CHEMIN}/assets/tokens/objets/c4.webp`;
+/** Charge posée : la mine en boucle (la croix pulse) ; image fixe pendant le choix de la case. */
+export const IMAGE_C4 = `${ANIM}/impacts/mine.webm`;
+export const ICONE_C4 = `${ANIM}/projectiles/mine.png`;
 
 const estMJActif = () => game.users.activeGM?.id === game.user.id;
 const donneesC4 = tuile => tuile?.flags?.cyberpunk2075?.c4 ?? null;
@@ -52,7 +53,7 @@ export async function poserC4(item) {
   const acteur = item.actor;
   const sys = item.system;
   if ( (sys.quantite ?? 1) <= 0 ) return ui.notifications.warn(`${item.name} : plus aucune charge.`);
-  const brut = await choisirPoint(item, { texte: `${item.name} : clique sur la case où poser la charge (clic droit ou Échap pour annuler).` });
+  const brut = await choisirPoint(item, { image: ICONE_C4, texte: `${item.name} : clique sur la case où poser la charge (clic droit ou Échap pour annuler).` });
   if ( !brut ) return null;
   const cible = canvas.grid.getCenterPoint(brut);
 
@@ -97,6 +98,7 @@ export async function poserTuileC4(c4, messageId) {
     texture: { src: IMAGE_C4 },
     x: Math.round(c4.x - t / 2), y: Math.round(c4.y - t / 2), width: t, height: t,
     locked: true,
+    video: { loop: true, autoplay: true, volume: 0 },
     flags: { cyberpunk2075: { c4: { ...c4, message: messageId } } }
   }]);
 }

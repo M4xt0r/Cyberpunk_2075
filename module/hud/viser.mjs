@@ -12,11 +12,11 @@ export const voitRayon = acteur => aAmelioration(acteur, "Rayon d'explosion");
  * @param {Item} item  La grenade.
  * @returns {Promise<{x:number, y:number}|null>}
  */
-export async function choisirPoint(item, { texte = null } = {}) {
+export async function choisirPoint(item, { texte = null, image: imageImposee = null } = {}) {
   if ( !canvas?.ready ) return null;
   const dims = canvas.dimensions;
   const rayonPx = voitRayon(item.actor) ? ((item.system.attaque?.zone || 0) / dims.distance) * dims.size : 0;
-  const image = item.system.animationEffective?.projectile || item.img;
+  const image = imageImposee || item.system.animationEffective?.projectile || item.img;
 
   const calque = new PIXI.Container();
   calque.eventMode = "static";
