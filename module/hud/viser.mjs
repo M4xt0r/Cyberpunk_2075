@@ -12,7 +12,7 @@ export const voitRayon = acteur => aAmelioration(acteur, "Rayon d'explosion");
  * @param {Item} item  La grenade.
  * @returns {Promise<{x:number, y:number}|null>}
  */
-export async function choisirPoint(item) {
+export async function choisirPoint(item, { texte = null } = {}) {
   if ( !canvas?.ready ) return null;
   const dims = canvas.dimensions;
   const rayonPx = voitRayon(item.actor) ? ((item.system.attaque?.zone || 0) / dims.distance) * dims.size : 0;
@@ -49,7 +49,7 @@ export async function choisirPoint(item) {
   };
   placer(canvas.mousePosition ?? { x: dims.sceneX + dims.sceneWidth / 2, y: dims.sceneY + dims.sceneHeight / 2 });
   canvas.stage.addChild(calque);
-  ui.notifications.info(`${item.name} : clique là où tu la lances (clic droit ou Échap pour annuler).`);
+  ui.notifications.info(texte ?? `${item.name} : clique là où tu la lances (clic droit ou Échap pour annuler).`);
 
   return new Promise(resolve => {
     const finir = point => {

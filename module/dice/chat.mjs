@@ -7,6 +7,7 @@ import { jouerAnimation } from "../animations.mjs";
 import { creerZonePersistante, estMJActif } from "../hud/tours.mjs";
 import { combatEnCours, lancerInitiative, lancerInitiativeGroupe } from "../hud/combat.mjs";
 import { ajouterPings } from "../hud/pings.mjs";
+import { poserTuileC4, exploserDepuisMessage, retirerTuileExplosee } from "../hud/c4.mjs";
 
 const drapeaux = message => message.flags?.cyberpunk2075 ?? {};
 
@@ -14,6 +15,8 @@ const drapeaux = message => message.flags?.cyberpunk2075 ?? {};
 export function surRenduMessage(message, html) {
   const d = drapeaux(message);
   if ( !game.user.isGM ) for ( const el of html.querySelectorAll(".cp-mj-seul") ) el.remove();
+  // C4 : seuls le poseur et le MJ voient le bouton de mise à feu
+  if ( (d.type === "c4") && !game.user.isGM && (d.c4?.user !== game.user.id) ) for ( const el of html.querySelectorAll(".cp-c4-boutons") ) el.remove();
   if ( d.acteur ) {
     const acteur = fromUuidSync(d.acteur, { strict: false });
     if ( !acteur?.isOwner ) for ( const el of html.querySelectorAll(".cp-proprio-seul") ) el.remove();
@@ -39,6 +42,8 @@ async function surAction(message, bouton) {
     if ( !c ) return ui.notifications.warn("Ce combat est terminé.");
     return lancerInitiative(c);
   }
+
+  if ( action === "exploserC4" ) return exploserDepuisMessage(message);
 
   if ( action === "arreterZone" ) {
     if ( !game.user.isGM ) return;
@@ -93,6 +98,15 @@ async function surAction(message, bouton) {
 export async function surCreationMessage(message) {
   const d = drapeaux(message);
   const liste = [d.animation, ...(d.animations ?? [])].filter(a => a);
+  // C4 posé : le MJ actif pose la charge sur la scène
+  if ( (d.type === "c4") && d.c4 ) {
+    if ( estMJActif() ) poserTuileC4(d.c4, message.id).catch(err => console.warn("Cyberpunk 2075 | C4 :", err));
+    return;
+  }
+  // C4 qui explose : la charge disparaît dans l'explosion
+  if ( d.retirerTuile && estMJActif() ) {
+    attendreDes(message).then(() => setTimeout(() => retirerTuileExplosee(d.retirerTuile).catch(() => null), 700));
+  }
   // Ping : le MJ actif pose les marques sur la scène une fois l'onde terminée
   if ( (d.type === "ping") && d.ping && estMJActif() ) {
     await attendreDes(message);

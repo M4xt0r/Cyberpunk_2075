@@ -7,6 +7,7 @@ import { CHEMIN, CARACS, COMPETENCES, TYPES_ARME } from "../config.mjs";
 import { signe } from "../dice/jets.mjs";
 import { dansBuild } from "../data/ennemi.mjs";
 import { aVisionThermique, basculerThermique } from "./vision.mjs";
+import { estPosee } from "./viser.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const ACTIVATIONS = { action: "action", bonus: "action bonus", reaction: "réaction" };
@@ -136,7 +137,7 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
       if ( a.attaque.zone ) infos.push(`zone ${a.attaque.zone} m`);
       return {
         id: i.id, nom: grenade && (a.quantite > 1) ? `${i.name} ×${a.quantite}` : i.name, infos: infos.join(" · ") || (TYPES_ARME[a.type]?.label ?? ""),
-        label: grenade ? "Lancer" : "Attaquer", bloque: grenade && (a.quantite <= 0), raison: "Épuisée"
+        label: grenade ? (estPosee(i) ? "Placer" : "Lancer") : "Attaquer", bloque: grenade && (a.quantite <= 0), raison: "Épuisée"
       };
     });
 

@@ -1,6 +1,7 @@
 import { TYPES_DEGATS, CHEMIN, CARACS, COMPETENCES, COUVERTS, NIVEAUX, TYPES_ARME, EMPLACEMENTS } from "../config.mjs";
 import { RANGS, buildDe, dansBuild } from "../data/ennemi.mjs";
 import { signe } from "../dice/jets.mjs";
+import { estPosee } from "../hud/viser.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -148,7 +149,7 @@ export default class FicheEnnemi extends HandlebarsApplicationMixin(ActorSheetV2
       ligne.infos.push(`Dégâts <b>${sys.formuleLisible()}</b>`);
       if ( sys.portee ) ligne.infos.push(`${sys.portee} m`);
       const grenade = (item.type === "arme") && (sys.type === "grenade");
-      ligne.boutons.push({ action: "attaquer", label: grenade ? "Lancer" : "Attaquer", principal: true });
+      ligne.boutons.push({ action: "attaquer", label: grenade ? (estPosee(item) ? "Placer" : "Lancer") : "Attaquer", principal: true });
       if ( !grenade && (sys.attaque.defense !== "aucune") ) ligne.boutons.push({ action: "degats", label: "Dégâts" });
       if ( item.type === "arme" ) ligne.sousType = TYPES_ARME[sys.type]?.label;
     }

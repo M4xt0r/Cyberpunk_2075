@@ -28,6 +28,7 @@ import { brancherDeplacements } from "./hud/combat.mjs";
 import { dessinerPings, retirerPingsDe } from "./hud/pings.mjs";
 import { enregistrerVision, brancherVision } from "./hud/vision.mjs";
 import { brancherDefilement, majBoutonDefilement, migrerFondsDefilement } from "./hud/defilement.mjs";
+import { brancherC4 } from "./hud/c4.mjs";
 import { chargerIndicateurs, dessinerIndicateurs, redessinerActeur } from "./hud/indicateurs.mjs";
 
 const { ID_SYSTEME, CHEMIN } = CONFIG_CP;
@@ -45,6 +46,7 @@ Hooks.once("init", () => {
   enregistrerVision();
   brancherVision();
   brancherDefilement();
+  brancherC4();
   Object.assign(CONFIG.Actor.dataModels, {
     personnage: PersonnageData,
     ennemi: EnnemiData,

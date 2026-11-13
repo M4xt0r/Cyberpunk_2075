@@ -5,6 +5,7 @@ import { ANIM, CHEMIN, CARACS, COMPETENCES, COUVERTS, DEFENSES, IMPACT_PAR_DEGAT
 import { signe } from "./jets.mjs";
 import { traduireFormule } from "./formules.mjs";
 import { choisirPoint, estPosee } from "../hud/viser.mjs";
+import { poserC4 } from "../hud/c4.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 const DE_PAR_MODE = { avantage: "2d20kh", normal: "1d20", desavantage: "2d20kl" };
@@ -144,8 +145,10 @@ export async function attaquer(item, { rapide = false, supplementaire = false } 
 
   // Dégâts automatiques (grenades, défense « aucune ») : pas de jet de touche
   if ( sys.attaque.defense === "aucune" ) {
-    // Grenade lancée sans cible : le joueur choisit le point de chute (le C4 se pose, il ne se lance pas)
-    if ( (sys.typeArme === "grenade") && !estPosee(item) && !game.user.targets.size && canvas?.ready ) {
+    // C4 : il se pose sur une case puis explose sur commande
+    if ( estPosee(item) && canvas?.ready ) return poserC4(item);
+    // Grenade lancée sans cible : le joueur choisit le point de chute
+    if ( (sys.typeArme === "grenade") && !game.user.targets.size && canvas?.ready ) {
       const point = await choisirPoint(item);
       if ( !point ) return null;
       return lancerDegats(item, { avecAnimation: true, point });
@@ -254,7 +257,7 @@ export async function attaquer(item, { rapide = false, supplementaire = false } 
  * @param {boolean}  [options.critique]   Ajoute le dé de critique du niveau.
  * @param {boolean}  [options.avecAnimation]  Dégâts directs avec animation (grenades).
  */
-export async function lancerDegats(item, { cibles = null, critique = false, avecAnimation = false, point = null } = {}) {
+export async function lancerDegats(item, { cibles = null, critique = false, avecAnimation = false, point = null, explosionPosee = false, drapeaux = {} } = {}) {
   const acteur = item.actor;
   if ( !acteur ) return ui.notifications.warn("L'arme doit être portée par un personnage.");
   const sys = item.system;
@@ -325,13 +328,19 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     return { ...c, montant: sansDegats ? 0 : montant, sansDegats, effet, notes: notes.join(" · ") };
   });
 
-  // Grenades : consommées au lancer
-  if ( (item.type === "arme") && (sys.typeArme === "grenade") ) await item.update({ "system.quantite": Math.max(0, sys.quantite - 1) });
+  // Grenades : consommées au lancer (le C4 l'a été à la pose)
+  if ( (item.type === "arme") && (sys.typeArme === "grenade") && !explosionPosee ) await item.update({ "system.quantite": Math.max(0, sys.quantite - 1) });
 
   let animation = null;
   if ( avecAnimation ) {
     const tokens = point ? [] : (tokensCibles.length ? tokensCibles : Array.from(game.user.targets));
     animation = donneesAnimation(item, source, tokens, tokens, point);
+    // Charge posée : l'explosion seule, sur place, même si le poseur n'est plus là
+    if ( explosionPosee && point ) {
+      const anim = sys.animationEffective;
+      animation = { scene: canvas.scene.id, source: null, cibles: [], touches: [], point, rayon: sys.attaque?.zone ?? 0,
+        ...anim, style: "zone", projectile: "", tir: "", impactsSup: [] };
+    }
   }
 
   // Zone persistante (nuage toxique…) : durée tirée maintenant, la tuile est posée par le MJ
@@ -382,7 +391,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     content: contenu,
     // Sans dégâts (flashbang) : seul le jet d'effet est montré (Dice So Nice ignore un jet sans dé)
     rolls: a.faitDegats ? (jetEffet ? [jet, jetEffet] : [jet]) : (jetEffet ? [jetEffet] : []),
-    flags: { cyberpunk2075: { type: "degats", acteur: acteur.uuid, item: item.uuid, total: totalDegats, animation, zonePersistante } }
+    flags: { cyberpunk2075: { type: "degats", acteur: acteur.uuid, item: item.uuid, total: totalDegats, animation, zonePersistante, ...drapeaux } }
   });
 }
 

@@ -192,7 +192,8 @@ async function effet(src, centre, taille, { avecSon = true } = {}) {
  */
 export async function jouerAnimation(a) {
   const source = canvas.tokens.get(a.source);
-  if ( !source ) return;
+  // Une explosion posée (C4) n'a pas besoin du token du poseur
+  if ( !source && !((a.style === "zone") && a.point) ) return;
   const cibles = (a.cibles ?? []).map(id => canvas.tokens.get(id)).filter(t => t);
   if ( a.style === "aucune" ) return jouerSon(a.son || a.tir);
   const touches = new Set(a.touches ?? []);
