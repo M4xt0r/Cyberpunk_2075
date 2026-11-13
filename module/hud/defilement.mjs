@@ -4,6 +4,7 @@
  * (cyberpunk2075.defilement.actif) et appliqué par chaque client.
  */
 
+let avertiFps = false;
 const etat = scene => scene?.flags?.cyberpunk2075?.defilement;
 export const sceneDefilante = scene => !!etat(scene);
 
@@ -23,7 +24,16 @@ export function appliquerDefilement() {
   video.loop = true;
   video.muted = true;
   video.playbackRate = Number(e.vitesse) || 1;
-  if ( e.actif ) video.play().catch(() => null);
+  if ( e.actif ) {
+    video.play().catch(() => null);
+    // Le canevas doit tourner à 60 images/s pour que la route défile sans à-coups
+    let ips = 60;
+    try { ips = Number(game.settings.get("core", "maxFPS")) || 60; } catch {}
+    if ( (ips < 60) && !avertiFps ) {
+      avertiFps = true;
+      ui.notifications.info(`La route peut saccader : Foundry est limité à ${ips} images/s. Réglages → Paramètres de base → Images par seconde maximum : 60.`);
+    }
+  }
   else video.pause();
   majBoutonDefilement();
 }
