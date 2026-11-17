@@ -15,7 +15,7 @@ export const voitRayon = acteur => aAmelioration(acteur, "Rayon d'explosion");
 export async function choisirPoint(item, { texte = null, image: imageImposee = null } = {}) {
   if ( !canvas?.ready ) return null;
   const dims = canvas.dimensions;
-  const rayonPx = voitRayon(item.actor) ? ((item.system.attaque?.zone || 0) / dims.distance) * dims.size : 0;
+  const rayonPx = (voitRayon(item.actor) || item.actor?.flags?.cyberpunk2075?.arsenal) ? ((item.system.attaque?.zone || 0) / dims.distance) * dims.size : 0;
   const image = imageImposee || item.system.animationEffective?.projectile || item.img;
 
   const calque = new PIXI.Container();

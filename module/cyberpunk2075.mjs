@@ -29,6 +29,7 @@ import { dessinerPings, retirerPingsDe } from "./hud/pings.mjs";
 import { enregistrerVision, brancherVision } from "./hud/vision.mjs";
 import { brancherDefilement, majBoutonDefilement, migrerFondsDefilement } from "./hud/defilement.mjs";
 import { brancherC4 } from "./hud/c4.mjs";
+import { brancherArsenal } from "./hud/arsenal.mjs";
 import { chargerIndicateurs, dessinerIndicateurs, redessinerActeur } from "./hud/indicateurs.mjs";
 
 const { ID_SYSTEME, CHEMIN } = CONFIG_CP;
@@ -47,6 +48,7 @@ Hooks.once("init", () => {
   brancherVision();
   brancherDefilement();
   brancherC4();
+  brancherArsenal();
   Object.assign(CONFIG.Actor.dataModels, {
     personnage: PersonnageData,
     ennemi: EnnemiData,
@@ -305,7 +307,7 @@ Hooks.on("deleteTile", tuile => {
 const aCoupDePoing = acteur => acteur.items.some(i => i.flags?.cyberpunk2075?.base === "poing");
 
 async function donnerCoupDePoing(acteur) {
-  if ( !["personnage", "ennemi"].includes(acteur?.type) || aCoupDePoing(acteur) ) return;
+  if ( !["personnage", "ennemi"].includes(acteur?.type) || aCoupDePoing(acteur) || acteur.flags?.cyberpunk2075?.arsenal ) return;
   await acteur.createEmbeddedDocuments("Item", [CONFIG_CP.donneesCoupDePoing()]);
 }
 

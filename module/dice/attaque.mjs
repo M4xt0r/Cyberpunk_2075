@@ -336,7 +336,7 @@ export async function lancerDegats(item, { cibles = null, critique = false, avec
     const tokens = point ? [] : (tokensCibles.length ? tokensCibles : Array.from(game.user.targets));
     animation = donneesAnimation(item, source, tokens, tokens, point);
     // Charge posée : l'explosion seule, sur place, même si le poseur n'est plus là
-    if ( explosionPosee && point ) {
+    if ( (explosionPosee || !source) && point ) {
       const anim = sys.animationEffective;
       animation = { scene: canvas.scene.id, source: null, cibles: [], touches: [], point, rayon: sys.attaque?.zone ?? 0,
         ...anim, style: "zone", projectile: "", tir: "", impactsSup: [] };

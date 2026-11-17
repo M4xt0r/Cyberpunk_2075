@@ -8,6 +8,7 @@ import { signe } from "../dice/jets.mjs";
 import { dansBuild } from "../data/ennemi.mjs";
 import { aVisionThermique, basculerThermique } from "./vision.mjs";
 import { estPosee } from "./viser.mjs";
+import { arsenal, estArsenal } from "./arsenal.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const ACTIVATIONS = { action: "action", bonus: "action bonus", reaction: "réaction" };
@@ -73,6 +74,11 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
       if ( perso?.type === "personnage" ) return perso;
       return game.actors.find(a => (a.type === "personnage") && a.isOwner) ?? null;
     }
+    if ( this._tokenId === "arsenal" ) {
+      const a = arsenal();
+      if ( a ) return a;
+      this._tokenId = null;
+    }
     const tokens = this.tokensScene;
     let token = tokens.find(t => t.id === this._tokenId);
     if ( !token ) {
@@ -113,6 +119,7 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
     if ( game.user.isGM ) {
       c.choixTokens = this.tokensScene.map(t => ({ id: t.id, nom: t.name, ennemi: t.actor.type === "ennemi", actif: t.id === this._tokenId }));
       c.aucunToken = !c.choixTokens.length;
+      if ( arsenal() ) c.choixArsenal = { actif: this._tokenId === "arsenal" };
     }
     if ( !acteur ) return c;
     const s = acteur.system;
@@ -120,12 +127,13 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
     const items = perso ? [...acteur.items] : acteur.items.filter(i => dansBuild(i, s.build));
     const tri = (a, b) => (a.sort - b.sort) || a.name.localeCompare(b.name);
 
+    const estStock = estArsenal(acteur);
     c.acteur = { nom: acteur.name, img: acteur.img, perso, peutAgir: acteur.isOwner };
-    c.jauges = [
+    c.jauges = estStock ? [{ label: "Explosifs à volonté · jets sans caractéristiques", valeur: "", classe: "" }] : [
       { label: "Vie", valeur: `${s.vie.value}/${s.vie.max}`, classe: "cp-b-vie" },
       { label: "RAM", valeur: `${s.ram.value}/${s.ram.max}`, classe: "cp-b-ram" }
     ];
-    if ( perso ) c.jauges.push({ label: "Hum.", valeur: `${s.humanite.value}/${s.humanite.max}`, classe: "" });
+    if ( perso && !estStock ) c.jauges.push({ label: "Hum.", valeur: `${s.humanite.value}/${s.humanite.max}`, classe: "" });
 
     // Armes (et armes intégrées aux implants)
     c.armes = items.filter(i => i.type === "arme").sort(tri).map(i => {
@@ -136,7 +144,7 @@ export default class BarreActions extends HandlebarsApplicationMixin(Application
       if ( a.attaque.faitDegats ) infos.push(a.formuleLisible());
       if ( a.attaque.zone ) infos.push(`zone ${a.attaque.zone} m`);
       return {
-        id: i.id, nom: grenade && (a.quantite > 1) ? `${i.name} ×${a.quantite}` : i.name, infos: infos.join(" · ") || (TYPES_ARME[a.type]?.label ?? ""),
+        id: i.id, nom: grenade && (a.quantite > 1) && !estStock ? `${i.name} ×${a.quantite}` : i.name, infos: infos.join(" · ") || (TYPES_ARME[a.type]?.label ?? ""),
         label: grenade ? (estPosee(i) ? "Placer" : "Lancer") : "Attaquer", bloque: grenade && (a.quantite <= 0), raison: "Épuisée"
       };
     });

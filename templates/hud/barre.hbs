@@ -4,6 +4,7 @@
     <label class="cp-b-choix">
       <span class="cp-lbl cp-doux">Token</span>
       <select data-choix-token aria-label="Choisir le token">
+        {{#if choixArsenal}}<option value="arsenal" {{#if choixArsenal.actif}}selected{{/if}}>🧨 Arsenal du MJ</option>{{/if}}
         {{#if aucunToken}}<option value="">Aucun token sur la scène</option>{{/if}}
         {{#each choixTokens}}<option value="{{id}}" {{#if actif}}selected{{/if}}>{{#if ennemi}}☠ {{/if}}{{nom}}</option>{{/each}}
       </select>

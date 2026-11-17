@@ -112,6 +112,10 @@ export async function zonesAuTourDe(combattant) {
   for ( const tuile of tuiles ) {
     const z = tuile.flags.cyberpunk2075.zone;
     const sienne = (z.lanceurToken && (z.lanceurToken === tokenUuid)) || (!z.lanceurToken && z.lanceur && (z.lanceur === acteurUuid));
+    // Zone lancée hors combat (arsenal du MJ…) : elle perd un tour au début de chaque round
+    const combat = combattant.combat;
+    const orpheline = !z.lanceurToken && !combat?.combatants.some(c => c.actor?.uuid === z.lanceur) && (combat?.turn === 0);
+    if ( orpheline && await decompterZone(tuile) ) continue;
     if ( sienne && await decompterZone(tuile) ) continue;
     const token = combattant.token?.object;
     if ( !token || (canvas?.scene?.id !== scene.id) ) continue;
