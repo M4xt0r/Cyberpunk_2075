@@ -176,6 +176,28 @@ export function dessinerBoutonsC4() {
       exploserC4(t).finally(() => { if ( !b.destroyed ) { b.eventMode = "static"; b.alpha = 1; } });
     });
     calque.addChild(b);
+
+    // MJ : masquer / montrer la charge aux joueurs (visible en vision thermique même masquée)
+    if ( game.user.isGM ) {
+      const m = new PIXI.Container();
+      m.eventMode = "static";
+      m.cursor = "pointer";
+      const fondM = new PIXI.Graphics();
+      fondM.lineStyle(2, 0xF2CF3A, 1).beginFill(0x16151C, 0.92).drawRoundedRect(-48, -12, 96, 24, 5).endFill();
+      const texteM = new PIXI.Text(t.hidden ? "MONTRER" : "MASQUER", { fontFamily: "Rajdhani, Arial, sans-serif", fontSize: 13, fontWeight: "700", fill: 0xF2CF3A, letterSpacing: 1 });
+      texteM.anchor.set(0.5);
+      m.addChild(fondM, texteM);
+      m.position.set(t.x + t.width / 2, t.y + t.height + 50);
+      m.on("pointerover", () => m.scale.set(1.08));
+      m.on("pointerout", () => m.scale.set(1));
+      m.on("pointerdown", ev => {
+        ev.stopPropagation();
+        if ( ev.button !== 0 ) return;
+        m.eventMode = "none";
+        t.update({ hidden: !t.hidden }).catch(err => ui.notifications.error(err.message));
+      });
+      calque.addChild(m);
+    }
   }
   canvas.stage.addChild(calque);
 }

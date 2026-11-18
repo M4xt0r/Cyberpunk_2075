@@ -157,6 +157,54 @@ export function filtrerToken(token) {
   s.visible = true;
 }
 
+/* Mines (C4) : rouges en vue thermique, même masquées par le MJ, à portée et en ligne de vue */
+const MINE = "systems/cyberpunk2075/assets/animations/projectiles/mine.png";
+let textureMine = null;
+
+function detecteeEnThermique(pt) {
+  const pxParM = canvas.dimensions.size / canvas.dimensions.distance;
+  for ( const s of canvas.effects?.visionSources ?? [] ) {
+    if ( (s.active === false) || (s.visionMode?.id !== "thermique") ) continue;
+    const x = s.data?.x ?? s.x;
+    const y = s.data?.y ?? s.y;
+    if ( Math.hypot(pt.x - x, pt.y - y) > PORTEE_VISION * pxParM ) continue;
+    try { if ( s.los && !s.los.contains(pt.x, pt.y) ) continue; } catch {}
+    return true;
+  }
+  return false;
+}
+
+export async function majMinesThermiques() {
+  if ( !canvas?.ready ) return;
+  const mines = canvas.scene.tiles.filter(t => t.flags?.cyberpunk2075?.c4);
+  const ids = new Set(mines.map(t => `mine-${t.id}`));
+  for ( const cle of [...silhouettes.keys()] ) if ( cle.startsWith("mine-") && !ids.has(cle) ) oublierSilhouette(cle);
+  if ( !mines.length ) return;
+  if ( vue && !textureMine ) {
+    try { textureMine = await (foundry.canvas.loadTexture ?? globalThis.loadTexture)(MINE); } catch {}
+  }
+  filtres();
+  for ( const t of mines ) {
+    const cle = `mine-${t.id}`;
+    let s = silhouettes.get(cle);
+    const centre = { x: t.x + t.width / 2, y: t.y + t.height / 2 };
+    const montrer = vue && textureMine && detecteeEnThermique(centre);
+    if ( !montrer ) { if ( s && !s.destroyed ) s.visible = false; continue; }
+    if ( !s || s.destroyed ) {
+      s = new PIXI.Sprite(textureMine);
+      s.eventMode = "none";
+      s.anchor.set(0.5);
+      s.filters = [ROUGE];
+      conteneurChaud().addChild(s);
+      silhouettes.set(cle, s);
+    }
+    s.position.set(centre.x, centre.y);
+    s.width = t.width;
+    s.height = t.height;
+    s.visible = true;
+  }
+}
+
 function filtrerTout() {
   if ( !canvas?.ready ) return;
   filtres();
@@ -165,6 +213,7 @@ function filtrerTout() {
   if ( !rendu && vue ) console.warn("Cyberpunk 2075 | Vision thermique : rendu principal introuvable (canvas.primary.sprite)");
   poser(rendu, vue ? BLEU : null);
   for ( const t of canvas.tokens?.placeables ?? [] ) filtrerToken(t);
+  majMinesThermiques();
   // Les sources thermiques s'allument ou s'éteignent
   let lumieres = false;
   for ( const l of canvas.lighting?.placeables ?? [] ) {
@@ -180,7 +229,7 @@ function filtrerTout() {
 export function surRafraichissementVue() {
   const sources = canvas?.effects?.visionSources;
   const v = !!sources?.some?.(s => (s.active !== false) && (s.visionMode?.id === "thermique"));
-  if ( v === vue ) return;
+  if ( v === vue ) { if ( vue ) majMinesThermiques(); return; }
   vue = v;
   filtrerTout();
 }
@@ -332,6 +381,7 @@ export function brancherVision() {
   });
   Hooks.on("canvasTearDown", () => { silhouettes.clear(); calqueChaud = null; vue = false; });
   Hooks.on("deleteToken", doc => oublierSilhouette(doc.id));
+  for ( const h of ["createTile", "updateTile", "deleteTile"] ) Hooks.on(h, doc => { if ( doc.flags?.cyberpunk2075?.c4 ) majMinesThermiques(); });
   Hooks.on("canvasReady", () => {
     vue = false;
     for ( const t of canvas.tokens.placeables ) {
