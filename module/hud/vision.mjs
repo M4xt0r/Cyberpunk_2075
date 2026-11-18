@@ -9,8 +9,10 @@ import { dansBuild } from "../data/ennemi.mjs";
 import { SON } from "../config.mjs";
 import { jouerSon } from "../sons.mjs";
 
-/** Portée de la vision dans le noir et de la vision thermique (m). */
+/** Portée de la vision dans le noir (m). */
 export const PORTEE_VISION = 20;
+/** Portée de la vision thermique (m). */
+export const PORTEE_THERMIQUE = 15;
 
 const normaliser = t => t.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[’']/g, "'").toLowerCase().trim();
 
@@ -55,14 +57,14 @@ function appliquerVision(doc) {
   const thermique = thermiqueAllumee(acteur);
   if ( !thermique && !aVisionNocturne(acteur) ) return;
   const mode = thermique ? "thermique" : "darkvision";
-  const portee = Math.max(doc.sight.range || 0, PORTEE_VISION);
+  const portee = Math.max(doc.sight.range || 0, thermique ? PORTEE_THERMIQUE : PORTEE_VISION);
   doc.sight.range = portee;
   doc.sight.visionMode = mode;
   Object.assign(doc.sight, DEFAUTS[mode]);
   if ( !modes ) return;
   const basique = modes.find(m => m.id === "basicSight");
   if ( basique && (basique.range !== null) ) basique.range = Math.max(basique.range || 0, portee);
-  if ( thermique ) modes.push({ id: "thermique", enabled: true, range: portee });
+  if ( thermique ) modes.push({ id: "thermique", enabled: true, range: PORTEE_THERMIQUE });
 }
 
 /** Recalcule la vision des tokens d'un acteur sur la scène affichée. */
@@ -167,7 +169,7 @@ function detecteeEnThermique(pt) {
     if ( (s.active === false) || (s.visionMode?.id !== "thermique") ) continue;
     const x = s.data?.x ?? s.x;
     const y = s.data?.y ?? s.y;
-    if ( Math.hypot(pt.x - x, pt.y - y) > PORTEE_VISION * pxParM ) continue;
+    if ( Math.hypot(pt.x - x, pt.y - y) > PORTEE_THERMIQUE * pxParM ) continue;
     try { if ( s.los && !s.los.contains(pt.x, pt.y) ) continue; } catch {}
     return true;
   }
