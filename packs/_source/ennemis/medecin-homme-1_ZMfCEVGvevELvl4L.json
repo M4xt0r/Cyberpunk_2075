@@ -1,0 +1,242 @@
+{
+  "_id": "ZMfCEVGvevELvl4L",
+  "_key": "!actors!ZMfCEVGvevELvl4L",
+  "name": "Médecin homme 1",
+  "type": "ennemi",
+  "img": "systems/cyberpunk2075/assets/tokens/pnj/medecin_H1.webp",
+  "system": {
+    "faction": "Citoyen",
+    "rang": "Médecin homme 1",
+    "rangNiveau": 1,
+    "nature": "organique",
+    "yeuxCyber": "auto",
+    "volant": false,
+    "build": "A",
+    "caracs": {
+      "const": {
+        "bonus": 0
+      },
+      "ref": {
+        "bonus": 0
+      },
+      "captec": {
+        "bonus": -1
+      },
+      "int": {
+        "bonus": -1
+      },
+      "safr": {
+        "bonus": 0
+      }
+    },
+    "competencesCles": [
+      {
+        "competence": "armeDePoing",
+        "valeur": 2
+      },
+      {
+        "competence": "corpsACorps",
+        "valeur": 2
+      }
+    ],
+    "vie": {
+      "value": 15,
+      "max": 15,
+      "forcer": null
+    },
+    "ram": {
+      "value": 8,
+      "max": 8,
+      "forcer": null
+    },
+    "humanite": {
+      "value": 0,
+      "max": 100
+    },
+    "adaptabilite": {
+      "forcer": null
+    },
+    "glace": {
+      "forcer": null
+    },
+    "attention": {
+      "forcer": null
+    },
+    "initiative": {
+      "bonus": 0
+    },
+    "deplacement": {
+      "bonus": 0
+    },
+    "reduction": 0,
+    "reductionSauf": [],
+    "immunites": [],
+    "bm": 2,
+    "couvert": 0,
+    "notes": ""
+  },
+  "items": [
+    {
+      "_id": "9AyM7tneFFl2zmdK",
+      "_key": "!actors.items!ZMfCEVGvevELvl4L.9AyM7tneFFl2zmdK",
+      "name": "Nue",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/nue.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Conçu pour s'adapter à n'importe quelle main.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "armeDePoing",
+        "carac": "safr",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "dureeZone": "",
+          "doubleVehicules": false,
+          "robotsSeulement": false,
+          "jetEffet": "",
+          "effetTexte": "",
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "pistolet",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 500,
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "balle"
+          },
+          "n2": {
+            "prix": 750,
+            "de": "1d6",
+            "bonusFixe": 1,
+            "typeDegats": "balle"
+          },
+          "n3": {
+            "prix": 1000,
+            "de": "1d6",
+            "bonusFixe": 2,
+            "typeDegats": "balle"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "A"
+        }
+      }
+    },
+    {
+      "_id": "opmz8nGeT7mFqcAg",
+      "_key": "!actors.items!ZMfCEVGvevELvl4L.opmz8nGeT7mFqcAg",
+      "name": "Couteau",
+      "type": "arme",
+      "img": "systems/cyberpunk2075/assets/notion/armes/couteau.webp",
+      "system": {
+        "description": "",
+        "ambiance": "Pratique quand les choses deviennent risquées.",
+        "sansNiveaux": false,
+        "niveau": 1,
+        "competence": "corpsACorps",
+        "carac": "ref",
+        "portee": null,
+        "attaque": {
+          "faitDegats": true,
+          "defense": "adaptabilite",
+          "bonusTouche": 0,
+          "zone": null,
+          "dureeZone": "",
+          "doubleVehicules": false,
+          "robotsSeulement": false,
+          "jetEffet": "",
+          "effetTexte": "",
+          "animation": {
+            "style": "",
+            "projectile": "",
+            "impact": "",
+            "zone": "",
+            "son": ""
+          }
+        },
+        "type": "corpsACorps",
+        "intelligente": false,
+        "munitions": null,
+        "quantite": 1,
+        "niveaux": {
+          "n1": {
+            "prix": 100,
+            "de": "1d6",
+            "bonusFixe": 0,
+            "typeDegats": "corpsACorps"
+          },
+          "n2": {
+            "prix": 200,
+            "de": "1d6",
+            "bonusFixe": 1,
+            "typeDegats": "corpsACorps"
+          },
+          "n3": {
+            "prix": 300,
+            "de": "1d6",
+            "bonusFixe": 2,
+            "typeDegats": "corpsACorps"
+          }
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "cyberpunk2075": {
+          "build": "B"
+        }
+      }
+    }
+  ],
+  "effects": [],
+  "folder": "tZ68ibgPiPqjnHAl",
+  "sort": 50,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Médecin homme 1",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/tokens/pnj/medecin_H1.webp"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

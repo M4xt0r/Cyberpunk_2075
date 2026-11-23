@@ -52,7 +52,7 @@ def token_pour(faction, rang):
     return f"systems/cyberpunk2075/assets/tokens/{nom}.webp" if os.path.exists(chemin) else None
 
 def ennemi(faction, image, rang, niv, caracs, stats, comps, A=(), B=(), commun=(), nature="organique", volant=False,
-           reduction=0, extra=(), dossier=None, sort=0, notes="", reductionSauf=(), immunites=()):
+           reduction=0, extra=(), dossier=None, sort=0, notes="", reductionSauf=(), immunites=(), token_image=None, disposition=-1, nom_affiche=None):
     cle = slug(f"{faction}-{rang}")
     bonus = dict(zip(CARACS, caracs))
     tot = {k: v + 5 for k, v in bonus.items()}
@@ -79,10 +79,10 @@ def ennemi(faction, image, rang, niv, caracs, stats, comps, A=(), B=(), commun=(
         "initiative": {"bonus": 0}, "deplacement": {"bonus": 0}, "reduction": reduction, "reductionSauf": list(reductionSauf), "immunites": list(immunites), "bm": 2, "couvert": 0,
         "notes": html(notes) if notes else ""
     }
-    nom = rang if rang.startswith(faction) else f"{faction} · {rang}"
-    image = token_pour(faction, rang) or image
+    nom = nom_affiche or (rang if rang.startswith(faction) else f"{faction} · {rang}")
+    image = token_image or token_pour(faction, rang) or image
     return acteur("ennemis", cle, nom, "ennemi", image, sys, dossier, sort, items=items,
-                  token={"actorLink": False, "disposition": -1, "bar1": {"attribute": "vie"}, "displayBars": 20})
+                  token={"actorLink": False, "disposition": disposition, "bar1": {"attribute": "vie"}, "displayBars": 20})
 
 def ennemis():
     docs = []
@@ -216,4 +216,36 @@ def ennemis():
                               lambda c: arme_propre(c, "Missile", "autre", "1d12", 5, competence="armeLourde", zone=3, munitions=2, typeDeg="explosion")]))
     docs.append(ennemi("Militech", aegis, "Militech Aegis X2", 1, zero, V(14, 5, 12, 0), tir(5), nature="robot", dossier=courant[0], sort=4,
                        extra=[lambda c: arme_propre(c, "Tourelle", "pistolet", "1d6", 3)]))
+    # Citoyens : un PNJ par token fourni (assets/tokens/pnj), avec les stats du Choom de base, neutres
+    fid, image = F("Citoyens", "choom")
+    for i, (fichier, nom) in enumerate(pnj_tokens()):
+        docs.append(ennemi("Citoyen", image, nom, 1, [0, 0, -1, -1, 0], V(15, 10, 9, 8), {"poing": 2, "cac": 2}, A=["nue"], B=["couteau"],
+                           dossier=fid, sort=i, token_image=f"systems/cyberpunk2075/assets/tokens/pnj/{fichier}.webp", disposition=0,
+                           nom_affiche=nom))
     return docs
+
+METIERS = {
+    "adulte": ("Adulte", "Adulte"), "barman": ("Barman", "Barmaid"), "cadre_corpo": ("Cadre corpo", "Cadre corpo"),
+    "charcudoc": ("Charcudoc", "Charcudoc"), "chef": ("Chef cuisinier", "Cheffe cuisinière"), "enfant": ("Enfant", "Enfant"),
+    "fixer": ("Fixer", "Fixer"), "garagiste": ("Garagiste", "Garagiste"), "infirmier": ("Infirmier", "Infirmière"),
+    "informaticien": ("Informaticien", "Informaticienne"), "journaliste": ("Journaliste", "Journaliste"), "livreur": ("Livreur", "Livreuse"),
+    "medecin": ("Médecin", "Médecin"), "musicien": ("Musicien", "Musicienne"), "nomade": ("Nomade", "Nomade"), "ouvrier": ("Ouvrier", "Ouvrière"),
+    "sans_abri": ("Sans-abri", "Sans-abri"), "scientifique": ("Scientifique", "Scientifique"), "serveur": ("Serveur", "Serveuse"),
+    "vendeur": ("Vendeur", "Vendeuse"), "vieux": ("Vieil homme", "Vieille femme"), "vigile": ("Vigile", "Vigile")}
+
+def pnj_tokens():
+    """(fichier, nom) pour chaque token de citoyen : « barman_F1 » → « Barmaid 1 »."""
+    dossier_pnj = os.path.join(RACINE, "assets", "tokens", "pnj")
+    out = []
+    for f in sorted(os.listdir(dossier_pnj)):
+        if not f.endswith(".webp"):
+            continue
+        b = f[:-5]
+        metier, variante = b.rsplit("_", 1)
+        genre, num = variante[0], variante[1:]
+        h, fe = METIERS.get(metier, (metier.replace("_", " ").capitalize(),) * 2)
+        nom = fe if genre == "F" else h
+        if h == fe:   # métier épicène : on précise
+            nom = f"{nom} {'femme' if genre == 'F' else 'homme'}"
+        out.append((b, f"{nom} {num}"))
+    return out
