@@ -1,0 +1,51 @@
+{
+  "_id": "a3VOrEEmOjse80qf",
+  "_key": "!actors!a3VOrEEmOjse80qf",
+  "name": "Voiture de patrouille NCPD",
+  "type": "vehicule",
+  "img": "systems/cyberpunk2075/assets/tokens/vehicules/voiture_voiture-de-patrouille-ncpd.webp",
+  "system": {
+    "categorie": "voiture",
+    "pickup": false,
+    "blinde": false,
+    "armesInterdites": false,
+    "vitesse": "C",
+    "maniabilite": 0,
+    "vie": {
+      "value": 80,
+      "base": 80
+    },
+    "slots": 3,
+    "places": 5,
+    "placesNote": "",
+    "prix": 20000,
+    "ambiance": "La Chevillon Emperor 620 Ragnar aux couleurs du NCPD.",
+    "pilote": "",
+    "description": ""
+  },
+  "items": [],
+  "effects": [],
+  "folder": "v9MHdgwSXFe7bXk3",
+  "sort": 15,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Voiture de patrouille NCPD",
+    "texture": {
+      "src": "systems/cyberpunk2075/assets/tokens/vehicules/voiture_voiture-de-patrouille-ncpd.webp"
+    },
+    "width": 1.62,
+    "height": 3.59,
+    "actorLink": true,
+    "disposition": 0,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "vie"
+    },
+    "bar2": {
+      "attribute": null
+    }
+  }
+}

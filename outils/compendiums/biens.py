@@ -45,6 +45,8 @@ VEHICULES = [
     ("thorton-mackinaw", "Thorton Mackinaw MTL1", "voiture", 12000, "D", 1, 60, 1, 6, "Un ajout obligatoire à chaque chanson country, la voiture a même son propre musée dans l'arrière-pays du Tennessee.", True),
     ("villefort-alvarado", "Villefort Alvarado V4F 570 Delegate", "voiture", 25000, "C", 2, 60, 2, 2, "L'Alvarado présente une direction étonnamment réactive grâce à ses deux essieux avant."),
     ("chevillon-emperor", "Chevillon Emperor 620 Ragnar", "utilitaire", 20000, "C", 0, 80, 3, 5, "Récompensé par la « Ceinture de sécurité dorée » au salon de l'automobile de Cologne en 2072."),
+    # Voiture de patrouille du NCPD : mêmes caractéristiques que la Chevillon Emperor 620 Ragnar (sa base)
+    ("voiture-patrouille-ncpd", "Voiture de patrouille NCPD", "voiture", 20000, "C", 0, 80, 3, 5, "La Chevillon Emperor 620 Ragnar aux couleurs du NCPD."),
     ("kaukaz-bratsk", "Kaukaz Bratsk U4020", "utilitaire", 28000, "E", -3, 80, 2, 3, "Ce mauvais garçon brûle autant de carburant par heure qu'il en faudrait pour chauffer un mégabloc entier. Et avouons-le : il est aussi gros et laid qu'un mégabloc.", False, "+ 6 dans la remorque"),
     ("villefort-columbus", "Villefort Columbus V340-F Freight", "utilitaire", 11000, "E", 0, 60, 4, 4, "Le Columbus est le modèle le plus jeune, le moins cher et le plus populaire de la gamme Villefort. Un favori parmi les compagnies maritimes et les familles nombreuses."),
     ("mizutani-coyote", "Mizutani Shion « Coyote »", "blinde", 32000, "A", 3, 100, 3, 2, "Grâce à ses mises à niveau, ce modèle est capable d'aller à pleine vitesse même à des températures supérieures à 135 °F."),
